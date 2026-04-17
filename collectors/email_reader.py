@@ -3,9 +3,11 @@
 롱블랙, 풋풋레터, 캐릿, 까탈로그 등 이메일 구독 뉴스레터 수신
 """
 
+import base64
 import imaplib
 import email
 import re
+import requests
 from email.header import decode_header
 from bs4 import BeautifulSoup
 from dataclasses import dataclass
@@ -50,12 +52,12 @@ class MailplugReader:
 
         # 날짜 기준으로 검색 (오늘 또는 어제 이후)
         since_date = (datetime.now() - timedelta(days=days_back)).strftime("%d-%b-%Y")
-        search_criteria = f'(SINCE "{since_date}" FROM "{sender_keyword}")'
 
         try:
-            _, msg_ids = self._conn.search(None, search_criteria)
+            _, msg_ids = self._conn.search(None, f'(SINCE "{since_date}" FROM "{sender_keyword}")')
         except Exception:
-            # 한국어 발신자명은 subject로 검색
+            msg_ids = [b""]
+        if not msg_ids or not msg_ids[0]:
             _, msg_ids = self._conn.search(None, f'SINCE "{since_date}"')
 
         if not msg_ids or not msg_ids[0]:
@@ -95,11 +97,14 @@ class MailplugReader:
 
         self._conn.select("INBOX")
         since_date = (datetime.now() - timedelta(days=days_back)).strftime("%d-%b-%Y")
-        search_criteria = f'(SINCE "{since_date}" FROM "{sender_keyword}")'
 
+        # FROM 검색은 한국어 키워드에서 예외 없이 빈 결과를 반환하는 경우가 있음
+        # → 항상 SINCE 검색 후 Python에서 필터링
         try:
-            _, msg_ids = self._conn.search(None, search_criteria)
+            _, msg_ids = self._conn.search(None, f'(SINCE "{since_date}" FROM "{sender_keyword}")')
         except Exception:
+            msg_ids = [b""]
+        if not msg_ids or not msg_ids[0]:
             _, msg_ids = self._conn.search(None, f'SINCE "{since_date}"')
 
         if not msg_ids or not msg_ids[0]:
@@ -124,10 +129,21 @@ class MailplugReader:
                 continue
 
             soup = BeautifulSoup(html_body, "html.parser")
+
+            # 1순위: 직접 share URL
             for a in soup.select("a[href*='stibee.com']"):
                 href = a.get("href", "")
                 if "/api/v1.0/emails/share/" in href:
                     return href
+
+            # 2순위: event.stibee.com/v2/click/…/{base64} → stib.ee → share URL
+            for a in soup.select("a[href*='event.stibee.com/v2/click']"):
+                href = a.get("href", "")
+                decoded = _decode_stibee_event_href(href)
+                if decoded.startswith("https://stib.ee/"):
+                    share_url = _follow_to_share_url(decoded)
+                    if share_url:
+                        return share_url
 
         return None
 
@@ -223,6 +239,28 @@ def _extract_main_link(content: str) -> str:
             return url
 
     return ""
+
+
+def _decode_stibee_event_href(href: str) -> str:
+    """event.stibee.com/v2/click/…/{base64} 마지막 세그먼트를 디코딩해 원본 URL 반환"""
+    try:
+        last = href.rstrip("/").split("/")[-1]
+        pad = last + "=" * (4 - len(last) % 4)
+        return base64.b64decode(pad).decode("utf-8", errors="replace")
+    except Exception:
+        return ""
+
+
+def _follow_to_share_url(url: str) -> Optional[str]:
+    """stib.ee 단축 URL을 따라가 stibee share URL 반환. 실패 시 None."""
+    try:
+        r = requests.get(url, timeout=10, allow_redirects=True)
+        final = r.url
+        if "/api/v1.0/emails/share/" in final:
+            return final
+    except Exception:
+        pass
+    return None
 
 
 def _extract_summary(html: str, text: str, subject: str) -> str:

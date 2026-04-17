@@ -1,6 +1,7 @@
 # 민감 정보
 config.yaml
 .env
+.env.*
 
 # Python
 __pycache__/
@@ -17,6 +18,20 @@ stibee_*.txt
 check_sites.txt
 grants.txt
 *.log
+
+# 로컬 전용 스크립트 (내부 경로 노출)
+*.bat
+setup_github.py
+
+# 테스트/유틸리티 (시크릿 참조)
+gemini_image_gen.py
+admin.py
+test_scrapers.py
+test_full_preview.py
+grants_formatter.py
+
+# Claude 로컬 설정
+.claude/settings.local.json
 
 # docs/ 는 추적 (GitHub Pages)
 !docs/

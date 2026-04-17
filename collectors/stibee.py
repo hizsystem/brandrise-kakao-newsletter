@@ -130,7 +130,7 @@ def _parse_careet(lines: List[str], url: str, source_name: str) -> StibeeNewslet
 
         # 이번 주 주제 (첫 번째 줄 또는 subtitle 형태)
         clean_line = re.sub(r"^\(광고\)\s*", "", line)
-        if not title and len(clean_line) > 15 and "캐릿" not in clean_line and "🥕" not in clean_line and "vol" not in clean_line.lower():
+        if not title and len(clean_line) > 5 and "캐릿" not in clean_line and "🥕" not in clean_line and "vol" not in clean_line.lower() and not clean_line.startswith("※") and not clean_line.startswith("["):
             if re.search(r"[가-힣]", clean_line):  # 한글 포함
                 title = clean_line
 

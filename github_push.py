@@ -34,7 +34,7 @@ def push_to_github(repo_dir: Path, date_str: str) -> bool:
         return False
 
     # git push
-    ok, out = run(["git", "push"])
+    ok, out = run(["git", "push", "--set-upstream", "origin", "main"])
     if not ok:
         print(f"  [WARN] git push 실패: {out}")
         print("         수동으로 실행: git push")

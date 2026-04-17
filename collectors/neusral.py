@@ -16,6 +16,8 @@ from datetime import datetime
 class CategoryNews:
     category: str
     headlines: List[str] = field(default_factory=list)
+    headline_urls: List[str] = field(default_factory=list)
+    url: str = ""
 
 
 BASE_URL = "https://www.neusral.com"
@@ -97,16 +99,29 @@ def parse_briefing(html: str) -> List[CategoryNews]:
         if not next_ul:
             continue
 
-        headlines = [
-            li.get_text(strip=True)
-            for li in next_ul.select("li")
-            if li.get_text(strip=True)
-        ]
+        headlines = []
+        headline_urls = []
+        for li in next_ul.select("li"):
+            text = li.get_text(strip=True)
+            if not text:
+                continue
+            headlines.append(text)
+            # li 안의 <a href> 링크 추출
+            li_a = li.find("a", href=True)
+            if li_a:
+                h = li_a.get("href", "")
+                headline_urls.append(h if h.startswith("http") else f"{BASE_URL}{h}" if h else "")
+            else:
+                headline_urls.append("")
 
         if headlines:
+            href = anchor.get("href", "")
+            category_url = href if href.startswith("http") else f"{BASE_URL}{href}" if href else ""
             categories.append(CategoryNews(
                 category=category_name,
-                headlines=headlines[:3]
+                headlines=headlines[:3],
+                headline_urls=headline_urls[:3],
+                url=category_url,
             ))
 
     return categories

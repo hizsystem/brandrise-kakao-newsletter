@@ -430,7 +430,7 @@ def build_html_v2(
 
     if is_subpage:
         topnav = '<div class="v2-topnav"><a href="../../v2/">← 최신 뉴스레터</a></div>'
-        footer_nav = '<a href="../../v2/">← 최신 뉴스레터</a>'
+        footer_nav = '<a href="../../v2/">← 최신 뉴스레터</a><a href="../archive.html">📚 전체 아카이브</a>'
     else:
         topnav = ""
         footer_nav = (
@@ -446,7 +446,7 @@ def build_html_v2(
     <meta property="og:title" content="Brandrise 데일리 — {date_str}">
     <meta property="og:description" content="{weekday_name} 마케팅 뉴스레터 · Brandrise">
     <meta property="og:type" content="website">
-    <title>Brandrise 데일리 v2 | {date_str}</title>
+    <title>Brandrise 데일리 | {date_str}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>{CSS_V2}</style>
@@ -457,7 +457,7 @@ def build_html_v2(
     {topnav}
 
     <div class="v2-header">
-        <div class="v2-header-meta">BRANDRISE DAILY v2 · {date_iso}</div>
+        <div class="v2-header-meta">BRANDRISE DAILY · {date_iso}</div>
         <div class="v2-header-title">{date_str} 마케팅 뉴스레터</div>
         <div class="v2-header-subtitle">{weekday_name} · 매일 아침 자동 업데이트</div>
         <div class="v2-greeting">{greeting_html}</div>
@@ -486,15 +486,14 @@ def save_newsletter_v2(
     greeting: str,
     docs_dir: Path,
     iboss_post_url: str = "",
-    openai_api_key: str = "",
     anthropic_api_key: str = "",
+    gemini_api_key: str = "",
 ) -> Path:
     """
     v2 HTML 생성 후 docs/v2/ 폴더에 저장.
     - docs/v2/newsletters/YYYY-MM-DD.html
     - docs/v2/index.html
-    openai_api_key: DALL-E 3 이미지 생성
-    anthropic_api_key: Claude로 맞춤 이미지 프롬프트 생성
+    이미지 생성: Gemini 우선, Pollinations.ai 폴백
     """
     date_iso = datetime.now().strftime("%Y-%m-%d")
     v2_dir = docs_dir / "v2"
@@ -506,19 +505,19 @@ def save_newsletter_v2(
         fetch_longblack_image, fetch_stibee_images,
     )
 
-    # DALL-E 3 AI 이미지 (아이보스만 — 뉴스럴은 아이콘으로 대체)
+    # Pollinations.ai AI 이미지 (아이보스만 — 뉴스럴은 아이콘으로 대체)
     iboss_image_map = {}
     neusral_image_map = {}
-    if openai_api_key:
-        try:
-            print("  → DALL-E 3 이미지 생성 중...")
-            if iboss_items:
-                iboss_image_map = generate_iboss_images(
-                    iboss_items, openai_api_key, docs_dir, date_iso, anthropic_api_key
-                )
-            print(f"     AI 이미지 완료 (아이보스 {len(iboss_image_map)}개)")
-        except Exception as e:
-            print(f"  [WARN] AI 이미지 생성 실패: {e}")
+    try:
+        engine = "Gemini" if gemini_api_key else "Pollinations"
+        print(f"  → {engine} 이미지 생성 중...")
+        if iboss_items:
+            iboss_image_map = generate_iboss_images(
+                iboss_items, docs_dir, date_iso, anthropic_api_key, gemini_api_key
+            )
+        print(f"     AI 이미지 완료 (아이보스 {len(iboss_image_map)}개)")
+    except Exception as e:
+        print(f"  [WARN] AI 이미지 생성 실패: {e}")
 
     # OG 이미지 스크래핑 (롱블랙 + 스티비)
     lb_image = ""

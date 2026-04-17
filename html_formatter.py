@@ -2,7 +2,7 @@
 뉴스레터 HTML 포맷터
 수집된 데이터를 GitHub Pages용 아름다운 HTML로 변환
 """
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import List, Optional
 
@@ -256,14 +256,17 @@ def build_html(
     longblack_item,
     stibee_items: list,
     greeting: str,
+    is_subpage: bool = False,
 ) -> str:
-    """뉴스레터 데이터를 완성된 HTML 문서로 변환"""
+    """뉴스레터 데이터를 완성된 HTML 문서로 변환.
+    is_subpage=True: newsletters/YYYY-MM-DD.html (공유 링크용)
+    is_subpage=False: index.html (루트, 최신)
+    """
     today = datetime.now()
     date_str = f"{today.month}월 {today.day}일"
     date_iso = today.strftime("%Y-%m-%d")
     weekday_name = WEEKDAY_NAMES.get(today.weekday(), "")
 
-    # 인사말 줄바꿈 처리 (빈 줄 → 단락)
     greeting_html = _esc(greeting).replace("\n\n", "</p><p>").replace("\n", "<br>")
     greeting_html = f"<p>{greeting_html}</p>"
 
@@ -275,15 +278,28 @@ def build_html(
         _render_longblack(longblack_item),
     ]))
 
+    # 페이지 종류별 네비게이션
+    if is_subpage:
+        # 공유 링크 페이지: 최신 뉴스레터로 돌아가기
+        topnav = '<div class="topnav"><a href="../">← 최신 뉴스레터</a></div>'
+        footer_nav = '<a href="../">← 최신 뉴스레터</a>'
+    else:
+        # 루트(index.html): 오늘 링크 공유 + 공고 페이지
+        topnav = ""
+        footer_nav = (
+            f'<a href="newsletters/{date_iso}.html">🔗 오늘 링크 공유</a>'
+            f'<a href="grants/">📋 지원사업 공고</a>'
+        )
+
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="HIZ 마케팅 데일리 — {date_str}">
-    <meta property="og:description" content="{weekday_name} 마케팅 뉴스레터 · HIZ">
+    <meta property="og:title" content="Brandrise 데일리 — {date_str}">
+    <meta property="og:description" content="{weekday_name} 마케팅 뉴스레터 · Brandrise">
     <meta property="og:type" content="website">
-    <title>HIZ 마케팅 데일리 | {date_str}</title>
+    <title>Brandrise 데일리 | {date_str}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>{CSS}</style>
@@ -291,12 +307,10 @@ def build_html(
 <body>
 <div class="wrapper">
 
-    <div class="topnav">
-        <a href="archive.html">지난 뉴스레터 →</a>
-    </div>
+    {topnav}
 
     <div class="header">
-        <div class="header-meta">HIZ DAILY · {date_iso}</div>
+        <div class="header-meta">BRANDRISE DAILY · {date_iso}</div>
         <div class="header-title">{date_str} 마케팅 뉴스레터</div>
         <div class="header-subtitle">{weekday_name} · 매일 아침 자동 업데이트</div>
         <div class="greeting-box">{greeting_html}</div>
@@ -306,10 +320,9 @@ def build_html(
 
     <div class="footer">
         <div class="footer-nav">
-            <a href="archive.html">📁 전체 아카이브</a>
-            <a href="newsletters/{date_iso}.html">🔗 오늘 링크 공유</a>
+            {footer_nav}
         </div>
-        <div class="footer-copy">HIZ 마케팅 에이전시 · 매일 자동 업데이트</div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
     </div>
 
 </div>
@@ -331,7 +344,7 @@ def build_archive_html(newsletters_dir: Path) -> str:
         except ValueError:
             display = date_str
         items_html += f"""
-        <a class="archive-item" href="newsletters/{date_str}.html">
+        <a class="archive-item" href="v2/newsletters/{date_str}.html">
             <span class="archive-date">{display}</span>
             <span class="archive-arrow">→</span>
         </a>"""
@@ -344,7 +357,7 @@ def build_archive_html(newsletters_dir: Path) -> str:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HIZ 마케팅 데일리 — 아카이브</title>
+    <title>Brandrise 데일리 — 아카이브</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {{ box-sizing: border-box; margin: 0; padding: 0; }}
@@ -368,7 +381,7 @@ def build_archive_html(newsletters_dir: Path) -> str:
 <div class="wrapper">
     <a class="back" href="index.html">← 최신 뉴스레터</a>
     <h1>뉴스레터 아카이브</h1>
-    <p class="subtitle">HIZ 마케팅 데일리 전체 목록</p>
+    <p class="subtitle">Brandrise 데일리 전체 목록</p>
     {items_html}
 </div>
 </body>
@@ -391,21 +404,96 @@ def save_newsletter(
     - docs/archive.html                 (전체 목록)
     저장된 파일 경로 반환
     """
-    html = build_html(iboss_items, neusral_categories, heypop_items, longblack_item, stibee_items, greeting)
-
     date_iso = datetime.now().strftime("%Y-%m-%d")
     newsletters_dir = docs_dir / "newsletters"
     newsletters_dir.mkdir(parents=True, exist_ok=True)
 
-    # 오늘 뉴스레터
+    # 공유 링크용 (subpage): newsletters/YYYY-MM-DD.html
+    subpage_html = build_html(
+        iboss_items, neusral_categories, heypop_items,
+        longblack_item, stibee_items, greeting, is_subpage=True,
+    )
     newsletter_path = newsletters_dir / f"{date_iso}.html"
-    newsletter_path.write_text(html, encoding="utf-8")
+    newsletter_path.write_text(subpage_html, encoding="utf-8")
 
-    # index.html = 최신
-    (docs_dir / "index.html").write_text(html, encoding="utf-8")
-
-    # archive.html 재생성
-    archive_html = build_archive_html(newsletters_dir)
-    (docs_dir / "archive.html").write_text(archive_html, encoding="utf-8")
+    # 루트용 (index.html): 최신 뉴스레터
+    index_html = build_html(
+        iboss_items, neusral_categories, heypop_items,
+        longblack_item, stibee_items, greeting, is_subpage=False,
+    )
+    (docs_dir / "index.html").write_text(index_html, encoding="utf-8")
 
     return newsletter_path
+
+
+def build_weekly_archive_v1(today: datetime, newsletters_dir: Path) -> str:
+    """
+    주말용 주간 아카이브 페이지 (v1 스타일).
+    이번 주 월~금 링크 목록.
+    newsletters_dir: docs/newsletters/
+    """
+    monday = today - timedelta(days=today.weekday())
+    weekday_names = ["월요일", "화요일", "수요일", "목요일", "금요일"]
+    first = monday
+    last = monday + timedelta(days=4)
+    range_str = f"{first.month}월 {first.day}일 — {last.month}월 {last.day}일"
+
+    items_html = ""
+    for i in range(5):
+        d = monday + timedelta(days=i)
+        d_iso = d.strftime("%Y-%m-%d")
+        d_label = f"{d.year}년 {d.month}월 {d.day}일 ({weekday_names[i]})"
+        html_path = newsletters_dir / f"{d_iso}.html"
+        if html_path.exists():
+            items_html += f"""
+        <a class="archive-item" href="newsletters/{d_iso}.html">
+            <span class="archive-date">{d_label}</span>
+            <span class="archive-arrow">→</span>
+        </a>"""
+        else:
+            items_html += f"""
+        <div class="archive-item archive-item-empty">
+            <span class="archive-date">{d_label}</span>
+            <span class="archive-arrow" style="color:#d1d5db;">준비 중</span>
+        </div>"""
+
+    if not items_html:
+        items_html = '<p class="empty">이번 주 발행된 뉴스레터가 없습니다.</p>'
+
+    return f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brandrise 데일리 — 이번 주 아카이브</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+        body {{ font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1a2e; }}
+        .wrapper {{ max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }}
+        .back {{ display: inline-block; font-size: 13px; color: #6b7280; margin-bottom: 24px;
+                 border: 1px solid #e5e7eb; padding: 7px 16px; border-radius: 20px; text-decoration: none; }}
+        .back:hover {{ background: white; color: #6366f1; }}
+        h1 {{ font-size: 24px; font-weight: 700; margin-bottom: 6px; }}
+        .subtitle {{ font-size: 14px; color: #6b7280; margin-bottom: 28px; }}
+        .archive-item {{ display: flex; justify-content: space-between; align-items: center;
+                         background: white; border: 1px solid #e5e7eb; border-radius: 12px;
+                         padding: 16px 20px; margin-bottom: 10px; text-decoration: none;
+                         color: #1a1a2e; transition: box-shadow 0.15s; }}
+        .archive-item:not(.archive-item-empty):hover {{ box-shadow: 0 4px 16px rgba(99,102,241,0.12); }}
+        .archive-item-empty {{ opacity: 0.45; }}
+        .archive-date {{ font-size: 14px; font-weight: 500; }}
+        .archive-arrow {{ font-size: 14px; color: #6366f1; font-weight: 700; }}
+        .footer {{ text-align: center; padding-top: 32px; font-size: 12px; color: #9ca3af; }}
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <a class="back" href="newsletters/">← 아카이브 전체 보기</a>
+    <h1>이번 주 뉴스레터</h1>
+    <p class="subtitle">{range_str}</p>
+    {items_html}
+    <div class="footer">Brandrise · 매일 자동 업데이트</div>
+</div>
+</body>
+</html>"""

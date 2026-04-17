@@ -1,9 +1,12 @@
 """
-DALL-E 3를 사용한 뉴스 썸네일 이미지 생성 + OG 이미지 스크래핑
-Claude API로 뉴스 제목에 맞는 맞춤 프롬프트 생성
+뉴스 썸네일 이미지 생성 (Gemini 우선, Pollinations.ai 폴백) + OG 이미지 스크래핑
+Claude Sonnet으로 뉴스 본문 기반 맞춤 프롬프트 생성, ThreadPoolExecutor 병렬 생성
 """
 from pathlib import Path
+from urllib.parse import quote
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
+import time
 import requests
 from bs4 import BeautifulSoup
 
@@ -15,47 +18,78 @@ HEADERS = {
     )
 }
 
+STYLE_PREFIX = "Editorial illustration with soft pastel palette centered on pink (#FFB5C8) and mint (#B8E8D0): "
+
 STYLE_SUFFIX = (
-    " Soft 3D flat illustration, Korean app/fintech style. "
-    "Very light mint-white gradient background. "
-    "Warm coral and pastel color palette — coral, peach, soft yellow, mint. "
-    "Main objects have slight depth and volume with smooth gradients. "
-    "Small colorful decorative spheres and dots floating around. "
-    "Clean, friendly, professional — like Korean e-commerce or fintech app UI illustration. "
-    "No characters, no people, no faces, no text, no letters."
+    ". Rounded forms, friendly and modern feel, warm lighting, gentle shadows. "
+    "Keep pink/mint as dominant hues but allow small accent colors when the subject demands. "
+    "No people, no faces, no text, no letters, no logos, no dark moody tones, no photorealism."
 )
 
+MAX_WORKERS = 4
 
-# ── Claude로 맞춤 프롬프트 생성 ─────────────────────────────────────────────
 
-def generate_prompts_batch(titles: list, anthropic_api_key: str) -> list:
+# ── 헬퍼 ─────────────────────────────────────────────────────────────────────
+
+def _date_seed(date_iso: str) -> int:
+    digits = "".join(ch for ch in date_iso if ch.isdigit())
+    return int(digits) if digits else 42
+
+
+# ── Claude로 맞춤 프롬프트 생성 ───────────────────────────────────────────────
+
+def generate_prompts_batch(
+    articles: list,
+    anthropic_api_key: str,
+) -> list:
     """
-    Claude Haiku로 한국어 뉴스 제목들에 대한 DALL-E 프롬프트 일괄 생성.
-    Returns: prompt 문자열 리스트 (titles와 동일한 순서)
+    Claude로 한국어 뉴스 기사들에 대한 이미지 프롬프트 일괄 생성.
+    articles: [(title, context)] 튜플 리스트.
+    Returns: prompt 문자열 리스트 (articles와 동일한 순서)
     """
+    titles = [a[0] if isinstance(a, tuple) else a for a in articles]
+    contexts = [a[1] if isinstance(a, tuple) and len(a) > 1 else "" for a in articles]
+
     try:
         import anthropic
         client = anthropic.Anthropic(api_key=anthropic_api_key)
 
-        numbered = "\n".join(f"{i+1}. {t}" for i, t in enumerate(titles))
+        blocks = []
+        for i, (t, c) in enumerate(zip(titles, contexts), 1):
+            ctx = (c or "").strip().replace("\n", " ")
+            if len(ctx) > 220:
+                ctx = ctx[:220] + "…"
+            blocks.append(f"{i}. 제목: {t}\n   본문: {ctx}" if ctx else f"{i}. 제목: {t}")
+        numbered = "\n".join(blocks)
+
         message = client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=1024,
+            model="claude-sonnet-4-6",
+            max_tokens=1536,
             messages=[{
                 "role": "user",
                 "content": (
-                    "다음 한국어 뉴스 제목 각각에 대해 DALL-E 3 이미지 생성용 영어 프롬프트를 만들어주세요.\n\n"
-                    "스타일 규칙:\n"
-                    "- 뉴스 내용을 직관적으로 나타내는 귀여운 오브젝트 2-3개\n"
-                    "- 클립아트코리아 스타일: 밝고 친근한 색상, 둥근 모서리, 귀여운 한국 모바일 앱 일러스트 느낌\n"
-                    "- 캐릭터·사람·얼굴 없이, 사물/아이콘 오브젝트만으로 구성\n"
-                    "- 예: '유튜브 쇼핑 수익화' → 'a cute play button with a small shopping bag and coin stack'\n"
-                    "- 예: 'AI 기업 인수합병' → 'two cute circuit boards with a glowing handshake icon between them'\n"
-                    "- 예: '브랜드 SNS 마케팅 트렌드' → 'a cute megaphone with colorful speech bubble icons'\n"
-                    "- 예: '쿠팡 물류센터 확장' → 'a cute delivery box with a location pin and sparkle stars'\n"
-                    "- 25단어 이내 영어, 오브젝트 종류와 배치만 묘사\n"
-                    "- 사람 없음, 텍스트 없음, 배경 별도 묘사 불필요\n\n"
-                    f"제목들:\n{numbered}\n\n"
+                    "다음 한국어 뉴스 각각에 대해 이미지 생성용 영어 프롬프트를 만들어주세요.\n"
+                    "**제목만 보지 말고 본문에서 가장 구체적이고 시각적인 디테일(브랜드, 제품, 숫자, 장소, 행동, 등장하는 사물)을 뽑아내 장면으로 옮기세요.**\n\n"
+                    "프롬프트 구성 규칙:\n"
+                    "- 기사에만 등장하는 고유한 사물 3-4개를 조합해 '한 장면(scene)'을 묘사 (단순 아이콘 나열 금지)\n"
+                    "- 매 기사마다 **구도(앵글)**를 달리 하세요: 탑다운, 등각투영, 정면, 약간 위에서 내려다보기, 옆에서 바라보기 등\n"
+                    "- 매 기사마다 **질감 변주**를 주세요: 부드러운 클레이, 종이접기(paper-craft), 플랫 일러스트, 수채화, 미니어처 모형 등\n"
+                    "- 사물 사이의 관계/배치를 명시 (위에, 옆에, 안에서 나오는, 연결된, 둘러싼 등)\n"
+                    "- 같은 주제라도 본문이 다르면 사물 조합과 구도가 모두 달라야 함\n\n"
+                    "좋은 예:\n"
+                    "- '쿠팡, 와우 멤버십 OTT 강화' (본문: 쿠팡플레이 스포츠 중계 확대) →\n"
+                    "  'top-down view of a mint TV screen showing a tiny soccer field, pink delivery box with a golden crown beside it, paper-craft remote control, soft watercolor gradient'\n"
+                    "- '네이버 치지직 광고 도입' (본문: 스트리밍 중 배너 광고 삽입 테스트) →\n"
+                    "  'isometric clay monitor with glowing play triangle, a thin banner ribbon sliding across the screen, stacked coins and a headset on a mint shelf beside it'\n"
+                    "- 'GS25, 라면 특화 매장 오픈' (본문: 100여 종 라면 진열, 즉석 조리대) →\n"
+                    "  'front-view miniature convenience store with shelves of colorful ramen cups, a steaming pink bowl on a counter, chopsticks and a kettle floating in warm light'\n\n"
+                    "나쁜 예 (절대 이렇게 만들지 말 것):\n"
+                    "- 'social media engagement icons on gradient' (너무 일반적, 어느 기사든 적용 가능)\n"
+                    "- 'shopping cart and coins floating' (브랜드/맥락 없음)\n"
+                    "- 모든 기사에 동일한 'isometric clay diorama' 구도 반복 (변화 없음)\n\n"
+                    "금지: 사람, 얼굴, 텍스트/글자, 로고 그대로 복제, 어두운 색, 사실적 질감, 추상 도형만 사용\n"
+                    "각 프롬프트는 30~50단어 영어, 위 규칙을 모두 지킬 것.\n\n"
+                    f"기사 목록:\n{numbered}\n\n"
                     "JSON 배열로만 응답 (다른 텍스트 없이):\n"
                     '["prompt1", "prompt2", ...]'
                 ),
@@ -67,11 +101,10 @@ def generate_prompts_batch(titles: list, anthropic_api_key: str) -> list:
         if start >= 0 and end > start:
             prompts = json.loads(text[start:end])
             if len(prompts) == len(titles):
-                return [p + STYLE_SUFFIX for p in prompts]
+                return [STYLE_PREFIX + p + STYLE_SUFFIX for p in prompts]
     except Exception as e:
         print(f"  [WARN] Claude 프롬프트 생성 실패: {e}")
 
-    # fallback: 키워드 매핑
     return [_build_fallback_prompt(t) for t in titles]
 
 
@@ -111,126 +144,190 @@ KEYWORD_MAP = {
 def _build_fallback_prompt(title: str) -> str:
     for kr, en in KEYWORD_MAP.items():
         if kr in title:
-            return en + STYLE_SUFFIX
-    return "business news concept abstract geometric shapes" + STYLE_SUFFIX
+            return STYLE_PREFIX + en + STYLE_SUFFIX
+    return STYLE_PREFIX + "business news concept abstract geometric shapes" + STYLE_SUFFIX
 
 
-# ── DALL-E 3 이미지 생성 ────────────────────────────────────────────────────
+# ── Gemini 이미지 생성 (우선) ────────────────────────────────────────────────
 
-def _generate_with_prompt(prompt: str, openai_api_key: str, save_path: Path) -> bool:
-    """
-    주어진 프롬프트로 DALL-E 3 이미지 생성 후 저장.
-    Returns: True (성공 또는 기존 파일 존재), False (실패)
-    """
+def _generate_with_gemini(prompt: str, save_path: Path, gemini_api_key: str) -> bool:
     if save_path.exists():
         return True
-
     try:
-        from openai import OpenAI
-        client = OpenAI(api_key=openai_api_key)
+        from google import genai
+        from google.genai import types
 
-        response = client.images.generate(
-            model="dall-e-3",
-            prompt=prompt,
-            size="1792x1024",   # 16:9 landscape — YouTube 썸네일 비율
-            quality="standard",
-            n=1,
+        client = genai.Client(api_key=gemini_api_key)
+        response = client.models.generate_content(
+            model="gemini-2.5-flash-image",
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                response_modalities=["IMAGE", "TEXT"],
+            ),
         )
-        image_url = response.data[0].url
-        img_data = requests.get(image_url, timeout=30).content
-        save_path.parent.mkdir(parents=True, exist_ok=True)
-        save_path.write_bytes(img_data)
-        return True
+        for part in response.candidates[0].content.parts:
+            if part.inline_data is not None:
+                save_path.parent.mkdir(parents=True, exist_ok=True)
+                save_path.write_bytes(part.inline_data.data)
+                return True
     except Exception as e:
-        print(f"  [WARN] 이미지 생성 실패: {e}")
-        return False
+        print(f"  [WARN] Gemini 이미지 생성 실패: {e}")
+    return False
 
+
+# ── Pollinations.ai 이미지 생성 (폴백) ───────────────────────────────────────
+
+def _generate_with_pollinations(prompt: str, save_path: Path, seed: int = 42, max_retries: int = 2) -> bool:
+    if save_path.exists():
+        return True
+    for attempt in range(max_retries):
+        try:
+            current_seed = seed + attempt * 10
+            url = (
+                f"https://image.pollinations.ai/prompt/{quote(prompt)}"
+                f"?width=1792&height=1024&nologo=true&nofeed=true&seed={current_seed}"
+            )
+            r = requests.get(url, timeout=60)
+            if r.status_code == 200 and len(r.content) > 1000:
+                save_path.parent.mkdir(parents=True, exist_ok=True)
+                save_path.write_bytes(r.content)
+                return True
+            print(f"  [WARN] Pollinations 응답 이상 (시도 {attempt+1}/{max_retries}): status={r.status_code}")
+            time.sleep(5)
+        except Exception as e:
+            print(f"  [WARN] Pollinations 폴백 실패 (시도 {attempt+1}/{max_retries}): {e}")
+            time.sleep(3)
+    return False
+
+
+# ── 통합 생성 (Gemini 우선 → Pollinations 폴백) ──────────────────────────────
+
+def _generate_image(
+    prompt: str,
+    save_path: Path,
+    gemini_api_key: str,
+    seed: int = 42,
+) -> bool:
+    if save_path.exists():
+        return True
+    if gemini_api_key and _generate_with_gemini(prompt, save_path, gemini_api_key):
+        return True
+    return _generate_with_pollinations(prompt, save_path, seed=seed)
+
+
+# ── 아이보스 이미지 생성 (병렬) ──────────────────────────────────────────────
 
 def generate_iboss_images(
     iboss_items,
-    openai_api_key: str,
     docs_dir: Path,
     date_iso: str,
     anthropic_api_key: str = "",
+    gemini_api_key: str = "",
 ) -> dict:
     """
-    아이보스 뉴스 항목별 AI 이미지 생성.
+    아이보스 뉴스 항목별 AI 이미지 생성 (Gemini 병렬, Pollinations 폴백).
     Returns: {1-based index: relative_path_from_docs/v2/}
     """
     images_dir = docs_dir / "v2" / "images" / date_iso
-    titles = [item.title for item in iboss_items]
+    articles = [(item.title, getattr(item, "summary", "") or "") for item in iboss_items]
 
-    # Claude로 맞춤 프롬프트 생성
     if anthropic_api_key:
-        prompts = generate_prompts_batch(titles, anthropic_api_key)
+        prompts = generate_prompts_batch(articles, anthropic_api_key)
     else:
-        prompts = [_build_fallback_prompt(t) for t in titles]
+        prompts = [_build_fallback_prompt(t) for t, _ in articles]
 
+    date_seed = _date_seed(date_iso)
     result = {}
-    for i, (item, prompt) in enumerate(zip(iboss_items, prompts), 1):
+    engine = "Gemini" if gemini_api_key else "Pollinations"
+    print(f"     아이보스 {len(iboss_items)}개 이미지 병렬 생성 중 ({engine})...")
+
+    def _task(i: int, item, prompt: str):
         filename = f"iboss-{i}.png"
         save_path = images_dir / filename
-        print(f"     아이보스 [{i}/{len(iboss_items)}] {item.title[:30]}...")
-        if _generate_with_prompt(prompt, openai_api_key, save_path):
-            result[i] = f"images/{date_iso}/{filename}"
+        ok = _generate_image(prompt, save_path, gemini_api_key, seed=date_seed + i * 17)
+        return i, item, filename, ok
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+        futures = [
+            pool.submit(_task, i, item, prompt)
+            for i, (item, prompt) in enumerate(zip(iboss_items, prompts), 1)
+        ]
+        for future in as_completed(futures):
+            i, item, filename, ok = future.result()
+            if ok:
+                result[i] = f"images/{date_iso}/{filename}"
+                print(f"     아이보스 [{i}/{len(iboss_items)}] {item.title[:30]} ✓")
+            else:
+                print(f"     아이보스 [{i}/{len(iboss_items)}] {item.title[:30]} ✗")
+
     return result
 
 
+# ── 뉴스럴 이미지 생성 (병렬) ────────────────────────────────────────────────
+
 def generate_neusral_images(
     neusral_categories,
-    openai_api_key: str,
     docs_dir: Path,
     date_iso: str,
     anthropic_api_key: str = "",
+    gemini_api_key: str = "",
 ) -> dict:
     """
-    뉴스럴 카테고리별 AI 이미지 생성.
+    뉴스럴 카테고리별 AI 이미지 생성 (Gemini 병렬, Pollinations 폴백).
     Returns: {category_name: relative_path_from_docs/v2/}
     """
     images_dir = docs_dir / "v2" / "images" / date_iso
-    # 카테고리명 + 첫 번째 헤드라인을 함께 넘겨서 더 정확한 프롬프트 생성
-    titles = [
-        f"{cat.category}: {cat.headlines[0]}" if cat.headlines else cat.category
-        for cat in neusral_categories
-    ]
+    articles = []
+    for cat in neusral_categories:
+        title = f"{cat.category}: {cat.headlines[0]}" if cat.headlines else cat.category
+        context = " / ".join(cat.headlines[1:]) if len(cat.headlines) > 1 else ""
+        articles.append((title, context))
 
     if anthropic_api_key:
-        prompts = generate_prompts_batch(titles, anthropic_api_key)
+        prompts = generate_prompts_batch(articles, anthropic_api_key)
     else:
-        prompts = [_build_fallback_prompt(t) for t in titles]
+        prompts = [_build_fallback_prompt(t) for t, _ in articles]
 
+    date_seed = _date_seed(date_iso)
     result = {}
-    for i, (cat, prompt) in enumerate(zip(neusral_categories, prompts)):
+    engine = "Gemini" if gemini_api_key else "Pollinations"
+    print(f"     뉴스럴 {len(neusral_categories)}개 이미지 병렬 생성 중 ({engine})...")
+
+    def _task(i: int, cat, prompt: str):
         filename = f"neusral-{i}.png"
         save_path = images_dir / filename
-        print(f"     뉴스럴 [{i+1}/{len(neusral_categories)}] {cat.category}...")
-        if _generate_with_prompt(prompt, openai_api_key, save_path):
-            result[cat.category] = f"images/{date_iso}/{filename}"
+        ok = _generate_image(prompt, save_path, gemini_api_key, seed=date_seed + 1000 + i * 23)
+        return i, cat, filename, ok
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+        futures = [
+            pool.submit(_task, i, cat, prompt)
+            for i, (cat, prompt) in enumerate(zip(neusral_categories, prompts))
+        ]
+        for future in as_completed(futures):
+            i, cat, filename, ok = future.result()
+            if ok:
+                result[cat.category] = f"images/{date_iso}/{filename}"
+                print(f"     뉴스럴 [{i+1}/{len(neusral_categories)}] {cat.category} ✓")
+            else:
+                print(f"     뉴스럴 [{i+1}/{len(neusral_categories)}] {cat.category} ✗")
+
     return result
 
 
 # ── OG 이미지 스크래핑 ────────────────────────────────────────────────────
 
 def fetch_og_image(url: str, save_path: Path) -> bool:
-    """
-    URL에서 이미지 스크래핑 후 저장.
-    1순위: og:image 메타 태그
-    2순위: 본문 첫 번째 http 이미지 (og:image가 없거나 비어있을 때)
-    Returns: True (성공 또는 기존 파일 존재), False (실패)
-    """
     if save_path.exists():
         return True
-
     try:
         r = requests.get(url, headers=HEADERS, timeout=15)
         r.encoding = "utf-8"
         soup = BeautifulSoup(r.text, "html.parser")
 
-        # 1순위: og:image
         og_tag = soup.find("meta", property="og:image") or soup.find("meta", attrs={"name": "og:image"})
         img_url = (og_tag.get("content", "") or "").strip() if og_tag else ""
 
-        # 2순위: 본문 첫 번째 실제 이미지
         if not img_url:
             for img in soup.find_all("img", src=True):
                 src = img.get("src", "")

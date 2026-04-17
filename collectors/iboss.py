@@ -53,7 +53,13 @@ def fetch(url: str = BOARD_URL) -> List[NewsItem]:
     r2 = requests.get(full_url, headers=HEADERS, timeout=15)
     r2.raise_for_status()
     r2.encoding = "utf-8"
-    return parse_post(r2.text)
+    items = parse_post(r2.text)
+    # 개별 기사 URL이 없으면 아이보스 포스트 URL로 채움
+    for item in items:
+        if not item.url:
+            item.url = full_url
+    return items
+
 
 
 def _find_todays_post(soup, today_str: str) -> str:
@@ -90,11 +96,20 @@ def parse_post(html: str) -> List[NewsItem]:
     if not content:
         return []
 
+    # DOM 기반으로 외부 링크 목록 미리 수집 (i-boss.co.kr 제외한 외부 도메인만)
+    external_links: List[str] = []
+    for a in content.find_all("a", href=True):
+        h = a.get("href", "").strip()
+        if h.startswith("http") and "i-boss.co.kr" not in h:
+            external_links.append(h)
+
     text = content.get_text(separator="\n")
     lines = [l.strip() for l in text.splitlines() if l.strip()]
 
     current_title = ""
     current_summary_lines: List[str] = []
+    current_url = ""
+    link_idx = 0  # external_links 순서대로 각 기사에 배정
 
     for line in lines:
         # "1. 제목" 패턴
@@ -104,13 +119,18 @@ def parse_post(html: str) -> List[NewsItem]:
                 items.append(NewsItem(
                     title=current_title,
                     summary=" ".join(current_summary_lines),
+                    url=current_url,
                 ))
+                if current_url and current_url != "":
+                    link_idx += 1
             current_title = m.group(2)
             current_summary_lines = []
+            # DOM에서 찾은 외부 링크를 순서대로 배정
+            current_url = external_links[link_idx] if link_idx < len(external_links) else ""
         elif current_title:
-            # 다음 번호 항목 또는 섹션 구분자 전까지 요약 수집
-            if re.match(r"^(\d{1,2})\.", line):
-                pass  # 이미 위에서 처리
+            # 텍스트에 URL이 직접 있으면 우선 사용
+            if re.match(r"^(https?://)", line) and not current_url:
+                current_url = line.strip()
             elif (len(line) > 15
                   and not line.startswith("[")
                   and not line.startswith("출처")
@@ -121,6 +141,7 @@ def parse_post(html: str) -> List[NewsItem]:
         items.append(NewsItem(
             title=current_title,
             summary=" ".join(current_summary_lines),
+            url=current_url,
         ))
 
     return items

@@ -1,0 +1,70 @@
+# config.yaml 템플릿 — 복사 후 실제 값으로 교체
+# cp config.example.yaml config.yaml
+
+anthropic:
+  api_key: "sk-ant-api03-YOUR_KEY_HERE"
+  model: claude-sonnet-4-6
+gemini:
+  api_key: "YOUR_GEMINI_API_KEY"
+  model: gemini-2.0-flash
+groq:
+  api_key: "gsk_YOUR_GROQ_KEY"
+  model: qwen/qwen3-32b
+openai:
+  api_key: "sk-proj-YOUR_OPENAI_KEY"
+email:
+  imap_host: imap.gmail.com
+  imap_port: 993
+  username: "your-email@gmail.com"
+  password: "your-app-password"
+schedule:
+  send_time: "08:30"
+sites:
+  iboss:
+    url: https://www.i-boss.co.kr/ab-7214
+    schedule: daily
+  neusral:
+    url: "YOUR_NEUSRAL_URL"
+    schedule: daily
+  heypop:
+    url: https://heypop.kr/
+    schedule: thursday
+tuesday_newsletters:
+  putput:
+    url: "WEEKLY_STIBEE_URL"
+    name: 풋풋레터
+    sender_keyword: 풋풋
+  careet:
+    url: "WEEKLY_STIBEE_URL"
+    name: 캐릿
+    sender_keyword: 캐릿
+friday_newsletters:
+  catalogue:
+    url: "WEEKLY_STIBEE_URL"
+    name: 까탈로그
+    sender_keyword: 까탈로그
+email_newsletters:
+  longblack:
+    sender_keyword: longblack
+    schedule: daily
+    include_link: true
+  putput:
+    sender_keyword: 풋풋
+    schedule: tuesday
+    include_link: true
+  careet:
+    sender_keyword: 캐릿
+    schedule: tuesday
+    include_link: true
+  catalogue:
+    sender_keyword: 까탈로그
+    schedule: friday
+    include_link: true
+format:
+  header_emoji: "\U0001F4CC"
+  category_emoji: "\U0001F3F7\uFE0F"
+  date_format: "%m월 %d일"
+  title_suffix: 마케팅 뉴스
+github:
+  enabled: true
+  pages_url: "https://YOUR_GITHUB_USERNAME.github.io/brandrise-newsletter"

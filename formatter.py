@@ -97,9 +97,7 @@ def build_message(
     return "\n".join(lines)
 
 
-def generate_greeting(
-    api_key: str,
-    model: str,
+def _build_greeting_prompt(
     iboss_items: List[NewsItem],
     weekday_name: str,
     weekday_msg: str,
@@ -107,7 +105,7 @@ def generate_greeting(
     stibee_items: list = None,
     heypop_items: List[HeypopItem] = None,
 ) -> str:
-    """Claude API로 오늘의 뉴스 기반 인사말 생성"""
+    """인사말 생성용 프롬프트 조립"""
     news_context = "\n".join([
         f"- {item.title}: {item.summary[:80]}" for item in iboss_items[:7]
     ])
@@ -129,7 +127,12 @@ def generate_greeting(
         if item.topic:
             news_context += f" (토픽: {item.topic})"
 
-    prompt = f"""아래 오늘의 마케팅 뉴스를 바탕으로 카카오톡 오픈채팅방 인사말을 작성해줘.
+    today = datetime.now()
+    special_date_note = ""
+    if today.day == 1:
+        special_date_note = f"\n- 오늘은 {today.month}월의 첫날임을 첫 문단 어딘가에 자연스럽게 언급해줘 (예: \"{today.month}월의 첫날\", \"{today.month}월이 시작됐습니다\" 등 — 억지스럽지 않게)"
+
+    return f"""아래 오늘의 마케팅 뉴스를 바탕으로 카카오톡 오픈채팅방 인사말을 작성해줘.
 
 참고 예시 (이 형식과 길이를 따라줘):
 ---
@@ -141,39 +144,138 @@ def generate_greeting(
 ---
 
 작성 조건:
-- {weekday_name} 인사로 시작 (예: "안녕하세요! {weekday_name} 마케팅 소식 전해드립니다 😊")
+- {weekday_name} 인사로 시작 (예: "안녕하세요! {weekday_name} 마케팅 소식 전해드립니다 😊"){special_date_note}
 - 아래 모든 콘텐츠 중에서 가장 흥미롭거나 중요한 1-2개를 골라 중심 소재로 삼아줘 (매번 마케팅 뉴스만 다루지 말 것)
 - 롱블랙 아티클, 헤이팝 전시/팝업, 풋풋레터, 캐릿 등이 있으면 이 중 하나를 메인 화제로 삼아도 좋음
 - 2개 문단으로 자연스럽게 연결하되, "~가 눈에 띈다", "~가 주목된다" 같은 상투적 표현을 피하고 매번 다른 문체로 작성
 - 마지막 문장은 "{weekday_msg}" 분위기로 마무리 + 이모지 1개
 - 총 3문단, 예시와 비슷한 길이
 - 존댓말, 따뜻하고 전문적인 톤
+- 반드시 100% 한국어로만 작성. 한자(漢字), 영어, 일본어, 베트남어 등 외국어 단어를 절대 섞지 마. 한글과 이모지만 사용.
 
 오늘의 뉴스:
 {news_context}
 
 인사말만 작성 (다른 설명 없이):"""
 
-    try:
-        with httpx.Client(timeout=30) as client:
-            r = client.post(
-                "https://api.anthropic.com/v1/messages",
-                headers={
-                    "x-api-key": api_key,
-                    "anthropic-version": "2023-06-01",
-                    "content-type": "application/json",
-                },
-                json={
-                    "model": model,
-                    "max_tokens": 1000,
-                    "messages": [{"role": "user", "content": prompt}],
-                },
-            )
-        r.raise_for_status()
-        return r.json()["content"][0]["text"].strip()
-    except Exception as e:
-        print(f"  [WARN] 인사말 생성 실패: {e}")
-        return f"안녕하세요! {weekday_name} 마케팅 소식 전해드립니다 😊 {weekday_msg}"
+
+
+import re as _re
+
+def _strip_think_tags(text: str) -> str:
+    """Qwen 등 모델의 <think>...</think> 사고 과정 태그 제거"""
+    return _re.sub(r"<think>.*?</think>\s*", "", text, flags=_re.DOTALL).strip()
+
+
+def _call_groq(api_key: str, model: str, prompt: str) -> str:
+    """Groq REST API 호출"""
+    with httpx.Client(timeout=30) as client:
+        r = client.post(
+            "https://api.groq.com/openai/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": model,
+                "messages": [{"role": "user", "content": prompt}],
+                "max_tokens": 1000,
+            },
+        )
+    r.raise_for_status()
+    raw = r.json()["choices"][0]["message"]["content"].strip()
+    return _strip_think_tags(raw)
+
+
+def _call_gemini(api_key: str, model: str, prompt: str) -> str:
+    """Gemini REST API 호출"""
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+    with httpx.Client(timeout=30) as client:
+        r = client.post(
+            url,
+            headers={"content-type": "application/json"},
+            json={
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {"maxOutputTokens": 1000},
+            },
+        )
+    r.raise_for_status()
+    return r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+
+
+def _call_claude(api_key: str, model: str, prompt: str) -> str:
+    """Claude REST API 호출 (폴백)"""
+    with httpx.Client(timeout=30) as client:
+        r = client.post(
+            "https://api.anthropic.com/v1/messages",
+            headers={
+                "x-api-key": api_key,
+                "anthropic-version": "2023-06-01",
+                "content-type": "application/json",
+            },
+            json={
+                "model": model,
+                "max_tokens": 1000,
+                "messages": [{"role": "user", "content": prompt}],
+            },
+        )
+    r.raise_for_status()
+    return r.json()["content"][0]["text"].strip()
+
+
+def generate_greeting(
+    api_key: str,
+    model: str,
+    iboss_items: List[NewsItem],
+    weekday_name: str,
+    weekday_msg: str,
+    longblack_item: Optional[LongblackItem] = None,
+    stibee_items: list = None,
+    heypop_items: List[HeypopItem] = None,
+    groq_api_key: str = "",
+    groq_model: str = "llama-3.3-70b-versatile",
+    gemini_api_key: str = "",
+    gemini_model: str = "gemini-2.0-flash",
+) -> str:
+    """오늘의 뉴스 기반 인사말 생성 (Groq 우선 → Gemini → Claude 폴백, 전부 무료/저비용)"""
+    prompt = _build_greeting_prompt(
+        iboss_items=iboss_items,
+        weekday_name=weekday_name,
+        weekday_msg=weekday_msg,
+        longblack_item=longblack_item,
+        stibee_items=stibee_items,
+        heypop_items=heypop_items,
+    )
+
+    # 1차: Claude (품질 우선)
+    if api_key:
+        try:
+            result = _call_claude(api_key, model, prompt)
+            print("  [OK] Claude로 인사말 생성 완료")
+            return result
+        except Exception as e:
+            print(f"  [WARN] Claude 인사말 생성 실패: {e}")
+
+    # 2차: Groq (폴백)
+    if groq_api_key:
+        try:
+            result = _call_groq(groq_api_key, groq_model, prompt)
+            print("  [OK] Groq로 인사말 생성 완료 (폴백)")
+            return result
+        except Exception as e:
+            print(f"  [WARN] Groq 인사말 생성 실패: {e}")
+
+    # 3차: Gemini (폴백)
+    if gemini_api_key:
+        try:
+            result = _call_gemini(gemini_api_key, gemini_model, prompt)
+            print("  [OK] Gemini로 인사말 생성 완료 (폴백)")
+            return result
+        except Exception as e:
+            print(f"  [WARN] Gemini 인사말 생성 실패: {e}")
+
+    # 4차: 기본 인사말
+    return f"안녕하세요! {weekday_name} 마케팅 소식 전해드립니다 😊 {weekday_msg}"
 
 
 def build_message_windows_date(

@@ -16,6 +16,7 @@ class HeypopItem:
     description: str
     url: str = ""
     category: str = "트렌드 뉴스"
+    image_url: str = ""
 
 
 def fetch(url: str) -> List[HeypopItem]:
@@ -51,7 +52,10 @@ def parse(html: str, base_url: str = "https://heypop.kr") -> List[HeypopItem]:
         desc_el = card.select_one("p")
         description = desc_el.get_text(strip=True) if desc_el else ""
 
-        items.append(HeypopItem(title=title, description=description, url=link))
+        img_el = card.select_one("img")
+        image_url = img_el.get("src", "") if img_el else ""
+
+        items.append(HeypopItem(title=title, description=description, url=link, image_url=image_url))
 
     return items[:2]
 
