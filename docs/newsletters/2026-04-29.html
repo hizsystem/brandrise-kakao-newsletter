@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 4월 29일">
+    <meta property="og:description" content="수요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 4월 29일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-04-29</div>
+        <div class="header-title">4월 29일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">수요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 수요일 마케팅 소식 전해드립니다 😊 오늘은 롱블랙의 '바이브의 시대' 아티클이 흥미롭습니다. 코딩 없이 보고, 말하고, 붙여넣기만으로 웹 앱을 만드는 시대, 이제 AI 활용의 기준이 '얼마나 잘 다루느냐'에서 '얼마나 자연스럽게 녹여내느냐'로 옮겨가고 있습니다. 카페 사장부터 대기업 팀장까지 각자의 방식으로 AI와 공존하는 법을 찾아가는 과정은, 마케터에게도 꽤 현실적인 질문을 던집니다. 나는 AI를 '쓰고' 있는가, 아니면 AI와 '일하고' 있는가.</p><p>플랫폼 검색 시장에서도 오늘 챙겨볼 흐름이 이어집니다. 네이버가 블로그·카페 UGC와 쇼핑·플레이스 데이터를 결합한 대화형 검색 'AI탭'을 베타 출시하고, 유튜브도 영상 콘텐츠에 대화형 AI 검색 기능 'Ask YouTube'를 시험 적용하며 검색의 형태 자체가 바뀌고 있습니다. 키워드를 입력하고 결과를 고르던 방식에서, 질문을 던지고 맥락을 이어가는 방식으로의 전환이 본격화되면서 SEO와 콘텐츠 기획 방식에도 구조적인 재검토가 필요한 시점입니다.</p><p>한 주의 중반, 오늘도 날카로운 인사이트 가득한 수요일 되시길 바랍니다! 🚀</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">네이버, 대화형 검색 AI탭 베타 출시</div>
+            <div class="news-summary">네이버가 네이버플러스 멤버십 이용자를 대상으로 대화형 검색 서비스 AI탭을 베타 출시한다. 블로그·카페 UGC와 쇼핑·플레이스 데이터를 활용해 질문에 맞는 정보, 상품, 장소를 추천하는 방식이다. 검색 결과 탐색을 넘어 판단과 실행까지 연결하려는 네이버의 AI 검색 고도화 전략이 본격화되고 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">다음, 스레드형 커뮤니티 정식 오픈</div>
+            <div class="news-summary">다음이 인기 토픽과 뉴스 댓글, 이용자 게시글을 한 곳에 모은 소셜형 다음 커뮤니티를 정식 출시했다. AI가 화제 주제를 분석해 실시간 피드를 구성하고 댓글 대화를 확장하는 구조다. 실시간 이슈 소비와 사용자 체류 시간을 늘리기 위한 커뮤니티 플랫폼 강화에 본격적으로 나선 모습이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">아이보스, 청년취업사관학교 양천캠퍼스 마케터 양성 과정 모집</div>
+            <div class="news-summary">아이보스와 하이서울기업협회가 함께 ‘브랜드 마케터 실무 트레이닝(SNS, 숏폼, AI, 광고 전략)’ 과정을 운영한다. 교육비와 점심 식대를 전액 무료로 지원하며, 기업 연계 실무 프로젝트와 이력서·포트폴리오 1:1 잡코디 컨설팅 등의 혜택도 제공된다. 청년취업사관학교 홈페이지에서 신청 가능하다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">네이버 지식인 AI답변 종료… 검색형 AI로 무게중심 이동</div>
+            <div class="news-summary">네이버가 지식인 내 AI 자동답변 서비스 '지식이'를 종료하며 서비스 재편에 나섰다. 챗GPT 확산 이후 지식인 트래픽과 질문량이 급감한 가운데 네이버는 AI탭 등 대화형 검색 서비스에 집중하는 분위기다. 질문형 플랫폼에서 AI 검색형 플랫폼으로 네이버 정보 소비 구조가 빠르게 이동하고 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">유튜브도 대화형 검색 도입… 구글, 영상 검색 AI 전면 개편</div>
+            <div class="news-summary">구글이 유튜브에 대화형 AI 검색 기능 애스크(Ask) 유튜브를 시험 적용했다. 질문을 입력하면 AI가 핵심 내용을 텍스트로 요약하고 관련 영상까지 묶어 추천하는 방식이다. 단순 영상 나열에서 답변형 검색으로 바뀌면서 정보 탐색 흐름이 크게 달라질 전망이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">카톡 광고 일본·베트남 확대… 글로벌 수익화 시동</div>
+            <div class="news-summary">카카오가 카카오톡 광고 사업을 북미에서 일본, 베트남까지 넓히며 해외 수익화에 속도를 낸다. 메시지·디스플레이 광고에 이어 카카오싱크 등 CRM형 비즈니스 솔루션도 추가할 계획이다. 광고 모델을 해외 이용자 기반으로 확장해 글로벌 광고 매출원을 키우려는 전략이 본격화되고 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">카카오스타일, K뷰티로 유럽 재도전… 프랑스 역직구 실험 시작</div>
+            <div class="news-summary">카카오스타일이 K뷰티 역직구 플랫폼 '피요나'를 앞세워 약 2년 만에 글로벌 시장 재도전에 나섰다. 프랑스를 시작으로 현지 크리에이터 기반 콘텐츠 커머스를 운영하며 유럽 확장을 노린다. 단순 해외 판매를 넘어 K뷰티를 활용한 플랫폼 수익성 실험이 본격화되고 있다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">🏷️</span>
+            <span class="card-title">카테고리별 헤드라인</span>
+            <span class="card-source">뉴스럴</span>
+        </div>
+        
+        <div class="cat-item">
+            <span class="cat-badge green">스타트업 뉴스</span>
+            <ul class="cat-headlines"><li>벤처투자 3대장 'AI·콘텐츠·헬스케어'…작년에만 2.6조 몰렸다</li><li>잡플래닛 매각한 브레인커머스, 작년 매출 4426억…영업익 65억</li><li>&quot;혼자서도 유니콘 가능한 시대&quot;…스파크랩, '1인 AI 창업자' 키운다</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge blue">네카라쿠배당토 뉴스</span>
+            <ul class="cat-headlines"><li>카카오모빌리티 손잡을 스타트업 찾는다…'오픈웨이브' 모집</li><li>'자연인' 쿠팡 김범석 동일인 될까…공정위 결정에 시선 집중</li><li>카카오페이 가맹점 쑥 늘어난 이유… 日 골든위크에 中 노동절 연휴-경제</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge purple">MZ 소비 트렌드</span>
+            <ul class="cat-headlines"><li>&quot;촌스럽다더니 대박&quot;…Z세대 열광한 '중국 감성' 재킷, 美 출시</li><li>[MZ팬덤을찾아서] 동화 같은 실화, 늑구를 향한 열광</li><li>&quot;소유 대신 이용&quot;…'신개념' 탑재한 소비 트렌드</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge orange">HR 뉴스</span>
+            <ul class="cat-headlines"><li>[단독] 삼성전자, 파업 종용 괴롭힘 우려 근태시스템 조회 중단</li><li>공공부문 1년 미만 비정규직도 '퇴직수당' 받는다</li><li>추가 수당 제도, 해외선 이미 부작용… “짧게 일하고 자주 일자리 옮기더라”</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge pink">AI 뉴스</span>
+            <ul class="cat-headlines"><li>오픈AI, GPT모델 아마존·구글에도 줄수있다…MS와 독점계약 끝</li><li>&quot;오픈AI 매출 목표치 미달…내부서도 투자 우려&quot;</li><li>메타, 中당국 제동에 AI 인수 백지화…철회 작업 착수</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge teal">ESG 뉴스</span>
+            <ul class="cat-headlines"><li>석유로 만드는 플라스틱 2030년 30% 줄인다…“재생 원료 사용 확대”</li><li>기후부 '2030년까지 신규제조 플라스틱 30% 줄일 것'</li><li>고려아연 소액주주, ’5500억 펀드 출자 의결' 사외이사 검찰 고발</li></ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">바이브의 시대 : 카페 사장부터 대기업 팀장까지 ‘AI와 공존하는 법’</div>
+        <div class="longblack-subtitle">롱블랙 프렌즈 L “저는 프로젝트나 웹 앱을 만들곤 있지만, 코딩을 하진 않아요. 그냥 뭔가를 보고, 말하고, 실행하고, 복사해서 붙여넣기만 하면 대부분 잘 돌아가거든요.(I’m building a project or web app, bu</div>
+        <a class="longblack-link" href="https://longblack.co/note/1963?ticket=NT26188335189b0fff2a110bd0d9fb19e04b13" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
