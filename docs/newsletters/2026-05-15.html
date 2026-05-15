@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 5월 15일">
+    <meta property="og:description" content="금요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 5월 15일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-05-15</div>
+        <div class="header-title">5월 15일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">금요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 금요일 마케팅 소식 전해드립니다 😊 주말을 맞아 가벼운 걸음을 꾸미기 전, 오늘은 롱블랙에서 다룬 '세카이 호텔' 이야기부터 꺼내보고 싶습니다. 여행객을 '동네 단골'로 만드는 그 기획력 — 공원의 할머니에게 웃고 싶은 공간, 숙소가 아니라 마을로 느껴지는 감성이 핵심이죠. 숙박 브랜드의 공감력은 공간 디자인을 넘어선 '마을의 맥락'과 만나야 더 깊어질 수 있습니다.  </p><p>플랫폼 측에서는 넷플릭스 광고요금제의 확장도 눈여겨보겠습니다. 2.5억 명의 시청자가 세로형 피드와 팟캐스트를 통해 광고를 마주하고 있고, 메타AI의 스레드 공개 답글 실험에서는 말레이시아 등 5개국이 우선 적용을 받고 있죠. 콘텐츠와 AI 답변의 융합이 사용자 시간을 어떻게 재분배하고 있는지를 짚어볼 계기입니다. 한편 네이버가 쿠팡 락인 전략에 무제한 무료배송으로 맞대응하면서, 가격 중심의 이커머스 전쟁이 이제 '경험' 틀에서도 치열해질 전망입니다.  </p><p>금요일 아침 햇살처럼 화사하게 하루 보내시고, 이번 주 최후반 흐름도 잘</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">스레드, 인스타그램 색 지우고 독립 브랜드로 X 정조준</div>
+            <div class="news-summary">메타가 스레드 출시 3년 만에 로고와 워드마크를 바꾸며 독립 플랫폼 이미지를 강화했다. 1월 모바일 DAU 1억 4150만 명으로 X를 앞선 성장세를 바탕으로, 기울어진 서체와 치즐드 컷으로 차별화된 브랜드 식별성을 키우려는 전략이다. 다만 산스 서체 유행과 좁은 자간은 과제로 지적됐다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">넷플릭스 광고요금제 2.5억 명 돌파, 앱 전면 광고판으로 확장</div>
+            <div class="news-summary">넷플릭스 광고요금제 월간 시청자가 2억 5000만 명을 넘고 2025년 광고 매출은 15억 달러를 기록했다. 세로형 피드·팟캐스트까지 광고 지면을 넓혀 개인화 타기팅과 신규 시장 15개국 확장에 속도를 낸다. 구독 성장 둔화 속 저가 상품으로 이용자를 묶고 시청 구간 밖 접점까지 수익화하려는 전략이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">네이버플레이스, CRM 연동으로 지도 쿠폰 마케팅 강화</div>
+            <div class="news-summary">네이버는 스마트플레이스에 도도포인트·페이히어·오케이포스 CRM 연동을 도입했다. 사업주는 지도와 플레이스에서 멤버십 쿠폰, 적립, 할인 혜택을 제공하고, 이용자는 MY플레이스에서 혜택을 확인한다. 향후 프랜차이즈와 네이버페이 커넥트 연계도 확대하고 연내 지속 고도화한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">메타, 스레드에 공개 답글형 AI 실험</div>
+            <div class="news-summary">메타가 스레드에서 @meta.ai를 호출해 게시물 맥락을 공개 답글로 설명하는 베타를 시작했다. 말레이시아 등 5개국 초기 시험이며, 검색 이탈 없이 대화 안에서 정보 확인이 가능해져 브랜드 운영자는 댓글 대응, 이슈 해설, 캠페인 맥락 확장에 AI 활용 가능성을 주목해야 한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">유튜브, 독점 콘텐츠로 광고주 직거래 확대</div>
+            <div class="news-summary">유튜브가 트레버 노아 등 유명인 독점 시리즈를 앞세워 광고주 투자 유치에 나섰다. TV 시청 점유율 12.7%와 300만 크리에이터, AI 타기팅을 결합해 브랜드 매칭과 쇼핑 수익 모델을 강화한다. 후원 영상의 브랜드 교체 기능으로 광고 효율을 높이고, 넷플릭스 공세에 맞서 창작자 이탈을 막는 전략이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">네이버, 무제한 무료배송으로 쿠팡 락인에 맞불</div>
+            <div class="news-summary">네이버가 하반기 ‘N배송’에 무제한 무료배송을 도입하며 쿠팡 추격에 나선다. 현재 1만 원 이상 무료배송·1회 무료반품에서 가격 제한을 없애 멤버십 락인을 강화하려는 전략이다. 다만 물류 직접투자 검토와 AI 연구개발비 2조 원 대 부담으로 당분간 수익성 압박이 커질 전망이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">아마존, 알렉사로 AI 쇼핑 검색·추천·광고 재편</div>
+            <div class="news-summary">아마존은 루퍼스 챗봇을 종료하고 ‘알렉사 포 쇼핑’을 검색 결과에 통합한다. 구매 이력·리뷰·재고·배송 데이터를 바탕으로 제품 비교, 추천, 가격 도달 시 자동 구매까지 지원해 서드파티 판매자 광고 전략에도 변화가 예상된다. 프라임 없이 이용 가능하며 관련 광고도 포함된다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">🏷️</span>
+            <span class="card-title">카테고리별 헤드라인</span>
+            <span class="card-source">뉴스럴</span>
+        </div>
+        
+        <div class="cat-item">
+            <span class="cat-badge green">스타트업 뉴스</span>
+            <ul class="cat-headlines"><li>시안솔루션, KB증권으로부터 시리즈A 투자 유치</li><li>한국형 국부펀드 6월 출범…‘시리즈B’ 반도체 스타트업 투자</li><li>‘확신 투자’ 美 vs ‘불확실투성’ 韓…극과 극 투자 생태계</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge blue">네카라쿠배당토 뉴스</span>
+            <ul class="cat-headlines"><li>쿠팡, 재난 이재민에 '로켓배송'으로 구호물품 즉시 전달</li><li>네이버 '배민 인수설'에 기대감 커지며 6% 급등</li><li>DH, 시장포화에 엑시트?… 4조에 산 배민 몸값 8조 불렀다</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge purple">MZ 소비 트렌드</span>
+            <ul class="cat-headlines"><li>“1초당 2잔씩 팔렸다”…‘혼빙족’ 저격한 컵빙수 흥행</li><li>“기름지고 푸짐한 한끼는 잊어주세요”…맥도날드가 ‘한입 크기’ 내놓은 이유는</li><li>MZ들 “삼전 가즈아!” 외치며 관악산 몰리더니…주말마다 인산인해 ‘초비상’</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge orange">HR 뉴스</span>
+            <ul class="cat-headlines"><li>크래프톤 출산·육아 지원 제도 시행 1년… 출생아 2배 늘어</li><li>임원에 대놓고 회사 욕… 사내 메신저엔 ‘파업’ 닉네임 3만명 육박</li><li>신입사원 ‘학점’ 보고 뽑는데…AI 등장 후 ‘A학점’ 30% 급증</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge pink">AI 뉴스</span>
+            <ul class="cat-headlines"><li>앤트로픽, 연매출 74조 눈앞...&quot;기업용 시장서 오픈AI 추월&quot;</li><li>SK AX, 오픈AI와 맞손…'기업용 챗GPT' 시장 정조준</li><li>&quot;美, 알리바바 등 中 10개사에 엔비디아 H200 판매 허용&quot;</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge teal">ESG 뉴스</span>
+            <ul class="cat-headlines"><li>영국 배터리 공장發 수주 확대…국내 장비업계 '숨통'</li><li>삼성전자, EU '스마트 가전 에너지 행동강령' 서명…국내 최초</li><li>'2만8천명 정보유출' 보람상조, 과징금 5억5천만원</li></ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">✉️</span>
+            <span class="card-title">이번 주 뉴스레터</span>
+        </div>
+        
+        <div class="stibee-item">
+            <span class="stibee-source">까탈로그</span>
+            <div class="stibee-title">까탈스럽게 고른 취향 뉴스레터</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/htZPwea6EpSWTYObKrdX6AgqC_rjGgs" target="_blank">뉴스레터 보기 →</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">세카이 호텔 : 여행객을 ‘동네 단골’로 만드는 마을 호텔의 기획력</div>
+        <div class="longblack-subtitle">롱블랙 프렌즈 C 여행 후에 유독 기억에 남는 장면이 있으세요? 전 이런 게 떠올라요. 동네 공원에 앉아 있는 할머니가 저를 향해 웃어주시던 모습, 허름한 선술집에 갔을 때 단골손님이 “잘 왔다”며 반겨주는 모습까지. 마치 그곳에 사는 사</div>
+        <a class="longblack-link" href="https://longblack.co/note/1979?ticket=NT26205c2a49e584e241732d3ed37f073ee1c0" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
