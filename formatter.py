@@ -3,8 +3,15 @@ Claude API를 사용해 수집된 뉴스를 카톡 전송 양식으로 포맷팅
 """
 
 import httpx
-from datetime import datetime
-from typing import List, Optional
+import re as _re
+from datetime import date, datetime, timedelta
+from pathlib import Path
+from typing import List, Optional, Tuple
+
+try:
+    import holidays as _holidays
+except ImportError:
+    _holidays = None
 
 from collectors.iboss import NewsItem
 from collectors.neusral import CategoryNews
@@ -22,6 +29,128 @@ WEEKDAY_GREETINGS = {
     5: ("토요일", "주말도 배움을 멈추지 않는 여러분을 응원합니다!"),
     6: ("일요일", "내일을 위한 인사이트, 미리 챙겨가세요!"),
 }
+
+
+# 금지 표현 (AI 클리셰 — 프롬프트로 1차 차단, 잔류 시 재교정)
+_BANNED_PHRASES: Tuple[str, ...] = (
+    "마음에 걸리",
+    "눈에 띄",
+    "주목된",
+    "주목할 만",
+    "엿볼 수 있",
+    "한 모습입니다",
+    "는 모습입니다",
+    "낯설지 않",
+    "사뭇 다르",
+    "새삼 느끼",
+    "다시 한번 실감",
+)
+
+# 고유명사 한글 음역 → 일반 표기 치환 규칙
+_PROPER_NOUN_FIXES: Tuple[Tuple[_re.Pattern, str], ...] = (
+    (_re.compile(r"오픈\s*아이(?=[\s가-힣,.!?'\"]|$)"), "오픈AI"),
+    (_re.compile(r"오픈\s*에이\s*아이"), "오픈AI"),
+    (_re.compile(r"챗\s*지\s*피\s*티"), "챗GPT"),
+    (_re.compile(r"(?<![가-힣A-Za-z])지피티(?![A-Za-z])"), "GPT"),
+    (_re.compile(r"앤\s*쓰로픽"), "앤트로픽"),
+    (_re.compile(r"엔트로픽"), "앤트로픽"),
+    (_re.compile(r"클라우드(?=\s*(?:오퍼스|소넷|하이쿠|모델|API))"), "클로드"),
+)
+
+_OUTPUT_DIR = Path(__file__).parent
+
+
+def _is_off_day(d: date) -> bool:
+    """주말 / 한국 공휴일 / 근로자의 날(5/1) 여부"""
+    if d.weekday() >= 5:
+        return True
+    if d.month == 5 and d.day == 1:  # 근로자의 날 (holidays 라이브러리 미포함)
+        return True
+    if _holidays is not None:
+        try:
+            return d in _holidays.KR(years=d.year)
+        except Exception:
+            return False
+    return False
+
+
+def _consecutive_off_days_after(today_d: date, limit: int = 14) -> int:
+    """오늘 다음 날부터 연속된 비업무일(주말+공휴일) 수"""
+    count = 0
+    d = today_d + timedelta(days=1)
+    while count < limit and _is_off_day(d):
+        count += 1
+        d += timedelta(days=1)
+    return count
+
+
+def _days_since_last_newsletter(today_d: date) -> int:
+    """오늘 직전 가장 최근 output_*.txt와 오늘 사이의 일수 차이. 파일 없으면 0."""
+    today_str = today_d.strftime("%Y%m%d")
+    candidates: List[date] = []
+    for f in _OUTPUT_DIR.glob("output_*.txt"):
+        if today_str in f.name:
+            continue
+        m = _re.match(r"output_(\d{8})\.txt", f.name)
+        if not m:
+            continue
+        try:
+            d = datetime.strptime(m.group(1), "%Y%m%d").date()
+        except ValueError:
+            continue
+        if d < today_d:
+            candidates.append(d)
+    if not candidates:
+        return 0
+    return (today_d - max(candidates)).days
+
+
+def _time_of_day_hint(hour: int) -> Tuple[str, str]:
+    """발송 시각(0~23) → (라벨, 톤 규칙)"""
+    if 5 <= hour < 11:
+        return (
+            "아침 (오전)",
+            "아침/오전 톤. 하루를 시작하는 분위기. "
+            "'저녁', '밤', '늦은 시간', '오늘 하루 마무리', '푹 쉬세요', "
+            "'한 주 마무리' 등 늦은 시간 인사는 절대 사용하지 말 것.",
+        )
+    if 11 <= hour < 14:
+        return ("점심 (낮)", "낮 시간 톤. 저녁·밤 인사 사용 금지.")
+    if 14 <= hour < 18:
+        return ("오후", "오후 톤. 밤 인사 사용 금지.")
+    if 18 <= hour < 22:
+        return ("저녁", "저녁 톤. 아침 인사 사용 금지.")
+    return ("밤/새벽", "야간 톤.")
+
+
+def _normalize_proper_nouns(text: str) -> str:
+    """한글 음역 고유명사를 일반 통용 표기로 치환"""
+    for pattern, repl in _PROPER_NOUN_FIXES:
+        text = pattern.sub(repl, text)
+    return text
+
+
+def _find_banned_phrases(text: str) -> List[str]:
+    """텍스트에서 발견된 금지 표현 반환 (없으면 빈 리스트)"""
+    return [p for p in _BANNED_PHRASES if p in text]
+
+
+def _load_recent_greetings(n: int = 4) -> List[str]:
+    """오늘 이전 최근 N개 output_*.txt에서 인사말 블록 추출"""
+    today_str = datetime.now().strftime("%Y%m%d")
+    files = sorted(
+        f for f in _OUTPUT_DIR.glob("output_*.txt") if today_str not in f.name
+    )
+    greetings: List[str] = []
+    for f in files[-n:]:
+        try:
+            text = f.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        m = _re.search(r"(안녕하세요![\s\S]*?)(?=\n\n🔗|$)", text)
+        if m:
+            greetings.append(m.group(1).strip())
+    return greetings
 
 
 def build_message(
@@ -104,6 +233,7 @@ def _build_greeting_prompt(
     longblack_item: Optional[LongblackItem] = None,
     stibee_items: list = None,
     heypop_items: List[HeypopItem] = None,
+    recent_greetings: Optional[List[str]] = None,
 ) -> str:
     """인사말 생성용 프롬프트 조립"""
     news_context = "\n".join([
@@ -128,39 +258,121 @@ def _build_greeting_prompt(
             news_context += f" (토픽: {item.topic})"
 
     today = datetime.now()
-    special_date_note = ""
+    time_label, time_rule = _time_of_day_hint(today.hour)
+
+    notes: List[str] = []
     if today.day == 1:
-        special_date_note = f"\n- 오늘은 {today.month}월의 첫날임을 첫 문단 어딘가에 자연스럽게 언급해줘 (예: \"{today.month}월의 첫날\", \"{today.month}월이 시작됐습니다\" 등 — 억지스럽지 않게)"
+        notes.append(
+            f"오늘은 {today.month}월의 첫날입니다. 첫 문단에서 자연스럽게 언급해줘 "
+            f"(예: \"{today.month}월의 첫날\", \"{today.month}월이 시작됐습니다\" 등 — 억지스럽지 않게)."
+        )
+
+    gap_days = _days_since_last_newsletter(today.date())
+    off_after = _consecutive_off_days_after(today.date())
+
+    if gap_days >= 3:
+        notes.append(
+            f"직전 발송 이후 {gap_days}일 만에 보내는 인사입니다 (긴 연휴/공백 직후). "
+            "첫 문단에서 자연스럽게 반영해줘 — 예: \"긴 연휴 잘 보내셨나요?\", "
+            "\"연휴 끝에 오랜만에 인사드립니다\". 식상한 \"잘 쉬셨나요\" 반복이나 "
+            "어색한 호들갑은 피하고, 차분하고 따뜻한 톤으로."
+        )
+
+    if off_after >= 3:
+        notes.append(
+            f"내일부터 {off_after}일 연속 휴일/주말이 이어집니다 (긴 연휴 직전 마지막 발송). "
+            "첫 문단에서 \"긴 연휴 앞두고\", \"연휴 전 마지막 마케팅 소식\" 같은 맥락을 자연스럽게 드러내고, "
+            "마지막 문장은 \"좋은 연휴 보내세요\" 분위기로 마무리해줘 (이모지 1개 포함)."
+        )
+
+    special_date_note = ""
+    if notes:
+        special_date_note = "\n- " + "\n- ".join(notes)
+
+    recent_block = ""
+    if recent_greetings:
+        joined = "\n\n---\n\n".join(recent_greetings)
+        recent_block = (
+            "\n\n## 최근 인사말 (주제·표현·중심 소재·문장 구조가 겹치지 않게 작성)\n"
+            "---\n"
+            f"{joined}\n"
+            "---"
+        )
 
     return f"""아래 오늘의 마케팅 뉴스를 바탕으로 카카오톡 오픈채팅방 인사말을 작성해줘.
 
-참고 예시 (이 형식과 길이를 따라줘):
+## 발송 컨텍스트 (가장 중요)
+- 현재 시각: {today.strftime("%Y-%m-%d %H:%M")} ({weekday_name}, {time_label})
+- 시간대 규칙: {time_rule}
+
+## 참고 예시 (형식·길이 참고용)
 ---
-안녕하세요! 월요일 마케팅 소식 전해드립니다 😊 오늘은 플랫폼 구조 변화와 글로벌 커머스 확장이 눈에 띄는 하루입니다. 다음의 실시간 트렌드 도입처럼 콘텐츠 탐색 방식이 다시 변화하고 있고, 카페24의 아마존 API 연동은 국내 브랜드의 해외 판매 장벽을 낮추며 D2C 글로벌 진출 흐름을 강화하는 모습입니다.
+안녕하세요! 월요일 마케팅 소식 전해드립니다 😊 오늘은 플랫폼 구조 변화와 글로벌 커머스 확장이 눈길을 끄는 하루입니다. 다음의 실시간 트렌드 도입처럼 콘텐츠 탐색 방식이 다시 변화하고 있고, 카페24의 아마존 API 연동은 국내 브랜드의 해외 판매 장벽을 낮추며 D2C 글로벌 진출 흐름을 강화하고 있습니다.
 
 한편 이커머스 시장에서는 쿠팡·네이버처럼 물류·광고·핀테크를 결합한 플랫폼은 성장하는 반면, 단순 중개 중심 모델은 한계를 드러내며 수익 구조의 차별화가 더욱 중요해지고 있습니다. 동시에 그린워싱 적발 사례처럼 브랜드 메시지에서도 신뢰와 근거가 점점 더 중요한 기준이 되고 있습니다.
 
 월요일 힘차게 시작하시고, 이번 주도 좋은 인사이트 많이 얻으시길 바랍니다! 🚀
 ---
 
-작성 조건:
+## 작성 조건
 - {weekday_name} 인사로 시작 (예: "안녕하세요! {weekday_name} 마케팅 소식 전해드립니다 😊"){special_date_note}
-- 아래 모든 콘텐츠 중에서 가장 흥미롭거나 중요한 1-2개를 골라 중심 소재로 삼아줘 (매번 마케팅 뉴스만 다루지 말 것)
-- 롱블랙 아티클, 헤이팝 전시/팝업, 풋풋레터, 캐릿 등이 있으면 이 중 하나를 메인 화제로 삼아도 좋음
-- 2개 문단으로 자연스럽게 연결하되, "~가 눈에 띈다", "~가 주목된다" 같은 상투적 표현을 피하고 매번 다른 문체로 작성
-- 마지막 문장은 "{weekday_msg}" 분위기로 마무리 + 이모지 1개
-- 총 3문단, 예시와 비슷한 길이
-- 존댓말, 따뜻하고 전문적인 톤
-- 반드시 100% 한국어로만 작성. 한자(漢字), 영어, 일본어, 베트남어 등 외국어 단어를 절대 섞지 마. 한글과 이모지만 사용.
+- 콘텐츠(마케팅 뉴스·롱블랙·헤이팝·풋풋레터·캐릿·까탈로그) 중 가장 흥미로운 1-2개를 중심 소재로. 매번 마케팅 뉴스만 다루지 말 것.
+- 총 3문단, 예시와 비슷한 길이, 존댓말·따뜻하고 전문적인 톤
+- 마지막 문장은 "{weekday_msg}" 분위기 + 이모지 1개. 단, 발송 시간대 규칙과 충돌하면 시간대 규칙이 우선.
 
-오늘의 뉴스:
+## 표기 규칙 (엄격 준수)
+- 한국어 본문을 기본으로 작성. 단, 잘 알려진 영문 브랜드·제품·약어는 영문 표기를 그대로 사용할 것.
+- 고유명사 표기:
+  - OpenAI → "오픈AI" (절대 금지: "오픈아이", "오픈에이아이")
+  - ChatGPT → "챗GPT" (절대 금지: "챗지피티", "챗 지피티")
+  - GPT / AI / CPC / MAU / API / SEO / D2C 등 영문 약어는 영문 그대로
+  - Anthropic → "앤트로픽", Claude → "클로드", Gemini → "제미나이"
+  - Meta → "메타", Google → "구글", YouTube → "유튜브", TikTok → "틱톡"
+- 외래어를 한글로 음차(한국어 발음 그대로 옮기기) 하지 말 것. 영문 브랜드는 위 규칙대로 표기.
+
+## 금지 표현 (AI 티가 나는 상투어 — 절대 사용 금지)
+- "마음에 걸리는", "눈에 띄는", "주목된다", "주목할 만", "엿볼 수 있는"
+- "~한 모습입니다", "~는 모습입니다"
+- "낯설지 않다", "사뭇 다르다", "새삼 느끼다", "다시 한번 실감"
+- 이런 표현이 떠오르면 반드시 다른 구체적 동사·명사로 바꿔 쓸 것.{recent_block}
+
+## 오늘의 뉴스
 {news_context}
 
-인사말만 작성 (다른 설명 없이):"""
+인사말만 작성 (다른 설명·머리말 없이 본문만):"""
 
 
+def _build_critique_prompt(
+    original: str,
+    time_label: str,
+    time_rule: str,
+    banned_found: Optional[List[str]] = None,
+) -> str:
+    """생성된 인사말을 검토·교정하는 프롬프트"""
+    extra = ""
+    if banned_found:
+        bullets = "\n".join(f"  - {p}" for p in banned_found)
+        extra = (
+            "\n\n## 특히 다음 표현이 원문에 남아 있습니다. 반드시 다른 자연스러운 표현으로 교체하세요.\n"
+            f"{bullets}"
+        )
+    return f"""다음은 카카오톡 오픈채팅방용 마케팅 뉴스레터 인사말입니다. 아래 기준으로 검토하고 문제가 있으면 자연스럽게 고쳐 재작성해주세요. 문제가 없으면 원문 그대로 출력하세요. 설명은 일절 덧붙이지 말고 인사말 본문만 출력.
 
-import re as _re
+## 검토 기준
+1. **시간대 정합성**: 현재 발송 시각은 "{time_label}". {time_rule} 위반이 있으면 해당 문장을 시간대에 맞게 수정.
+2. **고유명사 표기**: "오픈아이"→"오픈AI", "오픈에이아이"→"오픈AI", "챗지피티"→"챗GPT", "지피티"→"GPT" 등 한글 음역을 일반 표기로 교정. OpenAI·GPT·Meta·Google 같은 영문 브랜드·약어는 영문 그대로 두기.
+3. **AI 클리셰 제거 (필수)**: "마음에 걸리는", "눈에 띄는", "주목된다", "주목할 만", "엿볼 수 있는", "~한 모습입니다", "~는 모습입니다", "낯설지 않다", "사뭇 다르다", "새삼 느끼다", "다시 한번 실감" 같은 표현이 있으면 반드시 다른 구체적 표현으로 교체.
+4. **어색한 한국어**: 번역체, 일본어·중국어식 표현, 외국어 음차가 있으면 자연스러운 한국어로 교정.
+5. **문체 유지**: 원문의 전체 구조(3문단, 따뜻한 존댓말, 마지막 이모지)는 유지.{extra}
+
+원문:
+---
+{original}
+---
+
+수정본 (설명 없이 인사말 본문만):"""
+
+
 
 def _strip_think_tags(text: str) -> str:
     """Qwen 등 모델의 <think>...</think> 사고 과정 태그 제거"""
@@ -179,7 +391,7 @@ def _call_groq(api_key: str, model: str, prompt: str) -> str:
             json={
                 "model": model,
                 "messages": [{"role": "user", "content": prompt}],
-                "max_tokens": 1000,
+                "max_tokens": 2000,
             },
         )
     r.raise_for_status()
@@ -196,7 +408,7 @@ def _call_gemini(api_key: str, model: str, prompt: str) -> str:
             headers={"content-type": "application/json"},
             json={
                 "contents": [{"parts": [{"text": prompt}]}],
-                "generationConfig": {"maxOutputTokens": 1000},
+                "generationConfig": {"maxOutputTokens": 2000},
             },
         )
     r.raise_for_status()
@@ -215,12 +427,40 @@ def _call_claude(api_key: str, model: str, prompt: str) -> str:
             },
             json={
                 "model": model,
-                "max_tokens": 1000,
+                "max_tokens": 2000,
                 "messages": [{"role": "user", "content": prompt}],
             },
         )
     r.raise_for_status()
     return r.json()["content"][0]["text"].strip()
+
+
+def _call_with_fallback(
+    prompt: str,
+    api_key: str,
+    model: str,
+    groq_api_key: str,
+    groq_model: str,
+    gemini_api_key: str,
+    gemini_model: str,
+) -> Tuple[Optional[str], str]:
+    """Claude → Groq → Gemini 순 폴백. (텍스트, 사용 모델명) 반환. 실패 시 (None, '')."""
+    if api_key:
+        try:
+            return _call_claude(api_key, model, prompt), "Claude"
+        except Exception as e:
+            print(f"  [WARN] Claude 호출 실패: {e}")
+    if groq_api_key:
+        try:
+            return _call_groq(groq_api_key, groq_model, prompt), "Groq"
+        except Exception as e:
+            print(f"  [WARN] Groq 호출 실패: {e}")
+    if gemini_api_key:
+        try:
+            return _call_gemini(gemini_api_key, gemini_model, prompt), "Gemini"
+        except Exception as e:
+            print(f"  [WARN] Gemini 호출 실패: {e}")
+    return None, ""
 
 
 def generate_greeting(
@@ -237,7 +477,15 @@ def generate_greeting(
     gemini_api_key: str = "",
     gemini_model: str = "gemini-2.0-flash",
 ) -> str:
-    """오늘의 뉴스 기반 인사말 생성 (Groq 우선 → Gemini → Claude 폴백, 전부 무료/저비용)"""
+    """오늘의 뉴스 기반 인사말 생성.
+
+    파이프라인:
+      1) 1차 생성 (Claude 우선, Groq·Gemini 폴백) — 최근 인사말 회피 컨텍스트 포함
+      2) 고유명사 표기 정규화 (오픈아이→오픈AI 등)
+      3) 셀프 비평 패스 — 시간대·표기·클리셰 교정
+      4) 금지 표현 잔류 시 1회 추가 재교정
+    """
+    recent_greetings = _load_recent_greetings(n=4)
     prompt = _build_greeting_prompt(
         iboss_items=iboss_items,
         weekday_name=weekday_name,
@@ -245,37 +493,50 @@ def generate_greeting(
         longblack_item=longblack_item,
         stibee_items=stibee_items,
         heypop_items=heypop_items,
+        recent_greetings=recent_greetings,
     )
 
-    # 1차: Claude (품질 우선)
-    if api_key:
-        try:
-            result = _call_claude(api_key, model, prompt)
-            print("  [OK] Claude로 인사말 생성 완료")
-            return result
-        except Exception as e:
-            print(f"  [WARN] Claude 인사말 생성 실패: {e}")
+    # 1) 1차 생성
+    initial, used = _call_with_fallback(
+        prompt, api_key, model, groq_api_key, groq_model, gemini_api_key, gemini_model
+    )
+    if initial is None:
+        return f"안녕하세요! {weekday_name} 마케팅 소식 전해드립니다 😊 {weekday_msg}"
+    print(f"  [OK] {used}로 인사말 1차 생성 완료")
 
-    # 2차: Groq (폴백)
-    if groq_api_key:
-        try:
-            result = _call_groq(groq_api_key, groq_model, prompt)
-            print("  [OK] Groq로 인사말 생성 완료 (폴백)")
-            return result
-        except Exception as e:
-            print(f"  [WARN] Groq 인사말 생성 실패: {e}")
+    # 2) 고유명사 표기 정규화
+    text = _normalize_proper_nouns(initial)
 
-    # 3차: Gemini (폴백)
-    if gemini_api_key:
-        try:
-            result = _call_gemini(gemini_api_key, gemini_model, prompt)
-            print("  [OK] Gemini로 인사말 생성 완료 (폴백)")
-            return result
-        except Exception as e:
-            print(f"  [WARN] Gemini 인사말 생성 실패: {e}")
+    # 3) 셀프 비평 패스
+    today = datetime.now()
+    time_label, time_rule = _time_of_day_hint(today.hour)
+    critique_prompt = _build_critique_prompt(text, time_label, time_rule)
+    critiqued, critic_used = _call_with_fallback(
+        critique_prompt, api_key, model, groq_api_key, groq_model, gemini_api_key, gemini_model
+    )
+    if critiqued:
+        text = _normalize_proper_nouns(critiqued)
+        print(f"  [OK] 셀프 비평 완료 ({critic_used})")
+    else:
+        print("  [WARN] 셀프 비평 건너뜀 (API 호출 실패)")
 
-    # 4차: 기본 인사말
-    return f"안녕하세요! {weekday_name} 마케팅 소식 전해드립니다 😊 {weekday_msg}"
+    # 4) 금지 표현 잔류 시 추가 재교정
+    banned = _find_banned_phrases(text)
+    if banned:
+        print(f"  [INFO] 금지 표현 감지 {banned} → 재교정 시도")
+        retry_prompt = _build_critique_prompt(text, time_label, time_rule, banned_found=banned)
+        retried, _ = _call_with_fallback(
+            retry_prompt, api_key, model, groq_api_key, groq_model, gemini_api_key, gemini_model
+        )
+        if retried:
+            text = _normalize_proper_nouns(retried)
+            still = _find_banned_phrases(text)
+            if still:
+                print(f"  [WARN] 금지 표현 잔류: {still}")
+            else:
+                print("  [OK] 금지 표현 제거 완료")
+
+    return text
 
 
 def build_message_windows_date(
