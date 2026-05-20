@@ -586,7 +586,18 @@ def build_message_windows_date(
 
     # 스티비 뉴스레터 (풋풋레터, 캐릿 등) - 롱블랙보다 앞
     for item in (stibee_items or []):
-        if "풋풋" in item.source:
+        if "빌더조쉬" in item.source:
+            lines.append(f"📌 {item.title}")
+            if item.topic:
+                lines.append(item.topic)
+            lines.append("")
+            for idx, s in enumerate(item.summary_items, 1):
+                lines.append(f"{idx}. {s}")
+            if item.summary_items:
+                lines.append("")
+            lines.append(item.url)
+            lines.append("")
+        elif "풋풋" in item.source:
             lines.append("📌 바쁜 현대인을 위한 마케팅·트렌드 뉴스 [풋풋레터]")
             if item.title:
                 lines.append(item.title)
