@@ -33,7 +33,9 @@ python -c "import sys,io; sys.stdout=io.TextIOWrapper(sys.stdout.buffer,encoding
 ### 요일별 수집 소스
 - **매일**: 아이보스(iboss), 뉴스럴(neusral), 롱블랙(longblack)
 - **화요일(weekday=1)**: 풋풋레터, 캐릿 (stibee 공유 URL → `config.yaml`의 `tuesday_newsletters`에 매주 수동 업데이트 필요)
+- **수요일(weekday=2)**: 빌더조쉬 (maily.so/josh — `wednesday_newsletters`에 매주 수동 업데이트 필요)
 - **목요일(weekday=3)**: 헤이팝(heypop)
+- **금요일(weekday=4)**: 빌더조쉬, 까탈로그 (`friday_newsletters` — 빌더조쉬는 수동 URL, 까탈로그는 Gmail 자동→수동 폴백)
 
 ### 각 수집기 특성
 | 파일 | 반환 타입 | 소스 |
@@ -42,7 +44,8 @@ python -c "import sys,io; sys.stdout=io.TextIOWrapper(sys.stdout.buffer,encoding
 | `neusral.py` | `List[CategoryNews]` | 뉴스럴 카테고리별 헤드라인 |
 | `heypop.py` | `List[HeypopItem]` | heypop.kr 메인 `.card-item` 최신 2개 |
 | `longblack.py` | `LongblackItem` | 롱블랙 TODAY 섹션 아티클 |
-| `stibee.py` | `StibeeNewsletter` | 스티비 공유 링크 파싱 (풋풋레터/캐릿) |
+| `stibee.py` | `StibeeNewsletter` | 스티비 공유 링크 파싱 (풋풋레터/캐릿/까탈로그) |
+| `builder_josh.py` | `StibeeNewsletter` | maily.so/josh 글 (og 메타 + LLM 3줄 요약 자동 생성) |
 | `email_reader.py` | `EmailNewsletter` | 메일플러그 IMAP (까탈로그 등) |
 
 ### 포맷 구조 (출력 순서)
@@ -50,13 +53,15 @@ python -c "import sys,io; sys.stdout=io.TextIOWrapper(sys.stdout.buffer,encoding
 2. 아이보스 번호 기사 (1~7개)
 3. 뉴스럴 카테고리 헤드라인 (`🏷️카테고리`)
 4. 헤이팝 (목요일만): `📌전시/팝업/공간 추천 [헤이팝 레터]` → `✅ 제목 / 설명 / URL` (2개)
-5. 스티비 뉴스레터 (화요일만): 풋풋레터, 캐릿
+5. 스티비/maily 뉴스레터 (요일별): 빌더조쉬(수/금) → 풋풋레터·캐릿(화) → 까탈로그(금) 순으로 `stibee_items` 리스트 처리
 6. 롱블랙 `📌 제목`
 7. Claude API 생성 인사말 (3문단)
 
 ### config.yaml 주요 설정
 - `anthropic.api_key`: Claude API 키
 - `tuesday_newsletters`: 화요일마다 풋풋레터·캐릿의 스티비 공유 URL을 **매주 수동 업데이트** 필요
+- `wednesday_newsletters`: 수요일 빌더조쉬 maily.so 글 URL을 **매주 수동 업데이트** 필요
+- `friday_newsletters.builder_josh.url`: 금요일 빌더조쉬 URL을 **매주 수동 업데이트** 필요 (까탈로그는 Gmail 자동 추출 우선)
 - `email`: 메일플러그 IMAP 정보 (현재 미설정 — 까탈로그 등 이메일 뉴스레터 사용 시 필요)
 - `schedule.send_time`: 스케줄러 모드 실행 시각
 
