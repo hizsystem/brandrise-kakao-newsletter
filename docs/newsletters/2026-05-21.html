@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 5월 21일">
+    <meta property="og:description" content="목요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 5월 21일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-05-21</div>
+        <div class="header-title">5월 21일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">목요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 목요일 마케팅 소식 전해드립니다 😊 오늘은 롱블랙에서 다룬 '곰돌이 젤리 영양제 회사' 이야기부터 꺼내보고 싶습니다. 역사상 가장 빠른 엑싯을 기록한 이 소비재 브랜드의 전략은 단순합니다. '하지 말아야 할 것'을 철저히 피하는 것. 과도한 SKU 확장, 무리한 할인 경쟁, 검증되지 않은 채널 진입 — 이 세 가지를 끊어낸 결과가 빠른 성장과 성공적인 엑싯으로 이어졌습니다. 뭘 더할지보다 뭘 덜어낼지를 먼저 묻는 브랜딩 관점이 신선하게 다가옵니다.</p><p>플랫폼 쪽에서는 Google의 움직임이 바쁩니다. 제미나이 3.5 플래시로 API 비용을 절반 이하로 낮추는 동시에, 유니버설 카트로 검색부터 AI 쇼핑 결제까지 한 흐름으로 묶었습니다. 광고·커머스·AI가 단일 여정 안에 통합되는 구조가 본격화되는 셈입니다. 국내에서도 롯데·LF·아모레퍼시픽이 챗GPT 기반 쇼핑 서비스를 잇달아 도입하면서, 검색 키워드 클릭이 아닌 '대화 맥락'으로 상품을 연결하는 AI 커머스 경쟁이 가속되고 있습니다.</p><p>주말이 코앞으로 다가왔습니다. 오늘 하루도 집중력 있게 마무리하시길 바랍니다! 🎯</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">구글, 저비용·고속 제미나이 3.5로 AI 마케팅 대중화 시동</div>
+            <div class="news-summary">구글은 가격을 절반 이하로 낮추고 출력 속도를 최대 4배 높인 제미나이 3.5 플래시를 공개했다. 검색, 업무 자동화, 영상 생성, 콘텐츠 검증에 적용해 브랜드의 AI 캠페인 제작과 운영 비용 절감 기회를 키울 전망이다. 개인화 검색과 유튜브 쇼츠 연계도 크게 주목된다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">검색 데이터로 신제품 기획하는 네이버, 온리 전략 확대</div>
+            <div class="news-summary">네이버가 카무트 검색량 36% 증가 등 플랫폼 데이터를 바탕으로 CJ·동원·풀무원과 단독 식품을 기획한다. 올해 네이버 온리 상품을 40% 늘리고 AI 추천, 멤버십 프로모션, 하반기 무제한 무료배송과 물류 투자 검토까지 더해 반복 구매와 커머스 록인을 강화하는 전략이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">구글, 유니버설 카트로 검색·AI 쇼핑 여정 통합</div>
+            <div class="news-summary">구글은 검색과 제미나이를 잇는 유니버설 카트를 공개했다. 상품 저장부터 가격 추적, 결제수단 추천, AI 자동 구매까지 연결해 광고·커머스 접점을 넓힌다. 유튜브·지메일 확장도 예고돼 브랜드의 구글 내 전환 전략이 중요해질 전망이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">이른 폭염에 유통가 여름 마케팅 앞당겼다</div>
+            <div class="news-summary">5월 중순 낮 기온이 30도 안팎까지 오르자 편의점·마트·이커머스가 여름 특수 선점에 나섰다. CU 아이스크림 매출은 20% 늘었고, 온라인 냉감 침구·생활용품 판매도 20~40% 증가했다. 냉방가전 할인전도 예년보다 1~2주 빨라졌다. 수박·삼계탕·컵 물회 등 먹거리 물량도 확대하고 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">구글 제미나이 9억 명 돌파, AI 광고 생태계 선점 가속</div>
+            <div class="news-summary">구글은 검색·메일·지도·쇼핑에 제미나이를 통합해 정기 이용자를 9억 명 이상으로 늘렸다. 챗GPT MAU와 비슷한 규모다. 애플 시리 기반 AI로도 채택돼 스마트기기 접점이 확대된다. 지난 분기 광고 매출은 16% 증가한 770억 달러를 기록했다. 데이터센터 비용 부담도 완화했다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">검색에서 대화로, 유통가 AI 커머스 선점전 본격화</div>
+            <div class="news-summary">롯데홈쇼핑·롯데멤버스·LF·아모레퍼시픽 등이 챗GPT 기반 쇼핑 서비스를 잇달아 도입했다. 고객 질문 맥락을 파악해 상품 추천, 혜택 안내, 구매까지 연결하며 검색보다 AI 추천이 핵심 접점으로 부상하고 있다. 마케터는 AI 답변 내 노출과 개인화 데이터 활용을 강화해야 한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">AI 우회 불법 유통 급증, K콘텐츠 IP 보호 비상</div>
+            <div class="news-summary">저작권 침해 신고가 지난해 2만 6255건으로 1년 새 3배 가까이 늘었다. 웹툰·웹소설 피해가 집중됐고, AI가 보호 기술을 우회하며 확산 속도를 키웠다. 콘텐츠 마케팅은 IP 신뢰와 유통 관리가 핵심 과제로 떠올랐다. 누누티비 피해는 5조 원으로 추산돼 광고·팬덤 전략에도 리스크다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">🏷️</span>
+            <span class="card-title">카테고리별 헤드라인</span>
+            <span class="card-source">뉴스럴</span>
+        </div>
+        
+        <div class="cat-item">
+            <span class="cat-badge green">스타트업 뉴스</span>
+            <ul class="cat-headlines"><li>우주 광학 스타트업 씨에스오, 162억원 규모 시리즈A 투자 유치</li><li>환경자원 플랫폼 '빼기', 월간 흑자 달성…&quot;연 매출 120억 목표&quot;</li><li>“홍대 한복판에 작은 실리콘밸리” SVC서울 가보니</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge blue">네카라쿠배당토 뉴스</span>
+            <ul class="cat-headlines"><li>당근중고차 &quot;전기차 거래량 전년 대비 120.4% 늘어&quot;</li><li>쿠팡·온플법 문제...한미 ‘원잠’ 추진 걸림돌 되나</li><li>배민·카모 노리는 공룡 우버… “한국 잔혹사 끊나”</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge purple">MZ 소비 트렌드</span>
+            <ul class="cat-headlines"><li>왕의 연못서 책 읽고, 정자서 茶 한잔… 궁궐에 스며든 ‘쉼의 미학’</li><li>&quot;미안한데 나 좀 쉴게&quot;…'조용한 혼자' JOMO 택한 청춘들</li><li>감튀 먹고 피클볼 치고…당근, '취향 커뮤니티' 급성장</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge orange">HR 뉴스</span>
+            <ul class="cat-headlines"><li>AI 언급하자 야유 쏟아졌다, 미국 졸업식 풍경</li><li>&quot;지방 약대 vs 연고대 삼전닉스&quot;…10대들에 물었더니 '깜짝' [이슈+]</li><li>20대 일자리 13분기째 증발…늘어난 일자리는 60대가 채웠다</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge pink">AI 뉴스</span>
+            <ul class="cat-headlines"><li>&quot;오픈AI, 이르면 22일 IPO 신청…9월 상장 목표&quot;</li><li>“4300조 시장 놓칠라”… 韓 자율주행, 규제 넘어 도심 AI실증 시동</li><li>AI발 고용충격 현실로…빅테크 넘어 은행까지 살떨리는 감원바람</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge teal">ESG 뉴스</span>
+            <ul class="cat-headlines"><li>탄소 품는 땅…토양 활용 탄소 흡수·제거 기술 개발 착수</li><li>'10조 대장주' 금양의 추락…결국 상장폐지 잔혹사</li><li>규제 갇힌 韓코인거래소, 해외 탈중앙화거래소 공세에 속수무책</li></ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">🎨</span>
+            <span class="card-title">전시 / 팝업 / 공간 추천</span>
+            <span class="card-source">헤이팝</span>
+        </div>
+        
+        <div class="heypop-item">
+            <div class="heypop-title">성률 기획전〈여름을 닮은 우리〉</div>
+            <div class="heypop-desc">여름과 성장, 그리고 사라지는 것들을 그리다</div>
+            <a class="heypop-link" href="https://heypop.kr/n/137289/" target="_blank">→ 자세히 보기</a>
+        </div>
+        <div class="heypop-item">
+            <div class="heypop-title">힙한 도서관의 탄생, 여의도브라이튼</div>
+            <div class="heypop-desc">책보다 공간이 궁금한 요즘 도서관 4</div>
+            <a class="heypop-link" href="https://heypop.kr/n/137180/" target="_blank">→ 자세히 보기</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">반면교사 성장법 : 곰돌이 젤리 영양제 회사, ‘하지 말라는 것’만 피해 성공했다</div>
+        <div class="longblack-subtitle">롱블랙 프렌즈 K 역사상 가장 빨리 엑싯exit한 소비재 회사가 어디인지 아시나요? 요즘 잘 나간다는 AI 회사도, 로봇 회사도 아니에요. 다름 아닌 ‘곰돌이 젤리 영양제’ 회사 그룬스Gruns죠. 2023년 창업 후 3년 만에</div>
+        <a class="longblack-link" href="https://longblack.co/note/1985?ticket=NT262152577bbcb560ea7e3e8325c6126501fa" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
