@@ -38,6 +38,10 @@ tuesday_newsletters:
     url: "WEEKLY_STIBEE_URL"
     name: 캐릿
     sender_keyword: 캐릿
+# 빌더조쉬 (수/금 공용 단일 슬롯) — 각 발송 직전 URL을 수동으로 덮어쓰기
+builder_josh:
+  url: "https://maily.so/josh/posts/WEEKLY_SLUG"
+  name: 빌더조쉬
 friday_newsletters:
   catalogue:
     url: "WEEKLY_STIBEE_URL"

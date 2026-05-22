@@ -33,9 +33,9 @@ python -c "import sys,io; sys.stdout=io.TextIOWrapper(sys.stdout.buffer,encoding
 ### 요일별 수집 소스
 - **매일**: 아이보스(iboss), 뉴스럴(neusral), 롱블랙(longblack)
 - **화요일(weekday=1)**: 풋풋레터, 캐릿 (stibee 공유 URL → `config.yaml`의 `tuesday_newsletters`에 매주 수동 업데이트 필요)
-- **수요일(weekday=2)**: 빌더조쉬 (maily.so/josh — `wednesday_newsletters`에 매주 수동 업데이트 필요)
+- **수요일(weekday=2)**: 빌더조쉬 (maily.so/josh — `builder_josh.url` 발송 직전 수동 갱신)
 - **목요일(weekday=3)**: 헤이팝(heypop)
-- **금요일(weekday=4)**: 빌더조쉬, 까탈로그 (`friday_newsletters` — 빌더조쉬는 수동 URL, 까탈로그는 Gmail 자동→수동 폴백)
+- **금요일(weekday=4)**: 빌더조쉬, 까탈로그 (빌더조쉬는 `builder_josh.url` 동일 슬롯 재갱신, 까탈로그는 `friday_newsletters` Gmail 자동→수동 폴백)
 
 ### 각 수집기 특성
 | 파일 | 반환 타입 | 소스 |
@@ -60,8 +60,8 @@ python -c "import sys,io; sys.stdout=io.TextIOWrapper(sys.stdout.buffer,encoding
 ### config.yaml 주요 설정
 - `anthropic.api_key`: Claude API 키
 - `tuesday_newsletters`: 화요일마다 풋풋레터·캐릿의 스티비 공유 URL을 **매주 수동 업데이트** 필요
-- `wednesday_newsletters`: 수요일 빌더조쉬 maily.so 글 URL을 **매주 수동 업데이트** 필요
-- `friday_newsletters.builder_josh.url`: 금요일 빌더조쉬 URL을 **매주 수동 업데이트** 필요 (까탈로그는 Gmail 자동 추출 우선)
+- `builder_josh.url`: 빌더조쉬 maily.so 글 URL. **수/금 발송 직전 각각 수동 갱신** (단일 슬롯, 수→금 순서로 덮어쓰기)
+- `friday_newsletters.catalogue`: 금요일 까탈로그 (Gmail 자동 추출 우선, 실패 시 수동 URL)
 - `email`: 메일플러그 IMAP 정보 (현재 미설정 — 까탈로그 등 이메일 뉴스레터 사용 시 필요)
 - `schedule.send_time`: 스케줄러 모드 실행 시각
 

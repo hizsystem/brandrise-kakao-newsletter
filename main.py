@@ -183,47 +183,27 @@ def run_newsletter(config: dict, preview_only: bool = False):
                 except Exception as e:
                     print(f"  [WARN] {name} 수집 실패: {e}")
 
-    # 수요일 뉴스레터 (빌더조쉬) - config 수동 URL
-    if weekday == 2:
-        wed_cfg = config.get("wednesday_newsletters", {})
-        for key, cfg in wed_cfg.items():
-            url = cfg.get("url", "")
-            name = cfg.get("name", key)
-            if not url:
-                continue
-            if key == "builder_josh":
-                try:
-                    print(f"  → {name} 수집 중...")
-                    item = builder_josh_collector.fetch(url, config=config)
-                    if item:
-                        stibee_items.insert(0, item)
-                        print(f"     {item.title[:40]}")
-                except Exception as e:
-                    print(f"  [WARN] {name} 수집 실패: {e}")
+    # 수/금 빌더조쉬 - 단일 config 슬롯 (수/금 발송 직전 URL 수동 갱신)
+    if weekday in (2, 4):
+        bj_cfg = config.get("builder_josh", {})
+        url = bj_cfg.get("url", "")
+        name = bj_cfg.get("name", "빌더조쉬")
+        if url:
+            try:
+                print(f"  → {name} 수집 중...")
+                item = builder_josh_collector.fetch(url, config=config)
+                if item:
+                    stibee_items.insert(0, item)
+                    print(f"     {item.title[:40]}")
+            except Exception as e:
+                print(f"  [WARN] {name} 수집 실패: {e}")
 
-    # 금요일 뉴스레터 (까탈로그 + 빌더조쉬) - 빌더조쉬 우선, 까탈로그 Gmail/수동 URL
+    # 금요일 뉴스레터 (까탈로그) - Gmail 자동 → 수동 URL
     if weekday == 4:
         email_cfg = config.get("email", {})
         friday_cfg = config.get("friday_newsletters", {})
         for key, cfg in friday_cfg.items():
             name = cfg.get("name", key)
-
-            # 빌더조쉬: maily.so 직접 수집 + LLM 요약
-            if key == "builder_josh":
-                url = cfg.get("url", "")
-                if not url:
-                    continue
-                try:
-                    print(f"  → {name} 수집 중...")
-                    item = builder_josh_collector.fetch(url, config=config)
-                    if item:
-                        stibee_items.insert(0, item)
-                        print(f"     {item.title[:40]}")
-                except Exception as e:
-                    print(f"  [WARN] {name} 수집 실패: {e}")
-                continue
-
-            # 까탈로그 등 스티비 계열: Gmail 자동 → 수동 URL
             keyword = cfg.get("sender_keyword", name)
             url = ""
 
