@@ -161,6 +161,10 @@ def _render_heypop_v2(items: List[HeypopItem]) -> str:
 def _render_stibee_v2(items: list, image_map: dict = None) -> str:
     if not items:
         return ""
+    # 빌더조쉬는 별도 풀카드(_render_builder_josh_v2)로 빠지므로 여기서는 제외
+    items = [it for it in items if it.source != "빌더조쉬"]
+    if not items:
+        return ""
     cards = ""
     for item in items:
         img_path = (image_map or {}).get(item.source)
@@ -192,6 +196,44 @@ def _render_stibee_v2(items: list, image_map: dict = None) -> str:
         </div>
         <div class="v2-stibee-list">{cards}</div>
     </div>"""
+
+
+def _render_builder_josh_v2(stibee_items: list, image_map: dict = None) -> str:
+    """빌더조쉬를 별도 풀카드(롱블랙급)로 렌더링. stibee_items에서 source='빌더조쉬'만 추출."""
+    if not stibee_items:
+        return ""
+    bj = next((it for it in stibee_items if it.source == "빌더조쉬"), None)
+    if not bj:
+        return ""
+
+    img_path = (image_map or {}).get(bj.source)
+    hero_html = (
+        f'<div class="v2-bj-hero"><img src="{img_path}" alt="" loading="lazy"></div>'
+        if img_path else ""
+    )
+    subtitle_html = (
+        f'<p class="v2-bj-subtitle">{_esc(bj.topic)}</p>' if bj.topic else ""
+    )
+    summary_items = list(bj.summary_items or [])
+    summary_html = ""
+    if summary_items:
+        lis = "".join(f"<li>{_esc(s)}</li>" for s in summary_items)
+        summary_html = f'<ol class="v2-bj-summary">{lis}</ol>'
+
+    return f"""
+    <a class="v2-bj-card" href="{bj.url}" target="_blank" rel="noopener">
+        {hero_html}
+        <div class="v2-bj-content">
+        <div class="v2-bj-eyebrow">
+            <span class="v2-bj-icon">✍️</span>
+            <span>빌더조쉬 · 오늘의 인사이트</span>
+        </div>
+        <div class="v2-bj-title">{_esc(bj.title)}</div>
+        {subtitle_html}
+        {summary_html}
+        <span class="v2-bj-cta">뉴스레터 읽기 →</span>
+        </div>
+    </a>"""
 
 
 def _render_longblack_v2(item, lb_image: str = "") -> str:
@@ -347,6 +389,36 @@ a { color: inherit; text-decoration: none; }
              background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
              padding: 9px 20px; border-radius: 24px; letter-spacing: 0.3px; }
 
+/* 빌더조쉬 — 클릭 가능한 피처드 카드 (롱블랙급, 보라/인디고 톤) */
+.v2-bj-card { display: block; background: linear-gradient(160deg, #1a1147 0%, #312e81 100%);
+              color: white; border-radius: 20px; overflow: hidden; margin-bottom: 16px;
+              transition: transform 0.18s, box-shadow 0.18s;
+              box-shadow: 0 6px 28px rgba(49,46,129,0.35); }
+.v2-bj-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(49,46,129,0.5); }
+.v2-bj-hero { background: #0f0a2b; overflow: hidden; }
+.v2-bj-hero img { width: 100%; height: auto; max-height: 360px; min-height: 160px;
+                  object-fit: contain; opacity: 1; display: block; }
+.v2-bj-content { padding: 28px 32px 32px; }
+.v2-bj-eyebrow { display: flex; align-items: center; gap: 8px; font-size: 11.5px;
+                 opacity: 0.55; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+.v2-bj-icon { font-size: 15px; }
+.v2-bj-title { font-size: 21px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; letter-spacing: -0.3px; }
+.v2-bj-subtitle { font-size: 13.5px; opacity: 0.62; line-height: 1.8; margin-bottom: 20px; }
+.v2-bj-summary { list-style: none; counter-reset: bj-num; padding: 0; margin: 0 0 22px;
+                 border-top: 1px solid rgba(255,255,255,0.12); padding-top: 18px; }
+.v2-bj-summary li { counter-increment: bj-num; position: relative;
+                    padding: 8px 0 8px 32px; font-size: 13.5px; line-height: 1.65;
+                    opacity: 0.92; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.v2-bj-summary li:last-child { border-bottom: none; }
+.v2-bj-summary li::before { content: counter(bj-num); position: absolute; left: 0; top: 8px;
+                            width: 22px; height: 22px; border-radius: 50%;
+                            background: rgba(167,139,250,0.2); color: #c4b5fd;
+                            font-size: 11px; font-weight: 800; display: flex;
+                            align-items: center; justify-content: center; }
+.v2-bj-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700;
+             background: rgba(167,139,250,0.18); border: 1px solid rgba(167,139,250,0.35);
+             padding: 9px 20px; border-radius: 24px; letter-spacing: 0.3px; color: #ede9fe; }
+
 /* 푸터 */
 .v2-footer { text-align: center; padding: 40px 0 0; }
 .v2-footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
@@ -379,6 +451,9 @@ a { color: inherit; text-decoration: none; }
     .v2-header-title { font-size: 22px; }
     .v2-card { padding: 18px 20px; }
     .v2-lb-card { padding: 22px 20px; }
+    .v2-bj-content { padding: 22px 20px 24px; }
+    .v2-bj-title { font-size: 18.5px; }
+    .v2-bj-summary li { padding-left: 28px; font-size: 13px; }
     .v2-thumb { width: 90px; height: 70px; }
     .v2-thumb-placeholder { width: 90px; height: 70px; }
 }
@@ -424,6 +499,7 @@ def build_html_v2(
         _render_iboss_v2(iboss_items, iboss_post_url, p_iboss),
         _render_neusral_v2(neusral_categories, p_neusral),
         _render_heypop_v2(heypop_items),
+        _render_builder_josh_v2(stibee_items or [], p_stibee),
         _render_stibee_v2(stibee_items or [], p_stibee),
         _render_longblack_v2(longblack_item, p_lb),
     ]))
