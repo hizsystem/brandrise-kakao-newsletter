@@ -1,5 +1,7 @@
 # 빌더조쉬 뉴스레터 추가 — 설계 (2026-05-20)
 
+> **⚠️ 2026-05-22 업데이트**: 이 문서의 config 설계 (`wednesday_newsletters` + `friday_newsletters.builder_josh` 두 슬롯)는 **단일 슬롯 `builder_josh`** 로 통합되었습니다. 본문의 데이터 흐름·collector 구현은 그대로 유효하나, **config 구조와 main.py 분기는 문서 하단 [Addendum (2026-05-22)](#addendum-2026-05-22--수금-단일-슬롯-통합) 참조**.
+
 ## 배경
 
 - 데일리 뉴스레터 시스템에 빌더조쉬(조쉬의 뉴스레터 — `maily.so/josh/`) 콘텐츠를 **수요일·금요일** 발송분에 추가한다.
@@ -167,3 +169,84 @@ https://maily.so/josh/posts/knrj1pn1rld
 - **maily.so HTML 구조 변경**: og 메타와 본문 셀렉터에 의존. 변경 시 fetch 실패 → 메시지에서 빌더조쉬 블록만 누락(다른 콘텐츠는 정상). `_parse_putput` 등 기존 스크래퍼도 동일 리스크 보유.
 - **LLM 요약 품질**: 본문이 너무 길거나 인터뷰가 산만하면 3줄 요약이 빈약할 수 있음. 프롬프트로 일정 수준 통제, 결과가 부족하면 (`summary_items`가 0~2개) 그대로 메시지에 노출 (텍스트는 짧아도 URL이 있으므로 사용자 클릭 유도 가능).
 - **사용자가 config URL 갱신 잊음**: 화요일 스티비와 동일한 운영 리스크. 빈 URL이면 그날 빌더조쉬 블록만 누락.
+
+---
+
+## Addendum (2026-05-22) — 수/금 단일 슬롯 통합
+
+**결정 배경**: 사용자 확인 결과 빌더조쉬 수요일·금요일 URL은 발송 직전이 아니면 미리 알 수 없음 → 슬롯을 분리해도 작업량(주 2회 수동 갱신)은 동일 → config 단순성을 위해 단일 슬롯으로 통합.
+
+### 변경된 config 구조
+
+**기존 (이 문서 본문 §변경 파일 목록 → config.yaml)**:
+```yaml
+wednesday_newsletters:
+  builder_josh:
+    url: ...
+    name: 빌더조쉬
+friday_newsletters:
+  builder_josh:
+    url: ...
+    name: 빌더조쉬
+  catalogue:
+    url: ...
+    name: 까탈로그
+    sender_keyword: 까탈로그
+```
+
+**변경 후**:
+```yaml
+builder_josh:                # top-level 단일 슬롯, 수/금 공용
+  url: https://maily.so/josh/posts/WEEKLY_SLUG
+  name: 빌더조쉬
+friday_newsletters:
+  catalogue:                 # 금요일에는 까탈로그만 남음
+    url: ...
+    name: 까탈로그
+    sender_keyword: 까탈로그
+```
+
+### 변경된 main.py 분기
+
+**기존**: 수요일 블록(`if weekday == 2: wed_cfg = config["wednesday_newsletters"]`)과 금요일 블록(`friday_cfg`의 `key == "builder_josh"` 분기) 두 곳에서 빌더조쉬 처리.
+
+**변경 후**: 수/금 단일 분기로 통합.
+```python
+# 수/금 빌더조쉬 - 단일 config 슬롯 (수/금 발송 직전 URL 수동 갱신)
+if weekday in (2, 4):
+    bj_cfg = config.get("builder_josh", {})
+    url = bj_cfg.get("url", "")
+    name = bj_cfg.get("name", "빌더조쉬")
+    if url:
+        try:
+            print(f"  → {name} 수집 중...")
+            item = builder_josh_collector.fetch(url, config=config)
+            if item:
+                stibee_items.insert(0, item)
+                print(f"     {item.title[:40]}")
+        except Exception as e:
+            print(f"  [WARN] {name} 수집 실패: {e}")
+
+# 금요일 뉴스레터 (까탈로그) - Gmail 자동 → 수동 URL
+if weekday == 4:
+    # ... friday_newsletters에서 까탈로그만 처리
+```
+
+### 변하지 않은 것
+
+- `collectors/builder_josh.py` 구현 — fetch 시그니처·내부 동작 동일
+- `formatter.py`의 빌더조쉬 텍스트 분기 — 동일
+- `html_formatter_v2.py` 자동 처리 — 동일
+- 출력 순서(빌더조쉬 → 까탈로그 → 롱블랙) — `stibee_items.insert(0, item)` 그대로
+- 인사말 컨텍스트 자동 포함 — 동일
+
+### 추가된 기능 (2026-05-22 동일 세션)
+
+- **첫 등장 stibee 소스 자동 안내**: `formatter.py`에 `_first_appearance_sources()` 헬퍼 신설. 과거 `output_*.txt`에 등장한 적 없는 stibee source가 있으면 `_build_greeting_prompt`의 `notes` 배열에 "오늘부터 [소스명] 코너가 처음 추가됩니다"를 자동 주입 → LLM이 인사말 본문 흐름에 자연스럽게 녹임. 미래에 신규 소스 추가 시 첫 발송 1회만 자동 트리거됨.
+
+### 운영 영향
+
+- **갱신 횟수**: 변화 없음 (주 2회: 수요일 아침 + 금요일 아침).
+- **갱신 대상**: 단일 키 `builder_josh.url`을 발송 직전 새 글 URL로 덮어쓰기.
+- **`config.example.yaml`**: 동일 구조로 동기화 완료.
+- **`CLAUDE.md`** (프로젝트): 요일별 수집 소스 / config 항목 모두 통합 구조 반영.

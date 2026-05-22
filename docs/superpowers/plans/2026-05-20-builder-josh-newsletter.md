@@ -1,5 +1,7 @@
 # 빌더조쉬 뉴스레터 추가 — 구현 계획
 
+> **⚠️ 2026-05-22 업데이트**: 본 구현 계획의 Task 2(config.yaml — wednesday/friday 두 슬롯)와 Task 4(main.py — 수요일·금요일 분기 분리)는 **단일 슬롯 `builder_josh`** 구조로 통합되었습니다. **현재 코드의 실제 상태는 문서 하단 [Addendum (2026-05-22)](#addendum-2026-05-22--수금-단일-슬롯-통합) 참조**. 이 plan은 5/20 시점의 1차 구현 기록으로 남깁니다.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** 데일리 뉴스레터 시스템에 빌더조쉬(maily.so/josh) 콘텐츠를 수요일·금요일에 자동 발송 — 제목·부제·LLM 자동 3줄 요약·URL 포맷.
@@ -795,3 +797,79 @@ docs: 빌더조쉬 뉴스레터 추가 설계·구현 계획 문서
 - `StibeeNewsletter` 필드(source, issue, title, summary_items, url, topic, terms)가 stibee.py 정의와 일치.
 - `stibee_items.insert(0, item)` — Task 4 수요일/금요일 두 곳에서 동일 메서드 사용.
 - formatter 분기 식별자 `"빌더조쉬" in item.source` — Task 1의 `source_name="빌더조쉬"` 기본값과 일치.
+
+---
+
+## Addendum (2026-05-22) — 수/금 단일 슬롯 통합
+
+5/20 구현 직후 운영 검토에서 "수요일·금요일 URL을 미리 받을 수 없다 → 슬롯을 분리해도 작업량 동일" 결론이 나와 다음과 같이 단순화됨.
+
+### Task 2 (config.yaml) — 실제 적용된 최종 구조
+
+```yaml
+# 빌더조쉬 (수/금 공용 단일 슬롯) — 각 발송 직전 URL을 수동으로 덮어쓰기
+builder_josh:
+  url: https://maily.so/josh/posts/WEEKLY_SLUG
+  name: 빌더조쉬
+friday_newsletters:
+  catalogue:              # 금요일에는 까탈로그만 남음
+    url: ...
+    name: 까탈로그
+    sender_keyword: 까탈로그
+```
+
+- `wednesday_newsletters` 키 자체 제거.
+- `friday_newsletters.builder_josh` 제거.
+- top-level `builder_josh` 신설.
+- `config.example.yaml`도 동일 구조로 동기화.
+
+### Task 4 (main.py) — 실제 적용된 최종 분기
+
+```python
+# 수/금 빌더조쉬 - 단일 config 슬롯 (수/금 발송 직전 URL 수동 갱신)
+if weekday in (2, 4):
+    bj_cfg = config.get("builder_josh", {})
+    url = bj_cfg.get("url", "")
+    name = bj_cfg.get("name", "빌더조쉬")
+    if url:
+        try:
+            print(f"  → {name} 수집 중...")
+            item = builder_josh_collector.fetch(url, config=config)
+            if item:
+                stibee_items.insert(0, item)
+                print(f"     {item.title[:40]}")
+        except Exception as e:
+            print(f"  [WARN] {name} 수집 실패: {e}")
+
+# 금요일 뉴스레터 (까탈로그) - Gmail 자동 → 수동 URL
+if weekday == 4:
+    email_cfg = config.get("email", {})
+    friday_cfg = config.get("friday_newsletters", {})
+    for key, cfg in friday_cfg.items():
+        # ... 까탈로그만 처리 (Gmail 자동 → 수동 폴백)
+```
+
+- 수요일 블록(`if weekday == 2`)과 금요일의 빌더조쉬 분기 모두 제거 → 위 단일 `if weekday in (2, 4)` 블록으로 통합.
+- 금요일 까탈로그 처리 블록은 그대로 유지 (Gmail 자동 추출 → 수동 URL 폴백).
+
+### 변하지 않은 Task
+
+- Task 1 (`collectors/builder_josh.py`) — 그대로 유효.
+- Task 3 (`formatter.py` 빌더조쉬 텍스트 분기) — 그대로 유효.
+- Task 5 (통합 미리보기 검증) — 그대로 유효하나, `weekday == 2` / `weekday == 4` 양쪽 모두 동일 단일 슬롯을 보게 됨.
+- Task 6 (`CLAUDE.md` 프로젝트 문서) — 통합 구조로 재갱신.
+- Task 7 (최종 점검) — 그대로 유효.
+
+### 새로 추가된 기능 (2026-05-22 동일 세션)
+
+`formatter.py`에 **첫 등장 stibee 소스 자동 감지** 로직 추가:
+
+- `_first_appearance_sources(stibee_items)` 헬퍼: 과거 `output_*.txt`를 스캔해 한 번도 등장한 적 없는 source 이름 목록 반환.
+- `_build_greeting_prompt`의 `notes` 배열에 "오늘부터 [소스명] 코너가 처음 추가됩니다" 노트 자동 주입 → LLM이 광고 톤이 아니라 본문 흐름에 자연스럽게 녹임.
+- 동작 확인: 2026-05-22 발송분 인사말에 빌더조쉬 닉 바실레스쿠 이야기를 중심 소재로 활용한 자연 소개 한 문장 성공.
+
+### 운영 영향
+
+- 작업량 동일 (주 2회 갱신).
+- 갱신 대상이 단일 키 `builder_josh.url`로 단순화.
+- 신규 stibee 소스 추가 시 첫 발송 자동 안내가 영구 동작.
