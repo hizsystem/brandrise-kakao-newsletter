@@ -135,6 +135,38 @@ def _find_banned_phrases(text: str) -> List[str]:
     return [p for p in _BANNED_PHRASES if p in text]
 
 
+def _first_appearance_sources(stibee_items: list) -> List[str]:
+    """오늘 이전 output_*.txt에 한 번도 등장한 적 없는 stibee source 이름 목록"""
+    if not stibee_items:
+        return []
+    candidates = []
+    seen_in_candidates = set()
+    for item in stibee_items:
+        src = getattr(item, "source", "")
+        if src and src not in seen_in_candidates:
+            candidates.append(src)
+            seen_in_candidates.add(src)
+    if not candidates:
+        return []
+
+    today_str = datetime.now().strftime("%Y%m%d")
+    past_files = [
+        f for f in _OUTPUT_DIR.glob("output_*.txt") if today_str not in f.name
+    ]
+    appeared = set()
+    for f in past_files:
+        try:
+            text = f.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        for src in candidates:
+            if src in appeared:
+                continue
+            if src in text:
+                appeared.add(src)
+    return [src for src in candidates if src not in appeared]
+
+
 def _load_recent_greetings(n: int = 4) -> List[str]:
     """오늘 이전 최근 N개 output_*.txt에서 인사말 블록 추출"""
     today_str = datetime.now().strftime("%Y%m%d")
@@ -283,6 +315,16 @@ def _build_greeting_prompt(
             f"내일부터 {off_after}일 연속 휴일/주말이 이어집니다 (긴 연휴 직전 마지막 발송). "
             "첫 문단에서 \"긴 연휴 앞두고\", \"연휴 전 마지막 마케팅 소식\" 같은 맥락을 자연스럽게 드러내고, "
             "마지막 문장은 \"좋은 연휴 보내세요\" 분위기로 마무리해줘 (이모지 1개 포함)."
+        )
+
+    new_sources = _first_appearance_sources(stibee_items or [])
+    if new_sources:
+        sources_str = ", ".join(new_sources)
+        notes.append(
+            f"오늘부터 [{sources_str}] 코너가 뉴스레터에 처음 추가됩니다. "
+            f"이번 회차의 중심 소재로 {sources_str}에서 다룬 주제를 활용해 인사말을 구성하고, "
+            f"\"오늘부터 {sources_str} 소식도 함께 전해드립니다\" 같은 식으로 첫 추가 사실을 한 문장 정도 자연스럽게 녹여줘. "
+            "공지처럼 딱딱하게 별도 문단으로 빼지 말고, 본문 흐름에 자연스럽게 포함시킬 것."
         )
 
     special_date_note = ""
