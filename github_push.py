@@ -11,12 +11,17 @@ def push_to_github(repo_dir: Path, date_str: str) -> bool:
     docs/ 변경사항을 GitHub에 커밋·푸시.
     성공 여부 반환.
     """
-    def run(cmd: list) -> tuple[bool, str]:
-        result = subprocess.run(
-            cmd, cwd=repo_dir,
-            capture_output=True, text=True, encoding="utf-8", errors="replace",
-        )
-        return result.returncode == 0, (result.stdout + result.stderr).strip()
+    def run(cmd: list, timeout: int = 60) -> tuple[bool, str]:
+        try:
+            result = subprocess.run(
+                cmd, cwd=repo_dir,
+                capture_output=True, text=True, encoding="utf-8", errors="replace",
+                timeout=timeout,
+            )
+            return result.returncode == 0, (result.stdout + result.stderr).strip()
+        except subprocess.TimeoutExpired as e:
+            partial = ((e.stdout or "") + (e.stderr or "")).strip()
+            return False, f"timeout {timeout}s: {' '.join(cmd)}\n{partial}"
 
     # git add docs/
     ok, out = run(["git", "add", "docs/"])
@@ -33,8 +38,8 @@ def push_to_github(repo_dir: Path, date_str: str) -> bool:
         print(f"  [WARN] git commit 실패: {out}")
         return False
 
-    # git push
-    ok, out = run(["git", "push", "--set-upstream", "origin", "main"])
+    # git push (네트워크 지연/자격증명 대기 등으로 멈추는 것 방지: 120초)
+    ok, out = run(["git", "push", "--set-upstream", "origin", "main"], timeout=120)
     if not ok:
         print(f"  [WARN] git push 실패: {out}")
         print("         수동으로 실행: git push")

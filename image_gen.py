@@ -1,13 +1,38 @@
 """
 뉴스 썸네일 이미지 생성 (Gemini 우선, Pollinations.ai 폴백) + OG 이미지 스크래핑
-Claude Sonnet으로 뉴스 본문 기반 맞춤 프롬프트 생성, ThreadPoolExecutor 병렬 생성
+Claude Sonnet으로 뉴스 본문 기반 맞춤 프롬프트 생성, 월클락 예산 기반 순차 생성
 """
 from pathlib import Path
 from urllib.parse import quote
-from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
+import threading
 import time
 import requests
+
+
+def _run_with_deadline(fn, timeout: float, label: str = ""):
+    """fn()을 daemon 스레드에서 실행하고 timeout 안에 끝나면 결과 반환, 아니면 None.
+    SDK 자체 timeout이 신뢰가 안 되는 환경(오늘 LLM API 행 등)에서 메인 스레드를
+    무한 대기시키지 않기 위한 안전장치. daemon 스레드는 main이 끝나면 함께 종료.
+    """
+    box = {"result": None, "exc": None}
+
+    def _runner():
+        try:
+            box["result"] = fn()
+        except BaseException as e:
+            box["exc"] = e
+
+    t = threading.Thread(target=_runner, daemon=True)
+    t.start()
+    t.join(timeout=timeout)
+    if t.is_alive():
+        if label:
+            print(f"  [WARN] {label} 시간 초과 ({timeout:.0f}s) — 진행 계속")
+        return None
+    if box["exc"] is not None:
+        raise box["exc"]
+    return box["result"]
 from bs4 import BeautifulSoup
 
 HEADERS = {
@@ -52,7 +77,7 @@ def generate_prompts_batch(
 
     try:
         import anthropic
-        client = anthropic.Anthropic(api_key=anthropic_api_key)
+        client = anthropic.Anthropic(api_key=anthropic_api_key, timeout=45.0, max_retries=0)
 
         blocks = []
         for i, (t, c) in enumerate(zip(titles, contexts), 1):
@@ -62,39 +87,44 @@ def generate_prompts_batch(
             blocks.append(f"{i}. 제목: {t}\n   본문: {ctx}" if ctx else f"{i}. 제목: {t}")
         numbered = "\n".join(blocks)
 
-        message = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=1536,
-            messages=[{
-                "role": "user",
-                "content": (
-                    "다음 한국어 뉴스 각각에 대해 이미지 생성용 영어 프롬프트를 만들어주세요.\n"
-                    "**제목만 보지 말고 본문에서 가장 구체적이고 시각적인 디테일(브랜드, 제품, 숫자, 장소, 행동, 등장하는 사물)을 뽑아내 장면으로 옮기세요.**\n\n"
-                    "프롬프트 구성 규칙:\n"
-                    "- 기사에만 등장하는 고유한 사물 3-4개를 조합해 '한 장면(scene)'을 묘사 (단순 아이콘 나열 금지)\n"
-                    "- 매 기사마다 **구도(앵글)**를 달리 하세요: 탑다운, 등각투영, 정면, 약간 위에서 내려다보기, 옆에서 바라보기 등\n"
-                    "- 매 기사마다 **질감 변주**를 주세요: 부드러운 클레이, 종이접기(paper-craft), 플랫 일러스트, 수채화, 미니어처 모형 등\n"
-                    "- 사물 사이의 관계/배치를 명시 (위에, 옆에, 안에서 나오는, 연결된, 둘러싼 등)\n"
-                    "- 같은 주제라도 본문이 다르면 사물 조합과 구도가 모두 달라야 함\n\n"
-                    "좋은 예:\n"
-                    "- '쿠팡, 와우 멤버십 OTT 강화' (본문: 쿠팡플레이 스포츠 중계 확대) →\n"
-                    "  'top-down view of a mint TV screen showing a tiny soccer field, pink delivery box with a golden crown beside it, paper-craft remote control, soft watercolor gradient'\n"
-                    "- '네이버 치지직 광고 도입' (본문: 스트리밍 중 배너 광고 삽입 테스트) →\n"
-                    "  'isometric clay monitor with glowing play triangle, a thin banner ribbon sliding across the screen, stacked coins and a headset on a mint shelf beside it'\n"
-                    "- 'GS25, 라면 특화 매장 오픈' (본문: 100여 종 라면 진열, 즉석 조리대) →\n"
-                    "  'front-view miniature convenience store with shelves of colorful ramen cups, a steaming pink bowl on a counter, chopsticks and a kettle floating in warm light'\n\n"
-                    "나쁜 예 (절대 이렇게 만들지 말 것):\n"
-                    "- 'social media engagement icons on gradient' (너무 일반적, 어느 기사든 적용 가능)\n"
-                    "- 'shopping cart and coins floating' (브랜드/맥락 없음)\n"
-                    "- 모든 기사에 동일한 'isometric clay diorama' 구도 반복 (변화 없음)\n\n"
-                    "금지: 사람, 얼굴, 텍스트/글자, 로고 그대로 복제, 어두운 색, 사실적 질감, 추상 도형만 사용\n"
-                    "각 프롬프트는 30~50단어 영어, 위 규칙을 모두 지킬 것.\n\n"
-                    f"기사 목록:\n{numbered}\n\n"
-                    "JSON 배열로만 응답 (다른 텍스트 없이):\n"
-                    '["prompt1", "prompt2", ...]'
-                ),
-            }],
+        _prompt = (
+            "다음 한국어 뉴스 각각에 대해 이미지 생성용 영어 프롬프트를 만들어주세요.\n"
+            "**제목만 보지 말고 본문에서 가장 구체적이고 시각적인 디테일(브랜드, 제품, 숫자, 장소, 행동, 등장하는 사물)을 뽑아내 장면으로 옮기세요.**\n\n"
+            "프롬프트 구성 규칙:\n"
+            "- 기사에만 등장하는 고유한 사물 3-4개를 조합해 '한 장면(scene)'을 묘사 (단순 아이콘 나열 금지)\n"
+            "- 매 기사마다 **구도(앵글)**를 달리 하세요: 탑다운, 등각투영, 정면, 약간 위에서 내려다보기, 옆에서 바라보기 등\n"
+            "- 매 기사마다 **질감 변주**를 주세요: 부드러운 클레이, 종이접기(paper-craft), 플랫 일러스트, 수채화, 미니어처 모형 등\n"
+            "- 사물 사이의 관계/배치를 명시 (위에, 옆에, 안에서 나오는, 연결된, 둘러싼 등)\n"
+            "- 같은 주제라도 본문이 다르면 사물 조합과 구도가 모두 달라야 함\n\n"
+            "좋은 예:\n"
+            "- '쿠팡, 와우 멤버십 OTT 강화' (본문: 쿠팡플레이 스포츠 중계 확대) →\n"
+            "  'top-down view of a mint TV screen showing a tiny soccer field, pink delivery box with a golden crown beside it, paper-craft remote control, soft watercolor gradient'\n"
+            "- '네이버 치지직 광고 도입' (본문: 스트리밍 중 배너 광고 삽입 테스트) →\n"
+            "  'isometric clay monitor with glowing play triangle, a thin banner ribbon sliding across the screen, stacked coins and a headset on a mint shelf beside it'\n"
+            "- 'GS25, 라면 특화 매장 오픈' (본문: 100여 종 라면 진열, 즉석 조리대) →\n"
+            "  'front-view miniature convenience store with shelves of colorful ramen cups, a steaming pink bowl on a counter, chopsticks and a kettle floating in warm light'\n\n"
+            "나쁜 예 (절대 이렇게 만들지 말 것):\n"
+            "- 'social media engagement icons on gradient' (너무 일반적, 어느 기사든 적용 가능)\n"
+            "- 'shopping cart and coins floating' (브랜드/맥락 없음)\n"
+            "- 모든 기사에 동일한 'isometric clay diorama' 구도 반복 (변화 없음)\n\n"
+            "금지: 사람, 얼굴, 텍스트/글자, 로고 그대로 복제, 어두운 색, 사실적 질감, 추상 도형만 사용\n"
+            "각 프롬프트는 30~50단어 영어, 위 규칙을 모두 지킬 것.\n\n"
+            f"기사 목록:\n{numbered}\n\n"
+            "JSON 배열로만 응답 (다른 텍스트 없이):\n"
+            '["prompt1", "prompt2", ...]'
         )
+
+        def _call():
+            return client.messages.create(
+                model="claude-sonnet-4-6",
+                max_tokens=1536,
+                timeout=45.0,
+                messages=[{"role": "user", "content": _prompt}],
+            )
+
+        message = _run_with_deadline(_call, timeout=50.0, label="Claude 프롬프트")
+        if message is None:
+            return [_build_fallback_prompt(t) for t in titles]
 
         text = message.content[0].text.strip()
         start, end = text.find("["), text.rfind("]") + 1
@@ -157,14 +187,23 @@ def _generate_with_gemini(prompt: str, save_path: Path, gemini_api_key: str) -> 
         from google import genai
         from google.genai import types
 
-        client = genai.Client(api_key=gemini_api_key)
-        response = client.models.generate_content(
-            model="gemini-2.5-flash-image",
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                response_modalities=["IMAGE", "TEXT"],
-            ),
+        client = genai.Client(
+            api_key=gemini_api_key,
+            http_options=types.HttpOptions(timeout=45_000),
         )
+
+        def _call():
+            return client.models.generate_content(
+                model="gemini-2.5-flash-image",
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    response_modalities=["IMAGE", "TEXT"],
+                ),
+            )
+
+        response = _run_with_deadline(_call, timeout=50.0, label=f"Gemini ({save_path.name})")
+        if response is None:
+            return False
         for part in response.candidates[0].content.parts:
             if part.inline_data is not None:
                 save_path.parent.mkdir(parents=True, exist_ok=True)
@@ -247,18 +286,17 @@ def generate_iboss_images(
         ok = _generate_image(prompt, save_path, gemini_api_key, seed=date_seed + i * 17)
         return i, item, filename, ok
 
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
-        futures = [
-            pool.submit(_task, i, item, prompt)
-            for i, (item, prompt) in enumerate(zip(iboss_items, prompts), 1)
-        ]
-        for future in as_completed(futures):
-            i, item, filename, ok = future.result()
-            if ok:
-                result[i] = f"images/{date_iso}/{filename}"
-                print(f"     아이보스 [{i}/{len(iboss_items)}] {item.title[:30]} ✓")
-            else:
-                print(f"     아이보스 [{i}/{len(iboss_items)}] {item.title[:30]} ✗")
+    deadline = time.monotonic() + 240
+    for i, (item, prompt) in enumerate(zip(iboss_items, prompts), 1):
+        if time.monotonic() >= deadline:
+            print(f"     아이보스 [{i}/{len(iboss_items)}] {item.title[:30]} 시간 초과 건너뜀")
+            continue
+        i_, item_, filename, ok = _task(i, item, prompt)
+        if ok:
+            result[i_] = f"images/{date_iso}/{filename}"
+            print(f"     아이보스 [{i_}/{len(iboss_items)}] {item_.title[:30]} ✓")
+        else:
+            print(f"     아이보스 [{i_}/{len(iboss_items)}] {item_.title[:30]} ✗")
 
     return result
 
@@ -299,18 +337,17 @@ def generate_neusral_images(
         ok = _generate_image(prompt, save_path, gemini_api_key, seed=date_seed + 1000 + i * 23)
         return i, cat, filename, ok
 
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
-        futures = [
-            pool.submit(_task, i, cat, prompt)
-            for i, (cat, prompt) in enumerate(zip(neusral_categories, prompts))
-        ]
-        for future in as_completed(futures):
-            i, cat, filename, ok = future.result()
-            if ok:
-                result[cat.category] = f"images/{date_iso}/{filename}"
-                print(f"     뉴스럴 [{i+1}/{len(neusral_categories)}] {cat.category} ✓")
-            else:
-                print(f"     뉴스럴 [{i+1}/{len(neusral_categories)}] {cat.category} ✗")
+    deadline = time.monotonic() + 240
+    for i, (cat, prompt) in enumerate(zip(neusral_categories, prompts)):
+        if time.monotonic() >= deadline:
+            print(f"     뉴스럴 [{i+1}/{len(neusral_categories)}] {cat.category} 시간 초과 건너뜀")
+            continue
+        i_, cat_, filename, ok = _task(i, cat, prompt)
+        if ok:
+            result[cat_.category] = f"images/{date_iso}/{filename}"
+            print(f"     뉴스럴 [{i_+1}/{len(neusral_categories)}] {cat_.category} ✓")
+        else:
+            print(f"     뉴스럴 [{i_+1}/{len(neusral_categories)}] {cat_.category} ✗")
 
     return result
 
