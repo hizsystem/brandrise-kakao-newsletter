@@ -25,7 +25,6 @@ setup_github.py
 
 # 테스트/유틸리티 (시크릿 참조)
 gemini_image_gen.py
-admin.py
 test_scrapers.py
 test_full_preview.py
 grants_formatter.py
