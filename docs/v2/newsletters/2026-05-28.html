@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 5월 28일">
+    <meta property="og:description" content="목요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 5월 28일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.v2-wrapper { max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.v2-topnav { text-align: right; margin-bottom: 20px; }
+.v2-topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+               padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.v2-topnav a:hover { background: white; color: #6366f1; }
+
+/* 헤더 */
+.v2-header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+             color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.v2-header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                  opacity: 0.45; margin-bottom: 10px; }
+.v2-header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.v2-header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.v2-greeting { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+               border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.v2-greeting p { margin-bottom: 12px; }
+.v2-greeting p:last-child { margin-bottom: 0; }
+
+/* 기본 카드 */
+.v2-card { background: white; border-radius: 16px; padding: 24px 28px; margin-bottom: 16px;
+           box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.v2-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+                  padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.v2-card-icon { font-size: 20px; flex-shrink: 0; }
+.v2-card-title { font-size: 14px; font-weight: 700; color: #111827; }
+.v2-card-source { font-size: 11px; color: #9ca3af; margin-top: 1px; }
+.v2-source-link { margin-left: auto; flex-shrink: 0; font-size: 11px; color: #6366f1;
+                  border: 1px solid #e0e7ff; padding: 5px 12px; border-radius: 20px;
+                  transition: background 0.15s; white-space: nowrap; }
+.v2-source-link:hover { background: #eef2ff; }
+
+/* 아이보스 — YouTube 썸네일 그리드 */
+.v2-yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 520px) { .v2-yt-grid { grid-template-columns: 1fr; } }
+.v2-yt-card { border-radius: 14px; overflow: hidden; border: 1px solid #ebebeb;
+              background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+              transition: transform 0.15s, box-shadow 0.15s; }
+.v2-yt-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.v2-yt-hero { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #e5e7eb; }
+.v2-yt-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.v2-yt-hero-grad { display: flex; align-items: center; justify-content: center; }
+.v2-yt-emoji { font-size: 44px; }
+.v2-yt-num { position: absolute; top: 10px; left: 10px;
+             background: rgba(0,0,0,0.72); color: white;
+             font-size: 11px; font-weight: 800; padding: 3px 9px;
+             border-radius: 6px; letter-spacing: 0.3px; }
+.v2-yt-body { padding: 13px 15px 15px; }
+.v2-yt-title { font-size: 13.5px; font-weight: 700; color: #0f172a; line-height: 1.5;
+               margin-bottom: 5px;
+               display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+               overflow: hidden; }
+.v2-yt-summary { font-size: 12px; color: #64748b; line-height: 1.6; }
+
+/* 뉴스럴 — 가로형 레이아웃 */
+.v2-neu-section { display: flex; flex-direction: column; }
+.v2-neu-row { display: flex; align-items: flex-start; gap: 18px;
+              padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.v2-neu-row:first-child { padding-top: 4px; }
+.v2-neu-row:last-child { border-bottom: none; padding-bottom: 0; }
+.v2-neu-label { display: flex; flex-direction: column; align-items: center; gap: 5px;
+                width: 60px; flex-shrink: 0; padding-top: 2px; }
+.v2-neu-emoji { font-size: 26px; line-height: 1; }
+.v2-neu-cat { font-size: 10px; font-weight: 700; color: #6b7280;
+              text-align: center; line-height: 1.3; word-break: keep-all; }
+.v2-neu-list { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.v2-neu-item { font-size: 12.5px; color: #374151; line-height: 1.6;
+               padding-left: 13px; position: relative; }
+.v2-neu-item::before { content: "·"; position: absolute; left: 2px; color: #d1d5db;
+                       font-size: 16px; line-height: 1.3; font-weight: 700; }
+
+/* 헤이팝 — 이미지 카드 */
+.v2-heypop-list { display: flex; flex-direction: column; gap: 12px; }
+.v2-heypop-card { display: flex; gap: 0; border-radius: 14px; overflow: hidden;
+                  background: white; border: 1px solid #ebebeb;
+                  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+                  transition: box-shadow 0.15s, transform 0.15s; }
+.v2-heypop-card:hover { box-shadow: 0 6px 24px rgba(99,102,241,0.14); transform: translateY(-1px); }
+.v2-thumb { width: 130px; height: 100px; object-fit: contain; background: #f8f9fb; flex-shrink: 0; display: block; }
+.v2-thumb-placeholder { width: 130px; height: 100px; display: flex; align-items: center;
+                         justify-content: center; font-size: 36px; background: #f3f4f6; flex-shrink: 0; }
+.v2-heypop-info { padding: 14px 18px; display: flex; flex-direction: column;
+                  justify-content: center; gap: 5px; min-width: 0; }
+.v2-heypop-title { font-size: 14px; font-weight: 700; color: #0f172a; line-height: 1.45; }
+.v2-heypop-desc { font-size: 12.5px; color: #64748b; line-height: 1.55; }
+.v2-heypop-cta { font-size: 11.5px; color: #6366f1; font-weight: 600; margin-top: 2px; }
+
+/* 스티비 뉴스레터 */
+.v2-stibee-list { display: flex; flex-direction: column; gap: 10px; }
+.v2-stibee-card { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px;
+                  background: white; border-radius: 14px; border: 1px solid #ebebeb;
+                  box-shadow: 0 1px 3px rgba(0,0,0,0.05); transition: box-shadow 0.15s; overflow: hidden; }
+.v2-stibee-card:hover { box-shadow: 0 6px 20px rgba(99,102,241,0.12); }
+.v2-stibee-card-img { flex-direction: row; padding: 0; gap: 0; }
+.v2-stibee-thumb { width: 120px; height: 100px; object-fit: contain; background: #f8f9fb; flex-shrink: 0; display: block; }
+.v2-stibee-info { padding: 16px 18px; flex: 1; min-width: 0; display: flex;
+                  flex-direction: column; gap: 6px; justify-content: center; }
+.v2-stibee-badge { display: inline-block; font-size: 11px; font-weight: 700; color: #b45309;
+                   background: #fef3c7; padding: 3px 10px; border-radius: 20px;
+                   align-self: flex-start; letter-spacing: 0.2px; }
+.v2-stibee-title { font-size: 14px; font-weight: 600; color: #1e293b; line-height: 1.5; }
+.v2-stibee-cta { font-size: 12px; color: #6366f1; font-weight: 600; }
+
+/* 롱블랙 — 클릭 가능한 피처드 카드 */
+.v2-lb-card { display: block; background: linear-gradient(160deg, #0c0f1a 0%, #1a1f3a 100%);
+              color: white; border-radius: 20px; overflow: hidden; margin-bottom: 16px;
+              transition: transform 0.18s, box-shadow 0.18s;
+              box-shadow: 0 6px 28px rgba(10,15,40,0.35); }
+.v2-lb-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(10,15,40,0.45); }
+.v2-lb-hero { background: #0c1117; overflow: hidden; }
+.v2-lb-hero img { width: 100%; height: auto; max-height: 360px; min-height: 160px;
+                  object-fit: contain; opacity: 1; display: block; }
+.v2-lb-content { padding: 28px 32px 32px; }
+.v2-lb-eyebrow { display: flex; align-items: center; gap: 8px; font-size: 11.5px;
+                 opacity: 0.5; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+.v2-lb-icon { font-size: 15px; }
+.v2-lb-title { font-size: 21px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; letter-spacing: -0.3px; }
+.v2-lb-subtitle { font-size: 13.5px; opacity: 0.6; line-height: 1.8; margin-bottom: 22px; }
+.v2-lb-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700;
+             background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+             padding: 9px 20px; border-radius: 24px; letter-spacing: 0.3px; }
+
+/* 빌더조쉬 — 클릭 가능한 피처드 카드 (롱블랙급, 보라/인디고 톤) */
+.v2-bj-card { display: block; background: linear-gradient(160deg, #1a1147 0%, #312e81 100%);
+              color: white; border-radius: 20px; overflow: hidden; margin-bottom: 16px;
+              transition: transform 0.18s, box-shadow 0.18s;
+              box-shadow: 0 6px 28px rgba(49,46,129,0.35); }
+.v2-bj-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(49,46,129,0.5); }
+.v2-bj-hero { background: #0f0a2b; overflow: hidden; }
+.v2-bj-hero img { width: 100%; height: auto; max-height: 360px; min-height: 160px;
+                  object-fit: contain; opacity: 1; display: block; }
+.v2-bj-content { padding: 28px 32px 32px; }
+.v2-bj-eyebrow { display: flex; align-items: center; gap: 8px; font-size: 11.5px;
+                 opacity: 0.55; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+.v2-bj-icon { font-size: 15px; }
+.v2-bj-title { font-size: 21px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; letter-spacing: -0.3px; }
+.v2-bj-subtitle { font-size: 13.5px; opacity: 0.62; line-height: 1.8; margin-bottom: 20px; }
+.v2-bj-summary { list-style: none; counter-reset: bj-num; padding: 0; margin: 0 0 22px;
+                 border-top: 1px solid rgba(255,255,255,0.12); padding-top: 18px; }
+.v2-bj-summary li { counter-increment: bj-num; position: relative;
+                    padding: 8px 0 8px 32px; font-size: 13.5px; line-height: 1.65;
+                    opacity: 0.92; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.v2-bj-summary li:last-child { border-bottom: none; }
+.v2-bj-summary li::before { content: counter(bj-num); position: absolute; left: 0; top: 8px;
+                            width: 22px; height: 22px; border-radius: 50%;
+                            background: rgba(167,139,250,0.2); color: #c4b5fd;
+                            font-size: 11px; font-weight: 800; display: flex;
+                            align-items: center; justify-content: center; }
+.v2-bj-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700;
+             background: rgba(167,139,250,0.18); border: 1px solid rgba(167,139,250,0.35);
+             padding: 9px 20px; border-radius: 24px; letter-spacing: 0.3px; color: #ede9fe; }
+
+/* 푸터 */
+.v2-footer { text-align: center; padding: 40px 0 0; }
+.v2-footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.v2-footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                   padding: 7px 16px; border-radius: 20px; transition: all 0.15s; }
+.v2-footer-nav a:hover { background: white; color: #6366f1; }
+.v2-footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 주간 아카이브 */
+.v2-arc-week { font-size: 13px; opacity: 0.5; margin-bottom: 28px; letter-spacing: 0.5px; }
+.v2-arc-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 16px; }
+@media (max-width: 560px) { .v2-arc-grid { grid-template-columns: repeat(2, 1fr); } }
+.v2-arc-card { border-radius: 14px; padding: 18px 14px; display: flex; flex-direction: column;
+               gap: 6px; border: 1px solid #ebebeb; background: white;
+               box-shadow: 0 1px 4px rgba(0,0,0,0.05); text-align: center; }
+.v2-arc-card-active { transition: transform 0.15s, box-shadow 0.15s; }
+.v2-arc-card-active:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(99,102,241,0.15); }
+.v2-arc-card-empty { opacity: 0.45; }
+.v2-arc-day { font-size: 13px; font-weight: 800; color: #6366f1; }
+.v2-arc-card-empty .v2-arc-day { color: #9ca3af; }
+.v2-arc-date { font-size: 11.5px; color: #374151; font-weight: 500; }
+.v2-arc-lb { font-size: 11px; color: #64748b; line-height: 1.45; margin-top: 2px;
+             display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.v2-arc-cta { font-size: 11px; font-weight: 700; color: #6366f1; margin-top: 4px; }
+.v2-arc-cta-none { color: #d1d5db; font-weight: 400; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .v2-header { padding: 28px 20px; }
+    .v2-header-title { font-size: 22px; }
+    .v2-card { padding: 18px 20px; }
+    .v2-lb-card { padding: 22px 20px; }
+    .v2-bj-content { padding: 22px 20px 24px; }
+    .v2-bj-title { font-size: 18.5px; }
+    .v2-bj-summary li { padding-left: 28px; font-size: 13px; }
+    .v2-thumb { width: 90px; height: 70px; }
+    .v2-thumb-placeholder { width: 90px; height: 70px; }
+}
+</style>
+</head>
+<body>
+<div class="v2-wrapper">
+
+    <div class="v2-topnav"><a href="../../v2/">← 최신 뉴스레터</a></div>
+
+    <div class="v2-header">
+        <div class="v2-header-meta">BRANDRISE DAILY · 2026-05-28</div>
+        <div class="v2-header-title">5월 28일 마케팅 뉴스레터</div>
+        <div class="v2-header-subtitle">목요일 · 매일 아침 자동 업데이트</div>
+        <div class="v2-greeting"><p>안녕하세요! 목요일 마케팅 소식 전해드립니다 😊 오늘 가장 흥미롭게 읽은 건 틱톡 GO 이야기입니다. 여행 영상 하단에 예약 버튼을 붙여 호텔 가격 확인부터 결제까지 앱 안에서 끝내는 구조인데, '보다가 사고 싶어지는 순간'을 그대로 결제로 연결한다는 점에서 숏폼 커머스의 다음 단계를 보여주고 있습니다. 콘텐츠가 광고가 되고, 광고가 곧 구매 채널이 되는 흐름이 여행 카테고리에서도 본격화된 셈입니다.</p><p>OpenAI가 챗GPT 광고를 지역 소상공인으로 확대한 소식도 빼놓을 수 없습니다. 무료 이용자 9억 명을 기반으로 전환 중심 과금, 광고 픽셀, 셀프서비스 플랫폼까지 갖추며 Google·Meta와 정면으로 붙겠다는 선언입니다. 대화 맥락 안에서 광고가 노출되는 구조인 만큼, 키워드 클릭 중심의 기존 성과 광고와는 측정 방식부터 크리에이티브 접근까지 달라질 수 있습니다. 지금 퍼포먼스 광고를 운영하고 계신 분이라면 이 채널의 과금 방식과 타기팅 로직을 미리 살펴두시는 걸 권해드립니다.</p><p>주말이 하루 앞으로 다가왔습니다. 오늘 하루도 마무리 잘 하세요! 🎯</p></div>
+    </div>
+
+    
+    <div class="v2-card">
+        <div class="v2-card-header">
+            <span class="v2-card-icon">📰</span>
+            <div>
+                <div class="v2-card-title">오늘의 마케팅 뉴스</div>
+                <div class="v2-card-source">아이보스</div>
+            </div>
+            
+        </div>
+        <div class="v2-yt-grid">
+        <div class="v2-yt-card">
+            <div class="v2-yt-hero"><img src="../images/2026-05-28/iboss-1.png" alt="" loading="lazy"><span class="v2-yt-num">1</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">틱톡 GO, 여행 영상이 예약·결제로 이어지는 커머스 채널로 진화</div>
+                <p class="v2-yt-summary">틱톡이 미국 여행 영상 하단, 검색창, 위치 페이지에 예약 버튼을 붙인 ‘틱톡 GO’를 선보였다. 호텔 가격·평점 확인부터 결제까지 앱 안에서 끝나며, 예약 성과는 크리에이터 커미션으로 연결된다. 한국 출시 시 네이버·야놀자·여기어때와 광고 예산 본격 경쟁이 예상된다.</p>
+            </div>
+        </div>
+        <div class="v2-yt-card">
+            <div class="v2-yt-hero"><img src="../images/2026-05-28/iboss-2.png" alt="" loading="lazy"><span class="v2-yt-num">2</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">네이버 해외구매대행, 개인 셀러 퇴출 수순</div>
+                <p class="v2-yt-summary">네이버가 8월 16일부터 관세청 통관플랫폼 연계를 도입하며 해외상품 판매자에 업체 부호 등록을 의무화한다. 개인 판매자는 사업자 전환 없이는 권한을 잃고, 기존 상품도 중지된다. 직구 시장은 전문 셀러·대형 플랫폼 중심으로 재편될 전망이다. 마케팅 채널 전략 변화도 불가피하다.</p>
+            </div>
+        </div>
+        <div class="v2-yt-card">
+            <div class="v2-yt-hero"><img src="../images/2026-05-28/iboss-3.png" alt="" loading="lazy"><span class="v2-yt-num">3</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">알고리즘 피드가 키운 숏폼 클리핑 유통</div>
+                <p class="v2-yt-summary">틱톡·인스타그램·유튜브 쇼츠에서 긴 콘텐츠를 짧게 잘라 반복 배포하는 클리핑이 확산되고 있다. 팔로우보다 추천 노출이 중요해지며, 브랜드는 품질뿐 아니라 빈도·형식별 재가공 전략을 함께 설계해야 한다. 콘텐츠 대량 생산도 늘어 플랫폼 체류 시간은 높지만 저품질·중복 논란도 커지고 있다.</p>
+            </div>
+        </div>
+        <div class="v2-yt-card">
+            <div class="v2-yt-hero"><img src="../images/2026-05-28/iboss-4.png" alt="" loading="lazy"><span class="v2-yt-num">4</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">오픈AI, 챗GPT 광고 소상공인까지 개방… 구글·메타 정조준</div>
+                <p class="v2-yt-summary">오픈AI가 챗GPT 광고를 지역 소상공인으로 확대하며 전환 중심 과금, 광고 픽셀, 셀프서비스 플랫폼을 도입했다. 무료 이용자 9억 명을 기반으로 성과형 광고 시장에서 구글·메타와 경쟁하려는 전략이다. 올해 광고 매출 24억 달러, 2030년 1020억 달러 전망도 함께 제시했다.</p>
+            </div>
+        </div>
+        <div class="v2-yt-card">
+            <div class="v2-yt-hero"><img src="../images/2026-05-28/iboss-5.png" alt="" loading="lazy"><span class="v2-yt-num">5</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">이용자가 채운 틈새지도, 대형 플랫폼 빈틈 파고들다</div>
+                <p class="v2-yt-summary">야장맵은 2~3주 개발 끝에 출시돼 누적 이용자 3만 9000명, 등록 정보 690곳을 모았다. 거지맵도 1만 다운로드를 넘기며 절약·야장 수요를 이용자 제보와 커뮤니티 신뢰로 빠르게 확장하고 있다. 브랜드는 대형 지도보다 생활 맥락형 데이터와 참여 설계가 새로운 접점이 될 수 있음을 주목해야 한다.</p>
+            </div>
+        </div>
+        <div class="v2-yt-card">
+            <div class="v2-yt-hero"><img src="../images/2026-05-28/iboss-6.png" alt="" loading="lazy"><span class="v2-yt-num">6</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">패션 플랫폼, 선물하기로 카톡 중심 시장 공략</div>
+                <p class="v2-yt-summary">비대면 선물 시장이 취향 기반 상품으로 확장되며 29CM·W컨셉·에이블리가 서비스 고도화에 나섰다. 29CM 거래액은 론칭 첫해 대비 8.5배, W컨셉은 5년간 연평균 66% 성장했다. 뷰티·키즈·디저트까지 수요가 넓어져 개인화 추천과 랭킹이 재구매를 이끄는 마케팅 접점이 됐다.</p>
+            </div>
+        </div>
+        <div class="v2-yt-card">
+            <div class="v2-yt-hero"><img src="../images/2026-05-28/iboss-7.png" alt="" loading="lazy"><span class="v2-yt-num">7</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">제일기획, AI 마케팅 솔루션 기업 전환 가속</div>
+                <p class="v2-yt-summary">제일기획은 한남동 사옥에서 ‘제일 테크 쇼케이스 2026’을 열고 커넥트 AI, 베리에이드 등 17개 솔루션을 공개했다. 배너 제작을 하루에서 10분으로 줄이고 라이브커머스·CRM·XR까지 지원하며, 광고대행을 넘어 에이전틱 AI 기업으로 확장하며 고객사의 매출 전환과 운영 효율을 높인다.</p>
+            </div>
+        </div></div>
+    </div>
+
+    <div class="v2-card">
+        <div class="v2-card-header">
+            <span class="v2-card-icon">🏷️</span>
+            <div>
+                <div class="v2-card-title">카테고리별 헤드라인</div>
+                <div class="v2-card-source">뉴스럴</div>
+            </div>
+        </div>
+        <div class="v2-neu-section">
+        <div class="v2-neu-row">
+            <div class="v2-neu-label">
+                <span class="v2-neu-emoji">🚀</span>
+                <span class="v2-neu-cat">스타트업 뉴스</span>
+            </div>
+            <ul class="v2-neu-list"><li class="v2-neu-item">모티프테크놀로지스, 240억 원 시리즈B 투자 유치</li><li class="v2-neu-item">&quot;취준생도 블라인드 쓴다&quot;…대학생 전용 '캠퍼스' 신설</li><li class="v2-neu-item">역대급 기록 쓸 조짐…올해 법인파산 신청 ‘859건’</li></ul>
+        </div>
+        <div class="v2-neu-row">
+            <div class="v2-neu-label">
+                <span class="v2-neu-emoji">🏢</span>
+                <span class="v2-neu-cat">네카라쿠배당토 뉴스</span>
+            </div>
+            <ul class="v2-neu-list"><li class="v2-neu-item">카카오 노사 협상 결렬…카카오 창사 이래 첫 파업 현실화</li><li class="v2-neu-item">‘카톡 개편 주도’ 홍민택 CPO, 카카오 떠난다</li><li class="v2-neu-item">네이버, 배민 인수도 검토… ‘슈퍼앱’ 전략에 가속도</li></ul>
+        </div>
+        <div class="v2-neu-row">
+            <div class="v2-neu-label">
+                <span class="v2-neu-emoji">✨</span>
+                <span class="v2-neu-cat">MZ 소비 트렌드</span>
+            </div>
+            <ul class="v2-neu-list"><li class="v2-neu-item">K렌즈에 눈뜬 아시아 MZ들</li><li class="v2-neu-item">&quot;전세계 카페 점령했다&quot; MZ 사로잡은 말차…中 수출 730% 급증</li><li class="v2-neu-item">&quot;애인보다 엄마가 좋다&quot;…요즘 청년들이 '엄미새'가 된 이유</li></ul>
+        </div>
+        <div class="v2-neu-row">
+            <div class="v2-neu-label">
+                <span class="v2-neu-emoji">👥</span>
+                <span class="v2-neu-cat">HR 뉴스</span>
+            </div>
+            <ul class="v2-neu-list"><li class="v2-neu-item">노동시장 불참 20대 후반 6년만에 최대↑…'쉬었음' 3만명 늘어</li><li class="v2-neu-item">이제 ‘사짜 직업’에 하이닉사…성과급 굴릴 이천 은행 바빠졌다</li><li class="v2-neu-item">‘토큰 맥싱’의 역설...컴퓨팅 파워 부족에도... 빅테크, 직원에게 “AI 더 써”</li></ul>
+        </div>
+        <div class="v2-neu-row">
+            <div class="v2-neu-label">
+                <span class="v2-neu-emoji">🤖</span>
+                <span class="v2-neu-cat">AI 뉴스</span>
+            </div>
+            <ul class="v2-neu-list"><li class="v2-neu-item">오픈AI “한국에 보안 특화 AI 모델 제공… 전세계 세 번째”</li><li class="v2-neu-item">인간보다 비싸진 AI, ‘다크팩토리’ 복병 떠오른 AI 비용</li><li class="v2-neu-item">앤스로픽, 韓 대표에 최기영 선임…서울 사무소 출범</li></ul>
+        </div>
+        <div class="v2-neu-row">
+            <div class="v2-neu-label">
+                <span class="v2-neu-emoji">🌿</span>
+                <span class="v2-neu-cat">ESG 뉴스</span>
+            </div>
+            <ul class="v2-neu-list"><li class="v2-neu-item">높아진 EU 관세장벽에… 철강업계, ‘美 데이터센터’로 눈돌려</li><li class="v2-neu-item">미래 세대 위한 사회공헌에 주목받는 '벤츠'</li><li class="v2-neu-item">중복상장 규제 놓고 기관·업계 공방…“원칙적 제한” vs “유연한 적용”</li></ul>
+        </div></div>
+    </div>
+
+    <div class="v2-card">
+        <div class="v2-card-header">
+            <span class="v2-card-icon">🎨</span>
+            <div>
+                <div class="v2-card-title">전시 / 팝업 / 공간 추천</div>
+                <div class="v2-card-source">헤이팝</div>
+            </div>
+        </div>
+        <div class="v2-heypop-list">
+        <a class="v2-heypop-card" href="https://heypop.kr/n/137624/" target="_blank" rel="noopener">
+            <img class="v2-thumb" src="https://storage.heypop.kr/assets/2026/05/27210909/20260527_120903-portrait_poster_art_1_%EC%A0%95%EB%B0%A9%ED%98%95.png" alt="" loading="lazy">
+            <div class="v2-heypop-info">
+                <div class="v2-heypop-title">〈2nd C.A : HOME SUPPLIES〉 카시나 도산에서 만나다</div>
+                <p class="v2-heypop-desc">작가의 시선으로 바라본 일상품</p>
+                <span class="v2-heypop-cta">자세히 보기 →</span>
+            </div>
+        </a>
+        <a class="v2-heypop-card" href="https://heypop.kr/n/137362/" target="_blank" rel="noopener">
+            <img class="v2-thumb" src="https://storage.heypop.kr/assets/2026/05/21053243/20260520_203243-dnsqkr.jpg" alt="" loading="lazy">
+            <div class="v2-heypop-info">
+                <div class="v2-heypop-title">사주, 타로, 관상까지··· 운세 박람회 열린다</div>
+                <p class="v2-heypop-desc">108명 상담사가 모이는 ‘운명 상담소’</p>
+                <span class="v2-heypop-cta">자세히 보기 →</span>
+            </div>
+        </a></div>
+    </div>
+
+    <a class="v2-lb-card" href="https://longblack.co/note/1999?ticket=NT26220ba69a7876ed90b4237c5f5e6011b031" target="_blank" rel="noopener">
+        <div class="v2-lb-hero"><img src="../images/2026-05-28/longblack.jpg" alt="" loading="lazy"></div>
+        <div class="v2-lb-content">
+        <div class="v2-lb-eyebrow">
+            <span class="v2-lb-icon">📖</span>
+            <span>롱블랙 · 오늘의 아티클</span>
+        </div>
+        <div class="v2-lb-title">DMZ 피스트레인 : 강원도 철원군 음악 축제, 헤드라이너 없이 매진되는 이유</div>
+        <p class="v2-lb-subtitle">롱블랙 프렌즈 K 우연한 경험이 점점 귀해지는 요즘입니다. 커피 한 잔을 마실 때도 실패하기 싫어 카페 후기와 평점을 꼼꼼히 보는 시대니까요. 네이버 지도부터 카카오맵까지 구석구석··· 저만 그런 거 아니죠?그런데 매년 6</p>
+        <span class="v2-lb-cta">아티클 읽기 →</span>
+        </div>
+    </a>
+
+    <div class="v2-footer">
+        <div class="v2-footer-nav">
+            <a href="../../v2/">← 최신 뉴스레터</a><a href="../archive.html">📚 전체 아카이브</a>
+        </div>
+        <div class="v2-footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
