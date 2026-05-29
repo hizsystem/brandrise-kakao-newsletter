@@ -10,7 +10,19 @@ def push_to_github(repo_dir: Path, date_str: str) -> bool:
     """
     docs/ 변경사항을 GitHub에 커밋·푸시.
     성공 여부 반환.
+
+    push 직전에 아카이브 동기화 가드를 자동 실행한다. v1/v2 아카이브 목록이
+    어긋나 있으면(2026-05-27/28 병합충돌 누락 같은 사고) push 자체를 막는다.
     """
+    # --- 아카이브 동기화 가드 (사람 기억 대신 자동 차단) ---
+    from archive_sync import check_archive_sync
+
+    ok_sync, sync_msg = check_archive_sync(repo_dir / "docs")
+    if not ok_sync:
+        print(f"  [BLOCK] 아카이브 동기화 검증 실패 — push 중단:\n  {sync_msg}")
+        return False
+    print(f"  [OK] {sync_msg}")
+
     def run(cmd: list, timeout: int = 60) -> tuple[bool, str]:
         try:
             result = subprocess.run(
