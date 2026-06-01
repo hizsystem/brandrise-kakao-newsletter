@@ -302,10 +302,22 @@ def _build_greeting_prompt(
     gap_days = _days_since_last_newsletter(today.date())
     off_after = _consecutive_off_days_after(today.date())
 
-    if gap_days >= 3:
+    # 직전 발송과 오늘 사이의 '쉬는 날'(주말+공휴일) 수.
+    # 평범한 주말(금→월, 2일)은 연휴가 아니므로, 공휴일이 낀 3일 이상일 때만
+    # '연휴'로 본다. 달력상 일수(gap_days)로 판단하면 매주 월요일이 오인된다.
+    rest_days_before = 0
+    if gap_days > 0:
+        last_date = today.date() - timedelta(days=gap_days)
+        d = last_date + timedelta(days=1)
+        while d < today.date():
+            if _is_off_day(d):
+                rest_days_before += 1
+            d += timedelta(days=1)
+
+    if rest_days_before >= 3:
         notes.append(
-            f"직전 발송 이후 {gap_days}일 만에 보내는 인사입니다 (긴 연휴/공백 직후). "
-            "첫 문단에서 자연스럽게 반영해줘 — 예: \"긴 연휴 잘 보내셨나요?\", "
+            f"직전 발송 이후 {rest_days_before}일간의 연휴/공백 끝에 보내는 인사입니다. "
+            "첫 문단에서 자연스럽게 반영해줘 — 예: \"연휴 잘 보내셨나요?\", "
             "\"연휴 끝에 오랜만에 인사드립니다\". 식상한 \"잘 쉬셨나요\" 반복이나 "
             "어색한 호들갑은 피하고, 차분하고 따뜻한 톤으로."
         )
