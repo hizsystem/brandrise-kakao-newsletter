@@ -46,6 +46,14 @@ _BANNED_PHRASES: Tuple[str, ...] = (
     "다시 한번 실감",
 )
 
+# 월 기준 주차 표현 — 코드가 LLM에 '몇째 주' 정보를 주지 않으므로,
+# LLM이 임의로 지어내면(예: "둘째 주") 사실 오류가 된다. 탐지 후 재교정한다.
+# 상대 표현("이번 주", "한 주", "지난 주", "주말")은 매칭하지 않는다.
+_WEEK_OF_MONTH_RE: _re.Pattern = _re.compile(
+    r"(?:첫째|둘째|셋째|넷째|다섯째|여섯째|\d+\s*째)\s*주|\d+\s*주\s*차"
+)
+
+
 # 고유명사 한글 음역 → 일반 표기 치환 규칙
 _PROPER_NOUN_FIXES: Tuple[Tuple[_re.Pattern, str], ...] = (
     (_re.compile(r"오픈\s*아이(?=[\s가-힣,.!?'\"]|$)"), "오픈AI"),
@@ -133,6 +141,11 @@ def _normalize_proper_nouns(text: str) -> str:
 def _find_banned_phrases(text: str) -> List[str]:
     """텍스트에서 발견된 금지 표현 반환 (없으면 빈 리스트)"""
     return [p for p in _BANNED_PHRASES if p in text]
+
+
+def _find_week_of_month(text: str) -> List[str]:
+    """LLM이 임의로 지어낸 월 기준 주차 표현(첫째 주, 둘째 주, N주차 등) 반환"""
+    return [m.group(0).strip() for m in _WEEK_OF_MONTH_RE.finditer(text)]
 
 
 def _first_appearance_sources(stibee_items: list) -> List[str]:
@@ -384,6 +397,11 @@ def _build_greeting_prompt(
   - Meta → "메타", Google → "구글", YouTube → "유튜브", TikTok → "틱톡"
 - 외래어를 한글로 음차(한국어 발음 그대로 옮기기) 하지 말 것. 영문 브랜드는 위 규칙대로 표기.
 
+## 날짜·주차 규칙 (엄격 준수)
+- 위에 제공된 요일({weekday_name})과 발송 시각 외의 달력 정보를 임의로 만들어내지 말 것.
+- 특히 "몇째 주"(첫째 주·둘째 주·셋째 주…), "N주차" 같은 **월 기준 주차 표현은 절대 사용 금지**. 계산 근거가 주어지지 않아 사실 오류(예: 실제로 첫째 주인데 둘째 주로 표기)가 발생함.
+- "이번 주", "한 주", "주말", "월초·월말" 같은 상대적·대략적 표현은 사용해도 됨.
+
 ## 금지 표현 (AI 티가 나는 상투어 — 절대 사용 금지)
 - "마음에 걸리는", "눈에 띄는", "주목된다", "주목할 만", "엿볼 수 있는"
 - "~한 모습입니다", "~는 모습입니다"
@@ -401,13 +419,21 @@ def _build_critique_prompt(
     time_label: str,
     time_rule: str,
     banned_found: Optional[List[str]] = None,
+    week_found: Optional[List[str]] = None,
 ) -> str:
     """생성된 인사말을 검토·교정하는 프롬프트"""
     extra = ""
     if banned_found:
         bullets = "\n".join(f"  - {p}" for p in banned_found)
-        extra = (
+        extra += (
             "\n\n## 특히 다음 표현이 원문에 남아 있습니다. 반드시 다른 자연스러운 표현으로 교체하세요.\n"
+            f"{bullets}"
+        )
+    if week_found:
+        bullets = "\n".join(f"  - {p}" for p in week_found)
+        extra += (
+            "\n\n## 다음은 근거 없이 지어낸 월 기준 주차 표현입니다. 반드시 삭제하거나 "
+            '"이번 주" 등 상대 표현으로 교체하세요 (요일은 유지).\n'
             f"{bullets}"
         )
     return f"""다음은 카카오톡 오픈채팅방용 마케팅 뉴스레터 인사말입니다. 아래 기준으로 검토하고 문제가 있으면 자연스럽게 고쳐 재작성해주세요. 문제가 없으면 원문 그대로 출력하세요. 설명은 일절 덧붙이지 말고 인사말 본문만 출력.
@@ -417,7 +443,8 @@ def _build_critique_prompt(
 2. **고유명사 표기**: "오픈아이"→"오픈AI", "오픈에이아이"→"오픈AI", "챗지피티"→"챗GPT", "지피티"→"GPT" 등 한글 음역을 일반 표기로 교정. OpenAI·GPT·Meta·Google 같은 영문 브랜드·약어는 영문 그대로 두기.
 3. **AI 클리셰 제거 (필수)**: "마음에 걸리는", "눈에 띄는", "주목된다", "주목할 만", "엿볼 수 있는", "~한 모습입니다", "~는 모습입니다", "낯설지 않다", "사뭇 다르다", "새삼 느끼다", "다시 한번 실감" 같은 표현이 있으면 반드시 다른 구체적 표현으로 교체.
 4. **어색한 한국어**: 번역체, 일본어·중국어식 표현, 외국어 음차가 있으면 자연스러운 한국어로 교정.
-5. **문체 유지**: 원문의 전체 구조(3문단, 따뜻한 존댓말, 마지막 이모지)는 유지.{extra}
+5. **허위 날짜·주차 (필수)**: "첫째 주", "둘째 주", "셋째 주", "N주차" 등 월 기준 주차 표현이 있으면 근거 없이 지어낸 정보이므로 삭제하거나 "이번 주" 등 상대 표현으로 교체. 요일은 그대로 유지. ("이번 주", "한 주", "주말"은 허용.)
+6. **문체 유지**: 원문의 전체 구조(3문단, 따뜻한 존댓말, 마지막 이모지)는 유지.{extra}
 
 원문:
 ---
@@ -574,21 +601,30 @@ def generate_greeting(
     else:
         print("  [WARN] 셀프 비평 건너뜀 (API 호출 실패)")
 
-    # 4) 금지 표현 잔류 시 추가 재교정
+    # 4) 금지 표현 / 허위 주차 표현 잔류 시 추가 재교정
     banned = _find_banned_phrases(text)
-    if banned:
-        print(f"  [INFO] 금지 표현 감지 {banned} → 재교정 시도")
-        retry_prompt = _build_critique_prompt(text, time_label, time_rule, banned_found=banned)
+    week = _find_week_of_month(text)
+    if banned or week:
+        detected = ", ".join(p for p in (
+            f"금지 표현 {banned}" if banned else "",
+            f"주차 표현 {week}" if week else "",
+        ) if p)
+        print(f"  [INFO] {detected} 감지 → 재교정 시도")
+        retry_prompt = _build_critique_prompt(
+            text, time_label, time_rule,
+            banned_found=banned or None,
+            week_found=week or None,
+        )
         retried, _ = _call_with_fallback(
             retry_prompt, api_key, model, groq_api_key, groq_model, gemini_api_key, gemini_model
         )
         if retried:
             text = _normalize_proper_nouns(retried)
-            still = _find_banned_phrases(text)
+            still = _find_banned_phrases(text) + _find_week_of_month(text)
             if still:
-                print(f"  [WARN] 금지 표현 잔류: {still}")
+                print(f"  [WARN] 잔류 표현: {still}")
             else:
-                print("  [OK] 금지 표현 제거 완료")
+                print("  [OK] 금지·주차 표현 제거 완료")
 
     return text
 
