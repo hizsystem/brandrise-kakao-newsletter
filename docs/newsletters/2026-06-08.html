@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 6월 8일">
+    <meta property="og:description" content="월요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 6월 8일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-06-08</div>
+        <div class="header-title">6월 8일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">월요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 월요일 마케팅 소식 전해드립니다 😊 오늘은 크리에이터 커머스 이야기가 특히 흥미롭습니다. 광고 수익에 의존하던 크리에이터들이 직접 상품을 판매하는 구조로 전환하면서, 팬이 곧 고객이 되는 흐름이 본격화되고 있습니다. 콘텐츠로 쌓은 신뢰를 구매로 연결하는 이 구조는 단순한 인플루언서 마케팅과는 결이 다릅니다. 브랜드 입장에서는 크리에이터를 '광고 채널'로 볼 것인지, '유통 파트너'로 볼 것인지 기준 자체를 다시 잡아야 할 시점입니다.</p><p>플랫폼 변화도 함께 챙겨두실 만합니다. Meta가 월 3.99달러짜리 '인스타그램 플러스'를 전 세계에 출시하며 구독 기반 수익 구조를 확장하고 있고, 컬리는 AI가 구매 목적과 취향을 물어 상품을 추천하는 에이전트 커머스에 뛰어들었습니다. 이커머스 시장에서는 쿠팡·네이버처럼 물류·멤버십·배송 경쟁력을 갖춘 플랫폼으로 소비가 집중되는 속도가 빨라지고 있습니다. 플랫폼이 구독과 AI를 동시에 무기로 삼는 방향이 선명해지는 한 주입니다.</p><p>이번 주도 좋은 인사이트 많이 가져가시고, 힘차게 시작하시길 바랍니다! 🚀</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">메타, 월 6천 원 인스타그램 플러스 출시</div>
+            <div class="news-summary">메타가 월 3.99달러 구독 서비스 ‘인스타그램 플러스’를 전 세계에 출시했다. 구독자는 스토리 노출 우선권, 48시간 스토리 유지, 스토리 조회 통계, 공개 대상 세분화 등 기능을 이용할 수 있다. 플랫폼들이 광고 외 수익원을 확대하면서 인스타그램도 유료 구독 모델 구축에 나선 것으로 분석된다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">마케팅 사고 막는다… 패션업계, AI 모델·밈 검수 강화</div>
+            <div class="news-summary">패션업계가 마케팅 리스크 관리에 적극 나서고 있다. 에이블리는 온라인 커뮤니티 밈과 신조어를 정리한 ‘커뮤니티어 사전’을 운영하고, 무신사는 마케팅 문구를 사전 검수하는 시스템을 구축했다. 최근에는 광고 모델의 사생활 논란을 예방하기 위해 AI 모델 활용도 확대되는 추세다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">커지는 이커머스 시장, 살아남는 건 쿠팡·네이버뿐</div>
+            <div class="news-summary">온라인 쇼핑 시장이 성장할수록 대형 플랫폼으로 소비가 집중되는 현상이 뚜렷해지고 있다. 쿠팡과 네이버는 물류 인프라와 멤버십, 배송 경쟁력을 앞세워 영향력을 확대하는 반면, 전문 플랫폼들은 경쟁력 확보에 어려움을 겪고 있다. 시장의 규모의 경제 효과가 더욱 강해지고 있다는 평가다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">컬리도 AI 쇼핑 도입… 에이전트 커머스 경쟁 시작</div>
+            <div class="news-summary">컬리가 AI 기반 상품 추천 기능을 도입하며 AI 에이전트 커머스 경쟁에 뛰어들었다. 이용자가 상품을 검색하면 AI가 구매 목적과 취향을 질문한 뒤 맞춤형 상품을 추천하는 방식이다. 이커머스 업계의 경쟁 축이 검색 알고리즘에서 AI 에이전트 중심으로 빠르게 이동하고 있다는 분석이 나온다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">팬이 고객 된다… 크리에이터 커머스 시장 급성장</div>
+            <div class="news-summary">크리에이터가 직접 상품을 판매하는 ‘크리에이터 커머스’가 새로운 이커머스 성장축으로 떠오르고 있다. 광고 수익에 의존하던 크리에이터들이 브랜드와 커머스로 영역을 넓히면서 팬덤이 곧 소비로 이어지고 있다. 업계는 취향 기반 소비 확산과 함께 관련 시장이 더욱 성장할 것으로 전망한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">식약처, 식품 허위광고 165건 적발… 건강 마케팅 단속 강화</div>
+            <div class="news-summary">식약처가 면역력 증진, 감기 예방, 아토피 관리 등을 내세운 온라인 식품 광고 165건을 적발했다. 적발 사례의 75%는 질병 예방·치료 효과를 암시한 광고였으며, 건강기능식품으로 오인하게 한 광고도 다수 포함됐다. 건강·기능성을 강조한 식품 마케팅에 대한 규제가 더욱 강화될 전망이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">줌, 쇼핑하면 포인트 준다… 리워드 커머스 본격 확대</div>
+            <div class="news-summary">이스트에이드가 줌 앱에 리워드 쇼핑 서비스를 도입했다. 이용자는 상품 구매 시 EST포인트를 적립받고 이를 네이버페이 포인트로 교환할 수 있다. 향후 줌 웹과 AI 검색에도 연계해 검색부터 추천, 구매, 보상까지 이어지는 커머스 생태계를 구축할 계획이다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">🏷️</span>
+            <span class="card-title">카테고리별 헤드라인</span>
+            <span class="card-source">뉴스럴</span>
+        </div>
+        
+        <div class="cat-item">
+            <span class="cat-badge green">스타트업 뉴스</span>
+            <ul class="cat-headlines"><li>'미다스의 손' 美 VC가 반한 K-핀테크…하이퍼칼, 시드투자 유치</li><li>6월 첫째주 투자 유치 스타트업은…우주 발사체에 335억 '뭉칫돈'</li><li>'500글로벌', 안성우 총괄 파트너 영입…국내 투자 확대·크로스보더 지원 강화</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge blue">네카라쿠배당토 뉴스</span>
+            <ul class="cat-headlines"><li>토스인슈, 악성민원 대응 체계 구축…&quot;상담 환경 개선&quot;</li><li>배민 &quot;B마트가 직매입한 지역 농축산물 매출 대폭 증가&quot;</li><li>젠슨 황, 네이버 치지직 뜬다…이해진과 1784서 특별 라이브</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge purple">MZ 소비 트렌드</span>
+            <ul class="cat-headlines"><li>“빵이 된 돼지바?” 롯데웰푸드, 돼지바 빵집 팝업스토어</li><li>그곳에 ‘힐링’ 있다…MZ 휴식처로 뜬 ‘사찰’</li><li>&quot;연봉 적어도 성과급 주는 회사 좋아&quot;…고정보다 성과형 보상 선호</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge orange">HR 뉴스</span>
+            <ul class="cat-headlines"><li>[속보]미 5월 고용 17만2000명 깜짝 증가…미 국채 금리 급등</li><li>중소기업 퇴사 이유 1위는… 연봉 아닌 ‘이것’</li><li>“국민 10명중 9명 65세 정년연장 찬성”…청년 일자리 잠식 우려도 커</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge pink">AI 뉴스</span>
+            <ul class="cat-headlines"><li>“배송 경쟁 끝” 다음 승부수는 AI…이커머스, 내재화 전쟁 '불' 붙었다</li><li>&quot;AI로 인재 선점하는 시대&quot;…취업 플랫폼, '기술 고도화' 경쟁</li><li>구글 이어 메타도 유상증자 검토… 빅테크, AI 인프라 투자금 조달에 박차</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge teal">ESG 뉴스</span>
+            <ul class="cat-headlines"><li>[ESG 점검] HD건설기계, 직간접 '탄소배출 통제' 넷제로 한걸음</li><li>녹색전환 선도하는 중국서도 재생에너지 ‘낭비’…문제는 전력망</li><li>'행동주의 표적'된 기업 60곳…벌써 작년 전체 넘었다</li></ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">이향인 : 외향인·내향인 이분법에 속하지 않는 사람들</div>
+        <div class="longblack-subtitle">롱블랙 프렌즈 C “저는 외향인인데, 내향인일 때도 있어요.” 요즘 이런 이야길 나누는 일이 많아졌죠? 저부터 그래요. MBTI 검사를 하면, E와 I 사이를 오가거든요. 누군가와 마주 앉았을 때는 에너지 넘치게 대화하다가도, 혼자만의 시간이 간절해질 때가 있</div>
+        <a class="longblack-link" href="https://longblack.co/note/2009?ticket=NT26246f8f3075ec71b2acc170a6859a40efcf" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
