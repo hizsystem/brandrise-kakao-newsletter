@@ -115,13 +115,13 @@ def run_newsletter(config: dict, preview_only: bool = False):
     except Exception as e:
         print(f"  [WARN] 아이보스 수집 실패: {e}")
 
-    # 뉴스럴 (매일)
-    try:
-        print("  → 뉴스럴 수집 중...")
-        neusral_cats = neusral.fetch(config["sites"]["neusral"]["url"])
-        print(f"     {len(neusral_cats)}개 카테고리 수집")
-    except Exception as e:
-        print(f"  [WARN] 뉴스럴 수집 실패: {e}")
+    # 뉴스럴 (매일) — 일시 비활성화 (2026-06-22). 되살리려면 아래 블록 주석 해제.
+    # try:
+    #     print("  → 뉴스럴 수집 중...")
+    #     neusral_cats = neusral.fetch(config["sites"]["neusral"]["url"])
+    #     print(f"     {len(neusral_cats)}개 카테고리 수집")
+    # except Exception as e:
+    #     print(f"  [WARN] 뉴스럴 수집 실패: {e}")
 
     # 롱블랙 (매일 - 웹 스크래핑 + 관리자 페이지 티켓 URL 적용)
     try:
