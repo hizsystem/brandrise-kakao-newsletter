@@ -6,6 +6,7 @@
 
 import requests
 import re
+import time
 from bs4 import BeautifulSoup
 from dataclasses import dataclass
 from typing import List
@@ -31,15 +32,44 @@ HEADERS = {
 }
 
 
+# i-boss가 간헐적으로 5xx(목록 520, 기사 500 등)를 반환 → 재시도로 일시적 오류 흡수
+_TRANSIENT_STATUS = {500, 502, 503, 504, 520, 521, 522, 523, 524}
+
+
+def _get(url: str, retries: int = 3, backoff: float = 3.0) -> requests.Response:
+    """일시적 5xx 오류는 재시도. 마지막 시도까지 실패하면 예외 전파."""
+    last_exc = None
+    for attempt in range(retries):
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=20)
+            r.raise_for_status()
+            r.encoding = "utf-8"
+            return r
+        except requests.exceptions.HTTPError as e:
+            last_exc = e
+            status = e.response.status_code if e.response is not None else None
+            if status not in _TRANSIENT_STATUS or attempt == retries - 1:
+                raise
+            print(f"  [아이보스] {status} 일시 오류, 재시도 {attempt + 1}/{retries - 1}...")
+            time.sleep(backoff)
+        except requests.exceptions.RequestException as e:
+            last_exc = e
+            if attempt == retries - 1:
+                raise
+            print(f"  [아이보스] 요청 오류({e}), 재시도 {attempt + 1}/{retries - 1}...")
+            time.sleep(backoff)
+    if last_exc:
+        raise last_exc
+    raise RuntimeError("아이보스 요청 실패")
+
+
 def fetch(url: str = BOARD_URL) -> List[NewsItem]:
     """오늘 날짜 뉴스클리핑 글을 찾아서 파싱"""
     today = datetime.now()
     today_str = f"{today.month}월 {today.day}일"
 
     # 게시판 목록에서 오늘 글 링크 찾기
-    r = requests.get(url, headers=HEADERS, timeout=15)
-    r.raise_for_status()
-    r.encoding = "utf-8"
+    r = _get(url)
     soup = BeautifulSoup(r.text, "html.parser")
 
     post_url = _find_todays_post(soup, today_str)
@@ -50,9 +80,7 @@ def fetch(url: str = BOARD_URL) -> List[NewsItem]:
 
     # 글 페이지 파싱
     full_url = post_url if post_url.startswith("http") else f"{BASE_URL}/{post_url.lstrip('/')}"
-    r2 = requests.get(full_url, headers=HEADERS, timeout=15)
-    r2.raise_for_status()
-    r2.encoding = "utf-8"
+    r2 = _get(full_url)
     items = parse_post(r2.text)
     # 개별 기사 URL이 없으면 아이보스 포스트 URL로 채움
     for item in items:
