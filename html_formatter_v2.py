@@ -427,6 +427,18 @@ a { color: inherit; text-decoration: none; }
 .v2-footer-nav a:hover { background: white; color: #6366f1; }
 .v2-footer-copy { font-size: 11px; color: #9ca3af; }
 
+/* 브랜드라이즈 상담 CTA */
+.v2-cta { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); border-radius: 16px;
+          padding: 28px 28px 30px; margin-top: 24px; }
+.v2-cta-title { font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 14px; }
+.v2-cta-list { list-style: none; margin: 0 0 22px; padding: 0; }
+.v2-cta-list li { font-size: 13.5px; line-height: 1.65; color: #cbd5e1; padding-left: 15px;
+                  position: relative; margin-bottom: 7px; }
+.v2-cta-list li::before { content: "·"; position: absolute; left: 3px; color: #818cf8; font-weight: 700; }
+.v2-cta-btn { display: inline-block; background: #6366f1; color: #ffffff; font-size: 14px; font-weight: 700;
+              padding: 12px 26px; border-radius: 10px; transition: background 0.15s; }
+.v2-cta-btn:hover { background: #818cf8; }
+
 /* 주간 아카이브 */
 .v2-arc-week { font-size: 13px; opacity: 0.5; margin-bottom: 28px; letter-spacing: 0.5px; }
 .v2-arc-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 16px; }
@@ -465,6 +477,21 @@ def _prefix(image_map: dict, is_subpage: bool) -> dict:
     if not image_map or not is_subpage:
         return image_map or {}
     return {k: f"../{v}" for k, v in image_map.items()}
+
+
+# 브랜드라이즈 무료 상담 CTA (모든 뉴스레터 페이지 하단 공통)
+BRANDRISE_CTA_HTML = (
+    '<div class="v2-cta">'
+    '<div class="v2-cta-title">⭐ 살짝 공지드려요</div>'
+    '<ul class="v2-cta-list">'
+    '<li>브랜드라이즈에서 지원사업 웨비나·코칭·상담도 진행하고 있어요.</li>'
+    '<li>직접 만나보니, 어떤 지원사업을 선택해야 할지·어떻게 준비해야 할지 막막해하는 분들이 많아 시작했어요.</li>'
+    '<li>필요하시면 언제든 편하게 말씀주세요. 주변 추천도 환영합니다 💛</li>'
+    '</ul>'
+    '<a class="v2-cta-btn" href="https://forms.gle/R5FaijsFD4VoTEsj9?utm_source=kakao&amp;utm_medium=organic&amp;utm_campaign=brandrise" '
+    'target="_blank" rel="noopener">무료 상담 신청하기 →</a>'
+    '</div>'
+)
 
 
 def build_html_v2(
@@ -540,6 +567,8 @@ def build_html_v2(
     </div>
 
     {sections}
+
+    {BRANDRISE_CTA_HTML}
 
     <div class="v2-footer">
         <div class="v2-footer-nav">

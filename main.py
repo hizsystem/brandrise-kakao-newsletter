@@ -26,7 +26,7 @@ from collectors import longblack as longblack_collector
 from collectors import stibee as stibee_collector
 from collectors import builder_josh as builder_josh_collector
 from collectors.email_reader import MailplugReader
-from formatter import build_message_windows_date, generate_greeting, WEEKDAY_GREETINGS
+from formatter import build_message_windows_date, generate_greeting, WEEKDAY_GREETINGS, BRANDRISE_FOOTER
 from html_formatter import save_newsletter
 from html_formatter_v2 import save_newsletter_v2
 from github_push import push_to_github
@@ -292,6 +292,17 @@ def run_newsletter(config: dict, preview_only: bool = False):
         traceback.print_exc()
         return
 
+    # === 링크 + 브랜드라이즈 공지 푸터 (preview·저장 공통) ===
+    today = datetime.now()
+    today_str = today.strftime('%Y%m%d')
+    date_iso = today.strftime("%Y-%m-%d")
+    pages_url = config.get("github", {}).get("pages_url", "").rstrip("/")
+    permalink = f"{pages_url}/v2/newsletters/{date_iso}.html" if pages_url else ""
+    if permalink:
+        message = message + f"\n\n🔗 오늘 뉴스레터 링크\n{permalink}"
+    # 브랜드라이즈 무료 상담 공지 — 인사말·🔗 링크와 분리해 맨 끝에
+    message = message + f"\n\n{BRANDRISE_FOOTER}"
+
     # === 미리보기 ===
     if preview_only:
         print("\n" + "=" * 60)
@@ -300,13 +311,6 @@ def run_newsletter(config: dict, preview_only: bool = False):
         return
 
     # === txt 파일 저장 ===
-    today = datetime.now()
-    today_str = today.strftime('%Y%m%d')
-    date_iso = today.strftime("%Y-%m-%d")
-    pages_url = config.get("github", {}).get("pages_url", "").rstrip("/")
-    permalink = f"{pages_url}/v2/newsletters/{date_iso}.html" if pages_url else ""
-    if permalink:
-        message = message + f"\n\n🔗 오늘 뉴스레터 링크\n{permalink}"
     save_path = OUTPUT_DIR / f"output_{today_str}.txt"
     save_path.write_text(message, encoding="utf-8")
     print(f"\n  [OK] txt 저장 완료: {save_path.name}")

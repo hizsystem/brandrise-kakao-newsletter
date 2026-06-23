@@ -67,6 +67,18 @@ _PROPER_NOUN_FIXES: Tuple[Tuple[_re.Pattern, str], ...] = (
 
 _OUTPUT_DIR = Path(__file__).parent
 
+# 뉴스레터 맨 하단 고정 푸터 — 브랜드라이즈 무료 상담 안내
+# (인사말·🔗 링크와 분리해 메시지 맨 끝에 붙인다. main.py 참조)
+BRANDRISE_FOOTER = (
+    "━━━━━━━━━━━━━\n"
+    "⭐살짝 공지드려요⭐\n"
+    "- 브랜드라이즈에서 지원사업 웨비나/코칭/상담도 진행하고 있어요\n"
+    "- 직접 만나보니, 어떤 지원사업을 선택해야 할지, 어떻게 준비해야 할지 "
+    "모르는 분들이 많으셔서 진행하게 되었구요\n"
+    "- 필요하시면 언제든 편하게 말씀주세요! (주변 추천도 환영하구요💛)\n"
+    "- 무료 상담 신청 https://forms.gle/R5FaijsFD4VoTEsj9?utm_source=kakao&utm_medium=organic&utm_campaign=brandrise"
+)
+
 
 def _is_off_day(d: date) -> bool:
     """주말 / 한국 공휴일 / 근로자의 날(5/1) 여부"""
