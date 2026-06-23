@@ -1,0 +1,68 @@
+# config.base.yaml — 비밀 아닌 운영 기본값 (저장소에 커밋됨)
+# 비밀 값(api_key·password·secret_key)은 환경변수로 주입된다. bootstrap_config.py 참고.
+# 주간 수동 URL(풋풋레터·캐릿·빌더조쉬·까탈로그·롱블랙)은 관리 페이지에서 매번 입력한다.
+
+anthropic:
+  model: claude-sonnet-4-6
+gemini:
+  model: gemini-2.5-flash
+schedule:
+  send_time: "08:30"
+sites:
+  iboss:
+    url: https://www.i-boss.co.kr/ab-7214
+    schedule: daily
+  neusral:
+    url: https://newsletter.neusral.com/t/newsletter
+    schedule: daily
+  heypop:
+    url: https://heypop.kr/
+    schedule: thursday
+tuesday_newsletters:
+  putput:
+    url: ""
+    name: 풋풋레터
+    sender_keyword: 풋풋
+  careet:
+    url: ""
+    name: 캐릿
+    sender_keyword: 캐릿
+builder_josh:
+  url: ""
+  name: 빌더조쉬
+friday_newsletters:
+  catalogue:
+    url: ""
+    name: 까탈로그
+    sender_keyword: 까탈로그
+email_newsletters:
+  longblack:
+    sender_keyword: longblack
+    schedule: daily
+    include_link: true
+  putput:
+    sender_keyword: 풋풋
+    schedule: tuesday
+    include_link: true
+  careet:
+    sender_keyword: 캐릿
+    schedule: tuesday
+    include_link: true
+  catalogue:
+    sender_keyword: 까탈로그
+    schedule: friday
+    include_link: true
+format:
+  header_emoji: "📌"
+  category_emoji: "🏷️"
+  date_format: "%m월 %d일"
+  title_suffix: 마케팅 뉴스
+github:
+  enabled: true
+  pages_url: https://hizsystem.github.io/brandrise-kakao-newsletter
+grants_notice: |-
+  ⭐살짝 공지드려요⭐
+  - 브랜드라이즈에서 지원사업 웨비나/코칭/상담도 진행하고 있어요
+  - 직접 만나보니, 어떤 지원사업을 선택해야 할지, 어떻게 준비해야할지 모르는 분들이 많으셔서 진행하게 되었구요
+  - 필요하시면 언제든 편하게 말씀주세요! (주변 추천도 환영하구요💛)
+  - 무료 상담 신청(https://forms.gle/pd9YwJrWLNUN4o5C7)
