@@ -3,15 +3,25 @@ HIZ 뉴스레터 관리자 페이지
 실행: python admin.py
 브라우저: http://localhost:5001
 """
+import hmac
 import io
+import os
+import secrets as pysecrets
 import subprocess
 import sys
 import threading
+import time
 from datetime import datetime
+from functools import wraps
 from pathlib import Path
 
 import yaml
-from flask import Flask, redirect, render_template_string, request, url_for
+from flask import Flask, redirect, render_template_string, request, session, url_for
+
+import bootstrap_config
+
+# 호스팅/로컬 모두: config.yaml이 없으면 환경변수로 생성
+bootstrap_config.ensure_config()
 
 app = Flask(__name__)
 CONFIG_PATH = Path(__file__).parent / "config.yaml"
@@ -32,6 +42,97 @@ def load_config() -> dict:
 def save_config(config: dict):
     with open(CONFIG_PATH, "w", encoding="utf-8") as f:
         yaml.dump(config, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
+
+
+def _init_auth():
+    """config.yaml의 admin 섹션에서 비밀번호·세션 키 로드 (없으면 세션 키 자동 생성)"""
+    config = load_config()
+    admin_cfg = config.get("admin", {})
+    password = admin_cfg.get("password", "")
+    secret_key = admin_cfg.get("secret_key", "")
+    if not secret_key:
+        secret_key = pysecrets.token_hex(32)
+        config.setdefault("admin", {})["secret_key"] = secret_key
+        save_config(config)
+    return password, secret_key
+
+
+ADMIN_PASSWORD, app.secret_key = _init_auth()
+
+# Render 등 호스팅 환경에서 비밀번호 미설정 시 공개 노출 방지
+_IS_HOSTED = bool(os.environ.get("RENDER"))
+bootstrap_config.require_auth_or_die(_IS_HOSTED, ADMIN_PASSWORD)
+
+
+def login_required(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        if not ADMIN_PASSWORD:
+            # 비밀번호 미설정 시 인증 생략 (로컬 전용 사용)
+            return f(*args, **kwargs)
+        if not session.get("authed"):
+            return redirect(url_for("login"))
+        return f(*args, **kwargs)
+    return wrapper
+
+
+LOGIN_HTML = """<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIZ 뉴스레터 관리자 — 로그인</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1a2e;
+        display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+.login-card { background: white; border-radius: 20px; padding: 40px 36px; width: 100%;
+               max-width: 380px; margin: 16px;
+               box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.login-label { font-size: 11px; letter-spacing: 3px; color: #9ca3af; margin-bottom: 8px; }
+.login-title { font-size: 22px; font-weight: 700; margin-bottom: 28px; }
+.login-input { width: 100%; padding: 12px 16px; border: 1px solid #e5e7eb; border-radius: 10px;
+                font-size: 15px; outline: none; margin-bottom: 16px;
+                font-family: 'Noto Sans KR', sans-serif; }
+.login-input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+.login-btn { width: 100%; padding: 13px; border-radius: 10px; font-size: 15px; font-weight: 600;
+              border: none; cursor: pointer; background: #0f172a; color: white;
+              font-family: 'Noto Sans KR', sans-serif; }
+.login-btn:hover { background: #1e1b4b; }
+.login-error { background: #fef2f2; border: 1px solid #fecaca; color: #dc2626;
+                border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; font-size: 13px; }
+</style>
+</head>
+<body>
+<form class="login-card" method="post" action="/login">
+  <div class="login-label">BRANDRISE NEWSLETTER · ADMIN</div>
+  <div class="login-title">관리자 로그인</div>
+  {% if error %}<div class="login-error">비밀번호가 올바르지 않습니다</div>{% endif %}
+  <input class="login-input" type="password" name="password" placeholder="비밀번호" autofocus>
+  <button class="login-btn" type="submit">로그인</button>
+</form>
+</body>
+</html>"""
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        entered = request.form.get("password", "")
+        if ADMIN_PASSWORD and hmac.compare_digest(entered, ADMIN_PASSWORD):
+            session["authed"] = True
+            session.permanent = True
+            return redirect(url_for("index"))
+        time.sleep(1)  # 무차별 대입 지연
+        return render_template_string(LOGIN_HTML, error=True)
+    return render_template_string(LOGIN_HTML, error=False)
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
 
 
 HTML = """<!DOCTYPE html>
@@ -410,6 +511,7 @@ def _pages_base(config: dict) -> str:
 
 
 @app.route("/", methods=["GET"])
+@login_required
 def index():
     config = load_config()
     urls = get_urls(config)
@@ -448,6 +550,7 @@ def index():
 
 
 @app.route("/save", methods=["POST"])
+@login_required
 def save():
     config = load_config()
     config = update_config_urls(config, request.form)
@@ -456,6 +559,7 @@ def save():
 
 
 @app.route("/generate", methods=["POST"])
+@login_required
 def generate():
     config = load_config()
     config = update_config_urls(config, request.form)
@@ -471,6 +575,7 @@ def generate():
 
 
 @app.route("/publish-grants", methods=["POST"])
+@login_required
 def publish_grants():
     from grants_formatter import save_grants
     text = request.form.get("grants_text", "").strip()

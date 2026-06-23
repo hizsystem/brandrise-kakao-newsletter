@@ -30,6 +30,7 @@ from formatter import build_message_windows_date, generate_greeting, WEEKDAY_GRE
 from html_formatter import save_newsletter
 from html_formatter_v2 import save_newsletter_v2
 from github_push import push_to_github
+import bootstrap_config
 
 
 CONFIG_PATH = Path(__file__).parent / "config.yaml"
@@ -37,6 +38,7 @@ OUTPUT_DIR = Path(__file__).parent
 
 
 def load_config() -> dict:
+    bootstrap_config.ensure_config()
     with open(CONFIG_PATH, encoding="utf-8") as f:
         return yaml.safe_load(f)
 
