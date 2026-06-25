@@ -252,9 +252,9 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1
       <div class="card-title">📖 수동 입력 URL</div>
 
       <div class="manual-note">
-        <b>요일별로 필요한 것만 채우면 됩니다.</b> 각 항목의 <b>찾으러 가기</b> 링크를 누르면 출처로 바로 이동합니다.<br>
+        <b>요일별로 필요한 것만 채우면 됩니다.</b> 각 항목의 링크를 누르면 해당 뉴스레터 사이트로 이동합니다.<br>
         · <b>매일</b>: 롱블랙 &nbsp; · <b>화</b>: 풋풋레터·캐릿 &nbsp; · <b>수·금</b>: 빌더조쉬 &nbsp; · <b>금</b>: 까탈로그<br>
-        이메일로 오는 항목은 Gmail에서 해당 뉴스레터를 연 뒤 <b>"웹으로 보기"</b> 링크를 복사하세요.
+        이메일로 오는 항목은 구독 후 받은 메일에서 <b>"웹으로 보기"</b> 링크를 복사해 붙여넣으세요.
       </div>
 
       <!-- 롱블랙 -->
@@ -264,7 +264,6 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1
           <span class="field-badge badge-daily">매일</span>
         </div>
         <div class="field-hint">롱블랙 이메일 → "아티클 읽기" 링크 복사 (ticket= 포함된 URL)
-          <a class="find-link" href="https://mail.google.com/mail/u/0/#search/롱블랙" target="_blank">↗ Gmail에서 찾기</a>
           <a class="find-link" href="https://longblack.co" target="_blank">↗ longblack.co</a>
         </div>
         <input type="url" name="longblack_ticket_url"
@@ -279,7 +278,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1
           <span class="field-badge badge-tue">화요일</span>
         </div>
         <div class="field-hint">풋풋레터 이메일 → "웹으로 보기" 링크 복사
-          <a class="find-link" href="https://mail.google.com/mail/u/0/#search/풋풋레터" target="_blank">↗ Gmail에서 찾기</a>
+          <a class="find-link" href="https://putput.kr/" target="_blank">↗ putput.kr (구독)</a>
         </div>
         <input type="url" name="putput_url"
                value="{{ putput_url }}"
@@ -293,7 +292,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1
           <span class="field-badge badge-tue">화요일</span>
         </div>
         <div class="field-hint">캐릿 이메일 → "웹으로 보기" 링크 복사
-          <a class="find-link" href="https://mail.google.com/mail/u/0/#search/캐릿" target="_blank">↗ Gmail에서 찾기</a>
+          <a class="find-link" href="https://www.careet.net/" target="_blank">↗ careet.net (구독)</a>
         </div>
         <input type="url" name="careet_url"
                value="{{ careet_url }}"
@@ -321,7 +320,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1
           <span class="field-badge badge-fri">금요일</span>
         </div>
         <div class="field-hint">까탈로그 이메일 → "웹으로 보기" 링크 복사
-          <a class="find-link" href="https://mail.google.com/mail/u/0/#search/까탈로그" target="_blank">↗ Gmail에서 찾기</a>
+          <a class="find-link" href="https://the-edit.co.kr/newsletter" target="_blank">↗ 디에디트(까탈로그) 구독</a>
         </div>
         <input type="url" name="catalogue_url"
                value="{{ catalogue_url }}"
