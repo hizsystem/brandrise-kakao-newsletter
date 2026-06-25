@@ -211,6 +211,18 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1
                border-radius: 20px; text-decoration: none; }
 .site-link:hover { background: #eef2ff; }
 
+/* 필드 옆 "찾으러 가기" 링크 */
+.find-link { display: inline-flex; align-items: center; gap: 4px; margin-left: 8px;
+              font-size: 12px; font-weight: 600; color: #6366f1; text-decoration: none;
+              white-space: nowrap; }
+.find-link:hover { text-decoration: underline; }
+
+/* 안내 박스 */
+.manual-note { font-size: 12.5px; color: #6b7280; line-height: 1.7;
+                background: #f9fafb; border: 1px solid #f0f1f3; border-radius: 10px;
+                padding: 12px 16px; margin-bottom: 20px; }
+.manual-note b { color: #374151; }
+
 /* 아카이브 */
 .archive-item { display: flex; align-items: center; justify-content: space-between;
                  padding: 12px 0; border-bottom: 1px solid #f3f4f6;
@@ -239,13 +251,22 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1
     <div class="card">
       <div class="card-title">📖 수동 입력 URL</div>
 
+      <div class="manual-note">
+        <b>요일별로 필요한 것만 채우면 됩니다.</b> 각 항목의 <b>찾으러 가기</b> 링크를 누르면 출처로 바로 이동합니다.<br>
+        · <b>매일</b>: 롱블랙 &nbsp; · <b>화</b>: 풋풋레터·캐릿 &nbsp; · <b>수·금</b>: 빌더조쉬 &nbsp; · <b>금</b>: 까탈로그<br>
+        이메일로 오는 항목은 Gmail에서 해당 뉴스레터를 연 뒤 <b>"웹으로 보기"</b> 링크를 복사하세요.
+      </div>
+
       <!-- 롱블랙 -->
       <div class="field">
         <div class="field-label">
           롱블랙 티켓 URL
           <span class="field-badge badge-daily">매일</span>
         </div>
-        <div class="field-hint">롱블랙 이메일 → "아티클 읽기" 링크 복사 (ticket= 포함된 URL)</div>
+        <div class="field-hint">롱블랙 이메일 → "아티클 읽기" 링크 복사 (ticket= 포함된 URL)
+          <a class="find-link" href="https://mail.google.com/mail/u/0/#search/롱블랙" target="_blank">↗ Gmail에서 찾기</a>
+          <a class="find-link" href="https://longblack.co" target="_blank">↗ longblack.co</a>
+        </div>
         <input type="url" name="longblack_ticket_url"
                value="{{ longblack_url }}"
                placeholder="https://longblack.co/note/xxxx?ticket=NT...">
@@ -257,7 +278,9 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1
           풋풋레터 URL
           <span class="field-badge badge-tue">화요일</span>
         </div>
-        <div class="field-hint">풋풋레터 이메일 → "웹으로 보기" 링크 복사</div>
+        <div class="field-hint">풋풋레터 이메일 → "웹으로 보기" 링크 복사
+          <a class="find-link" href="https://mail.google.com/mail/u/0/#search/풋풋레터" target="_blank">↗ Gmail에서 찾기</a>
+        </div>
         <input type="url" name="putput_url"
                value="{{ putput_url }}"
                placeholder="https://stibee.com/api/v1.0/emails/share/...">
@@ -269,7 +292,9 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1
           캐릿 URL
           <span class="field-badge badge-tue">화요일</span>
         </div>
-        <div class="field-hint">캐릿 이메일 → "웹으로 보기" 링크 복사</div>
+        <div class="field-hint">캐릿 이메일 → "웹으로 보기" 링크 복사
+          <a class="find-link" href="https://mail.google.com/mail/u/0/#search/캐릿" target="_blank">↗ Gmail에서 찾기</a>
+        </div>
         <input type="url" name="careet_url"
                value="{{ careet_url }}"
                placeholder="https://stibee.com/api/v1.0/emails/share/...">
@@ -281,7 +306,9 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1
           빌더조쉬 URL
           <span class="field-badge badge-wedfri">수·금 공용</span>
         </div>
-        <div class="field-hint">maily.so/josh 에서 이번 주 글 URL 복사 (수요일·금요일 발송 직전 각각 새 URL로 덮어쓰기)</div>
+        <div class="field-hint">maily.so/josh 에서 이번 주 글 URL 복사 (수요일·금요일 발송 직전 각각 새 URL로 덮어쓰기)
+          <a class="find-link" href="https://maily.so/josh" target="_blank">↗ maily.so/josh 열기</a>
+        </div>
         <input type="url" name="builder_josh_url"
                value="{{ builder_josh_url }}"
                placeholder="https://maily.so/josh/posts/...">
@@ -293,7 +320,9 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1
           까탈로그 URL
           <span class="field-badge badge-fri">금요일</span>
         </div>
-        <div class="field-hint">까탈로그 이메일 → "웹으로 보기" 링크 복사</div>
+        <div class="field-hint">까탈로그 이메일 → "웹으로 보기" 링크 복사
+          <a class="find-link" href="https://mail.google.com/mail/u/0/#search/까탈로그" target="_blank">↗ Gmail에서 찾기</a>
+        </div>
         <input type="url" name="catalogue_url"
                value="{{ catalogue_url }}"
                placeholder="https://stibee.com/api/v1.0/emails/share/...">
