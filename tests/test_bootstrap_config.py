@@ -1,4 +1,5 @@
 from pathlib import Path
+import subprocess
 import sys
 
 import pytest
@@ -72,3 +73,38 @@ def test_require_auth_or_die_blocks_hosted_without_password():
 
 def test_require_auth_or_die_allows_local_without_password():
     bc.require_auth_or_die(is_hosted=False, password="")  # 예외 없음
+
+
+def _git_remote_url(repo: Path) -> str:
+    return subprocess.run(["git", "remote", "get-url", "origin"], cwd=repo,
+                          capture_output=True, text=True).stdout.strip()
+
+
+def test_setup_git_auth_adds_origin_when_missing(tmp_path):
+    # Render 체크아웃처럼 .git은 있으나 origin remote가 없는 상태
+    subprocess.run(["git", "init"], cwd=tmp_path, check=True,
+                   capture_output=True)
+    env = {"GH_TOKEN": "TOK", "GH_REMOTE": "github.com/o/r.git"}
+    assert bc.setup_git_auth(tmp_path, env) is True
+    assert _git_remote_url(tmp_path) == "https://x-access-token:TOK@github.com/o/r.git"
+
+
+def test_setup_git_auth_updates_existing_origin(tmp_path):
+    subprocess.run(["git", "init"], cwd=tmp_path, check=True, capture_output=True)
+    subprocess.run(["git", "remote", "add", "origin", "https://old/x.git"],
+                   cwd=tmp_path, check=True, capture_output=True)
+    env = {"GH_TOKEN": "TOK", "GH_REMOTE": "github.com/o/r.git"}
+    assert bc.setup_git_auth(tmp_path, env) is True
+    assert _git_remote_url(tmp_path) == "https://x-access-token:TOK@github.com/o/r.git"
+
+
+def test_setup_git_auth_inits_when_no_git(tmp_path):
+    # .git이 아예 없는 경우 init 후 origin 추가
+    env = {"GH_TOKEN": "TOK", "GH_REMOTE": "github.com/o/r.git"}
+    assert bc.setup_git_auth(tmp_path, env) is True
+    assert (tmp_path / ".git").exists()
+    assert _git_remote_url(tmp_path) == "https://x-access-token:TOK@github.com/o/r.git"
+
+
+def test_setup_git_auth_returns_false_without_token(tmp_path):
+    assert bc.setup_git_auth(tmp_path, {}) is False

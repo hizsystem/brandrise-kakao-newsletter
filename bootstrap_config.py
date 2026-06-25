@@ -53,7 +53,11 @@ def authenticated_remote_url(token: str, remote: str) -> str:
 
 
 def setup_git_auth(repo_dir: Path, env: Mapping[str, str] | None = None) -> bool:
-    """GH_TOKEN이 있으면 origin remote URL과 git user를 설정. 성공 시 True."""
+    """GH_TOKEN이 있으면 origin remote URL과 git user를 설정. 성공 시 True.
+
+    호스팅 체크아웃(Render 등)에는 origin remote가 없거나 .git이 없을 수 있어
+    origin이 없으면 add, 있으면 set-url, .git이 없으면 init으로 보강한다.
+    """
     env = os.environ if env is None else env
     token = (env.get("GH_TOKEN") or "").strip()
     if not token:
@@ -61,7 +65,17 @@ def setup_git_auth(repo_dir: Path, env: Mapping[str, str] | None = None) -> bool
     remote = (env.get("GH_REMOTE")
               or "github.com/hizsystem/brandrise-kakao-newsletter.git").strip()
     url = authenticated_remote_url(token, remote)
-    subprocess.run(["git", "remote", "set-url", "origin", url], cwd=repo_dir, check=True)
+
+    if not (repo_dir / ".git").exists():
+        subprocess.run(["git", "init"], cwd=repo_dir, check=True)
+
+    existing = subprocess.run(["git", "remote"], cwd=repo_dir,
+                              capture_output=True, text=True).stdout.split()
+    if "origin" in existing:
+        subprocess.run(["git", "remote", "set-url", "origin", url], cwd=repo_dir, check=True)
+    else:
+        subprocess.run(["git", "remote", "add", "origin", url], cwd=repo_dir, check=True)
+
     subprocess.run(["git", "config", "user.name",
                     env.get("GIT_USER_NAME", "brandrise-bot")], cwd=repo_dir, check=True)
     subprocess.run(["git", "config", "user.email",

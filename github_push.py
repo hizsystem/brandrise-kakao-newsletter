@@ -51,7 +51,8 @@ def push_to_github(repo_dir: Path, date_str: str) -> bool:
         return False
 
     # git push (네트워크 지연/자격증명 대기 등으로 멈추는 것 방지: 120초)
-    ok, out = run(["git", "push", "--set-upstream", "origin", "main"], timeout=120)
+    # 호스팅 체크아웃은 detached HEAD일 수 있어 HEAD:main으로 명시 푸시.
+    ok, out = run(["git", "push", "origin", "HEAD:main"], timeout=120)
     if not ok:
         print(f"  [WARN] git push 실패: {out}")
         print("         수동으로 실행: git push")
