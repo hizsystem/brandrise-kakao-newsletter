@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 from dataclasses import dataclass
 from typing import List
 from datetime import datetime
+from timeutil import now_kst
 
 
 @dataclass
@@ -65,7 +66,7 @@ def _get(url: str, retries: int = 3, backoff: float = 3.0) -> requests.Response:
 
 def fetch(url: str = BOARD_URL) -> List[NewsItem]:
     """오늘 날짜 뉴스클리핑 글을 찾아서 파싱"""
-    today = datetime.now()
+    today = now_kst()
     today_str = f"{today.month}월 {today.day}일"
 
     # 게시판 목록에서 오늘 글 링크 찾기

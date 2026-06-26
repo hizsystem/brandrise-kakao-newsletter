@@ -19,6 +19,7 @@ import schedule
 import time
 import traceback
 from datetime import datetime, timedelta
+from timeutil import now_kst
 from pathlib import Path
 
 from collectors import iboss, neusral, heypop
@@ -88,9 +89,9 @@ def _rebuild_archives(docs_dir: Path, today: datetime = None):
 
 
 def run_newsletter(config: dict, preview_only: bool = False):
-    print(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 뉴스레터 수집 시작...")
+    print(f"\n[{now_kst().strftime('%Y-%m-%d %H:%M:%S')}] 뉴스레터 수집 시작...")
 
-    today = datetime.now()
+    today = now_kst()
     weekday = today.weekday()  # 0=월 … 4=금, 5=토, 6=일
 
     # 주말 — 금요일 파일 복사 후 종료
@@ -130,7 +131,7 @@ def run_newsletter(config: dict, preview_only: bool = False):
         print("  → 롱블랙 수집 중...")
         longblack_item = longblack_collector.fetch()
         if longblack_item:
-            today_iso = datetime.now().strftime("%Y-%m-%d")
+            today_iso = now_kst().strftime("%Y-%m-%d")
             manual = config.get("manual", {})
             ticket_url = manual.get("longblack_ticket_url", "")
             ticket_date = manual.get("longblack_ticket_date", "")
@@ -248,7 +249,7 @@ def run_newsletter(config: dict, preview_only: bool = False):
 
     # === 인사말 생성 (1회 — txt/HTML 공유) ===
     print("  → 인사말 생성 중...")
-    weekday = datetime.now().weekday()
+    weekday = now_kst().weekday()
     weekday_name, weekday_msg = WEEKDAY_GREETINGS.get(weekday, ("", ""))
     api_key = config["anthropic"]["api_key"]
     model = config["anthropic"].get("model", "claude-sonnet-4-6")
@@ -295,7 +296,7 @@ def run_newsletter(config: dict, preview_only: bool = False):
         return
 
     # === 링크 + 브랜드라이즈 공지 푸터 (preview·저장 공통) ===
-    today = datetime.now()
+    today = now_kst()
     today_str = today.strftime('%Y%m%d')
     date_iso = today.strftime("%Y-%m-%d")
     pages_url = config.get("github", {}).get("pages_url", "").rstrip("/")

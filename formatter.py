@@ -5,6 +5,7 @@ Claude API를 사용해 수집된 뉴스를 카톡 전송 양식으로 포맷팅
 import httpx
 import re as _re
 from datetime import date, datetime, timedelta
+from timeutil import now_kst
 from pathlib import Path
 from typing import List, Optional, Tuple
 
@@ -173,7 +174,7 @@ def _first_appearance_sources(stibee_items: list) -> List[str]:
     if not candidates:
         return []
 
-    today_str = datetime.now().strftime("%Y%m%d")
+    today_str = now_kst().strftime("%Y%m%d")
     past_files = [
         f for f in _OUTPUT_DIR.glob("output_*.txt") if today_str not in f.name
     ]
@@ -193,7 +194,7 @@ def _first_appearance_sources(stibee_items: list) -> List[str]:
 
 def _load_recent_greetings(n: int = 4) -> List[str]:
     """오늘 이전 최근 N개 output_*.txt에서 인사말 블록 추출"""
-    today_str = datetime.now().strftime("%Y%m%d")
+    today_str = now_kst().strftime("%Y%m%d")
     files = sorted(
         f for f in _OUTPUT_DIR.glob("output_*.txt") if today_str not in f.name
     )
@@ -217,7 +218,7 @@ def build_message(
     api_key: str,
     model: str = "claude-sonnet-4-6",
 ) -> str:
-    today = datetime.now()
+    today = now_kst()
     date_str = today.strftime("%-m월 %-d일").replace("-", "")  # Windows에서는 %#m, %#d
     weekday = today.weekday()
     weekday_name, weekday_msg = WEEKDAY_GREETINGS.get(weekday, ("", ""))
@@ -313,7 +314,7 @@ def _build_greeting_prompt(
         if item.topic:
             news_context += f" (토픽: {item.topic})"
 
-    today = datetime.now()
+    today = now_kst()
     time_label, time_rule = _time_of_day_hint(today.hour)
 
     notes: List[str] = []
@@ -413,6 +414,10 @@ def _build_greeting_prompt(
 - 특히 "몇째 주"(첫째 주·둘째 주·셋째 주…), "N주차" 같은 **월 기준 주차 표현은 절대 사용 금지**. 계산 근거가 주어지지 않아 사실 오류(예: 실제로 첫째 주인데 둘째 주로 표기)가 발생함.
 - "이번 주", "한 주", "주말", "월초·월말" 같은 상대적·대략적 표현은 사용해도 됨.
 
+## 출처·신규성 규칙 (엄격 준수)
+- 특정 뉴스레터·코너(빌더조쉬·까탈로그·헤이팝·풋풋레터·캐릿·롱블랙 등)를 "오늘부터", "새로 시작", "처음", "첫 회차", "이제부터 함께" 같은 **신규 도입·최초 등장으로 단정하지 말 것**. 각 소스는 요일별로 정기 수록되며 오늘이 첫 등장이라는 근거가 없음(사실 오류 발생).
+- 콘텐츠는 "오늘의 ○○ 소식", "○○에서는" 처럼 중립적으로 소개할 것.
+
 ## 금지 표현 (AI 티가 나는 상투어 — 절대 사용 금지)
 - "마음에 걸리는", "눈에 띄는", "주목된다", "주목할 만", "엿볼 수 있는"
 - "~한 모습입니다", "~는 모습입니다"
@@ -455,7 +460,8 @@ def _build_critique_prompt(
 3. **AI 클리셰 제거 (필수)**: "마음에 걸리는", "눈에 띄는", "주목된다", "주목할 만", "엿볼 수 있는", "~한 모습입니다", "~는 모습입니다", "낯설지 않다", "사뭇 다르다", "새삼 느끼다", "다시 한번 실감" 같은 표현이 있으면 반드시 다른 구체적 표현으로 교체.
 4. **어색한 한국어**: 번역체, 일본어·중국어식 표현, 외국어 음차가 있으면 자연스러운 한국어로 교정.
 5. **허위 날짜·주차 (필수)**: "첫째 주", "둘째 주", "셋째 주", "N주차" 등 월 기준 주차 표현이 있으면 근거 없이 지어낸 정보이므로 삭제하거나 "이번 주" 등 상대 표현으로 교체. 요일은 그대로 유지. ("이번 주", "한 주", "주말"은 허용.)
-6. **문체 유지**: 원문의 전체 구조(3문단, 따뜻한 존댓말, 마지막 이모지)는 유지.{extra}
+6. **허위 신규성 (필수)**: 빌더조쉬·까탈로그·헤이팝·풋풋레터·캐릿·롱블랙 등 코너를 "오늘부터", "새로 시작", "처음", "첫 회차", "이제부터 함께" 식으로 신규 도입처럼 단정한 표현이 있으면 근거 없는 사실 오류이므로 삭제하거나 "오늘의 ○○ 소식" 같은 중립 표현으로 교체.
+7. **문체 유지**: 원문의 전체 구조(3문단, 따뜻한 존댓말, 마지막 이모지)는 유지.{extra}
 
 원문:
 ---
@@ -600,7 +606,7 @@ def generate_greeting(
     text = _normalize_proper_nouns(initial)
 
     # 3) 셀프 비평 패스
-    today = datetime.now()
+    today = now_kst()
     time_label, time_rule = _time_of_day_hint(today.hour)
     critique_prompt = _build_critique_prompt(text, time_label, time_rule)
     critiqued, critic_used = _call_with_fallback(
@@ -652,7 +658,7 @@ def build_message_windows_date(
     greeting: str = None,
 ) -> str:
     """Windows 호환 날짜 포맷 버전"""
-    today = datetime.now()
+    today = now_kst()
     # Windows에서는 %-m 미지원 → lstrip("0") 사용
     month = str(today.month)
     day = str(today.day)

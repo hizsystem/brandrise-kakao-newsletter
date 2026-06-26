@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 from dataclasses import dataclass, field
 from typing import List, Optional
 from datetime import datetime, timezone, timedelta
+from timeutil import now_kst
 
 
 @dataclass
@@ -51,7 +52,7 @@ def fetch(list_url: str = SITE_URL) -> List[CategoryNews]:
     soup = BeautifulSoup(r.text, "html.parser")
 
     published = _published_kst(soup)
-    today = datetime.now().date()
+    today = now_kst().date()
     if published and published.date() != today:
         print(
             f"  [뉴스럴] 최신 데일리픽({published.date()})이 오늘({today})이 아닙니다. 건너뜁니다."

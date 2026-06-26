@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 from dataclasses import dataclass
 from typing import Optional
 from datetime import datetime, timedelta
+from timeutil import now_kst
 
 
 @dataclass
@@ -51,7 +52,7 @@ class MailplugReader:
         self._conn.select("INBOX")
 
         # 날짜 기준으로 검색 (오늘 또는 어제 이후)
-        since_date = (datetime.now() - timedelta(days=days_back)).strftime("%d-%b-%Y")
+        since_date = (now_kst() - timedelta(days=days_back)).strftime("%d-%b-%Y")
 
         try:
             _, msg_ids = self._conn.search(None, f'(SINCE "{since_date}" FROM "{sender_keyword}")')
@@ -87,7 +88,7 @@ class MailplugReader:
             subject=subject,
             summary=summary,
             link=link,
-            received_at=datetime.now(),
+            received_at=now_kst(),
         )
 
     def fetch_stibee_url(self, sender_keyword: str, days_back: int = 2) -> Optional[str]:
@@ -96,7 +97,7 @@ class MailplugReader:
             self.connect()
 
         self._conn.select("INBOX")
-        since_date = (datetime.now() - timedelta(days=days_back)).strftime("%d-%b-%Y")
+        since_date = (now_kst() - timedelta(days=days_back)).strftime("%d-%b-%Y")
 
         # FROM 검색은 한국어 키워드에서 예외 없이 빈 결과를 반환하는 경우가 있음
         # → 항상 SINCE 검색 후 Python에서 필터링
@@ -150,7 +151,7 @@ class MailplugReader:
     def fetch_all_newsletters(self, newsletter_configs: dict) -> dict:
         """모든 뉴스레터 수집"""
         results = {}
-        weekday = datetime.now().weekday()  # 0=월, 1=화, 4=목, 5=금
+        weekday = now_kst().weekday()  # 0=월, 1=화, 4=목, 5=금
 
         schedule_map = {
             "daily": list(range(7)),

@@ -3,6 +3,7 @@
 이미지 썸네일 + 클릭 가능한 카드 레이아웃
 """
 from datetime import datetime, timedelta
+from timeutil import now_kst
 from pathlib import Path
 from typing import List
 import re
@@ -508,7 +509,7 @@ def build_html_v2(
     stibee_image_map: dict = None,
     is_subpage: bool = False,
 ) -> str:
-    today = datetime.now()
+    today = now_kst()
     date_str = f"{today.month}월 {today.day}일"
     date_iso = today.strftime("%Y-%m-%d")
     weekday_name = WEEKDAY_NAMES.get(today.weekday(), "")
@@ -600,7 +601,7 @@ def save_newsletter_v2(
     - docs/v2/index.html
     이미지 생성: Gemini 우선, Pollinations.ai 폴백
     """
-    date_iso = datetime.now().strftime("%Y-%m-%d")
+    date_iso = now_kst().strftime("%Y-%m-%d")
     v2_dir = docs_dir / "v2"
     newsletters_dir = v2_dir / "newsletters"
     newsletters_dir.mkdir(parents=True, exist_ok=True)

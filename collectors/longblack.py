@@ -3,6 +3,7 @@
 오늘의 아티클 제목과 링크 수집
 """
 
+import re
 import requests
 from bs4 import BeautifulSoup
 from dataclasses import dataclass
@@ -21,6 +22,24 @@ class LongblackItem:
     title: str
     subtitle: str
     url: str = "https://www.longblack.co/"
+
+
+def _clean_subtitle(text: str) -> str:
+    """롱블랙 미리보기 부제 정제.
+
+    - 선행 바이라인("롱블랙 프렌즈 K " 등)을 제거.
+    - 미리보기가 단어 중간에서 잘린 경우(종결부호로 끝나지 않음)
+      마지막 완결 문장까지만 남겨 어색한 잘림을 방지.
+    """
+    if not text:
+        return text
+    text = text.strip()
+    text = re.sub(r"^롱블랙\s+(프렌즈|노트|레터)\s+\S+\s+", "", text).strip()
+    if text and text[-1] not in "!?.…":
+        ends = list(re.finditer(r"[.!?…]", text))
+        if ends:
+            text = text[: ends[-1].end()].strip()
+    return text
 
 
 def fetch(url: str = "https://www.longblack.co/") -> LongblackItem | None:
@@ -73,7 +92,7 @@ def parse(html: str) -> LongblackItem | None:
     if not title:
         return None
 
-    return LongblackItem(title=title, subtitle=subtitle, url=link)
+    return LongblackItem(title=title, subtitle=_clean_subtitle(subtitle), url=link)
 
 
 if __name__ == "__main__":

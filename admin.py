@@ -12,6 +12,7 @@ import sys
 import threading
 import time
 from datetime import datetime
+from timeutil import now_kst
 from functools import wraps
 from pathlib import Path
 
@@ -444,7 +445,7 @@ def update_config_urls(config: dict, form: dict) -> dict:
     if "manual" not in config:
         config["manual"] = {}
     config["manual"]["longblack_ticket_url"] = form.get("longblack_ticket_url", "").strip()
-    config["manual"]["longblack_ticket_date"] = datetime.now().strftime("%Y-%m-%d")
+    config["manual"]["longblack_ticket_date"] = now_kst().strftime("%Y-%m-%d")
 
     if "tuesday_newsletters" not in config:
         config["tuesday_newsletters"] = {}
@@ -477,7 +478,7 @@ def update_config_urls(config: dict, form: dict) -> dict:
 
 
 def today_str() -> str:
-    now = datetime.now()
+    now = now_kst()
     wd = WEEKDAY_KO[now.weekday()]
     return f"{now.year}년 {now.month}월 {now.day}일 ({wd})"
 
@@ -546,7 +547,7 @@ def index():
     pages_base = _pages_base(config)
 
     # 롱블랙: 오늘 티켓 URL이 없으면 공개 URL 자동 표시
-    today_iso = datetime.now().strftime("%Y-%m-%d")
+    today_iso = now_kst().strftime("%Y-%m-%d")
     manual = config.get("manual", {})
     if not (manual.get("longblack_ticket_url") and manual.get("longblack_ticket_date") == today_iso):
         urls["longblack_url"] = get_longblack_scraped_url()
@@ -555,7 +556,7 @@ def index():
     archive = get_archive_items(docs_dir)
 
     # 오늘 공고 페이지 URL (이미 발행된 경우)
-    date_iso = datetime.now().strftime("%Y-%m-%d")
+    date_iso = now_kst().strftime("%Y-%m-%d")
     grants_page = DOCS_DIR / "grants" / f"{date_iso}.html"
     grants_url = f"{pages_base}grants/{date_iso}.html" if grants_page.exists() and pages_base else ""
 
@@ -621,7 +622,7 @@ def publish_grants():
         grant_path = save_grants(text, DOCS_DIR, notice=notice)
         # GitHub 푸시
         from github_push import push_to_github
-        date_iso = datetime.now().strftime("%Y-%m-%d")
+        date_iso = now_kst().strftime("%Y-%m-%d")
         push_to_github(Path(__file__).parent, f"grants-{date_iso}")
         _last_log["text"] = f"[OK] 공고 발행 완료: {grant_path.name}\n공고 수: {text.count('http')}건"
     except Exception as e:

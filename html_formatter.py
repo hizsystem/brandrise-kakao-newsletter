@@ -3,6 +3,7 @@
 수집된 데이터를 GitHub Pages용 아름다운 HTML로 변환
 """
 from datetime import datetime, timedelta
+from timeutil import now_kst
 from pathlib import Path
 from typing import List, Optional
 
@@ -262,7 +263,7 @@ def build_html(
     is_subpage=True: newsletters/YYYY-MM-DD.html (공유 링크용)
     is_subpage=False: index.html (루트, 최신)
     """
-    today = datetime.now()
+    today = now_kst()
     date_str = f"{today.month}월 {today.day}일"
     date_iso = today.strftime("%Y-%m-%d")
     weekday_name = WEEKDAY_NAMES.get(today.weekday(), "")
@@ -404,7 +405,7 @@ def save_newsletter(
     - docs/archive.html                 (전체 목록)
     저장된 파일 경로 반환
     """
-    date_iso = datetime.now().strftime("%Y-%m-%d")
+    date_iso = now_kst().strftime("%Y-%m-%d")
     newsletters_dir = docs_dir / "newsletters"
     newsletters_dir.mkdir(parents=True, exist_ok=True)
 
