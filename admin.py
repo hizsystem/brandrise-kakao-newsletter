@@ -539,9 +539,12 @@ def _pages_base(config: dict) -> str:
     return f"{pages_url}/" if pages_url else ""
 
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
+    # 잘못 들어온 POST(새로고침/뒤로가기 재전송 등)는 405 대신 GET 페이지로 리다이렉트
+    if request.method == "POST":
+        return redirect(url_for("index"))
     config = load_config()
     urls = get_urls(config)
     pages_base = _pages_base(config)
