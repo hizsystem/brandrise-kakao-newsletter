@@ -29,8 +29,9 @@ CONFIG_PATH = Path(__file__).parent / "config.yaml"
 DOCS_DIR = Path(__file__).parent / "docs"
 PYTHON = sys.executable
 
-# 마지막 실행 로그 (메모리)
-_last_log = {"text": "", "running": False}
+# 생성 작업 상태 (메모리, 워커 1개 기준 공유)
+_job_lock = threading.Lock()
+_job = {"running": False, "log": "", "started_at": None, "finished_at": None}
 
 WEEKDAY_KO = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]
 
@@ -45,16 +46,36 @@ def save_config(config: dict):
         yaml.dump(config, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
 
 
+def _resolve_secret_key(admin_cfg: dict) -> str:
+    """세션 서명 키를 안정적으로 결정한다.
+
+    Render 무료 플랜은 디스크가 임시여서 재시작/콜드스타트마다 config.yaml이
+    새로 생성된다. 매번 랜덤 키를 만들면 그때마다 모든 로그인 세션이 깨진다.
+    아래 순서로 '재시작에도 동일한' 키를 우선 사용해 세션을 유지한다.
+    """
+    # 1) 명시적 환경변수 (가장 권장 — Render 대시보드에 FLASK_SECRET_KEY 설정)
+    env_key = (os.environ.get("FLASK_SECRET_KEY") or "").strip()
+    if env_key:
+        return env_key
+    # 2) config.yaml에 이미 저장된 키
+    cfg_key = (admin_cfg.get("secret_key") or "").strip()
+    if cfg_key:
+        return cfg_key
+    # 3) 비밀번호 기반 결정적 폴백 — 환경변수를 깜빡해도 재시작 간 세션 유지
+    password = (admin_cfg.get("password") or "").strip()
+    if password:
+        import hashlib
+        return hashlib.sha256(f"brandrise-admin::{password}".encode("utf-8")).hexdigest()
+    # 4) 최후의 수단: 랜덤(비번 미설정 로컬 전용 — 재시작 시 세션 초기화됨)
+    return pysecrets.token_hex(32)
+
+
 def _init_auth():
-    """config.yaml의 admin 섹션에서 비밀번호·세션 키 로드 (없으면 세션 키 자동 생성)"""
+    """config.yaml의 admin 섹션에서 비밀번호 로드 + 안정 세션 키 결정"""
     config = load_config()
     admin_cfg = config.get("admin", {})
     password = admin_cfg.get("password", "")
-    secret_key = admin_cfg.get("secret_key", "")
-    if not secret_key:
-        secret_key = pysecrets.token_hex(32)
-        config.setdefault("admin", {})["secret_key"] = secret_key
-        save_config(config)
+    secret_key = _resolve_secret_key(admin_cfg)
     return password, secret_key
 
 
@@ -247,6 +268,13 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1
   <div class="toast">✓ 저장 완료</div>
   {% endif %}
 
+  {% if running %}
+  <div class="toast" id="run-banner"
+       style="background:#fffbeb; border-color:#fde68a; color:#92400e;">
+    ⏳ 뉴스레터 생성 중입니다… 진행 로그가 아래에 실시간으로 표시됩니다. (보통 2~5분)
+  </div>
+  {% endif %}
+
   <!-- 수동 URL 입력 폼 -->
   <form method="post" action="/save">
     <div class="card">
@@ -410,14 +438,51 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1
   </div>
 
   <!-- 마지막 실행 로그 -->
-  {% if log %}
-  <div class="card">
-    <div class="card-title">📋 마지막 실행 로그</div>
-    <div class="log-box">{{ log }}</div>
+  <div class="card" id="log-card" {% if not log and not running %}style="display:none;"{% endif %}>
+    <div class="card-title">📋 실행 로그</div>
+    <div class="log-box" id="log-box">{{ log }}</div>
   </div>
-  {% endif %}
 
 </div>
+
+<script>
+(function () {
+  var banner = document.getElementById('run-banner');
+  var logCard = document.getElementById('log-card');
+  var logBox = document.getElementById('log-box');
+  var genBtn = document.getElementById('gen-btn');
+
+  function setDone() {
+    if (banner) {
+      banner.style.background = '#ecfdf5';
+      banner.style.borderColor = '#bbf7d0';
+      banner.style.color = '#166534';
+      banner.textContent = '✓ 생성 완료. 라이브 사이트 반영까지 1~2분 걸릴 수 있습니다.';
+    }
+    if (genBtn) { genBtn.disabled = false; genBtn.textContent = '⚡ 저장 + 뉴스레터 지금 생성'; }
+  }
+
+  function poll() {
+    fetch('/status', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (s) {
+        if (s.log) {
+          if (logCard) logCard.style.display = '';
+          if (logBox) { logBox.textContent = s.log; logBox.scrollTop = logBox.scrollHeight; }
+        }
+        if (s.running) {
+          if (genBtn) { genBtn.disabled = true; genBtn.textContent = '⏳ 생성 중...'; }
+          setTimeout(poll, 2000);
+        } else {
+          setDone();
+        }
+      })
+      .catch(function () { setTimeout(poll, 4000); });
+  }
+
+  {% if running %}poll();{% endif %}
+})();
+</script>
 </body>
 </html>"""
 
@@ -483,26 +548,39 @@ def today_str() -> str:
     return f"{now.year}년 {now.month}월 {now.day}일 ({wd})"
 
 
-def run_newsletter() -> str:
-    """main.py --now 실행, 출력 반환"""
+def _run_newsletter_job():
+    """백그라운드 스레드에서 main.py --now 실행.
+    출력을 한 줄씩 _job['log']에 실시간 누적해 관리자 페이지에서 진행 상황을 볼 수 있게 한다.
+    HTTP 요청을 막지 않으므로 생성 중에도 사이트가 먹통이 되지 않는다.
+    """
+    proc = None
     try:
-        result = subprocess.run(
+        proc = subprocess.Popen(
             [PYTHON, "main.py", "--now"],
             cwd=Path(__file__).parent,
-            capture_output=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
             text=True,
             encoding="utf-8",
             errors="replace",
-            timeout=900,
+            bufsize=1,
         )
-        output = result.stdout + result.stderr
-    except subprocess.TimeoutExpired as e:
-        partial_out = (e.stdout or "") + (e.stderr or "")
-        output = (
-            f"[ERROR] main.py --now 가 900초 안에 끝나지 않아 종료했습니다.\n"
-            f"마지막 stdout/stderr:\n{partial_out}"
-        )
-    return output
+        for line in proc.stdout:
+            _job["log"] += line
+        proc.wait(timeout=900)
+        if proc.returncode == 0:
+            _job["log"] += "\n[OK] 생성 완료. 라이브 사이트 반영까지 1~2분 걸릴 수 있습니다.\n"
+        else:
+            _job["log"] += f"\n[ERROR] 생성 프로세스가 코드 {proc.returncode}로 종료되었습니다.\n"
+    except subprocess.TimeoutExpired:
+        if proc:
+            proc.kill()
+        _job["log"] += "\n[ERROR] 900초 안에 끝나지 않아 종료했습니다.\n"
+    except Exception as e:  # noqa: BLE001 — 어떤 오류든 잡아 상태를 정리한다
+        _job["log"] += f"\n[ERROR] 생성 중 예외 발생: {e}\n"
+    finally:
+        _job["running"] = False
+        _job["finished_at"] = now_kst().strftime("%H:%M:%S")
 
 
 def get_longblack_scraped_url() -> str:
@@ -570,7 +648,8 @@ def index():
         HTML,
         today=today_str(),
         saved=request.args.get("saved"),
-        log=_last_log["text"],
+        running=_job["running"] or bool(request.args.get("running")),
+        log=_job["log"],
         pages_url=today_v2_url,
         archive=archive,
         pages_base=pages_base,
@@ -597,13 +676,30 @@ def generate():
     config = update_config_urls(config, request.form)
     save_config(config)
 
-    _last_log["running"] = True
-    _last_log["text"] = "⏳ 생성 중..."
-    log = run_newsletter()
-    _last_log["text"] = log
-    _last_log["running"] = False
+    # 생성을 백그라운드 스레드로 시작하고 즉시 응답한다(요청이 길게 물려 끊기는 문제 방지).
+    with _job_lock:
+        if _job["running"]:
+            return redirect(url_for("index", running=1))
+        _job["running"] = True
+        _job["log"] = "⏳ 생성을 시작합니다...\n"
+        _job["started_at"] = now_kst().strftime("%H:%M:%S")
+        _job["finished_at"] = None
+        threading.Thread(target=_run_newsletter_job, daemon=True).start()
 
-    return redirect(url_for("index", saved=1))
+    return redirect(url_for("index", running=1))
+
+
+@app.route("/status")
+@login_required
+def status():
+    """생성 진행 상태를 JSON으로 반환 (관리자 페이지가 폴링)."""
+    from flask import jsonify
+    return jsonify({
+        "running": _job["running"],
+        "log": _job["log"],
+        "started_at": _job["started_at"],
+        "finished_at": _job["finished_at"],
+    })
 
 
 @app.route("/publish-grants", methods=["POST"])
@@ -627,9 +723,9 @@ def publish_grants():
         from github_push import push_to_github
         date_iso = now_kst().strftime("%Y-%m-%d")
         push_to_github(Path(__file__).parent, f"grants-{date_iso}")
-        _last_log["text"] = f"[OK] 공고 발행 완료: {grant_path.name}\n공고 수: {text.count('http')}건"
+        _job["log"] = f"[OK] 공고 발행 완료: {grant_path.name}\n공고 수: {text.count('http')}건"
     except Exception as e:
-        _last_log["text"] = f"[ERROR] 공고 발행 실패: {e}"
+        _job["log"] = f"[ERROR] 공고 발행 실패: {e}"
 
     return redirect(url_for("index", saved=1))
 
