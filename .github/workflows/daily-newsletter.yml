@@ -1,0 +1,44 @@
+name: Daily Newsletter
+
+# 매일 아침 뉴스레터를 자동 생성해 GitHub Pages에 발행한다.
+# Render 무료 플랜 콜드스타트/수동 트리거 의존을 없애기 위한 스케줄러.
+# cron 은 UTC 기준: 23:30 UTC = 08:30 KST(다음 날). 0-4 = 일~목(UTC) = 월~금(KST).
+on:
+  schedule:
+    - cron: "30 23 * * 0-4"
+  workflow_dispatch: {}   # 수동 실행 버튼 (Actions 탭)
+
+permissions:
+  contents: write          # main 브랜치에 커밋/푸시 허용
+
+concurrency:
+  group: daily-newsletter
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate & publish newsletter
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
+          GIT_USER_NAME: brandrise-bot
+          GIT_USER_EMAIL: bot@brandrise.local
+        run: |
+          python bootstrap.py
+          python main.py --now
