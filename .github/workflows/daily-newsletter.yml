@@ -6,12 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: env literal test
-        env:
-          GIT_USER_NAME: brandrise-bot
-          GIT_USER_EMAIL: bot@brandrise.local
-        run: echo "$GIT_USER_NAME literal-ok"
       - name: secret test
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: echo "secret-len=${#ANTHROPIC_API_KEY}"
+          A: ${{ secrets.ANTHROPIC_API_KEY }}
+          G: ${{ secrets.GEMINI_API_KEY }}
+          N: ${{ secrets.NVIDIA_API_KEY }}
+        run: echo "A=${#A} G=${#G} N=${#N}"
