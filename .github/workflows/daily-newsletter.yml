@@ -1,36 +1,18 @@
 name: Daily Newsletter
-
-# Auto-generate and publish the daily newsletter to GitHub Pages.
-# Removes dependency on Render free-plan cold starts / manual triggering.
-# cron is UTC: 23:30 UTC = 08:30 KST next day. 0-4 = Sun-Thu UTC = Mon-Fri KST.
 on:
-  schedule:
-    - cron: "30 23 * * 0-4"
   workflow_dispatch:
-
-permissions:
-  contents: write
-
-concurrency:
-  group: daily-newsletter
-  cancel-in-progress: false
-
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
       - name: Install dependencies
         run: pip install -r requirements.txt
-
       - name: Generate and publish newsletter
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
