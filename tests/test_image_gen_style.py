@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from pathlib import Path
 import sys
-sys.path.insert(0, str(__file__).rsplit('tests', 1)[0].rstrip('\\'))
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import image_gen as G
 
