@@ -481,14 +481,16 @@ def _prefix(image_map: dict, is_subpage: bool) -> dict:
 # 브랜드라이즈 무료 상담 CTA (모든 뉴스레터 페이지 하단 공통)
 BRANDRISE_CTA_HTML = (
     '<div class="v2-cta">'
-    '<div class="v2-cta-title">⭐ 살짝 공지드려요</div>'
-    '<ul class="v2-cta-list">'
-    '<li>마케팅이나 브랜딩에 고민이 있다면, 브랜드라이즈에서 무료로 상담받아보세요.</li>'
-    '<li>직접 만나보니, 무엇부터 어떻게 풀어야 할지 막막해하는 분들이 많아 시작했어요.</li>'
-    '<li>필요하시면 언제든 편하게 말씀주세요. 주변 추천도 환영합니다 💛</li>'
-    '</ul>'
-    '<a class="v2-cta-btn" href="https://forms.gle/R5FaijsFD4VoTEsj9?utm_source=kakao&amp;utm_medium=organic&amp;utm_campaign=brandrise" '
-    'target="_blank" rel="noopener">무료 상담 신청하기 →</a>'
+    '<div class="v2-cta-label">브랜드라이즈 무료 상담</div>'
+    '<div class="v2-cta-headline">혼자 고민하지 마세요.</div>'
+    '<p class="v2-cta-sub">브랜드 진단부터 지금 당장 해야 할 우선순위까지,<br>'
+    '30분 무료 상담에서 함께 정리해드려요.</p>'
+    '<p class="v2-cta-proof">이미 <b>수십 개 브랜드</b>가 상담받았습니다.<br>'
+    '내 브랜드처럼, 함께 고민하는 팀원의 마음으로 봅니다.</p>'
+    '<a class="v2-cta-btn" '
+    'href="https://forms.gle/R5FaijsFD4VoTEsj9?utm_source=web&amp;utm_medium=cta&amp;utm_campaign=brandrise&amp;utm_content=bottom" '
+    'target="_blank" rel="noopener">30분 무료 상담받기 →</a>'
+    '<p class="v2-cta-fine">스타트업 대표·마케팅 담당자를 위한 30분</p>'
     '</div>'
 )
 

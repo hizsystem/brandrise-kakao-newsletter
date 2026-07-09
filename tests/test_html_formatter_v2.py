@@ -27,3 +27,14 @@ def test_iboss_falls_back_to_post_url_when_item_url_empty():
 def test_iboss_uses_thumbnail_when_image_map_given():
     html = H._render_iboss_v2(_items(), image_map={1: "images/x/iboss-1.png"})
     assert 'src="images/x/iboss-1.png"' in html
+
+
+def test_bottom_cta_copy_and_utm():
+    cta = H.BRANDRISE_CTA_HTML
+    assert "혼자 고민하지 마세요." in cta
+    assert "30분 무료 상담에서 함께 정리해드려요." in cta
+    assert "이미 <b>수십 개 브랜드</b>가 상담받았습니다." in cta
+    assert "함께 고민하는 팀원의 마음으로 봅니다." in cta
+    assert "utm_source=web" in cta
+    assert "utm_content=bottom" in cta
+    assert "utm_source=kakao" not in cta  # 웹 링크가 kakao로 오집계되던 버그 제거
