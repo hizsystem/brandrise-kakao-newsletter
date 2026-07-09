@@ -64,34 +64,32 @@ def _get_theme(text: str) -> tuple:
 def _render_iboss_v2(items: List[NewsItem], post_url: str = "", image_map: dict = None) -> str:
     if not items:
         return ""
-    cards = ""
+    rows = ""
     for i, item in enumerate(items, 1):
-        summary_html = f'<p class="v2-yt-summary">{_esc(item.summary)}</p>' if item.summary else ""
         if image_map and i in image_map:
-            hero_html = f'<div class="v2-yt-hero"><img src="{image_map[i]}" alt="" loading="lazy"><span class="v2-yt-num">{i}</span></div>'
+            thumb = f'<img class="v2-item-thumb" src="{image_map[i]}" alt="" loading="lazy">'
         else:
             gradient, emoji = _get_theme(item.title)
-            hero_html = f'<div class="v2-yt-hero v2-yt-hero-grad" style="background:linear-gradient({gradient})"><span class="v2-yt-emoji">{emoji}</span><span class="v2-yt-num">{i}</span></div>'
-        cards += f"""
-        <div class="v2-yt-card">
-            {hero_html}
-            <div class="v2-yt-body">
-                <div class="v2-yt-title">{_esc(item.title)}</div>
-                {summary_html}
-            </div>
-        </div>"""
-    source_link = f'<a class="v2-source-link" href="{post_url}" target="_blank">아이보스에서 보기 →</a>' if post_url else ""
+            thumb = (f'<span class="v2-item-thumb v2-item-thumb-grad" '
+                     f'style="background:linear-gradient({gradient})">{emoji}</span>')
+        summary = f'<p>{_esc(item.summary)}</p>' if item.summary else ""
+        href = item.url or post_url or "#"
+        rows += f"""
+        <a class="v2-item" href="{_esc(href)}" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap">{thumb}<span class="v2-item-rank">{i}</span></span>
+            <span class="v2-item-body"><h3>{_esc(item.title)}</h3>{summary}</span>
+            <span class="v2-item-chev">›</span>
+        </a>"""
     return f"""
     <div class="v2-card">
         <div class="v2-card-header">
             <span class="v2-card-icon">📰</span>
             <div>
                 <div class="v2-card-title">오늘의 마케팅 뉴스</div>
-                <div class="v2-card-source">아이보스</div>
+                <div class="v2-card-source">아이보스 · 클릭하면 원문</div>
             </div>
-            {source_link}
         </div>
-        <div class="v2-yt-grid">{cards}</div>
+        <div class="v2-newslist">{rows}</div>
     </div>"""
 
 
