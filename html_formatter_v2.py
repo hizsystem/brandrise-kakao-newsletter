@@ -64,6 +64,12 @@ def _get_theme(text: str) -> tuple:
 def _render_iboss_v2(items: List[NewsItem], post_url: str = "", image_map: dict = None) -> str:
     if not items:
         return ""
+    # 아이보스 뉴스클리핑은 개별 원문 링크가 없는 모음글이다. 항목마다 같은 URL로
+    # 보내는 가짜 링크 대신, 항목은 비링크로 두고 섹션 헤더에서 모음글 원문으로
+    # 한 번만 연결한다. (원문 URL이 아이보스 글일 때만 노출)
+    source_url = post_url or next(
+        (it.url for it in items if it.url and "i-boss.co.kr" in it.url), ""
+    )
     rows = ""
     for i, item in enumerate(items, 1):
         if image_map and i in image_map:
@@ -73,21 +79,24 @@ def _render_iboss_v2(items: List[NewsItem], post_url: str = "", image_map: dict 
             thumb = (f'<span class="v2-item-thumb v2-item-thumb-grad" '
                      f'style="background:linear-gradient({gradient})">{emoji}</span>')
         summary = f'<p>{_esc(item.summary)}</p>' if item.summary else ""
-        href = item.url or post_url or "#"
         rows += f"""
-        <a class="v2-item" href="{_esc(href)}" target="_blank" rel="noopener">
+        <div class="v2-item">
             <span class="v2-item-thumbwrap">{thumb}<span class="v2-item-rank">{i}</span></span>
             <span class="v2-item-body"><h3>{_esc(item.title)}</h3>{summary}</span>
-            <span class="v2-item-chev">›</span>
-        </a>"""
+        </div>"""
+    source_link = (
+        f'<a class="v2-source-link" href="{_esc(source_url)}" target="_blank" rel="noopener">아이보스 원문 →</a>'
+        if source_url else ""
+    )
     return f"""
     <div class="v2-card">
         <div class="v2-card-header">
             <span class="v2-card-icon">📰</span>
             <div>
                 <div class="v2-card-title">오늘의 마케팅 뉴스</div>
-                <div class="v2-card-source">아이보스 · 클릭하면 원문</div>
+                <div class="v2-card-source">아이보스 뉴스클리핑</div>
             </div>
+            {source_link}
         </div>
         <div class="v2-newslist">{rows}</div>
     </div>"""
@@ -302,8 +311,7 @@ img{display:block;max-width:100%;}
 .v2-source-link{margin-left:auto;font-size:12px;color:var(--accent);white-space:nowrap;}
 
 .v2-newslist{display:flex;flex-direction:column;gap:2px;}
-.v2-item{display:flex;align-items:center;gap:14px;padding:12px 8px;border-radius:16px;transition:background .15s;}
-.v2-item:hover{background:var(--ground);}
+.v2-item{display:flex;align-items:center;gap:14px;padding:12px 8px;border-radius:16px;}
 .v2-item-thumbwrap{position:relative;flex:none;}
 .v2-item-thumb{width:84px;height:84px;border-radius:15px;object-fit:cover;background:var(--ground);}
 .v2-item-thumb-grad{display:flex;align-items:center;justify-content:center;font-size:34px;}
@@ -314,7 +322,6 @@ img{display:block;max-width:100%;}
                  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .v2-item-body p{font-size:13px;line-height:1.5;color:var(--ink3);
                 display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
-.v2-item-chev{flex:none;color:var(--gray);font-size:22px;line-height:1;}
 
 .v2-neu-section{display:flex;flex-direction:column;}
 .v2-neu-row{display:flex;align-items:flex-start;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);}
@@ -395,6 +402,13 @@ img{display:block;max-width:100%;}
 .v2-arc-cta-none{color:var(--gray);font-weight:400;}
 
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px;}
+
+/* 데스크톱(웹): 페이퍼 폭을 넓히고 아이보스 뉴스를 2단으로 — 모바일은 위 기본값 유지 */
+@media (min-width:700px){
+  .v2-wrapper{max-width:680px;padding:32px 16px 64px;}
+  .v2-newslist{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:2px;}
+  .v2-item{align-items:flex-start;}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
 """
 
