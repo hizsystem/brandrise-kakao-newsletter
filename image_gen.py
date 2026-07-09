@@ -43,12 +43,14 @@ HEADERS = {
     )
 }
 
-STYLE_PREFIX = "Editorial illustration with soft pastel palette centered on pink (#FFB5C8) and mint (#B8E8D0): "
+STYLE_PREFIX = "Flat vector illustration in the clean friendly style of the Toss fintech app: "
 
 STYLE_SUFFIX = (
-    ". Rounded forms, friendly and modern feel, warm lighting, gentle shadows. "
-    "Keep pink/mint as dominant hues but allow small accent colors when the subject demands. "
-    "No people, no faces, no text, no letters, no logos, no dark moody tones, no photorealism."
+    ". Soft rounded geometric shapes, minimal composition with generous negative space, "
+    "smooth subtle gradients, gentle soft shadows, no outlines. Muted soft palette with a clear "
+    "blue (#3182F6) as the main accent on a plain off-white (#F2F4F6) background. Single clear "
+    "central concept, centered. No people, no faces, no text, no letters, no numbers, no logos, "
+    "no photorealism, no dark moody tones."
 )
 
 MAX_WORKERS = 4
@@ -93,7 +95,7 @@ def generate_prompts_batch(
             "프롬프트 구성 규칙:\n"
             "- 기사에만 등장하는 고유한 사물 3-4개를 조합해 '한 장면(scene)'을 묘사 (단순 아이콘 나열 금지)\n"
             "- 매 기사마다 **구도(앵글)**를 달리 하세요: 탑다운, 등각투영, 정면, 약간 위에서 내려다보기, 옆에서 바라보기 등\n"
-            "- 매 기사마다 **질감 변주**를 주세요: 부드러운 클레이, 종이접기(paper-craft), 플랫 일러스트, 수채화, 미니어처 모형 등\n"
+            "- 질감은 **전 기사 공통으로 토스풍 플랫 벡터 일러스트**로 통일하세요. 클레이·수채화·사실적 질감 금지. 변주는 사물 조합과 구도로만 주세요.\n"
             "- 사물 사이의 관계/배치를 명시 (위에, 옆에, 안에서 나오는, 연결된, 둘러싼 등)\n"
             "- 같은 주제라도 본문이 다르면 사물 조합과 구도가 모두 달라야 함\n\n"
             "좋은 예:\n"
