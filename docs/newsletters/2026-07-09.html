@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 7월 9일">
+    <meta property="og:description" content="목요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 7월 9일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-07-09</div>
+        <div class="header-title">7월 9일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">목요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 목요일 마케팅 소식 전해드립니다 😊 오늘은 광고 시장의 성과 측정 기준이 바뀌는 흐름이 인상적입니다. 넷플릭스가 광고 지표를 단순 노출에서 '어텐션 투 커넥션', 즉 주목도와 행동 연결로 전환하겠다고 밝혔는데요, 광고 시청자 74%가 실제 검색·구매 행동으로 이어졌다는 데이터는 도달보다 몰입이 더 중요한 시대임을 확인시켜 줍니다.</p><p>한편 플랫폼들의 AI 콘텐츠 신뢰성 관리도 빠르게 강화되고 있습니다. 네이버쇼핑은 AI 생성 이미지·영상에 대한 표시 의무를 강화해 소비자 기만 행위를 차단하고, 레딧은 챗GPT·제미나이 답변에 브랜드를 끼워 넣으려는 GEO 스팸을 AI로 직접 단속하기 시작했습니다. 콘텐츠의 진정성과 투명성이 이제 선택이 아닌 기본 조건이 되어가고 있습니다.</p><p>오늘도 활기차게 시작하세요! 이번 주 남은 하루도 좋은 인사이트 가득한 하루 되시길 바랍니다! 🎉</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">네이버쇼핑, AI 생성물 표시 의무화… 10일부터 상품 등록 기준 강화</div>
+            <div class="news-summary">네이버쇼핑이 AI 생성물 사용 기준을 강화했다. AI로 제작하거나 변형한 상품 이미지·영상은 허위·과장 표현과 소비자 기만행위를 금지하며, 의료기기·건기식 등 일부 카테고리는 AI 활용 사실을 의무 표시해야 한다. 기준을 위반하면 상품 미노출과 클린 프로그램 페널티가 적용된다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">메타, 인스타·왓츠앱에 AI 이미지 탑재… 20억 이용자 공략</div>
+            <div class="news-summary">메타가 인스타그램·왓츠앱에 AI 이미지 생성 서비스 ‘뮤즈 이미지’를 도입했다. 사진 보정, 가족사진 복원, 스타일 변환을 지원하며, 수개월 내 영상 생성도 예고했다. 수주 내 광고 이미지 제작까지 확대해 20억 이용자 기반 생활형 AI 전략에 속도를 내는 모습이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">넷플릭스, 광고 성과 기준을 노출에서 주목도로 전환</div>
+            <div class="news-summary">넷플릭스는 국내 광고주 600여 명 대상 행사에서 ‘어텐션 투 커넥션’을 공개했다. 넷플릭스는 광고 시청자 74%가 검색·구매 등 행동을 보였다고 밝혔고, 리서치 기관 칸타의 연구에서도 주목도와 브랜드 효과의 높은 상관관계를 제시했다. 2027년까지 27개국으로 광고 서비스를 넓힌다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">허위조작정보법 시행, 포털 콘텐츠 운영 기준 강화</div>
+            <div class="news-summary">네이버와 다음이 DAU 100만 명 이상 플랫폼 의무 강화에 맞춰 신고·삭제 기준을 개정했다. 허위조작정보 유통은 게시물 제한과 이용 금지 사유가 되며, 브랜드 계정은 사칭·과장 표현, 광고·후원형 콘텐츠의 사실 검증, 오픈채팅 운영 리스크와 6개월 이의신청 절차를 점검해야 한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">엑스, iOS 동영상 편집기 도입… 오리지널 콘텐츠 확보전 강화</div>
+            <div class="news-summary">엑스가 iOS 앱에 촬영·편집 도구를 추가하며 틱톡식 영상 경쟁에 나섰다. 다국어 자막, 그린스크린을 지원하고 원본 콘텐츠 보상과 노출을 강화한다. 영상 반응 기능과 100만 달러 지급 프로그램까지 더해 창작자 유입, 체류 시간, AI 학습 데이터 확보까지 동시에 노린다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">레딧, 챗GPT 노린 GEO 스팸 마케팅 AI로 단속</div>
+            <div class="news-summary">레딧이 챗GPT·제미나이 답변에 브랜드를 노출하려는 스팸성 게시물과 댓글 단속을 강화한다. 1분기 하루 평균 2만 5000건을 적발하고 이용자 노출을 20% 줄였다. 리치LLM은 챗GPT 인용 게시물 삭제 사례를 밝혔으며, GEO 확산 속 AI 인용 마케팅의 계정 정지 리스크가 커지고 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">카카오톡 카나나, 여행·문화 예약까지 확장</div>
+            <div class="news-summary">카카오는 8일 카카오톡 AI 서비스 카나나의 장소 에이전트 기능을 강화해 식당 중심 추천을 관광지·숙박·전시·공연·영화관·주유소·편의점·정비소까지 확대했다. 대화 맥락에 맞춘 탐색부터 예약까지 앱 안에서 처리하고, 향후 카카오맵 연동 일정 추천도 검토 중이다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">🎨</span>
+            <span class="card-title">전시 / 팝업 / 공간 추천</span>
+            <span class="card-source">헤이팝</span>
+        </div>
+        
+        <div class="heypop-item">
+            <div class="heypop-title">비 오는 날, 일부러 가고 싶은 공간 5</div>
+            <div class="heypop-desc">장마철에도 외출을 고민하는 당신에게</div>
+            <a class="heypop-link" href="https://heypop.kr/n/139666/" target="_blank">→ 자세히 보기</a>
+        </div>
+        <div class="heypop-item">
+            <div class="heypop-title">빌라레코드와 모스카펫이 한집에 산다</div>
+            <div class="heypop-desc">남산에 문 연 리빙 커뮤니티 쇼룸</div>
+            <a class="heypop-link" href="https://heypop.kr/n/139145/" target="_blank">→ 자세히 보기</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">시들함 극복법 : 우울함도 번아웃도 아닌데, 사는 게 재미없나요?</div>
+        <div class="longblack-subtitle">“나, 요즘 인생이 영 무無맛이야.”지난 주말에 만난 친구가 하소연했어요. 회사 일도 할 만하고, 인간관계에 트러블이 있는 것도 아니라더군요.</div>
+        <a class="longblack-link" href="https://www.longblack.co/note/2042" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
