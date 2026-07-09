@@ -45,3 +45,17 @@ def test_top_entry_utm_and_copy():
     assert "utm_content=top" in entry
     assert "utm_source=web" in entry
     assert "막막하다면" in entry
+
+
+def test_build_uses_pretendard_and_tokens():
+    html = H.build_html_v2([], [], [], None, [], greeting="안녕하세요! 테스트입니다.")
+    assert "pretendard" in html.lower()
+    assert "Noto+Sans+KR" not in html
+    assert "--accent:#3182f6" in html.replace(" ", "").lower() or "--accent: #3182f6" in html.lower()
+    assert "word-break:keep-all" in html.replace(" ", "").lower()
+
+
+def test_build_includes_entry_and_cta():
+    html = H.build_html_v2([], [], [], None, [], greeting="안녕하세요!")
+    assert "utm_content=top" in html
+    assert "utm_content=bottom" in html
