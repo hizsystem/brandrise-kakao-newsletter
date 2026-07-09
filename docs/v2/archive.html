@@ -52,8 +52,7 @@ img{display:block;max-width:100%;}
 .v2-source-link{margin-left:auto;font-size:12px;color:var(--accent);white-space:nowrap;}
 
 .v2-newslist{display:flex;flex-direction:column;gap:2px;}
-.v2-item{display:flex;align-items:center;gap:14px;padding:12px 8px;border-radius:16px;transition:background .15s;}
-.v2-item:hover{background:var(--ground);}
+.v2-item{display:flex;align-items:center;gap:14px;padding:12px 8px;border-radius:16px;}
 .v2-item-thumbwrap{position:relative;flex:none;}
 .v2-item-thumb{width:84px;height:84px;border-radius:15px;object-fit:cover;background:var(--ground);}
 .v2-item-thumb-grad{display:flex;align-items:center;justify-content:center;font-size:34px;}
@@ -64,7 +63,6 @@ img{display:block;max-width:100%;}
                  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .v2-item-body p{font-size:13px;line-height:1.5;color:var(--ink3);
                 display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
-.v2-item-chev{flex:none;color:var(--gray);font-size:22px;line-height:1;}
 
 .v2-neu-section{display:flex;flex-direction:column;}
 .v2-neu-row{display:flex;align-items:flex-start;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);}
@@ -145,6 +143,13 @@ img{display:block;max-width:100%;}
 .v2-arc-cta-none{color:var(--gray);font-weight:400;}
 
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px;}
+
+/* 데스크톱(웹): 페이퍼 폭을 넓히고 아이보스 뉴스를 2단으로 — 모바일은 위 기본값 유지 */
+@media (min-width:700px){
+  .v2-wrapper{max-width:680px;padding:32px 16px 64px;}
+  .v2-newslist{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:2px;}
+  .v2-item{align-items:flex-start;}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
 
 .v2-arc-full-item { display: flex; justify-content: space-between; align-items: center;
