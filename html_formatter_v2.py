@@ -478,6 +478,18 @@ def _prefix(image_map: dict, is_subpage: bool) -> dict:
     return {k: f"../{v}" for k, v in image_map.items()}
 
 
+# 브랜드라이즈 상담 진입점 (인사말 바로 아래, 상단)
+BRANDRISE_ENTRY_HTML = (
+    '<div class="v2-entry">'
+    '<a href="https://forms.gle/R5FaijsFD4VoTEsj9?utm_source=web&amp;utm_medium=cta&amp;utm_campaign=brandrise&amp;utm_content=top" '
+    'target="_blank" rel="noopener">'
+    '<span class="v2-entry-ico">💬</span>'
+    '<span class="v2-entry-txt"><b>브랜딩·마케팅, 어디서부터 막막하다면</b>'
+    '<span>30분 무료 상담으로 방향부터 잡아보세요</span></span>'
+    '<span class="v2-entry-go">상담 →</span>'
+    '</a></div>'
+)
+
 # 브랜드라이즈 무료 상담 CTA (모든 뉴스레터 페이지 하단 공통)
 BRANDRISE_CTA_HTML = (
     '<div class="v2-cta">'

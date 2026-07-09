@@ -38,3 +38,10 @@ def test_bottom_cta_copy_and_utm():
     assert "utm_source=web" in cta
     assert "utm_content=bottom" in cta
     assert "utm_source=kakao" not in cta  # 웹 링크가 kakao로 오집계되던 버그 제거
+
+
+def test_top_entry_utm_and_copy():
+    entry = H.BRANDRISE_ENTRY_HTML
+    assert "utm_content=top" in entry
+    assert "utm_source=web" in entry
+    assert "막막하다면" in entry
