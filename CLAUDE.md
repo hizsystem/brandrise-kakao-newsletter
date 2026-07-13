@@ -31,7 +31,8 @@ python -c "import sys,io; sys.stdout=io.TextIOWrapper(sys.stdout.buffer,encoding
 3. **formatter.py**: 수집 데이터를 카카오톡 오픈채팅 전송용 텍스트로 조립 + Claude API로 인사말 생성
 
 ### 요일별 수집 소스
-- **매일**: 아이보스(iboss), 뉴스럴(neusral), 롱블랙(longblack)
+- **매일**: 뉴스 큐레이션(curated_news — RSS 5개 피드 + Claude 선별), 롱블랙(longblack)
+  - 아이보스(iboss)는 2026-07-13부터 미사용 (i-boss.co.kr이 GitHub Actions 러너 IP 403 차단). 뉴스럴(neusral)은 2026-06-22부터 주석 비활성화.
 - **화요일(weekday=1)**: 풋풋레터, 캐릿 (stibee 공유 URL → `config.yaml`의 `tuesday_newsletters`에 매주 수동 업데이트 필요)
 - **수요일(weekday=2)**: 빌더조쉬 (maily.so/josh — `builder_josh.url` 발송 직전 수동 갱신)
 - **목요일(weekday=3)**: 헤이팝(heypop)
@@ -40,7 +41,8 @@ python -c "import sys,io; sys.stdout=io.TextIOWrapper(sys.stdout.buffer,encoding
 ### 각 수집기 특성
 | 파일 | 반환 타입 | 소스 |
 |------|----------|------|
-| `iboss.py` | `List[NewsItem]` | 아이보스 마케팅 뉴스 (번호 매긴 메인 기사) |
+| `curated_news.py` | `List[NewsItem]` | 마케팅 미디어 RSS(매드타임스·브랜드브리프·모비인사이드·바이라인네트워크·플래텀) → Claude 7건 선별·요약, 기사별 원문 URL |
+| `iboss.py` | `List[NewsItem]` | (미사용) 아이보스 마케팅 뉴스 — NewsItem dataclass 정의는 여기 있음 |
 | `neusral.py` | `List[CategoryNews]` | 뉴스럴 카테고리별 헤드라인 |
 | `heypop.py` | `List[HeypopItem]` | heypop.kr 메인 `.card-item` 최신 2개 |
 | `longblack.py` | `LongblackItem` | 롱블랙 TODAY 섹션 아티클 |
@@ -50,7 +52,7 @@ python -c "import sys,io; sys.stdout=io.TextIOWrapper(sys.stdout.buffer,encoding
 
 ### 포맷 구조 (출력 순서)
 1. `📌날짜 마케팅 뉴스` 헤더
-2. 아이보스 번호 기사 (1~7개)
+2. 큐레이션 뉴스 번호 기사 (1~7개, 변수·파라미터명은 호환을 위해 `iboss_items` 유지)
 3. 뉴스럴 카테고리 헤드라인 (`🏷️카테고리`)
 4. 헤이팝 (목요일만): `📌전시/팝업/공간 추천 [헤이팝 레터]` → `✅ 제목 / 설명 / URL` (2개)
 5. 스티비/maily 뉴스레터 (요일별): 빌더조쉬(수/금) → 풋풋레터·캐릿(화) → 까탈로그(금) 순으로 `stibee_items` 리스트 처리
