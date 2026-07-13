@@ -64,9 +64,9 @@ def _get_theme(text: str) -> tuple:
 def _render_iboss_v2(items: List[NewsItem], post_url: str = "", image_map: dict = None) -> str:
     if not items:
         return ""
-    # 아이보스 뉴스클리핑은 개별 원문 링크가 없는 모음글이다. 항목마다 같은 URL로
-    # 보내는 가짜 링크 대신, 항목은 비링크로 두고 섹션 헤더에서 모음글 원문으로
-    # 한 번만 연결한다. (원문 URL이 아이보스 글일 때만 노출)
+    # 자체 큐레이션 뉴스(2026-07-13~)는 기사마다 실제 원문 URL이 있어 항목별 링크를 건다.
+    # 아이보스 시절 데이터(개별 링크 없음, 모음글 URL 폴백)는 비링크 <div> + 헤더
+    # 단일 링크로 렌더된다 — i-boss.co.kr URL은 가짜 개별 링크였으므로 항목에 걸지 않는다.
     source_url = post_url or next(
         (it.url for it in items if it.url and "i-boss.co.kr" in it.url), ""
     )
@@ -79,10 +79,17 @@ def _render_iboss_v2(items: List[NewsItem], post_url: str = "", image_map: dict 
             thumb = (f'<span class="v2-item-thumb v2-item-thumb-grad" '
                      f'style="background:linear-gradient({gradient})">{emoji}</span>')
         summary = f'<p>{_esc(item.summary)}</p>' if item.summary else ""
-        rows += f"""
-        <div class="v2-item">
+        inner = f"""
             <span class="v2-item-thumbwrap">{thumb}<span class="v2-item-rank">{i}</span></span>
-            <span class="v2-item-body"><h3>{_esc(item.title)}</h3>{summary}</span>
+            <span class="v2-item-body"><h3>{_esc(item.title)}</h3>{summary}</span>"""
+        if item.url and "i-boss.co.kr" not in item.url:
+            rows += f"""
+        <a class="v2-item" href="{_esc(item.url)}" target="_blank" rel="noopener">{inner}
+            <span class="v2-item-chev">›</span>
+        </a>"""
+        else:
+            rows += f"""
+        <div class="v2-item">{inner}
         </div>"""
     source_link = (
         f'<a class="v2-source-link" href="{_esc(source_url)}" target="_blank" rel="noopener">아이보스 원문 →</a>'
@@ -94,7 +101,7 @@ def _render_iboss_v2(items: List[NewsItem], post_url: str = "", image_map: dict 
             <span class="v2-card-icon">📰</span>
             <div>
                 <div class="v2-card-title">오늘의 마케팅 뉴스</div>
-                <div class="v2-card-source">아이보스 뉴스클리핑</div>
+                <div class="v2-card-source">브랜드라이즈 AI 큐레이션</div>
             </div>
             {source_link}
         </div>
@@ -311,7 +318,9 @@ img{display:block;max-width:100%;}
 .v2-source-link{margin-left:auto;font-size:12px;color:var(--accent);white-space:nowrap;}
 
 .v2-newslist{display:flex;flex-direction:column;gap:2px;}
-.v2-item{display:flex;align-items:center;gap:14px;padding:12px 8px;border-radius:16px;}
+.v2-item{display:flex;align-items:center;gap:14px;padding:12px 8px;border-radius:16px;transition:background .15s;}
+a.v2-item:hover{background:var(--ground);}
+.v2-item-chev{flex:none;color:var(--gray);font-size:22px;line-height:1;}
 .v2-item-thumbwrap{position:relative;flex:none;}
 .v2-item-thumb{width:84px;height:84px;border-radius:15px;object-fit:cover;background:var(--ground);}
 .v2-item-thumb-grad{display:flex;align-items:center;justify-content:center;font-size:34px;}

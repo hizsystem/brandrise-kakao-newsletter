@@ -22,7 +22,7 @@ from datetime import datetime, timedelta
 from timeutil import now_kst
 from pathlib import Path
 
-from collectors import iboss, neusral, heypop
+from collectors import iboss, neusral, heypop, curated_news
 from collectors import longblack as longblack_collector
 from collectors import stibee as stibee_collector
 from collectors import builder_josh as builder_josh_collector
@@ -110,13 +110,15 @@ def run_newsletter(config: dict, preview_only: bool = False):
     stibee_items = []
     email_newsletters = {}
 
-    # 아이보스 (매일)
+    # 마케팅 뉴스 (매일) — RSS 자체 큐레이션.
+    # 아이보스 뉴스클리핑은 2026-07-10부터 GitHub Actions 러너 IP를 403 차단해 교체 (2026-07-13).
+    # 변수명 iboss_items는 포맷터·이미지 생성 시그니처 호환을 위해 유지.
     try:
-        print("  → 아이보스 수집 중...")
-        iboss_items = iboss.fetch(config["sites"]["iboss"]["url"])
-        print(f"     {len(iboss_items)}개 항목 수집")
+        print("  → 마케팅 뉴스 큐레이션 중 (RSS + Claude)...")
+        iboss_items = curated_news.fetch(config)
+        print(f"     {len(iboss_items)}건 선별")
     except Exception as e:
-        print(f"  [WARN] 아이보스 수집 실패: {e}")
+        print(f"  [WARN] 뉴스 큐레이션 실패: {e}")
 
     # 뉴스럴 (매일) — 일시 비활성화 (2026-06-22). 되살리려면 아래 블록 주석 해제.
     # try:
@@ -364,6 +366,7 @@ def run_newsletter(config: dict, preview_only: bool = False):
 def run_test(config: dict):
     print("\n=== 수집기 테스트 ===\n")
     for name, fn, args in [
+        ("뉴스큐레이션", curated_news.fetch, [config]),
         ("아이보스", iboss.fetch, [config["sites"]["iboss"]["url"]]),
         ("뉴스럴",  neusral.fetch, [config["sites"]["neusral"]["url"]]),
         ("롱블랙",  longblack_collector.fetch, []),
