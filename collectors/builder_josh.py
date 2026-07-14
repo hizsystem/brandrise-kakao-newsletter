@@ -24,6 +24,38 @@ BODY_CHAR_CAP = 4000  # LLM 입력 길이 제한 (Groq 무료 티어 토큰 제�
 LLM_TIMEOUT = 60
 LLM_MAX_TOKENS = 800
 
+FEED_URL = "https://maily.so/josh/feed"
+
+
+def fetch_latest_url(feed_url: str = FEED_URL) -> Optional[tuple]:
+    """maily RSS 피드의 최신 글 (url, 발행시각 KST naive) 반환. 실패 시 None.
+
+    빌더조쉬는 수·금 08:05 KST에 발행되므로 발송 시각(10:00) 기준으로
+    당일 글이 피드 맨 위에 온다.
+    """
+    from xml.etree import ElementTree as ET
+    from email.utils import parsedate_to_datetime
+    from datetime import timezone, timedelta
+
+    try:
+        r = requests.get(feed_url, headers=HEADERS, timeout=15)
+        r.raise_for_status()
+        item = ET.fromstring(r.content).find("./channel/item")
+        if item is None:
+            return None
+        link = (item.findtext("link") or "").strip()
+        if not link:
+            return None
+        pub = None
+        pub_raw = item.findtext("pubDate") or ""
+        if pub_raw:
+            dt = parsedate_to_datetime(pub_raw)
+            pub = dt.astimezone(timezone(timedelta(hours=9))).replace(tzinfo=None)
+        return link, pub
+    except Exception as e:
+        print(f"  [WARN] 빌더조쉬 피드 조회 실패: {e}")
+        return None
+
 
 def fetch(
     url: str,

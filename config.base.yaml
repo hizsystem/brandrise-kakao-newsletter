@@ -7,7 +7,7 @@ anthropic:
 gemini:
   model: gemini-2.5-flash
 schedule:
-  send_time: "08:30"
+  send_time: "10:00"
 sites:
   iboss:
     url: https://www.i-boss.co.kr/ab-7214
@@ -30,6 +30,7 @@ tuesday_newsletters:
 builder_josh:
   url: ""
   name: 빌더조쉬
+  feed_url: https://maily.so/josh/feed
 friday_newsletters:
   catalogue:
     url: ""

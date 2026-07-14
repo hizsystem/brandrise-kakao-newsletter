@@ -1,7 +1,7 @@
 name: Daily Newsletter
 on:
   schedule:
-    - cron: "30 23 * * 0-4"
+    - cron: "0 1 * * 1-5"  # 10:00 KST 월~금
   workflow_dispatch:
 
 permissions:

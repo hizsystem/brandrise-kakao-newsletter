@@ -21,3 +21,6 @@ jobs:
         run: |
           python bootstrap.py
           python -m collectors.curated_news
+      - name: Builder Josh feed resolution (no publish)
+        run: |
+          python -c "from collectors.builder_josh import fetch_latest_url; r = fetch_latest_url(); print('feed latest:', r); assert r and r[0].startswith('https://maily.so/'), 'feed resolution failed'"

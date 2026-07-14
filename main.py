@@ -44,6 +44,20 @@ def load_config() -> dict:
         return yaml.safe_load(f)
 
 
+def _recently_featured(url: str, days: int = 6) -> bool:
+    """최근 발행분 HTML에 이미 실린 URL인지 확인 (중복 수록 방지)."""
+    newsletters_dir = OUTPUT_DIR / "docs" / "v2" / "newsletters"
+    today = now_kst()
+    for d in range(days + 1):
+        f = newsletters_dir / f"{(today - timedelta(days=d)).strftime('%Y-%m-%d')}.html"
+        try:
+            if f.exists() and url in f.read_text(encoding="utf-8"):
+                return True
+        except OSError:
+            continue
+    return False
+
+
 def _rebuild_archives(docs_dir: Path, today: datetime = None):
     """전체 아카이브(archive.html) + 주간 아카이브(index.html, 주말만) 재생성"""
     from html_formatter_v2 import build_full_archive_v2, build_weekly_archive_v2
@@ -188,11 +202,27 @@ def run_newsletter(config: dict, preview_only: bool = False):
                 except Exception as e:
                     print(f"  [WARN] {name} 수집 실패: {e}")
 
-    # 수/금 빌더조쉬 - 단일 config 슬롯 (수/금 발송 직전 URL 수동 갱신)
+    # 수/금 빌더조쉬 - 피드 최신 글 자동 해석 1순위, config 수동 URL 폴백
     if weekday in (2, 4):
         bj_cfg = config.get("builder_josh", {})
-        url = bj_cfg.get("url", "")
         name = bj_cfg.get("name", "빌더조쉬")
+        url = ""
+        latest = builder_josh_collector.fetch_latest_url(
+            bj_cfg.get("feed_url", builder_josh_collector.FEED_URL))
+        if latest:
+            latest_url, pub = latest
+            if pub is None or (now_kst() - pub).days <= 6:
+                url = latest_url
+                print(f"  → {name} 피드 최신 글 자동 해석"
+                      + (f" ({pub:%m-%d %H:%M})" if pub else ""))
+            else:
+                print(f"  → {name} 피드 최신 글이 오래됨({pub:%m-%d}) — 생략")
+        if not url:
+            url = bj_cfg.get("url", "")
+        # 최근 호에 이미 실린 글이면 생략 (같은 글 수→금 중복 수록 방지)
+        if url and _recently_featured(url):
+            print(f"  → {name} 최근 호에 이미 수록된 글 — 생략")
+            url = ""
         if url:
             try:
                 print(f"  → {name} 수집 중...")
