@@ -35,3 +35,7 @@ jobs:
         run: |
           python bootstrap.py
           python main.py --now
+      - name: Slack notify
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: python slack_notify.py

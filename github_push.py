@@ -50,6 +50,17 @@ def push_to_github(repo_dir: Path, date_str: str) -> bool:
         print(f"  [WARN] git commit 실패: {out}")
         return False
 
+    # 스테일 체크아웃(Render 등 호스팅 스냅샷) 대비: push 전에 원격 최신화.
+    # 충돌 시 방금 생성한 산출물 우선(-X theirs = 리베이스되는 우리 커밋 쪽).
+    ok, out = run(["git", "fetch", "origin", "main"], timeout=60)
+    if ok:
+        ok_rb, out_rb = run(["git", "rebase", "-X", "theirs", "origin/main"], timeout=60)
+        if not ok_rb:
+            run(["git", "rebase", "--abort"])
+            print(f"  [WARN] rebase 실패 — 기존 HEAD로 푸시 시도: {out_rb.splitlines()[-1] if out_rb else ''}")
+    else:
+        print(f"  [WARN] fetch 실패 — 기존 HEAD로 푸시 시도: {out}")
+
     # git push (네트워크 지연/자격증명 대기 등으로 멈추는 것 방지: 120초)
     # 호스팅 체크아웃은 detached HEAD일 수 있어 HEAD:main으로 명시 푸시.
     ok, out = run(["git", "push", "origin", "HEAD:main"], timeout=120)
