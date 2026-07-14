@@ -320,6 +320,13 @@ def run_newsletter(config: dict, preview_only: bool = False):
     save_path.write_text(message, encoding="utf-8")
     print(f"\n  [OK] txt 저장 완료: {save_path.name}")
 
+    # 슬랙용 축약본 (인사말 + 링크만) — slack_notify.py가 전송
+    slack_text = greeting
+    if permalink:
+        slack_text += f"\n\n🔗 오늘 뉴스레터 링크\n{permalink}"
+    slack_path = OUTPUT_DIR / f"output_{today_str}_slack.txt"
+    slack_path.write_text(slack_text, encoding="utf-8")
+
     # === HTML 생성 + GitHub Pages 푸시 ===
     if config.get("github", {}).get("enabled", True):
         try:
