@@ -82,14 +82,16 @@ def _parse_putput(lines: List[str], url: str, source_name: str) -> StibeeNewslet
         # 호수: "232호 | 2026.03.10"
         if re.match(r"^\d+호\s*\|", line) and not issue:
             issue = line
-        # 이번 주 토픽
-        if "이번 주 토픽" in line:
+        # 이번 주 토픽 / 이번 주 풋풋레터는? — 다음 줄이 이번 호 헤드라인
+        if not topic and ("이번 주 토픽" in line or "이번 주 풋풋레터" in line):
             if i + 1 < len(lines):
                 topic = lines[i + 1]
                 title = topic  # title도 같이 세팅
-        # 이번 주 마케팅·트렌드 용어
+        # 이번 주 마케팅·트렌드 용어 (휴재 안내문은 제외)
         if not terms and "마케팅" in line and "용어" in line and i + 1 < len(lines):
-            terms = lines[i + 1]
+            cand = lines[i + 1]
+            if "쉬어가" not in cand:
+                terms = cand
         # ▪️ 항목들
         if line.startswith("▪️") or line.startswith("▪"):
             clean = line.lstrip("▪️").strip()
@@ -98,8 +100,9 @@ def _parse_putput(lines: List[str], url: str, source_name: str) -> StibeeNewslet
 
     if not title:
         for line in lines[:20]:
-            if len(line) > 15 and "(광고)" not in line and "풋풋" not in line:
-                title = line
+            clean = re.sub(r"^\(광고\)", "", line).strip()
+            if len(clean) > 15 and "풋풋" not in clean and "매주 화요일" not in clean:
+                title = clean
                 break
 
     return StibeeNewsletter(
