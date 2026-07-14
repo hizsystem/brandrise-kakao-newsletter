@@ -35,6 +35,11 @@ friday_newsletters:
     url: ""
     name: 까탈로그
     sender_keyword: 까탈로그
+email:
+  imap_host: imap.gmail.com
+  imap_port: 993
+  username: ""   # EMAIL_USERNAME 환경변수로 주입
+  password: ""   # EMAIL_PASSWORD 환경변수로 주입
 email_newsletters:
   longblack:
     sender_keyword: longblack

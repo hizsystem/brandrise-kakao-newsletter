@@ -20,6 +20,8 @@ ENV_SECRETS: dict[str, tuple[str, str]] = {
     "GEMINI_API_KEY": ("gemini", "api_key"),
     "ADMIN_PASSWORD": ("admin", "password"),
     "FLASK_SECRET_KEY": ("admin", "secret_key"),
+    "EMAIL_USERNAME": ("email", "username"),
+    "EMAIL_PASSWORD": ("email", "password"),
 }
 
 
