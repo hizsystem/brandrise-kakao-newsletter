@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 7월 14일">
+    <meta property="og:description" content="화요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 7월 14일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-07-14</div>
+        <div class="header-title">7월 14일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">화요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 화요일 마케팅 소식 전해드립니다 😊 오늘은 AI 활용 방식과 실제 검색 환경 사이의 간극이 선명하게 드러나는 흐름입니다. AI 검색 최적화 논의가 챗GPT·퍼플렉시티에 쏠려 있는 사이, 구글 AI 오버뷰는 이미 전체 검색의 86.7%에 노출되며 압도적인 점유율을 차지하고 있습니다. 많은 브랜드가 실질적으로 가장 큰 채널을 놓치고 있을 수 있다는 점에서, 검색 전략을 다시 점검해볼 시점입니다.</p><p>한편 올리브영의 산리오·포켓몬스터 콜라보 사례도 인상적입니다. 화장품을 사서 캐릭터를 얻는 게 아니라, 캐릭터를 사니 화장품이 따라오는 구조로 구매 동기 자체가 역전됐습니다. IP 콜라보가 단순한 패키지 디자인 변경이 아니라 제품 선택 기준을 바꾸는 수준으로 진화했다는 점에서, 브랜드가 콜라보를 설계하는 방식도 달라져야 한다는 신호로 읽힙니다.</p><p>화요일 아침부터 좋은 인사이트 챙겨가시고, 이번 주도 좋은 흐름 이어가세요! 🚀</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">브랜드가 놓치고 있는 구글 AI 오버뷰 최적화</div>
+            <div class="news-summary">AI 검색 최적화 논의가 챗GPT·퍼플렉시티에 집중되는 사이, 실제로는 구글 AI 오버뷰가 전체 검색의 86.7%에 노출되며 압도적인 점유율을 보이고 있다. AI 검색 분석 플랫폼 피크 AI가 50만 개 프롬프트를 분석한 결과로, 2025년 4월 56.9%였던 노출률이 단기간에 급등한 수치다. 브랜드 SEO 전략을 구글 AI 오버뷰 중심으로 재편하지 않으면 검색 노출 기회를 대거 놓칠 수 있다는 경고다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">미국 광고회사 90%, AI 쓰지만 창의성은 뒷전</div>
+            <div class="news-summary">포레스터와 미국광고협회(4As)가 공동 발표한 보고서에 따르면, 미국 광고회사의 90%가 생성형 AI를 업무에 활용하고 있으나 목적은 비용 절감과 생산성 향상에 집중돼 있다. AI 도입이 광범위하게 확산됐음에도 창의성과 브랜드 경쟁력 강화로는 이어지지 못하고 있다는 분석이다. 효율 중심의 AI 활용이 오히려 브랜드 차별화를 약화시킬 수 있다는 점에서, 국내 마케터들도 AI 활용의 목적을 재점검할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">글로벌 브랜드 3곳 중 2곳, 미디어 성과 측정 체계 미흡</div>
+            <div class="news-summary">세계광고주연맹(WFA)과 에비퀴티가 공동 발간한 보고서에 따르면, 글로벌 브랜드의 약 3분의 2는 페이드 미디어 성과 측정 체계가 충분히 성숙하지 않은 것으로 나타났다. 데이터와 측정 솔루션은 어느 때보다 풍부해졌지만, 이를 예산 집행과 의사결정으로 연결하는 역량은 여전히 부족하다는 진단이다. 미디어 투자 효율을 높이려는 마케터라면 성과 측정 프레임워크 고도화를 우선 과제로 삼아야 함을 시사한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">&quot;AI 잘 쓴 작품 아닌, 사람 이해한 작품이 살아남았다&quot;</div>
+            <div class="news-summary">D&amp;AD 디지털 마케팅 부문 심사위원으로 참여한 양수희 퍼블리시스 그룹 코리아 CCO는 높은 평가를 받은 작품들이 새로운 기술 사용 자체보다 그 기술이 왜 필요했는지에 대한 설득력이 분명했다고 밝혔다. AI가 누구나 쓸 수 있는 도구가 된 시대에 크리에이티브를 구분하는 기준은 기술이 아니라 인간에 대한 이해와 통찰이라는 것이다. 캠페인 기획 단계에서 AI 도입 명분보다 소비자 인사이트 깊이를 먼저 확보하는 것이 차별화의 핵심임을 시사한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">산리오를 사니 화장품이 왔어요…메가 IP 콜라보 전략</div>
+            <div class="news-summary">올리브영 매장과 모바일 앱 메인을 산리오·포켓몬스터 등 글로벌 메가 IP 콜라보 기획 세트가 장악하면서, 화장품을 사서 캐릭터를 얻는 게 아니라 캐릭터를 사서 화장품이 따라오는 구매 패턴이 확산되고 있다. 강력한 팬덤을 지닌 IP가 소비자의 구매 망설임을 제거하는 가장 효과적인 촉매 역할을 하고 있다는 분석이다. 뷰티·라이프스타일 브랜드 마케터라면 IP 협업 기획 시 팬덤의 규모와 과몰입도를 핵심 선정 기준으로 고려해야 한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">쿠팡·컬리·올리브영, 글로벌 확장 공식 제각각</div>
+            <div class="news-summary">쿠팡은 대만에 4번째 물류센터를 열고 로켓직구 시스템을 이식해 국내 중소상공인 1만 곳 이상을 현지 시장에 연결했다. 컬리는 미국 역직구 서비스 '컬리USA'를 론칭했고, CJ올리브영은 미국 서부에 전용 물류센터와 오프라인 매장 2곳을 운영하며 현지화 전략을 강화하고 있다. 국내 이커머스 플레이어들의 해외 진출 방식이 물류 인프라 직접 구축부터 역직구 플랫폼까지 다양하게 분화되고 있어, 글로벌 진출을 검토하는 브랜드라면 각 채널의 전략 차이를 면밀히 살펴볼 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">월드컵 지상파 중계, TV·모바일 생중계 시청 대폭 증가</div>
+            <div class="news-summary">코바코 미디어광고연구소가 성인 1,000명을 대상으로 분석한 결과, JTBC 단독 중계였던 동계올림픽과 달리 복수 채널로 중계 중인 북중미 월드컵에서는 TV와 모바일 생중계 시청이 뚜렷하게 늘었다. 중계 채널의 다변화와 시청 편의성 확대가 스포츠 이벤트의 대중적 확산과 광고 도달 범위를 좌우하는 핵심 변수임이 재확인됐다. 스포츠 이벤트 연동 광고를 집행하는 마케터라면 독점 중계 여부와 채널 다양성을 미디어 믹스 전략에 반드시 반영해야 한다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">평정심 수련법 : 스포츠 선수들은 왜 ‘내면 근력’을 훈련할까</div>
+        <div class="longblack-subtitle">16년 전, 한 달에 100권도 안 팔리던 책이 있었습니다. 그런데 어느 날, 같은 내용의 책이 3주 만에 20만 부가 팔려나갔어요.미국의 스포츠 멘탈 코치 짐 머피Jim Murphy가 겪은 일입니다.</div>
+        <a class="longblack-link" href="https://www.longblack.co/note/2047" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
