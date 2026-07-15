@@ -1,7 +1,14 @@
 name: Daily Newsletter
 on:
   schedule:
-    - cron: "0 1 * * 1-5"  # 10:00 KST 월~금
+    # 목표 도착: 10:00 KST(=01:00 UTC) 월~금.
+    # 이 값(23:30 UTC)은 명목 시각이 아니라 도착 시각을 맞춘 것이다.
+    # GitHub은 schedule 이벤트를 고부하 시 지연 발화하며, 이 리포는 실측 6회 전부
+    # 84~108분(평균 97분) 늦게 떴다(run created_at 기준. 러너 대기는 2초로 무관).
+    # 따라서 23:30 UTC + ~97분 → 09:54~10:17 KST 도착.
+    # 01:00 UTC로 바꾸면 명목상 10:00이지만 실제 도착은 ~11:30이 된다(2026-07-14~15 실측).
+    # 시각을 손대기 전에 반드시 `gh run list --json createdAt,event`로 실제 발화 시각을 측정할 것.
+    - cron: "30 23 * * 0-4"
   workflow_dispatch:
 
 permissions:
