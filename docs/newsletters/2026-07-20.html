@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 7월 20일">
+    <meta property="og:description" content="월요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 7월 20일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-07-20</div>
+        <div class="header-title">7월 20일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">월요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 월요일 마케팅 소식 전해드립니다 😊 오늘은 AI가 브랜드 경쟁력의 새로운 축으로 떠오르는 흐름이 두드러집니다. 챗GPT·클로드·제미나이 같은 생성형 AI가 소비자의 정보 탐색과 구매 결정에 깊이 개입하면서, AI가 브랜드를 어떻게 인식하고 추천하는지를 관리하는 'AI 가시성'이 새로운 PR 경쟁력으로 부상하고 있습니다. OpenAI 역시 챗GPT 이미지 기능을 활용한 첫 대규모 OOH 캠페인을 LA·뉴욕 등 미국 주요 도시에서 전개하며, AI 기반 마케팅의 영역을 오프라인으로까지 확장하고 있습니다.</p><p>롱블랙에서는 일본 1위 광고기획사 마케터의 '인사이트' 파악법을 다루고 있어 함께 소개드립니다. '인사이트'라는 단어는 마케터라면 매일 쓰지만, 정작 그것을 제대로 발굴하고 설명하기가 쉽지 않죠. 소비자의 숨겨진 본심을 어떻게 읽어낼 것인지, 현장 감각이 담긴 이야기라 이번 주 업무에 바로 적용해볼 만한 내용입니다.</p><p>무신사의 '무진장 2026 여름 블랙프라이데이'가 성수동 오프라인 거점과 연계해 역대 최대 거래액을 기록했다는 소식도 인상적입니다. 온라인 세일에 오프라인 경험을 결합하는 방식이 실질적인 성과로 이어진 사례인 만큼, 커머스 전략을 고민하시는 분들께 좋은 참고가 될 것 같습니다. 이번 주도 좋은 인사이트 가득한 한 주 되시길 바랍니다! 🚀</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">유튜브 광고 매출 400억 달러 돌파…TV·쇼츠가 새 성장 동력</div>
+            <div class="news-summary">유튜브 연간 광고 매출이 400억 달러를 돌파했으나 성장세는 둔화 추세다. 쇼츠와 커넥티드 TV(CTV) 중심으로 이용자 소비는 증가하고 있지만, 틱톡과 넷플릭스의 광고 시장 공세가 거세지며 새로운 경쟁 국면이 형성되고 있다. WARC 미디어 보고서를 통해 확인된 이 흐름은 유튜브 광고 예산 배분 시 쇼츠·CTV 지면의 전략적 비중 확대를 검토해야 함을 시사한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">'AI 가시성'이 새 PR 경쟁력…AI가 추천하는 브랜드가 선택받는다</div>
+            <div class="news-summary">생성형 AI가 소비자 정보 탐색과 구매 결정에 깊숙이 개입하면서 챗GPT·클로드·제미나이 등이 브랜드를 어떻게 인식하고 추천하는지를 관리하는 'AI 가시성'이 새로운 PR 경쟁력으로 부상하고 있다. 멜트워터가 발표한 가이드는 언론 노출을 넘어 AI 학습 데이터에서의 브랜드 포지셔닝 관리를 강조한다. 마케터는 기존 SEO 전략과 함께 AI 추천 최적화(AEO) 전략을 병행할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">무신사 '무진장 2026', 성수동 오프라인 연계로 역대 최대 흥행</div>
+            <div class="news-summary">무신사의 시그니처 세일 행사 '무진장 2026 여름 블랙프라이데이'가 역대 최대 거래액을 기록했다. 신규 오프라인 거점 '무신사 메가스토어 성수' 개점과 맞물려 온라인 캠페인 성과를 오프라인 공간까지 연결하는 전략이 주효했다. 온·오프라인 통합 캠페인 설계와 지역 거점 공간을 브랜드 경험으로 활용하는 방식은 국내 이커머스 마케터에게 실질적인 참고 사례가 된다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">넷플릭스, 올해 공개작 300편에 생성형 AI 활용…전 과정으로 확대</div>
+            <div class="news-summary">넷플릭스가 2026년 2분기 실적 발표에서 올해 공개한 약 300편의 콘텐츠 제작에 생성형 AI를 적용했다고 밝혔다. AI는 기획·프리비주얼·후반 작업·최종 편집 등 제작 전 과정에 걸쳐 활용되며, 현재는 후반 작업에서 가장 광범위하게 쓰이고 있다. AI가 콘텐츠 제작 실험 단계를 넘어 산업 표준으로 자리 잡는 속도가 빨라지고 있어, 브랜드 콘텐츠 제작 workflow에서도 AI 도입 전략 수립이 시급해졌다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">문화적 관련성 높은 브랜드, 기업가치 2.8배 높다</div>
+            <div class="news-summary">컬처랩이 커먼 인터레스트, 더그 샤피로와 공동 진행한 연구에서 문화적 관련성이 높은 브랜드는 그렇지 않은 브랜드보다 평균 2.8배 높은 기업가치를 인정받는 것으로 나타났다. 이는 브랜드 포지셔닝이 단순한 마케팅 지표를 넘어 재무적 가치와 직결됨을 실증한 결과다. 마케터는 문화 트렌드와의 접점을 브랜드 전략의 핵심 KPI로 반영하는 방안을 고려할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">오픈AI, 챗GPT 이미지로 첫 대규모 OOH 캠페인 전개</div>
+            <div class="news-summary">오픈AI가 생성형 AI 이미지 기능 '챗GPT 이미지'를 활용한 첫 대규모 옥외광고 캠페인을 5월부터 8월까지 LA·뉴욕 등 미국 주요 도시에서 진행하고 있다. 제품 기능 나열 대신 각 지역 크리에이터들이 AI로 제작한 작품을 대형 빌보드에 전시해 공공 공간을 AI 갤러리로 전환한 것이 특징이다. AI 기술 자체를 크리에이티브의 증거로 제시하는 이 접근법은 AI 마케팅 커뮤니케이션의 새로운 방법론으로 주목할 만하다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">WPP, 연말까지 수백 명 추가 감원…'Elevate28' 구조조정 본격화</div>
+            <div class="news-summary">글로벌 광고 그룹 WPP가 신임 CEO 신디 로즈의 중장기 전략 'Elevate28'에 따라 올해 말까지 수백 명 규모의 추가 감원을 단행할 예정이다. VML 등 일부 계열사와 재무·인사 등 백오피스 조직이 주요 대상으로, 일부 직원은 이미 감원 통보를 받은 것으로 알려졌다. 글로벌 광고 업계의 구조조정이 가속화되는 흐름은 국내 광고·마케팅 업계의 조직 운영 방향에도 참고 지점이 된다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">인사이트 수업 : 일본 1위 광고기획사 마케터의 ‘숨겨진 본심’ 파악법</div>
+        <div class="longblack-subtitle">일을 하다 보면 참 자주 만나는 단어가 있죠. 바로 ‘인사이트insight’예요.하지만 정작 인사이트를 정확히 설명해야 할 때면, 말문이 막혀요.</div>
+        <a class="longblack-link" href="https://www.longblack.co/note/2056" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
