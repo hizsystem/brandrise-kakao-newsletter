@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 7월 21일">
+    <meta property="og:description" content="화요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 7월 21일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-07-21</div>
+        <div class="header-title">7월 21일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">화요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 화요일 마케팅 소식 전해드립니다 😊 오늘의 캐릿 소식에서는 &quot;회사에 알리지 말고 혼자 보세요&quot;라는 도발적인 문구로 Z세대의 관심을 잡아끄는 콘텐츠를 다루고 있고, 풋풋레터에서는 요즘 뜨거운 '제철코어' 트렌드를 짚고 있습니다. 계절감과 시의성을 콘텐츠에 녹여내는 방식이 브랜드 커뮤니케이션에서도 하나의 문법이 되고 있다는 점에서 함께 살펴볼 만합니다.</p><p>롱블랙에서는 알고리즘도, 광고도, 좋아요도 없이 월 1억 원을 버는 SNS 플랫폼 Are.na를 조명했습니다. 도달·노출·바이럴을 최적화하는 방향으로 달려온 마케팅 업계에서, 오히려 그 반대편에 서 있는 플랫폼이 탄탄한 수익을 내고 있다는 사실은 콘텐츠와 커뮤니티의 관계를 다시 생각하게 만듭니다. 마케팅 뉴스에서도 문화적 관련성이 높은 브랜드가 기업가치를 평균 2.8배 높인다는 연구 결과가 나왔는데, Are.na의 사례와 맞닿아 있는 부분이 있습니다.</p><p>오늘도 좋은 인사이트 챙겨 가시고, 이번 주도 좋은 흐름 이어가세요! 🚀</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">포레스터 &quot;리테일 미디어 한계 뚜렷…커머스 미디어가 대안&quot;</div>
+            <div class="news-summary">포레스터가 리테일 미디어가 운영 효율성과 확장성 측면에서 한계를 드러내고 있으며, 차세대 모델로 커머스 미디어가 부상하고 있다고 분석했다. 리테일 미디어 시장이 빠르게 성장했음에도 광고주가 기대하는 수준의 성과를 충족하지 못하고 있다는 진단이다. 리테일 미디어 전략을 운영 중인 마케터라면 커머스 미디어로의 전환 필요성을 선제적으로 검토할 시점이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">문화적 관련성 높은 브랜드, 기업가치 2.8배 높다</div>
+            <div class="news-summary">컬처랩이 커먼 인터레스트, 더그 샤피로와 공동 연구한 결과, 문화적 관련성이 높은 브랜드는 그렇지 않은 브랜드보다 평균 2.8배 높은 기업가치를 인정받는 것으로 나타났다. 브랜드가 문화와 얼마나 깊이 연결돼 있는지가 기업가치에 직접적인 영향을 미친다는 점을 실증적으로 분석한 연구다. 마케터 입장에서는 단기 성과 중심의 캠페인을 넘어 문화적 맥락과의 연결성을 브랜드 전략의 핵심 지표로 삼을 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">검검, AI 광고 타기팅 도구 '마인드셋 에이전트' 출시</div>
+            <div class="news-summary">애드테크 기업 검검(GumGum)이 캠페인 브리프를 AI가 분석해 맞춤형 타기팅 세그먼트를 자동 생성하는 솔루션 '마인드셋 에이전트'를 공개했다. 광고주와 대행사가 캠페인 기획부터 타기팅 설정, 광고 집행까지 이어지는 과정을 효율화할 수 있도록 지원하며, 예측형 어텐션·컨텍스트 분석 등 AI 기반 기능을 한곳에 통합했다. 브리프 입력만으로 타기팅이 자동화되는 방식은 캠페인 운영 공수를 줄이려는 마케터에게 주목할 만한 도구다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">&quot;AI가 브랜드를 인용하는 시대&quot; 시전, PR 역할 재정의</div>
+            <div class="news-summary">시전(Cision)이 AI 기반 PR 플랫폼 'PR 뉴스와이어 앰플리파이'를 국내에 공식 론칭하며, 생성형 AI가 브랜드를 얼마나 정확하게 이해하고 인용하느냐가 PR 경쟁력을 좌우하게 될 것이라는 전략 방향을 제시했다. 해당 플랫폼은 북미·남미·유럽·EMEA에 이어 아시아·태평양 지역으로 확대 출시됐다. 생성형 AI의 답변에 브랜드가 얼마나 잘 인용되는지가 새로운 PR 성과 지표로 부상하고 있어, 마케터는 AI 친화적 콘텐츠 전략을 병행해야 한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">세븐일레븐 구매 데이터, TTD 플랫폼서 광고 타기팅에 즉각 활용</div>
+            <div class="news-summary">더 트레이드 데스크(TTD)가 일본 세븐일레븐의 리테일 구매 데이터를 자사 플랫폼에 통합해, 광고주들이 디지털 채널 전반에서 프로그래매틱 방식으로 즉각 활용할 수 있게 됐다. 현재 일본 내 모든 광고주를 대상으로 제공되며, 편의점 구매 데이터를 DSP와 연동한 선도적 사례로 평가된다. 오프라인 구매 데이터를 디지털 광고 타기팅에 실시간으로 결합하는 리테일 미디어 모델이 아시아 시장에서도 본격화되고 있음을 시사한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">백화점 3사 외국인 매출, 상반기에만 1조7000억원 돌파</div>
+            <div class="news-summary">국내 백화점 3사의 올해 상반기 외국인 매출이 1조7000억원을 넘어, 지난해 연간 실적의 80~90%를 이미 달성했다. 각 사는 올해 연간 외국인 매출이 사별로 1조원을 무난히 돌파할 것으로 전망하고 있다. 과거 엔저 효과와 외국인 맞춤 서비스로 호황을 누렸던 일본 백화점의 사례가 한국에서 재연되는 양상으로, 외국인 소비자를 겨냥한 리테일 및 마케팅 전략의 중요성이 커지고 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">오틀리가 쏘아 올린 '증거의 마케팅'…목적 마케팅의 종말?</div>
+            <div class="news-summary">지난 10여 년간 마케팅 업계를 지배해 온 '목적 주도(Purpose-driven)' 마케팅의 한계를 오틀리(Oatly) 사례를 중심으로 분석한 칼럼이다. 브랜드 신념을 선언하는 것만으로는 소비자의 신뢰를 얻기 어려워졌으며, 실증적 근거와 투명한 커뮤니케이션이 뒷받침돼야 한다는 논지를 전개한다. 마케터는 감성적 목적 선언에서 벗어나 검증 가능한 '증거 기반 브랜딩'으로 전략을 전환할 필요가 있다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">✉️</span>
+            <span class="card-title">이번 주 뉴스레터</span>
+        </div>
+        
+        <div class="stibee-item">
+            <span class="stibee-source">풋풋레터</span>
+            <div class="stibee-title">제철코어 :</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/pTJ2DA8wvx83i9ObgPyFfH_jiN7d1U8" target="_blank">뉴스레터 보기 →</a>
+        </div>
+        <div class="stibee-item">
+            <span class="stibee-source">캐릿</span>
+            <div class="stibee-title">회사에 알리지 말고 혼자 보세요</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/4rvBIRLX_7rq-3-V5aiwWyHrlttOysM" target="_blank">뉴스레터 보기 →</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">아레나 : 알고리즘 없는 ‘내향형 SNS’는 어떻게 월 1억원씩 벌까</div>
+        <div class="longblack-subtitle">“알고리즘에 가운뎃손가락을Fuck an algorithm.”이렇게 외치는 서비스가 있어요. 이름은 Are.na(이하 아레나). 좋아요도, 광고도, 맞춤형 알고리즘도 없어요.</div>
+        <a class="longblack-link" href="https://www.longblack.co/note/2057" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
