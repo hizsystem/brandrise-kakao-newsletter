@@ -5,9 +5,10 @@ Claude API를 사용해 수집된 뉴스를 카톡 전송 양식으로 포맷팅
 import httpx
 import re as _re
 from datetime import date, datetime, timedelta
+from html import unescape as _unescape
 from timeutil import now_kst
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 
 try:
     import holidays as _holidays
@@ -68,6 +69,22 @@ _PROPER_NOUN_FIXES: Tuple[Tuple[_re.Pattern, str], ...] = (
 
 _OUTPUT_DIR = Path(__file__).parent
 
+# 발행 이력의 1차 소스.
+# output_*.txt는 .gitignore 대상이라 CI 러너·다른 PC 체크아웃에는 하나도 없다.
+# 그것만 보면 (a) 러너에서는 직전 발행일을 못 찾아 진짜 연휴를 인지하지 못하고,
+# (b) 로컬 output이 며칠 밀려 있으면 없는 공백을 지어낸다
+# (2026-07-30 "연휴 끝에 오랜만에 인사드립니다" 사고).
+# docs/v2/newsletters/YYYY-MM-DD.html은 매 발행마다 커밋되므로 어디서든 읽힌다.
+_DOCS_NEWSLETTER_DIR = _OUTPUT_DIR / "docs" / "v2" / "newsletters"
+
+_DOCS_NAME_RE: _re.Pattern = _re.compile(r"^(\d{4}-\d{2}-\d{2})\.html$")
+_OUTPUT_NAME_RE: _re.Pattern = _re.compile(r"^output_(\d{8})\.txt$")
+_GREETING_DIV_RE: _re.Pattern = _re.compile(
+    r'<div class="v2-greeting">(.*?)</div>', _re.DOTALL
+)
+_PARAGRAPH_RE: _re.Pattern = _re.compile(r"<p[^>]*>(.*?)</p>", _re.DOTALL)
+_TAG_RE: _re.Pattern = _re.compile(r"<[^>]+>")
+
 # 뉴스레터 맨 하단 고정 푸터 — 브랜드라이즈 무료 상담 안내
 # (인사말·🔗 링크와 분리해 메시지 맨 끝에 붙인다. main.py 참조)
 BRANDRISE_FOOTER = (
@@ -105,24 +122,11 @@ def _consecutive_off_days_after(today_d: date, limit: int = 14) -> int:
 
 
 def _days_since_last_newsletter(today_d: date) -> int:
-    """오늘 직전 가장 최근 output_*.txt와 오늘 사이의 일수 차이. 파일 없으면 0."""
-    today_str = today_d.strftime("%Y%m%d")
-    candidates: List[date] = []
-    for f in _OUTPUT_DIR.glob("output_*.txt"):
-        if today_str in f.name:
-            continue
-        m = _re.match(r"output_(\d{8})\.txt", f.name)
-        if not m:
-            continue
-        try:
-            d = datetime.strptime(m.group(1), "%Y%m%d").date()
-        except ValueError:
-            continue
-        if d < today_d:
-            candidates.append(d)
-    if not candidates:
+    """오늘 직전 발행일과 오늘 사이의 일수 차이. 이력이 없으면 0."""
+    history = _published_history(today_d)
+    if not history:
         return 0
-    return (today_d - max(candidates)).days
+    return (today_d - history[-1][0]).days
 
 
 def _time_of_day_hint(hour: int) -> Tuple[str, str]:
@@ -160,8 +164,59 @@ def _find_week_of_month(text: str) -> List[str]:
     return [m.group(0).strip() for m in _WEEK_OF_MONTH_RE.finditer(text)]
 
 
+def _published_history(before: date) -> List[Tuple[date, Path]]:
+    """오늘 이전 발행분 (날짜, 파일) 목록 — 날짜 오름차순.
+
+    커밋되는 docs/v2/newsletters/*.html을 기본으로 하고, 같은 날짜의
+    output_*.txt가 로컬에 있으면 그쪽(카카오 원문)을 우선한다.
+    """
+    found: Dict[date, Path] = {}
+    for f in _DOCS_NEWSLETTER_DIR.glob("*.html"):
+        m = _DOCS_NAME_RE.match(f.name)
+        if not m:
+            continue
+        try:
+            d = datetime.strptime(m.group(1), "%Y-%m-%d").date()
+        except ValueError:
+            continue
+        if d < before:
+            found[d] = f
+    # txt를 뒤에 돌려 같은 날짜를 덮어쓴다(원문 우선).
+    for f in _OUTPUT_DIR.glob("output_*.txt"):
+        m = _OUTPUT_NAME_RE.match(f.name)
+        if not m:
+            continue
+        try:
+            d = datetime.strptime(m.group(1), "%Y%m%d").date()
+        except ValueError:
+            continue
+        if d < before:
+            found[d] = f
+    return sorted(found.items())
+
+
+def _greeting_from_html(html: str) -> str:
+    """발행된 v2 HTML에서 인사말 문단만 평문으로 복원"""
+    m = _GREETING_DIV_RE.search(html)
+    if not m:
+        return ""
+    paragraphs: List[str] = []
+    for raw in _PARAGRAPH_RE.findall(m.group(1)):
+        text = _unescape(_TAG_RE.sub("", raw))
+        text = _re.sub(r"\s+", " ", text).strip()
+        if text:
+            paragraphs.append(text)
+    return "\n\n".join(paragraphs)
+
+
+def _greeting_from_output_txt(text: str) -> str:
+    """카카오 원문 txt에서 인사말 블록만 추출"""
+    m = _re.search(r"(안녕하세요![\s\S]*?)(?=\n\n🔗|$)", text)
+    return m.group(1).strip() if m else ""
+
+
 def _first_appearance_sources(stibee_items: list) -> List[str]:
-    """오늘 이전 output_*.txt에 한 번도 등장한 적 없는 stibee source 이름 목록"""
+    """오늘 이전 발행분에 한 번도 등장한 적 없는 stibee source 이름 목록"""
     if not stibee_items:
         return []
     candidates = []
@@ -174,39 +229,35 @@ def _first_appearance_sources(stibee_items: list) -> List[str]:
     if not candidates:
         return []
 
-    today_str = now_kst().strftime("%Y%m%d")
-    past_files = [
-        f for f in _OUTPUT_DIR.glob("output_*.txt") if today_str not in f.name
-    ]
     appeared = set()
-    for f in past_files:
+    for _, f in _published_history(now_kst().date()):
         try:
             text = f.read_text(encoding="utf-8")
         except OSError:
             continue
         for src in candidates:
-            if src in appeared:
-                continue
-            if src in text:
+            if src not in appeared and src in text:
                 appeared.add(src)
+        if len(appeared) == len(candidates):
+            break
     return [src for src in candidates if src not in appeared]
 
 
 def _load_recent_greetings(n: int = 4) -> List[str]:
-    """오늘 이전 최근 N개 output_*.txt에서 인사말 블록 추출"""
-    today_str = now_kst().strftime("%Y%m%d")
-    files = sorted(
-        f for f in _OUTPUT_DIR.glob("output_*.txt") if today_str not in f.name
-    )
+    """오늘 이전 최근 N회차 인사말 (오래된 순)"""
     greetings: List[str] = []
-    for f in files[-n:]:
+    for _, f in _published_history(now_kst().date())[-n:]:
         try:
             text = f.read_text(encoding="utf-8")
         except OSError:
             continue
-        m = _re.search(r"(안녕하세요![\s\S]*?)(?=\n\n🔗|$)", text)
-        if m:
-            greetings.append(m.group(1).strip())
+        greeting = (
+            _greeting_from_html(text)
+            if f.suffix == ".html"
+            else _greeting_from_output_txt(text)
+        )
+        if greeting:
+            greetings.append(greeting)
     return greetings
 
 
