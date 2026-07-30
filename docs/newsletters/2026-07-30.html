@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 7월 30일">
+    <meta property="og:description" content="목요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 7월 30일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-07-30</div>
+        <div class="header-title">7월 30일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">목요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 목요일 마케팅 소식 전해드립니다 😊</p><p>오늘의 주요 소식은 AI 기술을 활용한 광고 플랫폼 고도화입니다. CJ메조미디어가 공개한 AI 통합 광고 플랫폼 ‘애들리(ADLY)’는 그동안 디지털 광고 시장에서 검증된 AI 예측 모델을 기반으로 더욱 정교한 성과를 제공할 것으로 기대됩니다</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">CJ메조미디어, AI 기술과 예측 모델 고도화한 AI 통합 광고 플랫폼 ‘애들리(ADLY)’ 공개</div>
+            <div class="news-summary">[ 매드타임스 최승은 기자] 국내 대표 통합 디지털 마케팅 기업 CJ메조미디어(대표이사 백승록)가 그간 디지털광고 시장에서 성과를 입증해온 AI 기반 통합광고 운영 플랫폼 ‘애들리(ADLY)’를 AI 기술과 예측 모델을 한층 고도화한 서비스형 소프트웨어(SaaS) 플랫폼으로 개편했다고 30일 밝혔다. 이를 통해 CJ메조미디어는 그간 지속적인 투자로 다져온 AI 기술 경쟁력을 시장에 다시 증명하고 업계 리더십을 한층 공고히 했다.통합광고 운영 플랫폼 애들리는 탐색부터 전략, 운영, 분석까지 광고 캠페인 전 과정에서 활용되는 AI 기반</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">한국PR협회 2026년 7월 ‘이 달의 문장, “민주주의를 지키는 마지막 장소는 홀로 생각하는 한 사람의 고요한 마음속이다.” 문장 선정</div>
+            <div class="news-summary">[ 매드타임스 채성숙 기자] 한국PR협회(회장 조영석)가 2026년 7월 ‘이 달의 문장’을 선정했다. “우리는 더 촘촘하게 연결되는 법을 이미 충분히 배웠으며, 이제 익혀야 할 것은 혼자 사유하는 법이다. 민주주의를 지키는 마지막 장소는 의회나 광장이 아니라, 홀로 생각하는 한 사람의 고요한 마음속이다.”가 선정됐다. 이 문장은 박원호 서울대 정치외교학부 교수가 지난 21일 한 일간지에 기고한 “고독을 견딜 용기”라는 칼럼에 포함된 문장이다. 박교수가 말하는 고독은 외로움과는 다른 개념이다. 그는 철학자 해나 아렌트의 개념을 소개</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">100% 실사 촬영부터 8개월의 수작업 미니어처까지… '장인정신'으로 빛난 칸라이언즈 크래프트</div>
+            <div class="news-summary">칸라이언즈 어워드는 다각적인 크리에이티브 평가를 위해 전체 출품작을 10개의 트랙으로 분류해 심사한다. 그 중 크래프트 트랙(Craft Track)은 크리에이티브 아이디어의 생명력을 불어넣는 데 필요한 예술성, 기술, 재능, 감각을 집중적으로 조명하는 영역이다. 이 트랙에는 디자인 라이언즈, 디지털 크래프트 라이언즈, 필름 크래프트 라이언즈, 인더스트리 크래프트 라이언즈 등 총 4개의 부문이 속해 있다.30일 칸라이언즈서울은 2026년 칸라이언즈 크래프트 트랙에서 최고 영예인 그랑프리를 수상한 작품의 크리에이티비티와 인사이트를 분석</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">&quot;광고라는 공통 언어로 전 세계 대학생들과 연결됐죠&quot;… 칸라이언즈 RHSA 한국 대표 안수빈 학생</div>
+            <div class="news-summary">강연에서 배운 인사이트와 경쟁 PT, 서로 다른 나라에서 온 친구들과의 만남까지. 일주일간 이어진 2026 로저 해추얼 학생 아카데미(Roger Hatchuel Student Academy, 이하 RHSA) 경험은 모두 '연결'이라는 하나의 단어로 모였다.올해 RHSA에 대한민국 대표로 참가한 안수빈 한양대학교 ERICA 광고홍보학과 학생이 프랑스 칸에서의 경험담을 브래드브리프를 통해 공유했다.지난 2003년 시작된 RHSA는 크리에이티비티 산업 진출을 꿈꾸는 전 세계 대학생을 대상으로 하는 칸라이언즈(Cannes L</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">[이달의브랜드] 2026년 7월의브랜드 &amp; 즐기고: 리센느</div>
+            <div class="news-summary">국내 최대 브랜드 커뮤니티 비마이비는 매월 이달의브랜드를 선정합니다. 비마이비는 여러분의 일상 속 입고/먹고/머물고/즐기고/쓰는 브랜드에 주목합니다. 브랜드의 관점으로 우리의 일상을 돌아보며, 브랜드의 활동에 의미를 더하며 여러분의 브랜드적인 삶을 응원합니다.그 한 달을 돌아보며 브랜드로 의미를 더 채우는 이달의브랜드. 그 의미를 더하기 위해, 브랜드 전문가 비마이비팀이 100여 개의 브랜드에 대해 얘기하며 카테고리별 가장 주목할 만한 브랜드를 선정하였습니다.브랜드를 사랑하고 일과 삶에 브랜드가 필요하다면, 이달에 어떤 일이 있었는</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">해킹당한 허깅페이스, 상용 AI는 조사도 거절했다</div>
+            <div class="news-summary">7월 초 오픈AI는 자사 AI가 해킹을 어디까지 할 수 있는지 재보는 시험을 돌렸다. 능력의 한계를 보려는 시험이라, 평소 고위험 사이버 행동을 막는 일부 안전장치는 꺼두거나 완화한 상태였다. 시험 환경에서 AI는 인터넷에 직접 접속할 수 없었다. 다만 프로그램 설치에 필요한 파일을 받아오는 중계 시스템에는 접근할 수 있었다. AI는 이 소프트웨어에서 당시 알려지지 않았던 보안 결함을 찾아냈고, ... 더 읽기</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">AMD, CUDA 해자 ‘바이브코딩’으로 넘는다</div>
+            <div class="news-summary">AMD가 엔비디아 GPU의 CUDA 해자를 넘기 위해 바이브코딩을 채택했다. AMD GPU 상에서 구동되는 AI 모델의 성능을 극대화하는 작업을 바이브코딩으로 하게 하는 것이다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">🎨</span>
+            <span class="card-title">전시 / 팝업 / 공간 추천</span>
+            <span class="card-source">헤이팝</span>
+        </div>
+        
+        <div class="heypop-item">
+            <div class="heypop-title">전시 관람 실전 가이드: 미술관이 어려운 당신에게</div>
+            <div class="heypop-desc">크리테리아 프레스 『전시 보는 즐거움: 그리고 혼란에 관하여』</div>
+            <a class="heypop-link" href="https://heypop.kr/n/140762/" target="_blank">→ 자세히 보기</a>
+        </div>
+        <div class="heypop-item">
+            <div class="heypop-title">세계 도시 부산, 한국 공예로 건네는 환대</div>
+            <div class="heypop-desc">29인 작가가 완성한 2026 한국공예전 〈환대〉</div>
+            <a class="heypop-link" href="https://heypop.kr/n/140606/" target="_blank">→ 자세히 보기</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">사이먼 시넥의 Why 수업 : 목표를 이뤄도 허무한 이유가 있습니다</div>
+        <div class="longblack-subtitle">목표를 이뤘는데도 만족감이 오래가지 않을 때가 있습니다. 더 좋은 회사에 들어가고, 연봉이 올라도 그 기쁨은 서서히 사라지고 말죠. 일이 싫어진 건지, 더 큰 목표가 필요한 건지 헷갈리곤 해요.</div>
+        <a class="longblack-link" href="https://www.longblack.co/note/2066" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
