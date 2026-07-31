@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 7월 31일">
+    <meta property="og:description" content="금요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 7월 31일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-07-31</div>
+        <div class="header-title">7월 31일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">금요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 금요일 마케팅 소식 전해드립니다 😊 오늘은 롱블랙의 만포농산 이야기가 인상적입니다. 경북 영주의 된장 브랜드 '무량수'가 전략 컨설턴트 출신 후계자를 만나 미쉐린 셰프들이 찾는 장으로 거듭난 과정인데요, 좋은 재료와 전통만으로는 부족하고 브랜드 언어와 유통 전략이 더해져야 시장이 반응한다는 것을 보여주는 사례입니다. '된장에도 솔루션이 필요하다'는 표현 자체가 요즘 로컬·전통 식품 브랜드가 처한 현실을 정확히 짚고 있습니다.</p><p>빌더조쉬에서는 대기업 디자이너가 AI 시대를 계기로 창업에 나선 이야기를 다루고 있습니다. 접은 것과 남긴 것을 직접 정리하며 법인 대표가 된 과정인데, AI가 일하는 방식을 바꾸는 것을 넘어 커리어 자체를 재설계하는 이유가 되고 있다는 점이 흥미롭습니다. 마케팅 업계 소식에서는 티오더의 태블릿 광고 플랫폼이 엔터·영화 분야에서 광고 매출 3배 성장을 기록했다는 소식도 주목됩니다. 식당 테이블이라는 접점이 콘텐츠 마케팅 채널로 빠르게 자리 잡아가는 흐름입니다.</p><p>금요일 아침도 힘차게 시작하시고, 이번 주 마무리도 잘 하시길 바랍니다! 🙌</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">티오더, 엔터·콘텐츠 분야 광고 3배 성장… 영화 '호프'·걸그룹 리센느도 택했다</div>
+            <div class="news-summary">티오더의 태블릿 기반 광고 플랫폼 사업이 콘텐츠 업계를 중심으로 빠르게 성장하고 있다.31일 티오더에 따르면 자사 태블릿 광고 중 엔터·영화·게임 등 콘텐츠 분야 광고가 2026년 상반기에만 지난해 전체의 약 3배로 늘었다. 영화, 게임, 드라마부터 도서 출판, 예능 프로그램, 아이돌 팬덤 캠페인 등으로 폭넓게 다각화되며 콘텐츠 산업 전반으로 영역을 넓히고 있다. 이러한 성장세에는 누적 35만 대 태블릿 인프라를 기반으로 한 밀도 높은 고객 접점과 참여형 광고 구조가 주효했다는 평가다. 티오더 태블릿 광고는 단순히 노출되고 끝나는</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">애피어, ‘맥스서밋 2026’서  AI 에이전트가 이끄는 차세대 고객 경험 여정 제시</div>
+            <div class="news-summary">[ 매드타임스 채성숙 기자] AI 네이티브 AaaS(Agentic AI as a Service) 기업 애피어(Appier)가 오는 8월 3일부터 4일까지 서울 코엑스에서 열리는 마케팅·애드테크 컨퍼런스 ‘맥스서밋 2026(MAX SUMMIT 2026)’에 참가해 AI 에이전트가 이끄는 고객 경험의 진화에 대한 인사이트를 공유한다고 밝혔다.맥스서밋은 마케팅과 광고, 애드테크 산업의 주요 기업과 전문가들이 참여해 시장 변화와 실무 인사이트를 공유하는 마케팅 컨퍼런스다. 올해는 ‘The AI Era: What Wins – WHY, HOW</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">이노션 '제 2의 밤낚시', '우주태양광' 소재로 브랜드 철학 전한다</div>
+            <div class="news-summary">광고와 엔터테인먼트를 결합해 새로운 영역을 개척한 것으로 평가 받는 이노션이 제 2의 '밤낚시(Night Fishing)' 제작에 나선다.31일 브랜드브리프 취재 결과, 이노션은 아시아콘텐츠&amp;필름마켓(ACFM) 이노아시아와 함께 기획한 '시네마바이브랜드(cinema by brand)' 공모를 오는 8월 17일까지 접수 받는다. '시네마바이브랜드'의 첫번째 협업 브랜드는 '우주 태양광'을 소재로 한다. 이노션은 &quot;'시네마바이브랜드'는 브랜드가 주제(Theme)가</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">&quot;오프라 윈프리·파타고니아·UN우주사무국 통해 미래를 봤죠&quot;… 칸라이언즈로 간 광고 꿈나무의 참관기</div>
+            <div class="news-summary">&quot;이번 칸라이언즈는 한마디로 '꿈'과 같은 순간이었습니다.&quot;국내 최대 규모의 대학생 크리에이티비티 공모전 '2026 드림라이언즈'에서 그랑프리를 수상한 권진석 고려대학교 학생이 세계 최대·최고의 크리에이티비티 페스티벌 '칸라이언즈(The Cannes Lions International Festival of Creativity)'에서 보낸 꿈같은 일주일의 후기를 전해왔다.권진석 학생은 최대 4명까지 팀을 꾸릴 수 있는 드림라이언즈에 홀로 도전해 최고상을 거머쥐었다. 그랑프리 수상 특전으로 칸</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">서울에너지공사, 자율주행차로 열수송관 점검 실증</div>
+            <div class="news-summary">서울에너지공사가 자율주행 차량을 활용한 열수송관 안전점검 기술을 현장에서 검증한다. 서울경제진흥원(SBA)과 함께 추진하는 ‘ESG 개방형 테스트베드 사업’의 하나로, 오는 8월부터 12월까지 약 5개월간 실증을 진행한다. 이 기술을 맡은 곳은 자율주행 소프트웨어 기업 에스더블유엠이다. 차량이 열수송관이 묻힌 도로를 따라 달리며 주변 영상과 위치정보를 자동으로 수집하고, 이 정보를 열수송관 위치와 연결해 점검에 쓸 수 있는지 확인한다. 2005년 설립된 회사로 AI 기반 자율주행 소프트웨어와 차량 데이터 수집·분석 기술을 개발해 왔</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">[Startup’s Story #537] 픽스업헬스가 동작 인식 기술을 걷어낸 이유</div>
+            <div class="news-summary">임상원 대표와 홍태하 CTO가 말하는 미국 재활의료의 ‘진료 사이 공백’ 미국에서 고관절이 부러진 환자의 재활은 짧게 끝나지 않는다. 3~4개월 동안 일주일에 한두 번, 30분씩 차를 몰고 동네 재활의원에 다녀야 한다. 문제는 그 사이다. “외래 진료 사이사이에 환자 관리가 안 되는 거죠. 그 공백을 메꿔주자고 해서 시작한 서비스입니다.” 임상원 픽스업헬스 대표의 말이다. 픽스업헬스는 미국 재활의료기관을 대상으로 ... 더 읽기</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">Empathy as Greatest Strength</div>
+            <div class="news-summary">We live in the age of AI. Even as we worry that AI may someday replace human beings, we continue to rely on it more and more. Perhaps one day technology will even overcome aging itself. Yet for now, we all grow old. Because our lives are finite, we treasure every moment and the people we love. Perha</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">✉️</span>
+            <span class="card-title">이번 주 뉴스레터</span>
+        </div>
+        
+        <div class="stibee-item">
+            <span class="stibee-source">빌더조쉬</span>
+            <div class="stibee-title">AI 시대를 놓치고 싶지 않아 다시 창업했어요.</div>
+            <a class="stibee-link" href="https://maily.so/josh/posts/d5ryw551z1w" target="_blank">뉴스레터 보기 →</a>
+        </div>
+        <div class="stibee-item">
+            <span class="stibee-source">까탈로그</span>
+            <div class="stibee-title">까탈스럽게 고른 취향 뉴스레터</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/pnmrNfhFiaaRTJAPevs6frWmf4QR8vA" target="_blank">뉴스레터 보기 →</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">만포농산 : 된장에도 솔루션이 필요하다, 전략 컨설턴트의 가업 회생기</div>
+        <div class="longblack-subtitle">미쉐린 셰프들이 찾아 쓰는 장이 있습니다. 경북 영주의 만포농산이 만드는 ‘무량수’의 장입니다.</div>
+        <a class="longblack-link" href="https://www.longblack.co/note/2067" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
