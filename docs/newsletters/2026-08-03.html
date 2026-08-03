@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 8월 3일">
+    <meta property="og:description" content="월요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 8월 3일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-08-03</div>
+        <div class="header-title">8월 3일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">월요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 월요일 마케팅 소식 전해드립니다 😊 오늘은 롱블랙 아티클이 특히 눈길을 끕니다. AI가 글을 대신 써주는 시대에 '나의 언어'를 지키는 것이 왜 중요한가를 다루는 내용인데요, 2배속 영상과 20분 요약본에 익숙해질수록 우리가 직접 읽고 쓰는 시간은 줄어들고, 그 자리를 AI가 채워갑니다. 마케터에게 '나만의 언어'는 브랜드 목소리와 직결되는 역량인 만큼, 오늘 아티클은 꼭 한 번 읽어보시길 권합니다.</p><p>마케팅 업계 소식에서는 트레이더 조의 사례가 흥미롭습니다. 멤버십·리워드 프로그램이 유통업계의 기본 공식이 된 지금, 트레이더 조는 그 공식을 따르지 않고도 높은 고객 충성도를 유지하고 있습니다. &quot;충성도는 프로그램이 아니라 전략에서 나온다&quot;는 메시지는, 포인트와 쿠폰으로 고객을 묶어두는 방식과 브랜드 자체로 고객을 끌어당기는 방식의 차이를 다시 생각하게 합니다. 키움증권이 유해진을 내세워 방치된 퇴직연금 문제를 유머로 풀어낸 캠페인도 함께 챙겨보시길 추천합니다. 무거운 금융 주제를 친근하게 해석한 크리에이티브 방향이 인상적입니다.</p><p>한 주를 힘차게 시작하시고, 오늘 소식들이 실무에 좋은 자극이 되길 바랍니다! 🚀</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">SM C&amp;C, 엔터사업부문에 최영인 신임 대표 선임… 디지털 스튜디오 사업 이끈다</div>
+            <div class="news-summary">에스엠컬처앤콘텐츠(SM C&amp;C) 엔터사업부문 신임 대표로 최영인 전 SBS 예능본부장이 선임됐다.3일 SM C&amp;C에 따르면 최영인 엔터사업부문 대표는 서울대학교 동양사학과 출신으로, EBS와 SBS를 거치며 36년간 콘텐츠 기획과 제작, 조직 운영을 이끌어왔다. SBS 예능본부장을 역임했고, 이후 스튜디오프리즘 제작사업부문 대표 등을 맡아 콘텐츠 제작과 사업 다각화를 총괄해 온 베테랑이다.대표작으로는 '야심만만', '힐링캠프', '판타스틱 듀오', '미운 우리 새끼' 등이 있</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">유해진, 방치된 퇴직연금으로 분하다… 키움증권, 퇴직연금 신규 광고 캠페인 공개</div>
+            <div class="news-summary">HSAD가 배우 유해진과 함께한 키움증권의 퇴직연금 신규 광고 캠페인을 공개했다. 3일 HSAD에 따르면 이번 캠페인은 퇴직연금을 단순히 쌓아두는 자금이 아니라, 노후를 위해 적극적으로 관리하고 운용해야 하는 투자 자산으로 새롭게 인식시키는 데 초점을 뒀다. 지난 5월 HSAD는 유해진을 앞세워 '설명할 시간 없어, 1위로 타' 캠페인을 통해 '투자하면 키움'이라는 브랜드 리더십을 직관적으로 전달한 바 있다. 이번에는 앞선 캠페인에서 형성한 신뢰를 퇴직연금으로 확장해 주식 투자뿐 아니라 퇴직연금 운용에서</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">[K-AD] “도대체 언제까지 재우기만 할 거야?” HSAD, 유해진이 ‘퇴직연금’으로 변신한 키움증권 신규 캠페인 공개</div>
+            <div class="news-summary">[ 매드타임스 채성숙 기자] HSAD(대표이사 박애리)가 배우 유해진과 함께한 키움증권의 퇴직연금 신규 광고 캠페인을 공개해 큰 관심을 얻고 있다. 이번 캠페인은 퇴직연금을 단순히 쌓아두는 자금이 아니라, 노후를 위해 적극적으로 관리하고 운용해야 하는 투자 자산으로 새롭게 인식시키는 데 초점을 뒀다.지난 5월 HSAD는 유해진을 앞세워 ‘설명할 시간 없어, 1위로 타’ 캠페인을 통해 ‘투자하면 키움’이라는 브랜드 리더십을 직관적으로 전달했다. 이번에는 앞선 캠페인에서 형성한 신뢰를 퇴직연금으로 확장해 주식 투자뿐 아니라 퇴직연금 운</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">대한민국 최고의 크리에이터 총출동… 2026 칸라이언즈서울, 1차 연사 라인업 공개</div>
+            <div class="news-summary">칸라이언즈서울이 오는 9월 16일부터 18일까지 열리는 '칸라이언즈서울 2026'의 1차 연사 라인업을 공개했다.3일 칸라이언즈서울에 따르면 2026 칸라이언즈서울(이하 칸라서)에서는 올해 칸라이언즈 수상자와 심사위원은 물론 국내 주요 크리에이티브 리더들이 한자리에 모여 칸에서 포착한 글로벌 크리에이티비티의 흐름부터 국내에서 이를 어떻게 해석하고 실행할 것인지 다양한 관점의 이야기를 펼칠 예정이다.먼저 글로벌 연사로 지난해부터 글로벌 광고제를 휩쓸고 있는 'Vaseline Verified' 캠페인을 총괄</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">&quot;고객 충성도는 프로그램이 아니라 전략&quot; 트레이더 조에 멤버십이 없는 이유</div>
+            <div class="news-summary">[ 매드타임스 최영호 기자] 멤버십과 리워드 프로그램은 이제 유통업계의 기본 전략이 됐다. 식료품점은 물론 외식과 패션, 호텔까지 앞다퉈 회원 혜택을 강화하며 고객을 붙잡기 위한 경쟁을 벌이고 있다. 하지만 미국 트레이더 조(Trader Joe's)는 이런 흐름과 거리를 둔다. 별도의 멤버십이나 포인트 적립 제도 없이도 미국 식료품업계에서 가장 높은 고객 충성도를 유지하고 있기 때문이다.트레이더 조의 사례는 고객 충성도가 반드시 멤버십 프로그램에서 시작되는 것은 아니라는 점을 보여준다. 고객이 브랜드를 다시 찾는 이유는 포인트나 할</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">[MAD Relay] 그때도 지금도 변함없는 이야기, “기술안에는 사람이 있습니다.” SK텔레콤 [사람을 향합니다] 캠페인</div>
+            <div class="news-summary">AI가 참 많은 것을 바꿔놓고 있는 요즘입니다. 카피도 그럴싸하게 써주고 비주얼도 뚝딱 만들어내는 모습을 보고 있으면, ‘우리가 하던 일의 본질은 뭘까’ 문득 생각이 깊어지곤 합니다.그러던 중에 ‘인생 광고’ 이야기를 써달라는 제안을 받았습니다. 어떤 이야기를 풀어낼까 고민하다가, 광고인을 꿈꾸던 시절 좋아서 보고 또 보았던 캠페인 하나를 떠올렸습니다.바로 SK텔레콤의 [사람을 향합니다] 캠페인입니다. (지면 관계상 2편만 소개합니다.)기술 안에는 사람이 있습니다.기술은 언제나 사람에게 지고 맙니다.AI를 논하는 지금 이 시점에 이</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">29세 이하 창업자들이 모였다</div>
+            <div class="news-summary">10대 창업자부터 20대 후반 창업자까지 29세 이하 창업자와 예비창업자가 한자리에 모였다. 사전 신청한 19명이 각자 1분 안에 사업을 소개하고, 참가자들은 그룹을 바꿔 가며 대화를 나눴다. 스타트업 액셀러레이터 프라이머가 7월 31일 서울 강남구 센터필드 EAST 아마존웹서비스 코리아 오피스에서 29세 이하 창업자 커뮤니티 ‘U29 파운더스 클럽(U29 Founders Club)’ 7월 밋업을 열었다. 이날 200여 명이 참가했다. U29 파운더스 ... 더 읽기</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">읽고 쓰는 인간에 관하여 : AI로부터 독립해 ‘나의 언어’를 지키는 법</div>
+        <div class="longblack-subtitle">여러분은 유튜브 영상을 몇 배속으로 보시나요. 고백하자면 저는 2배속으로 보는 데 익숙해졌습니다. 3시간짜리 영화를 20분으로 요약한 영상도 밥친구처럼 즐겨 보고요.이 습관은 영상에서만 끝나지 않더군요.</div>
+        <a class="longblack-link" href="https://www.longblack.co/note/2070" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
