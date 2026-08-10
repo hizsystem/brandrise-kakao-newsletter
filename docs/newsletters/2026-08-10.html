@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 8월 10일">
+    <meta property="og:description" content="월요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 8월 10일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-08-10</div>
+        <div class="header-title">8월 10일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">월요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 월요일 마케팅 소식 전해드립니다 😊 오늘은 컬럼비아 스포츠웨어의 캠페인 이야기가 단연 시선을 붙잡습니다. &quot;지구가 평평하다는 것을 증명하면 회사를 넘겨주겠다&quot;는 파격적인 선언으로 시작된 이 캠페인은, 결국 '지평설'을 증명한 사람은 없었지만 올해 최고의 광고 중 하나로 꼽히며 마무리됐습니다. 브랜드가 직접 논쟁의 한복판에 뛰어들어 화제를 설계한 방식은, 제품 기능이나 감성 소구 없이도 얼마나 강력한 브랜드 각인이 가능한지를 보여주는 사례입니다.</p><p>롱블랙에서는 AI 시대를 살아남는 사람의 조건을 인류학 박사의 시각으로 풀어냈습니다. 새로운 AI 도구가 쏟아질수록 &quot;나는 어떤 역량을 키워야 하는가&quot;라는 질문이 더 선명해지는데요, 기술보다 사람에게 있는 것에 집중한 5가지 역량 이야기는 월요일 아침 마케터로서 스스로를 점검해보기에 좋은 콘텐츠입니다. 도구를 다루는 속도보다 어떤 판단을 내리느냐가 중요해지는 지금, 오늘 꼭 챙겨보시길 권합니다.</p><p>이번 주도 좋은 인사이트 가득한 한 주 되시길 바랍니다! 🚀</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">'지평설'은 결국 증명하지 못했지만… 올해 '최고의 광고'가 된 컬럼비아 스포츠웨어의 전략</div>
+            <div class="news-summary">지구가 평평하다는 것을 증명하면, 회사를 넘겨주겠다고 공언한 컬럼비아 스포츠웨어(Columbia Sportswear)의 파격적인 캠페인이 막을 내렸다. 결국, 그 누구도 '지구 평면설(Flat Earth Theory, 이하 지평설)'을 증명하지는 못했지만 컬럼비아 스포츠웨어의 캠페인은 올해 '최고의 광고'라는 평가를 받으며 아웃도어 캠페인의 새로운 지평을 열었다.10일 업계에 따르면 컬럼비아 스포츠웨어는 약 8개월간 진행해 온 '익스페디션 임파서블(Expedition Impossible)'</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">네이버가 잘해온 것, 잘하려는 것, 잘하고 싶은 것</div>
+            <div class="news-summary">2026년 2분기에 본 네이버는 기존 'IT역량을 기반으로 오프라인 시장을 자사 온라인 플랫폼에 끌어올리는 전략'을 다각도로 확대하는 한편, 또 다른 한 축을 더하고 있습니다. 한편에서는 N페이 커넥트를 통해 기존 전략을 오프라인까지 확장하려 하고, 또 업계 2위인 쇼핑 부문에서는 1위와의 격차를 좁히기 위해 달리고 있습니다. 다른 한편에서는 지금까지 쌓아온 인프라 운영 역량을 AI팩토리 사업으로 풀어낸다는 목표입니다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">“모두를 위한 MMORPG”…컴투스 ‘제우스’, 26일 출격</div>
+            <div class="news-summary">“어떤 게임으로 선보여야 할지 많은 고민을 했다. 단순히 화려한 그래픽이나 게임 콘텐츠 규모만으로는 부족하다고 생각했기 때문이다. 그리고 저희가 찾은 답은 바로 ‘모두를 위한 다중접속역할수행게임(MMORPG)’이다.” 남재관 컴투스 대표는 7일 서울 종로구 JW 메리어트 동대문 스퀘어에서 열린 ‘제우스: 오만의 신’(이하 제우스) 쇼케이스에서 이같이 말했다. 제우스는 컴투스가 퍼블리싱을 맡고 에이버튼이 개발 중인 신작으로, 오는 26일 출시 예정이다. 이날 행사는 핵심 콘텐츠, 개발 철학, 서비스 방향 등 제우스에 대한 자세한 내용</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">[플레이BN] 쉴 틈 없이 몰아치는 재미, 데브시스터즈 ‘쿠키런: 크럼블’</div>
+            <div class="news-summary">요즘은 방치형 RPG 장르의 전성시대라고 해도 과언이 아닙니다. 주요 게임사들이 인지도 높은 지식재산권(IP)을 활용해 너나 할 것 없이 방치형 신작을 쏟아내고 있죠. 데브시스터즈의 ‘쿠키런: 크럼블’도 그중 하나입니다. 하지만 이 게임은 조금 다릅니다. 일반적으로 방치형 게임은 가만히 지켜보는 시간이 길어 자칫 잘못하면 단조롭게 느껴질 수 있는데요. 보는 맛과 이용자의 개입을 잘 버무렸습니다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">[MAD Relay] &quot;좋은 아이디어는 영리하면서 엉뚱하다&quot; 컨투어스 ‘어른을 위한 유모차 시승’</div>
+            <div class="news-summary">제가 가장 좋아하는 광고들은 늘 영리함(smart)과 엉뚱함(silly) 사이의 균형을 절묘하게 맞춥니다. 영리한 인사이트 위에 엉뚱한 아이디어가 올라가 있는 광고들이죠.하지만 여기서 말하는 '엉뚱함'은 꼭 웃긴다는 의미는 아닙니다. 평소라면 하지 않을 행동, 당연하게 여겨지는 방식을 뒤집는 행동에서도 엉뚱함은 나올 수 있습니다.좋은 예가 바로 버거킹의 곰팡이 핀 와퍼(Moldy Whopper)입니다. 제 파트너인 닉(Nick)도 이전에 이 작품에 대해 글을 쓴 적이 있습니다. 크게 웃음을 주는 광고는 아니지만, 맛있어 보여야 하는</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">[MAD Relay] Great Ideas Are Smart and Silly: Contours’ “The Baby Stroller Test-Ride”</div>
+            <div class="news-summary">My favourite work always strikes the right balance of smart and silly. A silly idea that's grounded in a smart insight. But I don't just mean silliness in a humorous sense. Silliness can come from acting in a way that's not considered normal or expected. One great example is Burger King's Moldy Whop</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">[해외 크리에이티브] 50대 이상을 위한 특별한 게스트리스트… 스펙세이버스, 청력검사를 클럽 티켓으로</div>
+            <div class="news-summary">[ 매드타임스 최승은 기자] 한때 영국의 레이브 문화를 이끌었던 세대는 지금도 음악과 나이트라이프를 즐긴다. 스펙세이버스(Specsavers)는 이들에게 &quot;나이가 들었으니 청력을 관리하라&quot;고 말하는 대신, 청력검사를 받으면 클럽 게스트리스트에 이름을 올릴 수 있는 캠페인을 선보였다.스펙세이버스가 50대 이상을 위한 클럽 게스트리스트 '더 테스트리스트(The Testlist)'를 론칭했다. 약 3분간의 무료 온라인 청력검사를 완료하면 라이브 음악 이벤트 티켓에 응모할 수 있다. '테스트(Test)'와 클럽의 '게스트리스트(Guestl</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">인재의 조건 : 인류학 박사가 찾은, AI 시대를 돌파하는 사람의 5가지 역량</div>
+        <div class="longblack-subtitle">AI를 둘러싼 새로운 소식을 접할 때마다 저는 불안해요. 지금이라도 다른 AI 도구를 결제해야 하나, 아니면 대체되지 않을 뭔가를 찾아 나서야 하나. 이 조급함은 결국 하나의 질문으로 이어지죠.</div>
+        <a class="longblack-link" href="https://www.longblack.co/note/2078" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
