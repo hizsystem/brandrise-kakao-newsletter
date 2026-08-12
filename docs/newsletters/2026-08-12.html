@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 8월 12일">
+    <meta property="og:description" content="수요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 8월 12일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-08-12</div>
+        <div class="header-title">8월 12일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">수요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 수요일 마케팅 소식 전해드립니다 😊 오늘은 롱블랙의 텔레포트 이야기가 단연 인상 깊습니다. 나이키·토스 팝업을 만든 팀이 &quot;멋있어서는 이유가 될 수 없다&quot;고 단언하는 대목이 흥미로운데요, 화려한 비주얼과 긴 줄이 곧 성공이라는 공식에 의문을 던지는 시각입니다. 팝업이 넘쳐나는 지금, 공간 경험을 설계할 때 '왜 이걸 만드는가'라는 질문을 먼저 놓지 않으면 결국 스쳐가는 이벤트로 끝난다는 점을 되짚어보게 합니다. 오늘 꼭 챙겨보시길 권합니다.</p><p>마케팅 뉴스에서는 광고 시장의 구조 변화와 AI 최적화 흐름이 함께 다뤄집니다. 상반기 유료 미디어 투자액이 17.5% 늘었지만 CPC는 오히려 10.8% 하락했다는 벤치마크 데이터는, 예산 증가만으로 성과를 보장받기 어려워졌다는 신호입니다. 동시에 클라우드플레어의 AEO 가시성 대시보드 출시처럼, 챗GPT·제미나이 같은 AI 서비스에서 자사 브랜드가 어떻게 인용되는지를 파악하고 최적화하는 것이 브랜드 노출 전략의 새 과제로 자리잡고 있습니다. SEO 기반 없이 GEO만 추구하면 효과가 제한적이라는 분석도 함께 살펴보시길 권합니다.</p><p>한 주의 중반, 좋은 인사이트 가득 얻으시길 바랍니다! 🚀</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">상반기 마케팅 예산 17.5% 증가, 클릭 비용은 10.8% 하락</div>
+            <div class="news-summary">마케팅 인텔리전스 플랫폼 빌리 그레이스의 '2026년 상반기 벤치마크 보고서'에 따르면 광고주의 유료 미디어 투자액이 전년 동기 대비 17.5% 증가했지만 클릭당 비용은 오히려 10.8% 하락했다. 구글의 광고 예산 비중은 줄어든 반면 틱톡·레딧·빙·핀터레스트·유튜브 등 다양한 플랫폼으로 투자가 분산되는 흐름이 나타났다. 마케터는 예산 확대 시 단일 플랫폼 의존도를 낮추고 채널 다변화 전략을 적극 검토할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">클라우드플레어, AI 브랜드 인용 추적 'AEO 가시성 대시보드' 출시</div>
+            <div class="news-summary">클라우드플레어가 소비자가 AI 어시스턴트에 질문했을 때 자사 브랜드가 언급·추천되는지, 어떤 콘텐츠가 정보 출처로 활용되는지를 파악할 수 있는 'AEO 가시성 대시보드'를 출시했다. 검색 순위 중심의 SEO를 넘어 AI 응답 내 브랜드 노출 여부가 새로운 가시성 지표로 부상하는 흐름을 반영한 것이다. AI 검색이 확산될수록 브랜드 콘텐츠가 AI에 얼마나 인용되는지 모니터링하는 AEO 전략이 마케터의 필수 과제가 될 전망이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">GEO 최적화, SEO 없이는 의미 없는 이유</div>
+            <div class="news-summary">ChatGPT·Gemini·Perplexity 등 AI 서비스가 보편화되면서 자사 콘텐츠가 AI에 인용되도록 최적화하는 GEO(Generative Engine Optimization) 개념이 주목받고 있다. SEO·AEO·GEO의 차이와 함께 AI가 콘텐츠를 인용하게 만드는 구체적인 세팅 방법이 제시됐다. GEO는 기존 SEO 기반 없이는 효과를 발휘하기 어렵다는 점에서 마케터는 두 전략을 연계해 접근해야 한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">AI가 만들 수 없는 콘텐츠는 무엇인가</div>
+            <div class="news-summary">생성형 AI가 콘텐츠 제작 도구로 보편화될수록 콘텐츠 차별성은 오히려 약해지고 있다는 분석이 나왔다. 미국 콘텐츠 마케팅 전문기업 오비트 미디어는 AI 시대에 브랜드 경쟁력을 결정하는 콘텐츠의 핵심을 '브랜드만의 관점'과 '독자적인 데이터' 두 가지로 정리했다. 누구나 비슷한 품질의 콘텐츠를 생산할 수 있는 환경에서 마케터는 자사만의 시각과 데이터 기반 콘텐츠 전략에 집중해야 한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">넷플릭스, 선셋대로 광고판에 '사람이 사는 집' 만든 OOH 캠페인</div>
+            <div class="news-summary">넷플릭스가 SF 스릴러 '더 라스트 하우스' 홍보를 위해 로스앤젤레스 선셋대로 약 9m 높이 광고판에 창문·소파·가구를 갖춘 실제 거주 공간을 만들고 사람을 사흘간 머물게 하는 '리빙 빌보드'를 선보였다. 영화 속 '집에 갇힌 사람'이라는 콘셉트를 현실의 옥외광고로 구현해 강력한 화제성을 확보했다. 콘텐츠 세계관을 물리적 공간으로 확장하는 이 방식은 디지털 피로도가 높아지는 환경에서 OOH의 새로운 가능성을 보여준다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">윙스탑 '라임 더 리뷰', 고객 리뷰를 랩으로 만든 캠페인</div>
+            <div class="news-summary">글로벌 치킨 윙 브랜드 윙스탑이 크리에이티브 에이전시 오픈런앤코와 함께 실제 고객 리뷰를 래퍼 수퍼비의 가사로 변환해 음원·뮤직비디오·라이브 공연으로 확장한 '라임 더 리뷰' 캠페인을 선보였다. 새로운 광고 카피 대신 소비자가 이미 온라인에 남긴 말을 콘텐츠의 출발점으로 삼았다는 점이 특징이다. UGC(사용자 생성 콘텐츠)를 브랜드 크리에이티브로 전환하는 이 방식은 진정성과 참여감을 동시에 높이는 전략으로 주목할 만하다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">외국인 관광객·장보기 수요, 편의점의 새 성장 동력으로</div>
+            <div class="news-summary">GS25·CU 편의점 양강이 2026년 2분기 호실적을 기록한 가운데, 방한 외국인 관광객 유입과 근거리 장보기 수요 확대가 주목할 성장 지표로 떠올랐다. 편의점은 외국인 관광객의 주요 소비 채널로 자리잡았으며, 오프라인 근거리 채널의 장점을 살려 식료품 구매 수요까지 흡수하고 있다. 마케터는 편의점을 단순 유통 채널이 아닌 외국인 및 일상 쇼핑 접점으로 재정의하고 관련 프로모션 전략을 검토할 필요가 있다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">✉️</span>
+            <span class="card-title">이번 주 뉴스레터</span>
+        </div>
+        
+        <div class="stibee-item">
+            <span class="stibee-source">빌더조쉬</span>
+            <div class="stibee-title">요즘 유행하는 '그래프 엔지니어링' 대체 뭔지 리뷰해 봤습니다</div>
+            <a class="stibee-link" href="https://maily.so/josh/posts/1do1d125ox6" target="_blank">뉴스레터 보기 →</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">텔레포트 : 나이키·토스 팝업 만든 팀, ‘멋있어서’는 이유가 될 수 없다</div>
+        <div class="longblack-subtitle">‘팝업 스토어’하면 어떤 장면이 떠오르세요? 건물 앞에 늘어선 긴 줄, 거대한 조형물, 사진 찍는 사람들, 한정판 굿즈가 연상되죠. 그런데요. 여태 가본 팝업 중, 지금까지 기억에 남는 곳이 있나요?저는 글쎄요.</div>
+        <a class="longblack-link" href="https://www.longblack.co/note/2080" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
