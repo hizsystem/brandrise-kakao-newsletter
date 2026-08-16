@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 8월 17일">
+    <meta property="og:description" content="월요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 8월 17일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-08-17</div>
+        <div class="header-title">8월 17일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">월요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 월요일 마케팅 소식 전해드립니다 😊 오늘은 인스타그램의 워드마크 변경 소식이 화제입니다. 2016년부터 10년간 이어온 필기체 스타일을 벗어나 보다 간결하고 현대적인 형태로 바꾼 것인데요, 브랜드 아이덴티티에서 '덜어내는 결정'이 얼마나 큰 용기를 필요로 하는지를 다시 생각하게 해주는 사례입니다. 쌓아온 것을 지키기보다 시대 흐름에 맞춰 재정의하는 선택, 브랜드 리뉴얼을 고민 중이라면 좋은 참고점이 될 것입니다.</p><p>롱블랙에서는 '적을 만들지 않는 대화법'을 다룹니다. &quot;맞아, 넌 원래 그런 애였지&quot;처럼 가볍게 던져진 말 한마디가 관계에 얼마나 깊은 균열을 만드는지, 그리고 그 상황을 어떻게 풀어갈 수 있는지를 짚어줍니다. 마케터에게 커뮤니케이션은 곧 업무 그 자체인 만큼, 브랜드 메시지뿐 아니라 조직 안팎의 대화 방식을 돌아보는 계기로도 충분히 활용할 수 있는 아티클입니다.</p><p>마케팅 뉴스에서는 AI 검색이 이커머스 유입 경로를 빠르게 재편하고 있다는 흐름도 확인할 수 있습니다. 쇼피파이 데이터 기준 AI 플랫폼 유입 세션이 전년 대비 197% 증가한 만큼, 키워드 중심의 기존 SEO에서 고객의 질문 자체를 다시 설계하는 방향으로 브랜드 전략을 점검해볼 타이밍입니다. 이번 주도 좋은 인사이트 가득 챙기시길 바랍니다! 🚀</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">AI 검색 유입 197% 급증…이커머스 최대 유입원은 여전히 '검색'</div>
+            <div class="news-summary">쇼피파이의 2026년 2분기 데이터에 따르면 AI 플랫폼을 통한 방문 세션이 전년 동기 대비 197% 증가했고 주문도 약 3배 늘었다. 그러나 오가닉 검색도 동시에 성장해 AI가 기존 검색을 대체하는 것이 아니라 소비자들이 두 채널을 다른 방식으로 병행 활용하고 있다는 분석이다. 이커머스 마케터는 SEO와 AI 검색 최적화를 동시에 운영하는 투트랙 전략이 필요한 시점이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">AI 검색에서 브랜드가 선택되려면 고객 질문부터 다시 봐라</div>
+            <div class="news-summary">AI 검색이 새로운 고객 유입 경로로 부상하면서 브랜드 전략도 달라지고 있다. 기존 SEO가 키워드·노출 중심이었다면 AI 검색에서는 브랜드 정보의 정확성과 신뢰도가 추천에 영향을 미친다. 크리에이티브 에이전시 스비아지는 최근 3개월간 AI 검색 추천으로만 신규 프로젝트 3건을 수주했다고 밝혀, 마케터는 AI가 자사 브랜드를 어떻게 이해하고 설명하는지 점검할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">인스타그램, 10년 만에 워드마크 변경…필기체 덜고 간결하게</div>
+            <div class="news-summary">인스타그램이 2016년부터 사용해온 필기체 스타일 워드마크를 10년 만에 보다 간결하고 현대적인 형태로 교체했다. 아담 모세리 책임자는 10년간 변화 없이 사용된 만큼 새롭게 다듬을 시점이었다고 설명했으며, 분홍·주황·보라색 그라디언트 앱 아이콘은 그대로 유지한다. 인스타그램을 광고·콘텐츠 채널로 활용하는 마케터는 비주얼 가이드라인 및 브랜드 소재에서 새 워드마크 적용 여부를 확인해야 한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">페이스북, AI 기반 '크리에이터 스튜디오' 앱 출시</div>
+            <div class="news-summary">페이스북이 크리에이터의 콘텐츠 운영과 커뮤니티 관리를 AI로 지원하는 독립형 앱 '크리에이터 스튜디오'를 미국·캐나다 iOS 크리에이터 전체로 확대 출시했다. 핵심 기능인 '크리에이터 어시스턴트'는 콘텐츠 스타일·성과·오디언스 반응·목표 등을 분석해 개인별 운영 방향을 제안한다. 페이스북을 브랜드 콘텐츠 채널로 운영하는 마케터에게 성과 분석과 댓글 관리 효율화 도구로 활용 가능성이 높다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">ANA·4As·IAB, 광고·마케팅 업계 AI 거버넌스 공동 추진</div>
+            <div class="news-summary">미국 전미광고주협회(ANA), 미국광고대행사협회(4As), 인터랙티브광고협회(IAB)가 AI 거버넌스 및 도입을 위한 범업계 협력을 공식화했다. 세 단체는 AI 외에도 커머스·리테일 미디어, 인재 개발을 공동 과제로 선정하고 업계 공통 기준과 체계 마련에 나선다. 글로벌 광고 업계의 AI 표준화 움직임이 본격화되는 만큼 국내 마케터도 관련 가이드라인 동향을 주시할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">DOOH는 1초면 충분…짧은 주목이 브랜드 기억·매출로 이어진다</div>
+            <div class="news-summary">디지털 옥외광고(DOOH)는 약 1초의 능동적 주목만으로도 브랜드 기억과 매출에 측정 가능한 효과를 낼 수 있다는 연구 결과가 나왔다. 일반 디지털 광고의 효과 발생에 필요한 2.5초보다 훨씬 짧은 시간이다. 단, 짧은 주목을 성과로 연결하려면 강력한 크리에이티브와 한눈에 알아볼 수 있는 명확한 브랜딩이 필수적이라는 점이 마케터에게 중요한 시사점이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">에어브릿지, MMP 최초 당근 광고비 연동 지원</div>
+            <div class="news-summary">AB180의 광고 성과 측정 솔루션 에어브릿지가 MMP 중 최초로 당근 광고비 연동을 지원하기 시작했다. 이 기능을 통해 당근 캠페인의 광고비 데이터를 자동으로 불러와 ROAS, CPA 등 주요 지표를 빠르고 정확하게 파악할 수 있다. 당근을 퍼포먼스 마케팅 채널로 활용하는 마케터라면 데이터 기반 캠페인 최적화 효율이 높아질 전망이다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">적을 만들지 않는 대화법 : ‘가시 박힌 말’을 주고받은 적 있다면</div>
+        <div class="longblack-subtitle">오랜만에 나간 주말 모임, 친구에게 이런 말을 들었어요. “맞아, 넌 원래 그런 애였지.” 그냥 웃어넘기기엔 불편했어요. 그렇다고 “그런 게 뭔데?”라며 받아치자니, 분위기를 깰 것 같았죠.</div>
+        <a class="longblack-link" href="https://www.longblack.co/note/2085" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
