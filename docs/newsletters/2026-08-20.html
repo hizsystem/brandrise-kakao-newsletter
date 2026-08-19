@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 8월 20일">
+    <meta property="og:description" content="목요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 8월 20일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-08-20</div>
+        <div class="header-title">8월 20일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">목요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 목요일 마케팅 소식 전해드립니다 😊 오늘은 헤이팝에서 다루는 틴더의 글로벌 팝업 전략이 흥미롭습니다. 런던의 반려견 펍부터 국경을 잇는 핑크 포털까지, 데이팅 앱이 오프라인 공간을 통해 브랜드 경험을 설계하는 방식이 인상적입니다. 앱 안에서 이뤄지던 연결의 감각을 현실 공간으로 끌어내 브랜드의 세계관을 직접 체험하게 만든다는 점에서, 디지털 플랫폼의 오프라인 확장이 단순한 홍보를 넘어 브랜드 정체성 표현의 수단으로 자리잡고 있음을 확인할 수 있습니다.</p><p>마케팅 뉴스에서는 코카콜라 영국의 'Counter Cultures' 캠페인도 챙겨보실 만합니다. 유명인 대신 지역 펍·카페·테이크아웃 매장의 가족 사업자들을 전면에 내세운 이 캠페인은, 버거킹 기사식당 감성 사례와 비슷하게 '투박한 진정성'이 브랜드 메시지를 더 선명하게 전달하는 흐름을 잘 보여줍니다. 동시에 가트너가 2028년 전 세계 광고비의 70% 이상이 AI 셀프서비스 플랫폼을 통해 집행될 것이라는 전망을 내놓으면서, 광고 집행 방식의 구조적 전환을 미리 그려볼 시점이기도 합니다.</p><p>챗GPT 상업적 질문 4건 중 1건에 광고가 노출된다는 SE 랭킹의 분석 결과까지 더하면, AI가 단순 도구를 넘어 광고 지면 자체로 진화하고 있다는 흐름이 더욱 뚜렷해집니다. 브랜드가 AI 환경 안에서 어떻게 발견될 것인가를 지금부터 고민해두셔야 할 이유입니다. 주말이 코앞으로 다가오고 있습니다, 목요일 아침도 힘차게 시작하세요! 🚀</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">가트너 &quot;2028년 글로벌 광고비 70%, AI 셀프서비스 플랫폼으로&quot;</div>
+            <div class="news-summary">가트너는 2028년 전 세계 광고비의 70% 이상이 AI 기반 셀프서비스 광고 플랫폼을 통해 집행될 것이라고 전망했다. 미국에서는 그 비중이 80%를 넘어설 것으로 예상된다. 이때 AI는 단순 광고 소재 생성이 아닌, 미디어 구매·타기팅·가격 결정·노출 전반을 자동화하는 플랫폼 내부 알고리즘을 의미한다. 마케터는 플랫폼 AI의 작동 방식을 이해하고 이를 전략적으로 활용하는 역량을 갖추는 것이 시급해졌다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">챗GPT, 상업적 질문 4건 중 1건에 광고 노출</div>
+            <div class="news-summary">SE 랭킹이 미국에서 상업적 의도의 챗GPT 프롬프트 5만6건을 분석한 결과, 전체의 25.94%에서 광고가 노출됐다. 다만 7개 중 1개꼴로 질문과 관련 없는 광고가 함께 노출되는 등 초기 단계의 한계도 드러났다. AI 대화창이 새로운 광고 인벤토리로 부상하는 만큼, 마케터는 챗GPT 광고 상품의 타기팅 정확도와 효율을 면밀히 모니터링할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">WARC·틱톡 &quot;AI 시대, 소비자 인텔리전스 루프가 브랜드 격차 만든다&quot;</div>
+            <div class="news-summary">WARC와 틱톡이 발표한 보고서에 따르면, 생성형 AI가 크리에이티브 도구로 대중화되면서 브랜드 간 격차를 가르는 핵심 요소가 달라지고 있다. AI 타기팅·오디언스 세분화에 활용되는 소비자 정보가 여전히 인구통계와 과거 데이터에 머물러 있다는 지적도 나왔다. 나이·성별·구매이력을 넘어 커뮤니티 시그널 등 실시간 소비자 인텐트를 AI에 입력하는 '인텔리전스 루프' 구축이 경쟁 우위의 새 기준이 될 전망이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">WPP 미디어, 국내 '어드밴스드 TV' 공식 출시</div>
+            <div class="news-summary">WPP 미디어가 실시간 방송·스트리밍·VOD로 분산된 TV 시청자를 가구 단위로 정교하게 타기팅하는 통합 솔루션 '어드밴스드 TV'를 국내에 공식 출시했다. 광고주는 원하는 타깃 가구에 맞춤 광고를 전달하고, 캠페인이 실제 비즈니스 성과에 미친 영향까지 측정할 수 있다. TV 광고 집행 방식이 어드레서블 중심으로 빠르게 재편되고 있어, 마케터는 기존 GRP 중심 구매 방식의 전환을 검토할 시점이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">D&amp;AD &quot;AI가 주니어 업무 대체…판단력 배울 기회도 사라진다&quot;</div>
+            <div class="news-summary">D&amp;AD가 발표한 'AI &amp; Creativity Report 2026'에 따르면, AI가 크리에이티브 반복 업무를 대신하면서 신입·주니어 일자리가 줄고 있다. 뛰어난 결과물을 가르는 결정적 요소는 여전히 인간의 판단력이지만, 주니어들이 판단력을 쌓을 실무 경험 자체가 줄어드는 악순환이 우려된다. 마케팅·크리에이티브 조직은 AI 도입과 함께 주니어 인재의 성장 경로를 별도로 설계하는 것이 중요해졌다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">2027년 400억달러 미디어 피치 몰려온다…에이전시 교체 전 해야 할 일</div>
+            <div class="news-summary">글로벌 미디어 컨설팅사 ID Comms는 2027년 약 400억달러 규모의 미디어 에이전시 피치가 시장에 쏟아지는 이른바 '미디어 팔루자'가 도래할 것으로 전망했다. 전문가들은 에이전시를 교체하기 전에 광고주가 자사의 미디어 운영 모델부터 점검해야 한다고 조언한다. 대규모 피치를 앞두고 마케터는 미디어 데이터 거버넌스·내부 역량·대행사 평가 기준을 미리 정비해 두는 것이 유리하다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">코카콜라, 동네 가족 사업자 주인공으로 'Counter Cultures' 캠페인 론칭</div>
+            <div class="news-summary">코카콜라 영국이 유명인 대신 지역 펍·카페·테이크아웃 매장 등 가족 사업자들의 일상을 전면에 내세운 'Counter Cultures' 캠페인을 선보였다. 코카콜라를 만들고 유통·판매하는 지역 소상공인들의 역할을 조명하며 브랜드 진정성을 강화하는 전략이다. 유명인 모델 없이 실제 소비자·파트너를 주인공으로 삼는 방식은 브랜드 신뢰도를 높이는 캠페인 접근법으로 주목할 만하다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">🎨</span>
+            <span class="card-title">전시 / 팝업 / 공간 추천</span>
+            <span class="card-source">헤이팝</span>
+        </div>
+        
+        <div class="heypop-item">
+            <div class="heypop-title">글로벌 데이팅 앱 ‘틴더’는 이렇게 팝업합니다</div>
+            <div class="heypop-desc">런던의 반려견 펍부터 국경을 잇는 핑크 포털까지, 틴더 글로벌 팝업 5</div>
+            <a class="heypop-link" href="https://heypop.kr/n/141785/" target="_blank">→ 자세히 보기</a>
+        </div>
+        <div class="heypop-item">
+            <div class="heypop-title">차를 좋아하는 사람들을 위한 B품 마켓, 〈모난장〉</div>
+            <div class="heypop-desc">세상에 하나뿐인 모난품을 소개하는 맥파이앤타이거</div>
+            <a class="heypop-link" href="https://heypop.kr/n/141606/" target="_blank">→ 자세히 보기</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
