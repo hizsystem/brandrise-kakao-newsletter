@@ -1,14 +1,13 @@
 name: Daily Newsletter
 on:
   schedule:
-    # 목표 도착: 10:00 KST(=01:00 UTC) 월~금.
-    # 이 값(23:30 UTC)은 명목 시각이 아니라 도착 시각을 맞춘 것이다.
-    # GitHub은 schedule 이벤트를 고부하 시 지연 발화하며, 이 리포는 실측 6회 전부
-    # 84~108분(평균 97분) 늦게 떴다(run created_at 기준. 러너 대기는 2초로 무관).
-    # 따라서 23:30 UTC + ~97분 → 09:54~10:17 KST 도착.
-    # 01:00 UTC로 바꾸면 명목상 10:00이지만 실제 도착은 ~11:30이 된다(2026-07-14~15 실측).
+    # 목표 도착: 10:00 KST 전후, 월~금.
+    # 00:47 UTC = 09:47 KST. GitHub은 schedule 이벤트를 큐 부하만큼 늦게 발화하는데
+    # 그 지연은 상수가 아니다 — 2026-07 +84~108분, 08/17~26 +15~21분, 08/27 +308분, 08/28 +451분.
+    # 예전 값 `30 23`(08:30 KST)은 "+97분 지연"을 얹어 10:00을 맞춘 것이라 지연이 줄자 08:45,
+    # 장애 날엔 오후에 도착했다. 그래서 목표 시각 자체를 크론에 쓰고, 혼잡한 :00/:30 분을 피한다.
     # 시각을 손대기 전에 반드시 `gh run list --json createdAt,event`로 실제 발화 시각을 측정할 것.
-    - cron: "30 23 * * 0-4"
+    - cron: "47 0 * * 1-5"
   workflow_dispatch:
 
 permissions:
@@ -26,11 +25,27 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      # 같은 날 중복 발행 가드 — 스케줄 런에만 적용. 수동 dispatch(재발행 의도)는 항상 실행.
+      # 지연된 스케줄 런이 수동 발행 뒤에 따라붙어 같은 날짜를 덮어쓰고 슬랙을 2번 보내는 것을 막는다
+      # (2026-07-15, 2026-08-27 실제 발생).
+      - name: Skip if today already published
+        id: guard
+        run: |
+          TODAY=$(TZ=Asia/Seoul date +%F)
+          if [ "${{ github.event_name }}" = "schedule" ] && git log HEAD --format=%s -30 | grep -qx "newsletter: $TODAY"; then
+            echo "[SKIP] newsletter: $TODAY 커밋이 이미 있음 — 스케줄 런 중복 발행 생략"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/setup-python@v5
+        if: steps.guard.outputs.skip != 'true'
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
+        if: steps.guard.outputs.skip != 'true'
       - name: Generate and publish newsletter
+        if: steps.guard.outputs.skip != 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -43,6 +58,7 @@ jobs:
           python bootstrap.py
           python main.py --now
       - name: Slack notify
+        if: steps.guard.outputs.skip != 'true'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: python slack_notify.py
