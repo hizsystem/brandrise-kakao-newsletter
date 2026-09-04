@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 9월 4일">
+    <meta property="og:description" content="금요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 9월 4일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-09-04</div>
+        <div class="header-title">9월 4일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">금요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 금요일 아침 마케팅 소식 전해드립니다 😊 오늘은 오데마 피게의 글로벌 캠페인 이야기가 인상적입니다. 3D·AI 이미지가 넘쳐나는 시대에 실제 제품 촬영과 모션 컨트롤·라이브 액션 기술을 선택했다는 점이 흥미로운데, 기술이 발전할수록 오히려 '손으로 만든 것', '실제로 찍은 것'에 대한 신뢰와 희소성이 높아지는 역설을 브랜드가 먼저 읽어낸 셈입니다. AI 생성 이미지가 광고 시장 전반으로 빠르게 확산되는 지금, 어떤 방식으로 제작했느냐 자체가 브랜드 메시지가 되는 흐름은 놓치지 않고 챙겨두실 만합니다.</p><p>AI 미디어 신뢰 이슈도 계속 이어지고 있습니다. 생성형 AI로 만들어진 콘텐츠가 급증하면서 출처와 책임 주체를 확인하는 것이 미디어·광고 시장의 핵심 과제로 떠오르고 있고, AI 영상의 경우 기존 키워드·채널 중심 브랜드 세이프티 검증만으로는 대응이 어렵다는 지적도 나왔습니다. 콘텐츠를 만들고 배포하는 것만큼, 그 콘텐츠가 어디서 어떻게 소비되는지를 장면 단위로 들여다보는 검증 체계가 함께 갖춰져야 할 시점입니다.</p><p>싱하가 성수 팝업·옥외광고·멀티채널을 동시에 가동하며 국내 마케팅을 본격화하는 행보도 챙겨두시면 좋겠습니다. 해외 음료 브랜드가 로컬 소비자와 접점을 빠르게 넓히는 방식으로 체험 중심의 오프라인을 적극적으로 활용하는 구조는, 브랜드 인지도를 단기에 끌어올리는 전략의 레퍼런스로 살펴볼 만합니다. 이번 주도 알차게 보내시고, 주말 잘 맞이하시길 바랍니다! 🙌</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">AI 시대, 미디어 신뢰가 새로운 화폐가 된다</div>
+            <div class="news-summary">생성형 AI로 제작된 콘텐츠가 급증하면서 콘텐츠의 출처와 책임 주체 확인이 미디어·광고 시장의 핵심 과제로 부상하고 있다. 미디어 인증기관 AAM은 얼마나 많이 노출하느냐보다 누가 만들고 누가 책임지느냐가 브랜드 신뢰를 좌우한다고 강조했다. 마케터는 미디어 구매 시 콘텐츠 출처 검증과 브랜드 세이프티 기준을 강화할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">AI 영상 시대, 광고도 '장면 단위'로 봐야</div>
+            <div class="news-summary">생성형 AI로 온라인 영상 콘텐츠가 폭발적으로 증가하면서 기존의 키워드·채널 중심 브랜드 세이프티 검증만으로는 한계가 있다는 지적이 나왔다. 파일러 오재호 대표는 MAD STARS 2026에서 영상 속 개별 장면을 분석하는 '장면 단위 타기팅' 방식을 제안했다. 광고 노출 환경의 안전성을 확보하려는 마케터라면 AIGC 급증에 대응한 새로운 검증 방식 도입을 검토할 시점이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">롯데칠성 '2%', 한로로 앞세워 진정성 캠페인 화제</div>
+            <div class="news-summary">롯데칠성음료의 이온음료 '2% 부족할 때'가 스튜디오좋이와 함께 크리에이터 한로로의 청춘과 실패를 담담하게 담은 브랜드 캠페인을 선보여 큰 반향을 얻고 있다. 제품 기능 대신 감정적 공감을 앞세운 전략으로 세대를 초월한 반응을 이끌어냈다. 기능 소구 중심의 음료 광고 공식을 벗어나 브랜드 진정성으로 소비자와 연결하는 접근법이 효과적임을 보여주는 사례다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">세일즈포스, 에이전틱 AI 기반 컨택센터 전략 공개</div>
+            <div class="news-summary">세일즈포스가 서울 엘타워에서 'AI x CX 페스타 2026'을 개최하고 컨택센터·음성·직원 서비스 전 영역에 걸친 에이전틱 AI 도입 전략과 국내 기업 실제 사례를 공개했다. 올해 컨퍼런스는 'AI와 사람의 협업에 기반한 서비스 성과 창출'에 초점을 맞췄다. 고객 서비스 자동화와 CX 고도화를 검토 중인 마케터에게 에이전틱 AI의 실무 적용 방향을 가늠할 수 있는 기회다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">원클럽, 캡컷과 글로벌 AI 파트너십 체결</div>
+            <div class="news-summary">광고 크리에이티브 단체 원클럽 포 크리에이티비티가 바이트댄스의 AI 편집 플랫폼 캡컷과 글로벌 파트너십을 맺고, 4개 주요 어워드 프로그램에서 협업한다. ADC 애뉴얼 어워드에는 캡컷 특별 부문이 신설될 예정이며, 만 30세 이하 크리에이터 대상 프로그램도 함께 운영한다. AI 기반 영상 편집 툴이 글로벌 크리에이티브 업계의 공식 파트너로 자리잡는 흐름을 보여주는 사례다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">오데마 피게, AI 시대에 '실사 촬영' 택한 글로벌 캠페인</div>
+            <div class="news-summary">스위스 하이엔드 워치 브랜드 오데마 피게가 3D·AI 이미지가 급증하는 시대에 역으로 실제 제품 촬영과 모션 컨트롤·라이브 액션 기술을 택한 글로벌 브랜드 캠페인을 공개했다. 프랑스 에이전시 봉주르 파리가 제작을 맡아 시계의 형태와 소재를 정밀하게 담아냈다. 브랜드 진정성과 장인정신을 강조할수록 AI 생성 이미지 대신 실사 촬영이 차별화 전략이 될 수 있음을 시사한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">싱하, 성수 팝업·멀티채널로 국내 마케팅 본격화</div>
+            <div class="news-summary">태국 음료 브랜드 싱하가 싱하소다워터·싱하레몬소다를 앞세워 강남·성수·홍대 옥외광고와 함께 9월 4~6일 성수동 팝업을 열고 제품을 무료 체험 기회를 제공한다. 유튜브·인스타그램·티빙·쿠팡플레이·카카오 등 디지털 채널로도 캠페인을 확대하며 온·오프라인을 연계한 풀퍼널 전략을 구사하고 있다. 외국 음료 브랜드의 국내 시장 진입 방식으로 팝업과 멀티채널 광고를 결합한 전략이 주목된다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">✉️</span>
+            <span class="card-title">이번 주 뉴스레터</span>
+        </div>
+        
+        <div class="stibee-item">
+            <span class="stibee-source">빌더조쉬</span>
+            <div class="stibee-title">&quot;GEO와 SEO, 뭐가 다른지 가장 명쾌하게 설명해 드리겠습니다&quot;</div>
+            <a class="stibee-link" href="https://maily.so/josh/posts/x1zg5d8voqg" target="_blank">뉴스레터 보기 →</a>
+        </div>
+        <div class="stibee-item">
+            <span class="stibee-source">까탈로그</span>
+            <div class="stibee-title">까탈스럽게 고른 취향 뉴스레터</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/e_ClRMAkJtPubhRQWVGx9Q2eJVBCSJM" target="_blank">뉴스레터 보기 →</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
