@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 9월 15일">
+    <meta property="og:description" content="화요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 9월 15일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-09-15</div>
+        <div class="header-title">9월 15일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">화요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 화요일 마케팅 소식 전해드립니다 😊 오늘은 풋풋레터의 트렌드 수명 이야기가 특히 와닿습니다. &quot;요즘 유행은 17일 만에 끝난다&quot;는 진단은 과장처럼 들리지만, 숏폼과 AI 추천 알고리즘이 콘텐츠 소비 속도를 극단적으로 끌어올린 지금의 환경을 생각하면 충분히 납득이 됩니다. 유행이 이렇게 짧아질수록 '지금 뭐가 뜨는가'를 쫓는 것보다 그 유행이 어디서 출발해 어떻게 퍼지는지를 읽는 구조적 눈이 더 중요해집니다.</p><p>해외 크리에이티브에서는 기네스의 'LoVely' 옥외광고가 인상적입니다. 브랜드 심벌인 하프를 알파벳 'V' 자리에 자연스럽게 녹여 단어 하나로 아이덴티티와 메시지를 동시에 전달한 이 캠페인은, 복잡한 설명 없이도 브랜드가 오래 쌓아온 상징이 얼마나 강력한 크리에이티브 자산이 될 수 있는지를 잘 보여줍니다. 강원숙 HSAD ECD가 말한 &quot;문제 규정은 세심하게, 솔루션은 심플하게&quot;라는 기준과도 정확히 맞닿아 있어 함께 읽으면 더 선명해집니다.</p><p>트렌드의 속도는 빨라지고 있지만, 결국 오래 남는 건 브랜드가 축적해온 맥락과 상징입니다. 이번 주도 좋은 흐름 이어가세요! 🚀</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">[Tech/Biz Trend] 엔비디아는 왜?</div>
+            <div class="news-summary">허깅페이스를 ‘12,930,300,000달러’에 샀을까? 오늘의 세줄요약 – 엔비디아가 허깅페이스를 인수한 가격, 끝자리가 이상하게 안 떨어져요. 이유가 있었습니다.– 같은 주 OpenAI는 GPT-6 Astra를 1979년 MIT 영상으로 열며 AGI 시대를 선언했고요.– 기술이 수렴할수록 서사가 진짜 자산이 되어 가고 있습니다. 엔비디아가 숫자로 보낸 편지 엔비디아가 허깅페이스를 인수했습니다. 가격은 129억 달러, 정확히는 $12,930,300,000입니다. 어딘지 조금 이상합니다. 보통 […] The post [Tech/Bi</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">[중국 비즈니스 트렌드&amp;동향] AI가 대신 약속 잡는 위챗, 중동 자본 들어온 루이싱커피</div>
+            <div class="news-summary">위챗, AI 비서끼리 먼저 협의하는 ‘샤오웨이 AI 소셜’ 내부 테스트 위챗(WeChat, 微信)이 사용자의 AI 비서가 상대방의 AI 비서와 직접 대화해 용건을 처리하는 ‘샤오웨이 AI 소셜(小微AI社交)’ 기능을 소수 사용자 대상으로 내부 테스트하고 있다. 사용자가 자신의 샤오웨이에게 용건을 말하면 샤오웨이가 상대방 계정의 샤오웨이를 찾아 먼저 협의하고, 결과를 가져오는 방식이다. 약속 시간 조율이나 일정 확인, 행사 참석 의사 ... 더 읽기</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">&quot;문제 규정은 세심하게, 솔루션은 심플하게… 확실한 변화 이끌어 내야&quot;… 강원숙 HSAD ECD</div>
+            <div class="news-summary">&quot;한 때는 솔루션들이 복잡하고 어려울수록 좋은 크리에이티브라고 인정 받기도 했습니다. 하지만 올해는 아주 구체적인 문제 규정, 그리고 그걸 해결하는 아주 간단하지만 기가막힌 변화를 가져오는 솔루션이 주를 이루었습니다. 말하자면 문제 규정은 아주 세심하게 솔루션은 더 심플하게. 세심한 눈으로 찾아낸 구체적인 문제점을 쉽고 간단하게, 그러면서도 확실한 변화를 이끌어내는 아이디어들이 인정 받고 박수 받은 해였습니다.&quot; 세상 곳곳에 존재하는 다양한 문제들을 찾아내 해결하고, 세상을 더 나은 곳으로 바꿔가는 반짝이는 크리에이티비티와 용감한</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">[해외 크리에이티브] 기네스가 ‘Lovely’의 V를 하프로 바꾼 이유는?</div>
+            <div class="news-summary">[ 매드타임스 한수경 기자] 기네스(Guinness)가 브랜드를 상징하는 하프를 알파벳 ‘V’로 활용한 새로운 옥외광고 캠페인 ‘LoVely’를 선보였다. ‘Lovely’라는 단어의 V 자리에 160년 넘게 사용해온 하프를 넣어 익숙한 브랜드 상징에 새로운 역할을 줬다.AMV BBDO와 함께 만든 이번 캠페인은 기네스의 오랜 광고 문구 ‘Lovely Day for a Guinness’에서 출발했다. 1930년대부터 사용된 이 문구는 지난해 다시 기네스 광고에 등장했으며, 이번에는 문장 전체가 아닌 ‘Lovely’ 한 단어만 남겼다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">[해외 크리에이티브] “알츠하이머, 치료할 수 있다” 알츠하이머 리서치 UK, ‘슬픈 광고’ 대신 치료의 희망 전한다</div>
+            <div class="news-summary">[ 매드타임스 최승은 기자] 영국 알츠하이머 연구 자선단체 알츠하이머 리서치 UK(Alzheimer’s Research UK)가 치매의 고통과 상실을 보여주는 대신 치료법을 찾을 수 있다는 희망을 앞세운 새로운 캠페인을 선보였다. “지금 살아 있는 누군가가 알츠하이머를 처음으로 치료받는 사람이 될 수 있다”는 메시지를 통해 연구와 후원의 필요성을 알린다.광고회사 비욘드(Beyond)가 제작한 이번 캠페인은 자선단체 광고에서 흔히 볼 수 있는 슬픔과 무력감에 호소하는 방식에서 벗어난 것이 특징이다. 알츠하이머 연구가 진전을 거듭하면서</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">“Great Global Ideas Can Come from Local Truths” — Enkhbayasgalan Tungalag, CEO of KMG Group</div>
+            <div class="news-summary">Mongolia’s advertising industry may still be relatively unfamiliar beyond its borders, but it is changing fast. Agencies are moving beyond execution into strategy, data, branding, content and technology, while AI is opening new possibilities for a smaller market where scale has long been a constrain</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">에이전트가 키우는 추론 수요…중국 AI 연산, 4년 뒤 80%가 ‘모델 돌리기’</div>
+            <div class="news-summary">중국 AI 산업의 경쟁축이 대형모델 개발에서 에이전트의 배치와 운영으로 옮겨가고 있다. 중국전신연구원은 12일 발표한 ‘에이전트 시대 AI 인프라 발전 연구보고서 2026’에서 2029년이면 추론 컴퓨팅이 중국 컴퓨팅 시장의 약 80%를 차지해 학습 수요를 크게 앞설 것으로 전망했다. 보고서는 중국 AI 산업이 대형모델과 단순 컴퓨팅 규모 경쟁에서 에이전트의 대규모 배치와 상용화 단계로 넘어가고 있다고 진단했다. 향후 2~3년 ... 더 읽기</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">✉️</span>
+            <span class="card-title">이번 주 뉴스레터</span>
+        </div>
+        
+        <div class="stibee-item">
+            <span class="stibee-source">풋풋레터</span>
+            <div class="stibee-title">요즘 유행은 17일 만에 끝난다는데, 진짜 트렌드는 어떻게 찾을까?</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/okacrDKfnvqBI060IlMq2NdHg6e1CUE" target="_blank">뉴스레터 보기 →</a>
+        </div>
+        <div class="stibee-item">
+            <span class="stibee-source">캐릿</span>
+            <div class="stibee-title">패딩 꺼내기 전에 봐야 하는 트렌드 모음</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/iTDUIBrU209qIY33zAWclRtYjIqyhCc" target="_blank">뉴스레터 보기 →</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
