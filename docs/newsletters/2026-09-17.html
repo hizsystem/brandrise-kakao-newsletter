@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 9월 17일">
+    <meta property="og:description" content="목요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 9월 17일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-09-17</div>
+        <div class="header-title">9월 17일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">목요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 목요일 마케팅 소식 전해드립니다 😊 오늘은 헤이팝에서 전한 프로스펙스 소식이 흥미롭습니다. 45년 헤리티지를 바탕으로 새로운 거점을 열었다는 이야기인데, 오래된 브랜드가 공간을 통해 다시 존재감을 각인시키는 방식은 요즘 팝업스토어 트렌드와도 맞닿아 있습니다. 실제로 성수·더현대에 집중됐던 팝업이 용산·잠실·홍대로 빠르게 퍼지며 상권 자체를 재편하고 있는 지금, 브랜드에게 공간은 단순한 체험 채널을 넘어 아이덴티티를 재정의하는 무대가 되고 있습니다.</p><p>칸 라이언즈 서울 2026에서 나온 미디어·커머스 관련 발표도 함께 읽으면 흐름이 선명해집니다. 제일기획 발표처럼 미디어 플랫폼이 콘텐츠 노출에서 결제까지 직접 연결하는 방향으로 확장되고 있고, 삼성전자가 제시한 CTV '원클릭 쇼퍼블 광고'는 TV를 보다가 바로 구매로 이어지는 소비자 여정을 현실로 당기고 있습니다. 광고와 커머스 사이의 경계가 흐려질수록, 브랜드가 어느 접점에서 어떤 방식으로 전환을 설계하느냐가 미디어 전략의 핵심 질문이 되고 있습니다.</p><p>주말이 코앞으로 다가온 목요일 아침입니다. 오늘 하루도 활기차게 시작하세요! 🙌</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">광고·커머스 경계 허문다…미디어 플랫폼, 결제까지 확장</div>
+            <div class="news-summary">제일기획 김지희 팀장이 '칸 라이언즈 서울 2026'에서 발표한 2026 미디어 트렌드에 따르면, 콘텐츠 노출에 머물던 미디어 플랫폼들이 AI·빅데이터를 앞세워 결제 영역으로 빠르게 확장하고 있다. 콘텐츠·커머스 플랫폼과 인플루언서까지 소비자 관심을 실구매로 전환하는 풀퍼널 경쟁에 뛰어들었다. 마케터는 인지~구매를 단일 여정으로 설계하는 풀퍼널 전략을 미디어 플래닝 단계부터 반영해야 할 시점이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">삼성전자 '원클릭 쇼퍼블 광고'로 TV→커머스 혁신</div>
+            <div class="news-summary">김원종 삼성전자 상무는 '칸 라이언즈 서울 2026'에서 커넥티드 TV(CTV)가 인지부터 구매까지 소비자 여정을 단번에 응축하는 '원클릭 쇼퍼블 광고' 비전을 제시했다. TV 시청 중 광고를 보고 즉시 결제까지 이어지는 구조로, 기존 쇼퍼 저니를 근본적으로 단축하겠다는 구상이다. CTV 광고 집행을 고려하는 마케터라면 커머스 연동 포맷을 조기에 검토할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">소비자 52%, AI 데이터 투명 브랜드에 더 지불 의향</div>
+            <div class="news-summary">유저센트릭스의 'State of Digital Trust 2026' 보고서에 따르면 7개국 소비자의 52%가 AI의 데이터 활용 방식을 투명하게 공개하는 브랜드에 더 많은 비용을 지불할 의향이 있다고 답했다. AI 개인정보 활용 방식이 소비자의 브랜드 선택과 구매 결정에 직접 영향을 미치고 있다는 뜻이다. 마케터는 AI 기반 개인화 캠페인 설계 시 데이터 사용 방침을 명확히 고지하는 것을 브랜드 신뢰 구축 전략의 일환으로 삼아야 한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">네이버-토스 소송전, 15만 소상공인 광고 생태계 흔든다</div>
+            <div class="news-summary">네이버가 토스의 리워드형 광고 '출석 체크 미션'이 검색 순위를 왜곡했다며 경찰에 고소했고, 토스플레이스는 네이버의 자사 POS 차별을 이유로 공정위 제소를 검토 중이다. 두 회사의 갈등은 광고·오프라인 매장 관리 영역에서 사업이 겹치면서 발생한 구조적 충돌로, 15만 소상공인이 직접적 영향권에 놓였다. 소상공인 대상 광고·CRM 플랫폼 의존도를 분산하는 전략의 필요성이 커지고 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">WARC·링크드인 연구: B2B 브랜드 'Buyability' 높이는 3R 전략</div>
+            <div class="news-summary">WARC·링크드인·라이언즈 어드바이저리 공동 연구에 따르면 B2B 구매 결정까지 평균 272일이 걸리고 22명의 이해관계자가 참여하며, 2025년 B2B 구매자의 94%가 구매 과정에서 LLM을 활용한 것으로 나타났다. 제품 성능·가격 외에 사회적·감정적 요인과 AI 검색 노출 여부가 브랜드 선택에 영향을 미치고 있다. B2B 마케터는 LLM 최적화(LLM SEO)와 감성적 브랜드 빌딩을 구매 퍼널 전략에 함께 통합해야 한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">마케터의 AI 과제, '도입'에서 '기반 구축'으로 이동</div>
+            <div class="news-summary">엡실론의 'State of AI in Marketing: 2026 Benchmark Study'에 따르면 AI 도입률은 사실상 포화 상태에 도달했으며, 이제 경쟁 우위는 도입 여부가 아니라 데이터·프로세스·조직의 AI 기반을 얼마나 탄탄히 갖췄느냐에서 갈린다. 미국 중심 보고서이지만 국내 마케팅 환경에도 유사한 흐름이 적용된다는 평가다. 마케터는 AI 툴 도입 단계를 넘어 데이터 인프라 정비와 조직 역량 내재화에 우선순위를 두어야 한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">팝업스토어, 성수·더현대 넘어 상권 재편 가속</div>
+            <div class="news-summary">과거 성수동과 더현대서울에 집중됐던 팝업스토어가 용산·잠실·홍대 등으로 확산되며 상권 지형을 재편하고 있다. 팝업스토어가 공실률 해소 수단으로 부상하면서 유치 후 건물 가치를 끌어올리는 사례도 잇따르고 있다. 오프라인 브랜드 경험을 기획하는 마케터에게는 입지 선택지가 넓어진 만큼 상권별 타깃 적합성을 면밀히 검토할 필요가 있다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">🎨</span>
+            <span class="card-title">전시 / 팝업 / 공간 추천</span>
+            <span class="card-source">헤이팝</span>
+        </div>
+        
+        <div class="heypop-item">
+            <div class="heypop-title">미감까지 챙긴 추석 먹거리 선물 7</div>
+            <div class="heypop-desc">헤이팝 Editor’s pick</div>
+            <a class="heypop-link" href="https://heypop.kr/n/143237/" target="_blank">→ 자세히 보기</a>
+        </div>
+        <div class="heypop-item">
+            <div class="heypop-title">‘프로-스펙스’가 다시 달리기 시작한 장소는?</div>
+            <div class="heypop-desc">45년의 헤리티지를 바탕으로 완성한 새로운 거점</div>
+            <a class="heypop-link" href="https://heypop.kr/n/143059/" target="_blank">→ 자세히 보기</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
