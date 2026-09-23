@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 9월 23일">
+    <meta property="og:description" content="수요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 9월 23일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-09-23</div>
+        <div class="header-title">9월 23일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">수요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 수요일 마케팅 소식 전해드립니다 😊 오늘은 빌더조쉬에서 전한 AI 브랜드 자산 이야기가 인상적입니다. 엘리펀트컴퍼니 김예지 대표는 GEO(생성형 엔진 최적화)보다 AI가 읽을 수 있는 브랜드 자산을 먼저 갖춰야 한다고 짚습니다. AI가 브랜드를 인용하려면 그 브랜드가 무엇을 말하는지 명확하게 정리된 콘텐츠와 구조가 선행되어야 한다는 것인데, 검색 최적화의 시대에 SEO가 기본기였다면 지금은 AI가 읽고 정리할 수 있는 브랜드 언어와 자산을 쌓는 것이 새로운 기본기가 되고 있습니다.</p><p>LG전자 LGE닷컴의 '르게다꼼' 캠페인도 같은 맥락에서 읽힙니다. 단순 제품 판매 채널에서 벗어나 홈스타일 서비스를 결합한 라이프스타일 플랫폼으로 자기 언어를 다시 정의하는 시도인데, 브랜드가 어떤 플랫폼인지 스스로 선언하는 캠페인은 소비자뿐 아니라 AI가 그 브랜드를 어떻게 이해하고 설명할지에도 직접적인 영향을 줍니다. 브랜드 정체성을 명확히 하는 일이 광고와 AI 대응 모두를 관통하는 과제가 되고 있습니다.</p><p>한 주의 중반, 오늘도 현장에서 바로 꺼내 쓸 수 있는 인사이트로 힘차게 시작하세요! 💡</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">토스-오아시스 동맹, 네이버-컬리와 무엇이 다른가</div>
+            <div class="news-summary">토스가 오아시스마켓 운영사에 300억 원을 투자해 지분 2.3%를 확보하고, 토스쇼핑 내 오아시스마켓 전용관을 열기로 했다. 대형 플랫폼이 신선식품 전문몰과 손잡는 구조는 네이버-컬리 협업과 유사하지만, 물류망 측면에서 차별화된 접근을 취한다. 플랫폼-버티컬 커머스 제휴 모델이 확산되는 흐름 속에서, 마케터는 자사 브랜드가 입점할 커머스 생태계의 물류·데이터 연계 구조를 함께 검토할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">아임웹 자사몰 누적 거래액 8조 원 돌파</div>
+            <div class="news-summary">브랜드 빌더 아임웹의 고객사 누적 거래액이 2026년 8월 기준 8조 원을 돌파했으며, 1조 원 증가에 걸리는 기간이 초기 16개월에서 최근 7개월로 단축됐다. 올 상반기 자사몰 거래액은 전년 동기 대비 12.6% 증가했고, F&amp;B와 생활용품이 각각 28%, 29% 성장하며 성장을 견인했다. 자사몰 시장의 성장 가속은 브랜드가 플랫폼 의존도를 줄이고 직접 고객 접점을 강화하는 D2C 전략의 유효성을 뒷받침한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">우버의 딜리버리히어로 인수, 공정위 심사 시작</div>
+            <div class="news-summary">공정거래위원회가 우버의 딜리버리히어로(DH) 주식 공개매수에 대한 기업결합 사전 심사에 착수했다. 거래가 완료되면 우버는 DH를 통해 배달의민족 운영사 우아한형제들의 경영권을 간접 확보하게 된다. 국내 배달 플랫폼 시장의 지배구조 변화가 예고된 만큼, 외식·식품 브랜드 마케터는 광고·입점 정책 변화에 대비한 플랫폼 다각화 전략을 점검해야 할 시점이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">&quot;AI가 크리에이티브를 망친 게 아니다&quot;…결정이 더 어려워졌다</div>
+            <div class="news-summary">크리에이티브 프로덕션사 마이크티비(MikeTeevee)가 발간한 '브랜드 퍼스펙티브 2026' 보고서는 AI가 크리에이티브 업계의 획일화와 역량 저하를 초래했다는 비판에 반론을 제기했다. AI는 문제를 만든 것이 아니라 업계에 이미 존재하던 문제를 드러내고 가속했다는 분석이다. 선택지가 폭발적으로 늘어난 AI 시대에 마케터에게 진짜 요구되는 역량은 더 나은 크리에이티브를 선별하고 결정하는 판단력임을 시사한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">LG전자 LGE닷컴, '르게다꼼' 캠페인으로 라이프스타일 플랫폼 선언</div>
+            <div class="news-summary">HSAD가 LG전자의 통합 온라인 플랫폼 LGE닷컴의 브랜드 캠페인 '르게다꼼'을 공개했다. LGE닷컴은 지난해 11월 홈스타일 서비스를 론칭하며 가전을 넘어 가구·조명·인테리어 등 라이프스타일 전반으로 영역을 확대한 바 있다. 가전 제조사가 커머스 플랫폼 정체성을 재정립하며 브랜드 캠페인으로 소비자 인식을 전환하는 전략은, 자사몰을 운영하는 브랜드에게 플랫폼 브랜딩의 중요성을 보여주는 사례다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">대홍기획, 티켓 할인 플랫폼 '엘티켓' 론칭</div>
+            <div class="news-summary">롯데그룹 계열 광고대행사 대홍기획이 대극장 뮤지컬·연극·전시 할인 티켓 커머스 플랫폼 '엘티켓(L.TICKET)'을 오픈했다. 광고회사의 소비자 이해·수요 창출 역량을 실제 구매 전환으로 연결하는 새로운 비즈니스 모델로, 향후 롯데그룹 계열사의 문화·여가 자산과 연계해 서비스를 확장할 계획이다. 광고대행사가 미디어 커머스를 직접 운영하는 사례로, 에이전시의 역할 경계가 확장되는 업계 흐름을 보여준다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">후기 양보다 구매 여정 설계가 중요한 이유</div>
+            <div class="news-summary">F&amp;B·뷰티·건강기능식품 등 소비재 브랜드는 IMC 캠페인에서 후기 콘텐츠를 대량 생산하는 전략을 자주 택하지만, 후기의 양보다 소비자의 구매 여정 맥락을 설계하는 것이 핵심이라는 주장이 제기됐다. 소비자는 광고 문구만으로 구매하지 않고 검색·비교·실사용자 언어 확인 후 결정하기 때문에, 후기가 노출되는 맥락과 순서를 전략적으로 기획해야 한다. 마케터는 후기 수량 확보에 앞서 어떤 시점에 어떤 채널에서 후기가 소비자 결정에 개입하는지를 먼저 설계해야 한다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">✉️</span>
+            <span class="card-title">이번 주 뉴스레터</span>
+        </div>
+        
+        <div class="stibee-item">
+            <span class="stibee-source">빌더조쉬</span>
+            <div class="stibee-title">GEO부터 시작하면 안 됩니다, AI가 읽을 브랜드 자산이 먼저입니다</div>
+            <a class="stibee-link" href="https://maily.so/josh/posts/1do1dmm0ox6" target="_blank">뉴스레터 보기 →</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
