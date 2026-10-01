@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 10월 1일">
+    <meta property="og:description" content="목요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 10월 1일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-10-01</div>
+        <div class="header-title">10월 1일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">목요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 목요일 마케팅 소식 전해드립니다 😊 오늘은 10월의 첫날입니다. 헤이팝에서 전한 카카오페이 팝업 '오래오래 함께가게' 이야기가 월초 첫 소식으로 특히 잘 어울립니다. 스몰 브랜드와 40만 명의 방문객을 연결한 이 캠페인은, 결제 플랫폼이 자신의 인프라를 '상생의 접점'으로 재정의한 사례입니다. 광고보다 관계를 먼저 설계한 이 접근은, 브랜드가 어떤 역할로 소비자 곁에 있을지를 다시 생각하게 만듭니다.</p><p>AI 관련 소식도 오늘 유독 많습니다. OpenAI의 에이전트 '닷(dots)'은 사용자의 목표와 선호를 학습해 지속적으로 업무를 대신 수행하고, 틱톡은 제품 이미지만으로 영상 광고를 자동 완성하는 AI 도구를 광고주에게 무료로 열었습니다. 마이크로소프트는 소비자가 검색엔진 대신 생성형 AI 챗봇으로 쇼핑하는 흐름이 본격화되고 있다고 짚었습니다. 도구가 빠르게 바뀌고 있는 만큼, 어떤 도구를 쓸지보다 그 도구로 무엇을 먼저 설계할지가 더 중요한 질문이 되고 있습니다.</p><p>10월 첫날, 오늘 하루도 좋은 인사이트와 함께 힘차게 달려가시길 바랍니다! 🍂</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">메타, 인스타그램 '라이브 방송 광고' 국내 정식 출시</div>
+            <div class="news-summary">메타가 기존 팔로워를 넘어 구매 의향이 높은 사용자에게 라이브 방송을 노출하는 인스타그램 '라이브 방송 광고'를 30일 한국에 정식 출시했다. 라이브 커머스가 일상적인 쇼핑 창구로 자리잡은 상황에서, 이 솔루션은 발견부터 구매까지 메타 쇼핑 생태계를 하나로 연결한다. 라방을 운영 중인 브랜드라면 팔로워 외 신규 도달 확대와 구매 전환율 제고를 동시에 노릴 수 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">오픈AI, 업무 대행 AI 에이전트 '닷(dots)' 공개</div>
+            <div class="news-summary">오픈AI가 사용자를 대신해 지속적으로 업무를 수행하는 AI 에이전트 '닷(dots)'을 공개했다. 닷은 사용자의 목표와 선호도를 학습하고 여러 작업의 진행 상황을 상시 모니터링하며 필요 시 사용자 검토를 요청하는 비서형 에이전트다. 마케터의 반복 업무 자동화와 캠페인 관리 효율화에 직접 활용될 수 있어 주목된다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">AI 에이전트가 마테크 도구를 스스로 선택·운용하는 시대</div>
+            <div class="news-summary">생성형 AI 탑재 마테크 제품이 쏟아지면서 마케팅 기술 도구를 축소하던 기업들이 다시 새 기술 도입에 나서고 있다. 스노우플레이크의 '2026 모던 마케팅 데이터 스택' 보고서는 사람이 도구를 조작하는 대신 AI 에이전트가 필요한 도구를 선택해 업무를 처리하는 방식을 차세대 변화로 제시했다. 마케터는 도구 선택의 주체가 AI로 이동하는 흐름을 전제로 데이터 인프라와 거버넌스를 재점검해야 한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">틱톡, 제품 이미지만으로 영상 광고 자동 생성 AI 무료 제공</div>
+            <div class="news-summary">틱톡 코리아는 제품 이미지와 설명만 입력하면 영상 광고를 완성해 주는 AI 광고 소재 제작 도구를 광고주에게 무료로 제공한다고 밝혔다. 광고 플랫폼 선택보다 'AI로 비즈니스를 어떻게 확장할 것인가'가 핵심 과제로 떠오른 상황에서, 틱톡은 AI 소재 제작 장벽을 낮춰 광고주 유입을 가속화하는 전략을 택했다. 영상 광고 제작 비용과 시간을 줄이려는 중소 브랜드에게 실질적인 대안이 될 수 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">MS가 본 리테일 AI 전환: 검색창 대신 AI 챗봇으로 쇼핑</div>
+            <div class="news-summary">마이크로소프트 기술전략팀은 '마이크로소프트 인더스트리 서밋 2026'에서 소비자가 검색엔진 대신 생성형 AI 챗봇으로 쇼핑하는 사례가 늘고 있다고 진단했다. 이에 대응하려면 리테일 기업이 자사 상품 데이터를 AI 챗봇이 잘 찾고 읽을 수 있는 형태로 정비해야 한다고 강조했다. 검색 SEO 최적화처럼 AI 가독성 중심의 상품 데이터 관리가 이커머스의 새로운 필수 과제로 부상하고 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">농심 바나나킥 검색량 325% 상승…UGC '답장' 전략의 힘</div>
+            <div class="news-summary">농심 바나나킥의 검색량이 최대 325% 급등한 배경에는 광고비가 아니라 소비자 UGC(사용자 생성 콘텐츠)에 브랜드가 보낸 '답장'이 있었다. 단순히 UGC를 발견하고 좋아요를 누르는 데 그치지 않고, 브랜드가 기억과 반응을 담아 적극 응답할 때 UGC가 마케팅 자산으로 전환된다는 사례다. 리테일 미디어나 SNS 운영 담당자라면 UGC 반응 체계를 성과 지표와 연결해 리포팅에 반영하는 방식을 검토할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">AI로 15만 개 옥외광고 매체 분석·추천하는 'SMLKOMS' 출시</div>
+            <div class="news-summary">옥외광고 데이터·AI 기업 SMLK가 전국 15만 개 이상의 OOH 매체를 검색·분석·추천하고 제안서 작성과 캠페인 성과 확인까지 지원하는 구독형 플랫폼 'SMLKOMS'의 오픈 베타 서비스를 시작했다. 광고주·광고대행사·미디어렙사·매체사가 함께 이용할 수 있도록 설계됐으며, 전광판·버스 외부광고 등을 우선 지원한다. 데이터 기반 OOH 매체 기획과 집행 효율화를 원하는 마케터에게 실질적인 도구가 될 전망이다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">🎨</span>
+            <span class="card-title">전시 / 팝업 / 공간 추천</span>
+            <span class="card-source">헤이팝</span>
+        </div>
+        
+        <div class="heypop-item">
+            <div class="heypop-title">이솝(Aēsop)의 향수가 달라졌다</div>
+            <div class="heypop-desc">20여 년의 컬렉션을 새롭게 정비한 ‘프래그런트 페이블즈’</div>
+            <a class="heypop-link" href="https://heypop.kr/n/143684/" target="_blank">→ 자세히 보기</a>
+        </div>
+        <div class="heypop-item">
+            <div class="heypop-title">카카오페이 팝업 ‘오래오래 함께가게’ 연 이유는?</div>
+            <div class="heypop-desc">스몰 브랜드와 40만 명의 방문객을 연결한 상생 캠페인</div>
+            <a class="heypop-link" href="https://heypop.kr/n/143630/" target="_blank">→ 자세히 보기</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
