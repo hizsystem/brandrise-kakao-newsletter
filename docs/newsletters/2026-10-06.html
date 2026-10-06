@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 10월 6일">
+    <meta property="og:description" content="화요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 10월 6일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-10-06</div>
+        <div class="header-title">10월 6일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">화요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 화요일 마케팅 소식 전해드립니다 😊 오늘은 해외 크리에이티브 캠페인 두 편이 함께 읽기 좋습니다. 아리치아는 대표 제품 슈퍼 퍼프를 건물 전체를 뒤덮는 초대형 설치물로 구현해 뉴욕 한복판을 브랜드 공간으로 바꿔버렸고, 아식스는 &quot;하루의 86%를 움직이지 않는다&quot;는 데이터를 전면에 내세우며 움직임의 필요성을 경고하는 캠페인으로 브랜드 메시지를 날카롭게 벼렸습니다. 두 사례 모두 제품 기능을 설명하는 대신, 브랜드가 전달하려는 세계관을 감각적으로 체험하게 만든다는 공통점이 있습니다.</p><p>캐릿에서 전한 소식도 흥미롭습니다. 네컷사진을 타투 도안으로 활용하는 흐름이 Z세대 사이에서 번지고 있다는 내용인데, 즉흥적이고 비보정된 순간의 이미지를 영구적인 형태로 남긴다는 발상이 독특합니다. 완성도보다 진짜 순간을 더 가치 있게 여기는 감각이 소비 행동으로 이어지고 있다는 신호로 읽히고, 브랜드가 Z세대와 어떤 온도로 소통해야 할지를 생각해볼 수 있는 지점입니다.</p><p>화요일 아침도 좋은 인사이트와 함께 힘차게 시작하시길 바랍니다! 🔥</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">[이드의 스타트업 모험기] 왜 아직도 조직문화를 직원만족도로 평가하는가</div>
+            <div class="news-summary">이드의 HR 커피챗 시리즈 ※ 내가 쓰는 글들은 개인적인 경험과 고민을 바탕으로 한 지극히 개인적인 의견이다. 특정 누군가를 비판하는 것도, 정답을 말하는 것도 아니니 가볍게 읽어주면 좋겠다. (자문/컨설팅 문의) 낡은 유행인데 왜 못 버릴까 조직문화라는 단어의 유행은 이미 끝났다고 생각한다. 그런데 신기하게도 회사들은 이 단어를 여전히 못 버리고 있다. 채용 […] The post [이드의 스타트업 모험기] 왜 아직도 조직문화를 직원만족도로 평가하는가 appeared first on 모비인사이드 MOBIINSIDE .</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">크리에이티브 경제 키우는 우즈벡… &quot;중앙아시아의 '갭'이 경쟁력&quot;</div>
+            <div class="news-summary">[우즈베키스탄 타슈켄트=유다정 기자] 우즈베키스탄이 크리에이티브 경제를 국가의 새로운 성장 동력으로 키우고 있다. 중앙아시아 크리에이티비티의 중심으로 자리매김해 온 '졸보르스 페스티벌(Jolbors Festival)'도 글로벌 무대로 외연을 넓히며, 지역의 크리에이티브 산업을 세계와 연결하는 핵심 축으로 부상하고 있다. 생성형 인공지능(AI)이 광고와 콘텐츠 제작의 문턱을 낮춘 지금, 졸보르스는 중앙아시아만의 역사와 문화, 사람들의 실제 경험과 관점이 글로벌 크리에이티브 시장에서 새로운 경쟁력이 될 수 있다는 가능성을</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">[해외 크리에이티브] 건물 뒤덮은 초대형 패딩…아리치아, 뉴욕에 ‘슈퍼 퍼프’ 설치</div>
+            <div class="news-summary">[ 매드타임스 최승은 기자] 캐나다 패션 브랜드 아리치아(Aritzia)가 대표 제품 ‘슈퍼 퍼프(Super Puff)’를 건물 크기로 키워 뉴욕 로어이스트사이드에 설치했다. ‘슈퍼 자이언트 퍼프(Super Giant Puff)’라는 이름의 이 설치물은 159 러들로 스트리트 건물 외벽을 뒤덮었으며, 10월 1일까지 공개됐다.거대한 패딩을 만든 이유는 슈퍼 퍼프의 기능 개선을 알리기 위해서다. 새 제품에는 800+ 필파워 다운이 적용됐으며, 아리치아는 이전보다 가벼우면서도 높은 보온성을 갖췄다고 밝혔다. 숫자로만 보면 쉽게 와닿지</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">[해외 크리에이티브] “아보카도 토스트를 호주 공식 아침 메뉴로” 머브 휴즈, 이색 청원 나섰다</div>
+            <div class="news-summary">[ 매드타임스 한수경 기자] 호주의 대표적인 아침·브런치 메뉴인 아보카도 토스트를 ‘국가 공식 아침 메뉴’로 지정하자는 이색 청원이 등장했다. 호주 아보카도(Australian Avocados)는 호트 이노베이션(Hort Innovation), 에이전시 싱커벨(Thinkerbell)과 손잡고 전 크리켓 선수 머브 휴즈(Merv Hughes)를 앞세워 호주인들의 서명을 받고 있다.청원의 이름은 ‘핏티션(Pit-tition)’이다. 청원을 뜻하는 ‘petition’과 아보카도 씨를 뜻하는 ‘pit’을 합친 말이다. 호주인들에게 익숙한</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">[해외 크리에이티브] “하루의 86%를 움직이지 않는다”아식스, ‘움직임 보전 경고’ 내렸다</div>
+            <div class="news-summary">[ 매드타임스 최승은 기자] 소파와 스크린, 움직이지 않아도 많은 일을 해결할 수 있는 편리한 생활이 사람들의 일상적인 움직임을 줄이고 있다. 아식스(ASICS)는 이런 현대인의 모습을 자연 다큐멘터리의 시선으로 바라본 단편 영상 ‘휴먼 네이처(Human Nature)’를 공개하고, 이를 ‘세계 최초의 움직임 보전 경고(conservation warning for movement)’라고 이름 붙였다.아식스가 실시한 조사에서 응답자들은 깨어 있는 시간의 86%를 움직이지 않고 보낸다고 답했다. 어떤 날은 거의 움직이지 않는 경우도 있</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">✉️</span>
+            <span class="card-title">이번 주 뉴스레터</span>
+        </div>
+        
+        <div class="stibee-item">
+            <span class="stibee-source">풋풋레터</span>
+            <div class="stibee-title">2027년을 미리 읽는 10가지 트렌드 키워드 🐑</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/5bJzwjZjVEdKWYbOtXBUdbqr5_hc1ng" target="_blank">뉴스레터 보기 →</a>
+        </div>
+        <div class="stibee-item">
+            <span class="stibee-source">캐릿</span>
+            <div class="stibee-title">네컷사진으로 타투 하는 게 유행?</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/J643vl_1CtyKHt3lS-bZoJOy1VkkCbA" target="_blank">뉴스레터 보기 →</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
