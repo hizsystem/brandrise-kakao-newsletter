@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 10월 13일">
+    <meta property="og:description" content="화요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 10월 13일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-10-13</div>
+        <div class="header-title">10월 13일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">화요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 화요일 마케팅 소식 전해드립니다 😊 오늘은 캐릿에서 다룬 치이카와 이야기가 시선을 끕니다. &quot;아직도 뭔지 모르는 사람 보시오&quot;라는 도발적인 제목처럼, 치이카와는 설명하기 어려운데 어느새 굿즈는 다 팔리고 팝업엔 줄이 서 있는 현상이 반복되고 있습니다. 캐릭터의 서사나 세계관보다 '귀엽고 불쌍한 감성'이라는 단 하나의 정서가 Z세대의 공유 욕구를 자극한 사례로, 브랜드가 모든 것을 설명하려 할 때 오히려 팬덤이 형성되지 않는다는 역설을 잘 보여줍니다.</p><p>오늘의 마케팅 뉴스에서는 로열티 프로그램에 대한 보고서도 인상적입니다. 허니콤 스트래티지의 조사 결과, 소비자의 실제 로열티 프로그램 이용률이 45%까지 하락했고 혜택이 많다고 해서 충성도가 높아지지는 않는다는 결론이 나왔습니다. 포인트와 쿠폰을 쌓아 올리는 방식만으로는 진짜 팬을 만들기 어렵다는 뜻인데, 치이카와가 별다른 혜택 없이도 열광적인 소비를 이끌어내는 것과 묘하게 겹치는 지점입니다. 소비자가 브랜드에 감정적으로 연결되는 방식이 어디서 시작되는지를 다시 생각해보게 됩니다.</p><p>화요일 아침도 힘차게 시작하시고, 이번 주도 좋은 인사이트 가득 챙겨가시길 바랍니다! 🐾</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">소비자 66%, 제품 탐색에 AI 사용…검색 채널 다변화</div>
+            <div class="news-summary">엠플리파이와 셈러시가 공동 발간한 보고서에 따르면 소비자 3명 중 2명이 제품 조사나 선물 아이디어 탐색 시 AI를 활용한 경험이 있다. 소셜미디어에서 제품을 발견하고 레딧 등 커뮤니티에서 검증하는 소비자도 증가하는 추세다. 브랜드 검색이 구글 중심에서 소셜·AI·커뮤니티로 분산되고 있어, 마케터는 SEO를 넘어 AI 인용과 소셜 발견성까지 고려한 콘텐츠 전략이 필요하다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">AI 인용 채널 분석…SNS·티스토리·네이버 블로그·유튜브 순</div>
+            <div class="news-summary">함샤우트 글로벌 AI 연구소가 30개 산업군을 대상으로 3개월간 AI 인용 10만 건을 분석한 결과, 82.4%가 매월 반복 인용된 채널로 확인됐다. 인용 비중은 SNS가 가장 높았으며 그 중 티스토리, 네이버 블로그, 유튜브 순이었다. 생성형 AI가 답변 근거로 참조하는 채널이 패턴화되고 있어, 브랜드 콘텐츠를 어떤 플랫폼에 쌓느냐가 AI 검색 노출에 직접 영향을 미친다는 점에 주목할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">한화, 로고 없는 단편영화 3편 제작 지원…새 브랜딩 실험</div>
+            <div class="news-summary">한화그룹이 이노션의 콘텐츠 플랫폼 '시네마바이브랜드'를 통해 '우주 태양광'을 주제로 한 단편영화 3편의 제작비를 지원한다. 영화 어디에도 한화 로고나 제품은 등장하지 않으며, PPL이나 브랜드 필름과 구별되는 순수 영화 콘텐츠 후원 방식이다. 광고 회피가 심화되는 환경에서 브랜드 메시지를 직접 노출하지 않고 문화 콘텐츠와 연결해 인식을 쌓는 전략으로, 대형 광고주의 마케팅 예산 운용 방식이 변화하고 있음을 보여준다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">T모바일, 통신사 데이터로 광고 타기팅 정교화</div>
+            <div class="news-summary">T모바일 애드버타이징 솔루션즈가 앱 이용, 위치, 인구통계 등 통신사 보유 데이터를 활용해 소비자 관심사와 구매 가능성을 파악하고 이를 옴니채널 및 디지털 옥외광고(DOOH)에 연계하는 방법론을 백서로 공개했다. 쿠키 없는 환경에서 퍼스트파티·캐리어 데이터 기반 타기팅이 대안으로 부상하고 있음을 보여주는 사례로, 국내 마케터도 통신사 데이터 연계 광고 상품에 대한 관심을 높일 시점이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">TV+스트리밍 동시 집행, 광고 ROI 2배·웹 방문 2.4배</div>
+            <div class="news-summary">컴캐스트 애드버타이징이 발표한 '멀티스크린 퍼포먼스 보고서'에 따르면 TV와 스트리밍 광고를 함께 집행할 경우 단일 채널 대비 광고비 대비 추가 수익률이 2배, 웹사이트 방문은 2.4배 증가했다. 보고서는 기존 TV 광고 보고서를 확장한 것으로 멀티스크린 전략의 시너지를 데이터로 입증했다. 방송과 스트리밍을 분리해 집행하던 예산을 통합 관점에서 재설계하는 것이 성과 개선에 유효함을 시사한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">무신사, 리셀 '솔드아웃' 접고 중고 '유즈드' 집중</div>
+            <div class="news-summary">무신사가 연내 한정판 리셀 서비스 솔드아웃을 종료하고 중고 패션 서비스 유즈드에 집중하기로 했다. 솔드아웃은 출범 이래 영업이익을 낸 적이 없으며 리셀 시장 침체가 결정적 요인으로 작용했다. 두 서비스 모두 무신사가 거래에 직접 개입하는 구조는 동일해 수익성 확보 여부가 관건이며, 상장을 앞둔 무신사의 포트폴리오 재편 전략이 이커머스 업계에 주는 시사점이 크다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">로열티 프로그램 이용률 45%로 하락…혜택 많다고 충성도 높아지지 않아</div>
+            <div class="news-summary">호주 마케팅 리서치사 허니콤 스트래티지의 'The Science of Loyalty 2026' 보고서에 따르면 소비자의 로열티 프로그램 실제 이용률이 지난해 52%에서 올해 45%로 7%포인트 하락했다. 1인당 실제 이용 프로그램 수도 평균 5개에서 4개로 줄었다. 가입자 수와 실 사용자를 혼동하지 않도록 멤버십 설계 단계부터 참여 동기와 지속 사용 유인을 재점검해야 한다는 점을 시사한다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">✉️</span>
+            <span class="card-title">이번 주 뉴스레터</span>
+        </div>
+        
+        <div class="stibee-item">
+            <span class="stibee-source">풋풋레터</span>
+            <div class="stibee-title">수능이 끝나면 장바구니가 열린다? 11월 마케팅 캘린더 🗓️</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/Mnt88Rewj87VB7NnO31aQTeuXzXNqlc" target="_blank">뉴스레터 보기 →</a>
+        </div>
+        <div class="stibee-item">
+            <span class="stibee-source">캐릿</span>
+            <div class="stibee-title">솔직히 치이카와 아직도 뭔지 모르는 사람 보시오</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/kG-VcCvWvszLr5JkrYeNcNj8ITSFPRc" target="_blank">뉴스레터 보기 →</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
