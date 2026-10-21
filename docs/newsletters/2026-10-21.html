@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 10월 21일">
+    <meta property="og:description" content="수요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 10월 21일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-10-21</div>
+        <div class="header-title">10월 21일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">수요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 수요일 마케팅 소식 전해드립니다 😊 오늘은 롯데칠성의 캡틴큐 재출시 캠페인이 흥미롭습니다. 단종 11년 만의 귀환인데, '전설의 부활'이라는 콘셉트 아래 80년대 감성을 정면으로 끌어안은 방식이 인상적입니다. 단순한 향수 자극에 그치지 않고, 그 시절을 기억하는 세대와 처음 접하는 세대 모두에게 말을 걸 수 있는 구조를 어떻게 설계하느냐가 이번 캠페인의 핵심 과제일 텐데, 레트로 감성이 하나의 마케팅 문법으로 자리 잡은 요즘 시장에서 브랜드 부활 서사를 어떤 방식으로 풀어내는지 살펴볼 만합니다.</p><p>오늘의 마케팅 뉴스에서는 드라마 시청률과 화제성의 괴리 이야기도 짚어볼 만합니다. 코바코 분석에 따르면 드라마 3편 중 1편은 가구 시청률과 온라인 화제성이 반대 방향으로 나타났는데, 광고 집행 기준으로 시청률 하나만 들여다보면 실제 소비자 반응을 절반도 읽지 못하는 셈입니다. 어떤 지표를 기준으로 콘텐츠 매체를 선택하느냐가 결국 예산의 효율과 브랜드 노출의 질을 가르는 문제로 이어지는 만큼, 광고 집행 판단 기준 자체를 다시 점검해볼 계기가 됩니다.</p><p>한 주의 중반, 오늘 하루도 좋은 인사이트로 힘차게 시작하시길 바랍니다! 💡</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">소셜미디어 광고비 4080억 달러 전망…소비자 4명 중 1명은 소셜서 구매</div>
+            <div class="news-summary">더블베리파이(DoubleVerify) 조사에 따르면 전 세계 소셜미디어 광고비가 올해 4080억 달러를 돌파할 전망이다. 소비자 4명 중 1명은 최근 1년간 소셜미디어에서 직접 구매한 경험이 있는 것으로 나타났다. 플랫폼별 이용자 특성과 광고 반응이 다르고 AI 콘텐츠에 대한 소비자 인식도 엇갈려, 마케터는 플랫폼별 세분화된 전략과 AI 콘텐츠 활용 방식을 재검토할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">쿠팡·네이버·토스, 반품 편의 경쟁…판매자 부담은 증가</div>
+            <div class="news-summary">쿠팡·네이버·토스 등 국내 주요 이커머스 플랫폼이 잇달아 반품 정책을 강화하고 있다. 쿠팡은 마켓플레이스 신선 상품을 회수 없이 즉시 환불하고, 토스는 멤버십 회원 대상 10만 원 이하 상품에 무조건 선환불을 적용한다. 소비자 경험은 개선되지만 반품 검수 비용과 허위 환불 리스크는 판매자에게 전가될 수 있어, 입점 브랜드와 셀러는 반품 정책 변화에 따른 비용 구조를 재점검해야 한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">틱톡, 에이전시 파트너 등급 이원화…에코마케팅 '프리미어' 선정</div>
+            <div class="news-summary">틱톡이 9월 말 기존 단일 등급으로 운영하던 에이전시 파트너 프로그램을 '프리미어 에이전시'와 '일반 에이전시'로 세분화했다. 에코마케팅이 광고 포트폴리오 규모·전문 인력·캠페인 실행 역량을 종합 평가받아 프리미어 에이전시로 선정됐다. 틱톡 광고를 집행하는 마케터라면 대행사 파트너 등급 체계 변화를 파악하고 협력사 선정 기준으로 활용할 수 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">제일기획, 틱톡서 땡겨요×노모어피자 '조인트 브랜디드 콘텐츠' 성공 사례 발표</div>
+            <div class="news-summary">제일기획이 '틱톡 서밋 코리아 2026'에서 배달앱 땡겨요와 F&amp;B 브랜드 노모어피자를 하나의 콘텐츠에 담은 '조인트 브랜디드 콘텐츠' 포맷의 성과를 공개했다. 국내 유명 먹방 크리에이터와 협업해 스토리라인 안에서 두 브랜드의 자연스러운 연관성을 살린 점이 특징이다. 카테고리 연관성이 높은 브랜드 간 공동 광고 집행으로 예산 효율과 콘텐츠 몰입도를 동시에 높일 수 있다는 시사점을 제공한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">GEO 서비스 '사이트온' 출시…AI 검색 브랜드 노출 진단·개선 지원</div>
+            <div class="news-summary">모티브인텔리전스가 챗GPT·클로드·제미나이·퍼플렉시티 등 생성형 AI 검색에서 브랜드 노출 현황과 인용 출처를 분석하는 GEO 서비스 '사이트온(CiteOn)'을 공식 출시했다. 단순 진단에 그치지 않고 웹사이트·콘텐츠 개선 및 성과 측정까지 지원하는 통합 솔루션이다. AI 검색이 주요 정보 탐색 경로로 자리 잡으면서 SEO에 더해 GEO 전략 수립이 마케터의 필수 과제로 부상하고 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">드라마 3편 중 1편, 시청률과 화제성 엇갈려…광고 집행 기준 재고 필요</div>
+            <div class="news-summary">코바코가 2020년 이후 종영한 TV 드라마 461편을 분석한 결과, 3편 중 1편은 가구 시청률과 온라인 화제성이 반대 방향으로 나타났다. 시청률은 낮지만 화제성이 높은 드라마가 상당수 존재하며, 하나의 지표만으로 콘텐츠 인기를 판단하기 어렵다는 사실이 확인됐다. 드라마 협찬·PPL·광고 집행 시 시청률 단일 지표에 의존하지 않고 온라인 화제성 데이터를 병행 검토하는 것이 효과적이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">롯데칠성, 단종 11년 만에 캪틴큐 재출시…80년대 감성 오마주 캠페인</div>
+            <div class="news-summary">롯데칠성음료가 단종 11년 만에 재출시한 캪틴큐의 광고 모델로 개그맨 이선민을 발탁하고 대홍기획과 함께 캠페인을 전개한다. '전설의 부활'을 콘셉트로 1980년대 오리지널 광고를 현대적 감각으로 오마주하며 브랜드 헤리티지를 활용했다. 레트로 무드와 브랜드 자산을 결합한 재출시 캠페인 전략은 리브랜딩을 고민하는 마케터에게 참고할 만한 사례다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">✉️</span>
+            <span class="card-title">이번 주 뉴스레터</span>
+        </div>
+        
+        <div class="stibee-item">
+            <span class="stibee-source">빌더조쉬</span>
+            <div class="stibee-title">딥러닝을 10년 연구한 CTO는 왜 온톨로지를 그래프 대신 글로 쓸까?</div>
+            <a class="stibee-link" href="https://maily.so/josh/posts/10z37pnvolw" target="_blank">뉴스레터 보기 →</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
