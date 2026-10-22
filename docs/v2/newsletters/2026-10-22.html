@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 10월 22일">
+    <meta property="og:description" content="목요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 10월 22일</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <style>
+:root{
+  --card:#fff;--ground:#f2f4f6;--ink:#191f28;--ink2:#4e5968;--ink3:#6b7684;
+  --gray:#8b95a1;--line:#e5e8eb;--accent:#3182f6;--accent-d:#1b64da;--accent-soft:#e8f1fe;
+  --font:'Pretendard','Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',
+         -apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--ground);color:var(--ink);line-height:1.7;
+     word-break:keep-all;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+.v2-wrapper{max-width:480px;margin:0 auto;padding:20px 12px 56px;}
+.v2-topnav{text-align:right;margin-bottom:12px;}
+.v2-topnav a{font-size:12px;color:var(--ink3);border:1px solid var(--line);padding:6px 14px;border-radius:20px;}
+
+.v2-paper{background:var(--card);border-radius:22px;overflow:hidden;
+          box-shadow:0 1px 2px rgba(23,31,40,.05),0 10px 34px rgba(23,31,40,.10);}
+.v2-brandbar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);}
+.v2-brand{display:flex;align-items:center;gap:7px;font-weight:800;font-size:15px;letter-spacing:-.01em;}
+.v2-brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);}
+.v2-brand-date{font-size:12.5px;color:var(--gray);font-variant-numeric:tabular-nums;}
+
+.v2-header{padding:30px 20px 26px;}
+.v2-eyebrow{font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.v2-header-title{font-size:26px;line-height:1.34;font-weight:800;letter-spacing:-.035em;margin-bottom:16px;text-wrap:balance;}
+.v2-greeting{font-size:15px;line-height:1.72;color:var(--ink2);}
+.v2-greeting p{margin-bottom:12px;}
+.v2-greeting p:last-child{margin-bottom:0;color:var(--ink);font-weight:600;}
+
+.v2-entry{margin:20px 20px 0;}
+.v2-entry a{display:flex;align-items:center;gap:12px;background:var(--ground);border-radius:16px;padding:15px 16px;min-height:60px;}
+.v2-entry-ico{flex:none;width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;font-size:20px;}
+.v2-entry-txt{flex:1;min-width:0;}
+.v2-entry-txt b{display:block;font-size:14.5px;font-weight:700;letter-spacing:-.01em;}
+.v2-entry-txt span{display:block;font-size:12.5px;color:var(--ink3);margin-top:2px;}
+.v2-entry-go{flex:none;font-size:14px;font-weight:800;color:var(--accent);}
+
+.v2-card{padding:34px 20px 0;}
+.v2-card-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.v2-card-icon{font-size:18px;flex:none;}
+.v2-card-title{font-size:18px;font-weight:800;letter-spacing:-.02em;}
+.v2-card-source{font-size:12px;color:var(--gray);margin-top:1px;}
+.v2-source-link{margin-left:auto;font-size:12px;color:var(--accent);white-space:nowrap;}
+
+.v2-newslist{display:flex;flex-direction:column;gap:2px;}
+.v2-item{display:flex;align-items:center;gap:14px;padding:12px 8px;border-radius:16px;transition:background .15s;}
+a.v2-item:hover{background:var(--ground);}
+.v2-item-chev{flex:none;color:var(--gray);font-size:22px;line-height:1;}
+.v2-item-thumbwrap{position:relative;flex:none;}
+.v2-item-thumb{width:84px;height:84px;border-radius:15px;object-fit:cover;background:var(--ground);}
+.v2-item-thumb-grad{display:flex;align-items:center;justify-content:center;font-size:34px;}
+.v2-item-rank{position:absolute;top:6px;left:6px;background:rgba(25,31,40,.7);color:#fff;
+              font-size:11px;font-weight:800;padding:2px 7px;border-radius:8px;font-variant-numeric:tabular-nums;}
+.v2-item-body{flex:1;min-width:0;}
+.v2-item-body h3{font-size:15.5px;line-height:1.44;font-weight:700;letter-spacing:-.015em;margin-bottom:5px;
+                 display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.v2-item-body p{font-size:13px;line-height:1.5;color:var(--ink3);
+                display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
+
+.v2-neu-section{display:flex;flex-direction:column;}
+.v2-neu-row{display:flex;align-items:flex-start;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);}
+.v2-neu-row:last-child{border-bottom:none;}
+.v2-neu-label{display:flex;flex-direction:column;align-items:center;gap:5px;width:56px;flex-shrink:0;}
+.v2-neu-emoji{font-size:24px;line-height:1;}
+.v2-neu-cat{font-size:10px;font-weight:700;color:var(--gray);text-align:center;word-break:keep-all;}
+.v2-neu-list{list-style:none;flex:1;display:flex;flex-direction:column;gap:6px;}
+.v2-neu-item{font-size:13px;color:var(--ink2);line-height:1.55;padding-left:12px;position:relative;}
+.v2-neu-item::before{content:"·";position:absolute;left:2px;color:var(--gray);font-weight:700;}
+
+.v2-heypop-list{display:flex;flex-direction:column;gap:10px;}
+.v2-heypop-card{display:flex;border-radius:16px;overflow:hidden;background:var(--ground);}
+.v2-thumb{width:120px;height:96px;object-fit:contain;background:#fff;flex-shrink:0;}
+.v2-thumb-placeholder{width:120px;height:96px;display:flex;align-items:center;justify-content:center;font-size:32px;background:#fff;flex-shrink:0;}
+.v2-heypop-info{padding:14px 16px;display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0;}
+.v2-heypop-title{font-size:14px;font-weight:700;line-height:1.45;}
+.v2-heypop-desc{font-size:12.5px;color:var(--ink3);line-height:1.5;}
+.v2-heypop-cta{font-size:11.5px;color:var(--accent);font-weight:700;margin-top:2px;}
+
+.v2-stibee-list{display:flex;flex-direction:column;gap:10px;}
+.v2-stibee-card{display:flex;flex-direction:column;gap:6px;padding:16px 18px;background:var(--ground);border-radius:16px;overflow:hidden;}
+.v2-stibee-card-img{flex-direction:row;padding:0;gap:0;}
+.v2-stibee-thumb{width:112px;height:96px;object-fit:contain;background:#fff;flex-shrink:0;}
+.v2-stibee-info{padding:14px 16px;flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;justify-content:center;}
+.v2-stibee-badge{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:3px 10px;border-radius:20px;align-self:flex-start;}
+.v2-stibee-title{font-size:14px;font-weight:600;line-height:1.5;}
+.v2-stibee-cta{font-size:12px;color:var(--accent);font-weight:700;}
+
+.v2-bj-card,.v2-lb-card{display:block;color:#fff;border-radius:20px;overflow:hidden;margin-top:14px;}
+.v2-bj-card{background:linear-gradient(160deg,#0c0f1a 0%,#152a52 100%);}
+.v2-lb-card{background:linear-gradient(160deg,#0c0f1a 0%,#141a2e 100%);}
+.v2-bj-hero,.v2-lb-hero{background:#0c1117;overflow:hidden;}
+.v2-bj-hero img,.v2-lb-hero img{width:100%;height:auto;max-height:340px;min-height:150px;object-fit:contain;}
+.v2-bj-content,.v2-lb-content{padding:26px 24px 28px;}
+.v2-bj-eyebrow,.v2-lb-eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;opacity:.55;margin-bottom:12px;letter-spacing:.08em;text-transform:uppercase;}
+.v2-bj-icon,.v2-lb-icon{font-size:14px;}
+.v2-bj-title,.v2-lb-title{font-size:20px;font-weight:800;line-height:1.42;margin-bottom:10px;letter-spacing:-.02em;}
+.v2-bj-subtitle,.v2-lb-subtitle{font-size:13.5px;opacity:.68;line-height:1.7;margin-bottom:18px;}
+.v2-bj-summary{list-style:none;counter-reset:bj;padding-top:16px;margin-bottom:20px;border-top:1px solid rgba(255,255,255,.12);}
+.v2-bj-summary li{counter-increment:bj;position:relative;padding:8px 0 8px 30px;font-size:13.5px;line-height:1.6;opacity:.92;border-bottom:1px solid rgba(255,255,255,.06);}
+.v2-bj-summary li:last-child{border-bottom:none;}
+.v2-bj-summary li::before{content:counter(bj);position:absolute;left:0;top:8px;width:22px;height:22px;border-radius:50%;
+                          background:rgba(49,130,246,.25);color:#8ab4ff;font-size:11px;font-weight:800;
+                          display:flex;align-items:center;justify-content:center;}
+.v2-bj-cta,.v2-lb-cta{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:9px 18px;border-radius:22px;}
+.v2-bj-cta{background:rgba(49,130,246,.2);border:1px solid rgba(49,130,246,.4);color:#cfe0ff;}
+.v2-lb-cta{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);}
+
+.v2-cta{margin:40px 12px 0;border-radius:22px;padding:34px 24px 30px;
+        background:linear-gradient(158deg,var(--accent) 0%,var(--accent-d) 100%);box-shadow:0 14px 38px rgba(49,130,246,.34);}
+.v2-cta-label{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:14px;}
+.v2-cta-headline{font-size:26px;line-height:1.32;font-weight:800;color:#fff;letter-spacing:-.03em;margin-bottom:14px;text-wrap:balance;}
+.v2-cta-sub{font-size:15px;line-height:1.62;color:rgba(255,255,255,.94);margin-bottom:10px;}
+.v2-cta-proof{font-size:14px;line-height:1.62;color:rgba(255,255,255,.82);margin-bottom:24px;}
+.v2-cta-proof b{color:#fff;font-weight:800;}
+.v2-cta-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#fff;color:var(--accent-d);
+            font-size:17px;font-weight:800;letter-spacing:-.01em;min-height:56px;border-radius:14px;box-shadow:0 4px 14px rgba(23,31,40,.16);}
+.v2-cta-fine{margin-top:14px;text-align:center;font-size:12.5px;color:rgba(255,255,255,.72);}
+
+.v2-footer{padding:30px 20px 34px;text-align:center;}
+.v2-footer-nav{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;}
+.v2-footer-nav a{font-size:12px;color:var(--ink3);border:1px solid var(--line);padding:8px 14px;border-radius:20px;}
+.v2-footer-copy{font-size:11px;color:var(--gray);}
+
+.v2-arc-week{font-size:13px;color:var(--ink3);margin-bottom:24px;}
+.v2-arc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+@media (max-width:560px){.v2-arc-grid{grid-template-columns:repeat(2,1fr);}}
+.v2-arc-card{border-radius:14px;padding:16px 12px;display:flex;flex-direction:column;gap:6px;
+             border:1px solid var(--line);background:#fff;text-align:center;}
+.v2-arc-card-empty{opacity:.5;}
+.v2-arc-day{font-size:13px;font-weight:800;color:var(--accent);}
+.v2-arc-card-empty .v2-arc-day{color:var(--gray);}
+.v2-arc-date{font-size:11.5px;color:var(--ink2);font-weight:500;}
+.v2-arc-lb{font-size:11px;color:var(--ink3);line-height:1.4;
+           display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.v2-arc-cta{font-size:11px;font-weight:700;color:var(--accent);}
+.v2-arc-cta-none{color:var(--gray);font-weight:400;}
+
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px;}
+
+/* 데스크톱(웹): 페이퍼 폭을 넓히고 아이보스 뉴스를 2단으로 — 모바일은 위 기본값 유지 */
+@media (min-width:700px){
+  .v2-wrapper{max-width:680px;padding:32px 16px 64px;}
+  .v2-newslist{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:2px;}
+  .v2-item{align-items:flex-start;}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="v2-wrapper">
+    <div class="v2-topnav"><a href="../../v2/">← 최신 뉴스레터</a></div>
+    <div class="v2-paper">
+        <div class="v2-brandbar">
+            <div class="v2-brand"><span class="v2-brand-dot"></span>Brandrise 데일리</div>
+            <div class="v2-brand-date">10월 22일 · 목</div>
+        </div>
+        <div class="v2-header">
+            <div class="v2-eyebrow">오늘의 마케팅</div>
+            <div class="v2-header-title">10월 22일 마케팅 뉴스</div>
+            <div class="v2-greeting"><p>안녕하세요! 목요일 마케팅 소식 전해드립니다 😊 오늘은 '에이전틱 커머스'라는 흐름이 눈길을 끕니다. AI 에이전트가 상품 탐색부터 결제까지 직접 수행하는 구조가 현실로 가까워지면서, 이제 브랜드는 사람이 보는 콘텐츠뿐 아니라 AI가 읽는 상품 데이터와 페이지 구조까지 함께 설계해야 하는 상황이 됐습니다. 소셜미디어 광고비가 올해 4,080억 달러를 넘어설 것으로 전망되는 동시에 소비자 4명 중 1명이 소셜에서 직접 구매한다는 수치와 함께 보면, 구매 여정의 두 끝이 동시에 빠르게 바뀌고 있다는 그림이 더욱 선명해집니다.</p><p>헤이팝에서 전한 디자인하우스 50년 기념전 〈막(MAK)〉도 흥미롭습니다. 가구·그래픽·미식을 아우르는 26인의 창작자가 '막'이라는 단어 하나를 각자의 방식으로 풀어낸 전시인데, 브랜드의 역사를 단순한 연대기가 아니라 동시대 창작자들의 해석으로 재구성한 접근 방식이 인상적입니다. 50주년이라는 숫자보다 '지금 이 브랜드가 어떤 대화를 나누고 있는가'를 전면에 내세운 기획으로, 브랜드 아카이빙과 전시 커뮤니케이션을 고민하는 분들께 좋은 참고가 될 것 같습니다.</p><p>오늘도 좋은 인사이트로 목요일 아침을 힘차게 시작하세요! 🙌</p></div>
+        </div>
+        <div class="v2-entry"><a href="https://forms.gle/R5FaijsFD4VoTEsj9?utm_source=web&amp;utm_medium=cta&amp;utm_campaign=brandrise&amp;utm_content=top" target="_blank" rel="noopener"><span class="v2-entry-ico">💬</span><span class="v2-entry-txt"><b>브랜딩·마케팅, 어디서부터 막막하다면</b><span>30분 무료 상담으로 방향부터 잡아보세요</span></span><span class="v2-entry-go">상담 →</span></a></div>
+        
+    <div class="v2-card">
+        <div class="v2-card-header">
+            <span class="v2-card-icon">📰</span>
+            <div>
+                <div class="v2-card-title">오늘의 마케팅 뉴스</div>
+                <div class="v2-card-source">브랜드라이즈 AI 큐레이션</div>
+            </div>
+            
+        </div>
+        <div class="v2-newslist">
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29335" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-22/iboss-1.png" alt="" loading="lazy"><span class="v2-item-rank">1</span></span>
+            <span class="v2-item-body"><h3>소셜미디어 광고비 4080억 달러 전망…소비자 4명 중 1명은 소셜서 구매</h3><p>전 세계 소셜미디어 광고비가 올해 4,080억 달러를 넘어설 것으로 전망된다. 소비자 4명 중 1명은 최근 1년간 소셜미디어에서 제품을 구매한 경험이 있어, 소셜미디어가 인지·검색·구매를 아우르는 풀퍼널 채널로 자리 잡고 있다. 다만 플랫폼별 이용자 특성과 AI 콘텐츠에 대한 소비자 인식이 엇갈려, 채널별 세밀한 광고 전략 수립이 필요하다는 분석이다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.mobiinside.co.kr/2026/10/21/agentic-commerce-geo-product-optimization-strategy/" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-22/iboss-2.png" alt="" loading="lazy"><span class="v2-item-rank">2</span></span>
+            <span class="v2-item-body"><h3>에이전틱 커머스 시대, 이커머스 브랜드 대응 전략은?</h3><p>AI 에이전트가 상품 탐색부터 결제까지 수행하는 '에이전틱 커머스' 시대가 도래하면서, 콘텐츠 최적화만으로는 부족하고 상품 데이터와 페이지 구조의 에이전트 친화성이 핵심 경쟁력이 되고 있다. 실제 구매 후보로 연결되려면 접근성·구조화·신뢰성을 갖춘 GEO(생성형 엔진 최적화) 관점의 대응이 필수적이다. 이커머스 마케터는 지금부터 상품 데이터 구조와 페이지 설계를 AI 에이전트 친화적으로 재점검해야 할 시점이다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29403" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-22/iboss-3.png" alt="" loading="lazy"><span class="v2-item-rank">3</span></span>
+            <span class="v2-item-body"><h3>제일기획, 틱톡서 땡겨요·노모어피자 조인트 브랜디드 콘텐츠 성공 사례 발표</h3><p>제일기획이 '틱톡 서밋 코리아 2026'에서 땡겨요와 노모어피자를 하나의 콘텐츠에 동시 노출한 '조인트 브랜디드 콘텐츠' 포맷의 성과를 공개했다. 유명 먹방 크리에이터와 협업해 배달앱과 F&amp;B 브랜드가 자연스러운 스토리라인 안에서 시너지를 내는 방식으로, 두 브랜드 모두 광고비 효율을 높이는 윈-윈 효과를 거뒀다. 연관성 높은 브랜드 간 콜라보 광고가 틱톡에서 새로운 퍼포먼스 포맷으로 주목받고 있어, 마케터의 파트너십 전략 참고가 필요하다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://byline.network/2026/10/20_21982733/" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-22/iboss-4.png" alt="" loading="lazy"><span class="v2-item-rank">4</span></span>
+            <span class="v2-item-body"><h3>쿠팡이츠·배민, 퀵커머스 경쟁 재점화</h3><p>쿠팡이츠와 배달의민족이 기존 고객·물류·유통 인프라를 활용해 퀵커머스 사업을 본격 확장하면서 경쟁이 재점화되고 있다. 과거 높은 운영비로 어려움을 겪었던 퀵커머스 시장이 두 플랫폼의 자산 효율화 전략을 기반으로 새로운 국면에 접어들었다. 즉시 배송 채널의 성장은 이커머스 마케터에게 퀵커머스 입점 및 재고·프로모션 전략을 재검토할 계기가 된다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29404" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-22/iboss-5.png" alt="" loading="lazy"><span class="v2-item-rank">5</span></span>
+            <span class="v2-item-body"><h3>함샤우트 글로벌, 퍼시스에 GEO 통합 컨설팅 제공</h3><p>함샤우트 글로벌이 AI 자회사 딜라이트커뮤니케이션을 통해 오피스 솔루션 기업 퍼시스에 GEO(생성형 엔진 최적화) 컨설팅을 제공했다. 생성형 AI 검색 환경에서 퍼시스의 공식 정보와 전문성이 정확하게 노출되는지 진단하고 개선 전략을 수립하는 방식으로 진행됐다. B2B 브랜드를 포함해 AI 검색 최적화가 실제 마케팅 실무에 적용되기 시작한 사례로, 마케터들의 GEO 도입 검토가 빨라질 전망이다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29424" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-22/iboss-6.png" alt="" loading="lazy"><span class="v2-item-rank">6</span></span>
+            <span class="v2-item-body"><h3>광고가 실제로 만든 성과는? 증분 효과 측정의 중요성</h3><p>애피어가 게임 광고 시장에서 설치 수·ROAS 등 기존 지표가 양호해도 광고 예산 확대에 신중해야 하는 이유로 '증분 효과(Incrementality)' 측정의 중요성을 강조했다. 광고 성과로 집계된 수치 중 실제로 광고가 새롭게 창출한 기여분을 구분하지 못하면 예산 낭비로 이어질 수 있으며, 에이전틱 AI를 활용한 지속적 최적화가 해법으로 제시됐다. 게임 외 전 업종 마케터에게도 광고 기여도 측정 방식의 정교화가 필요하다는 시사점을 준다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29423" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-22/iboss-7.png" alt="" loading="lazy"><span class="v2-item-rank">7</span></span>
+            <span class="v2-item-body"><h3>웨이팅 앱 일상화…기다림이 쇼핑·관광·데이터 산업으로 확장</h3><p>KPR 인사이트연구소 분석에 따르면 예약·웨이팅 플랫폼이 단순 순서 관리를 넘어 소비자의 시간과 동선을 관리하는 서비스로 진화하고 있다. 캐치테이블 등 웨이팅 앱이 외식 인프라로 대중화되면서 대기 시간이 쇼핑·관광·데이터 비즈니스로 연결되는 새로운 소비 패턴이 형성되고 있다. 마케터는 소비자의 웨이팅 시간을 브랜드 접점으로 활용하는 O2O 연계 마케팅 기회를 모색할 수 있다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a></div>
+    </div>
+
+    <div class="v2-card">
+        <div class="v2-card-header">
+            <span class="v2-card-icon">🎨</span>
+            <div>
+                <div class="v2-card-title">전시 / 팝업 / 공간 추천</div>
+                <div class="v2-card-source">헤이팝</div>
+            </div>
+        </div>
+        <div class="v2-heypop-list">
+        <a class="v2-heypop-card" href="https://heypop.kr/n/144586/" target="_blank" rel="noopener">
+            <img class="v2-thumb" src="https://storage.heypop.kr/assets/2026/10/21024546/20261020_174545-%EB%A7%89_%ED%83%80%EC%9D%B4%ED%8F%AC%ED%8F%AC%ED%95%A8_%EC%A0%95%EC%82%AC%EA%B0%81%ED%98%95.jpg" alt="" loading="lazy">
+            <div class="v2-heypop-info">
+                <div class="v2-heypop-title">디자인하우스 50년 기념전 〈막(MAK)〉이 열린다</div>
+                <p class="v2-heypop-desc">가구와 그래픽부터 미식까지, 26인의 창작자가 풀어낸 ‘막’</p>
+                <span class="v2-heypop-cta">자세히 보기 →</span>
+            </div>
+        </a>
+        <a class="v2-heypop-card" href="https://heypop.kr/n/144495/" target="_blank" rel="noopener">
+            <img class="v2-thumb" src="https://storage.heypop.kr/assets/2026/10/20202002/20261020_112002-moma3.jpg" alt="" loading="lazy">
+            <div class="v2-heypop-info">
+                <div class="v2-heypop-title">교토 모마(MoMA) 디자인 스토어가 달라졌다</div>
+                <p class="v2-heypop-desc">일본 최초로 색채를 과감하게 활용한 공간</p>
+                <span class="v2-heypop-cta">자세히 보기 →</span>
+            </div>
+        </a></div>
+    </div>
+        <div class="v2-cta"><div class="v2-cta-label">브랜드라이즈 무료 상담</div><div class="v2-cta-headline">혼자 고민하지 마세요.</div><p class="v2-cta-sub">브랜드 진단부터 지금 당장 해야 할 우선순위까지,<br>30분 무료 상담에서 함께 정리해드려요.</p><p class="v2-cta-proof">이미 <b>수십 개 브랜드</b>가 상담받았습니다.<br>내 브랜드처럼, 함께 고민하는 팀원의 마음으로 봅니다.</p><a class="v2-cta-btn" href="https://forms.gle/R5FaijsFD4VoTEsj9?utm_source=web&amp;utm_medium=cta&amp;utm_campaign=brandrise&amp;utm_content=bottom" target="_blank" rel="noopener">30분 무료 상담받기 →</a><p class="v2-cta-fine">스타트업 대표·마케팅 담당자를 위한 30분</p></div>
+        <div class="v2-footer">
+            <div class="v2-footer-nav"><a href="../../v2/">← 최신 뉴스레터</a><a href="../archive.html">📚 전체 아카이브</a></div>
+            <div class="v2-footer-copy">Brandrise · 매일 아침 자동 업데이트</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
