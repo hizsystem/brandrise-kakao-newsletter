@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 10월 23일">
+    <meta property="og:description" content="금요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 10월 23일</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <style>
+:root{
+  --card:#fff;--ground:#f2f4f6;--ink:#191f28;--ink2:#4e5968;--ink3:#6b7684;
+  --gray:#8b95a1;--line:#e5e8eb;--accent:#3182f6;--accent-d:#1b64da;--accent-soft:#e8f1fe;
+  --font:'Pretendard','Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',
+         -apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--ground);color:var(--ink);line-height:1.7;
+     word-break:keep-all;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+.v2-wrapper{max-width:480px;margin:0 auto;padding:20px 12px 56px;}
+.v2-topnav{text-align:right;margin-bottom:12px;}
+.v2-topnav a{font-size:12px;color:var(--ink3);border:1px solid var(--line);padding:6px 14px;border-radius:20px;}
+
+.v2-paper{background:var(--card);border-radius:22px;overflow:hidden;
+          box-shadow:0 1px 2px rgba(23,31,40,.05),0 10px 34px rgba(23,31,40,.10);}
+.v2-brandbar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);}
+.v2-brand{display:flex;align-items:center;gap:7px;font-weight:800;font-size:15px;letter-spacing:-.01em;}
+.v2-brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);}
+.v2-brand-date{font-size:12.5px;color:var(--gray);font-variant-numeric:tabular-nums;}
+
+.v2-header{padding:30px 20px 26px;}
+.v2-eyebrow{font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.v2-header-title{font-size:26px;line-height:1.34;font-weight:800;letter-spacing:-.035em;margin-bottom:16px;text-wrap:balance;}
+.v2-greeting{font-size:15px;line-height:1.72;color:var(--ink2);}
+.v2-greeting p{margin-bottom:12px;}
+.v2-greeting p:last-child{margin-bottom:0;color:var(--ink);font-weight:600;}
+
+.v2-entry{margin:20px 20px 0;}
+.v2-entry a{display:flex;align-items:center;gap:12px;background:var(--ground);border-radius:16px;padding:15px 16px;min-height:60px;}
+.v2-entry-ico{flex:none;width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;font-size:20px;}
+.v2-entry-txt{flex:1;min-width:0;}
+.v2-entry-txt b{display:block;font-size:14.5px;font-weight:700;letter-spacing:-.01em;}
+.v2-entry-txt span{display:block;font-size:12.5px;color:var(--ink3);margin-top:2px;}
+.v2-entry-go{flex:none;font-size:14px;font-weight:800;color:var(--accent);}
+
+.v2-card{padding:34px 20px 0;}
+.v2-card-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.v2-card-icon{font-size:18px;flex:none;}
+.v2-card-title{font-size:18px;font-weight:800;letter-spacing:-.02em;}
+.v2-card-source{font-size:12px;color:var(--gray);margin-top:1px;}
+.v2-source-link{margin-left:auto;font-size:12px;color:var(--accent);white-space:nowrap;}
+
+.v2-newslist{display:flex;flex-direction:column;gap:2px;}
+.v2-item{display:flex;align-items:center;gap:14px;padding:12px 8px;border-radius:16px;transition:background .15s;}
+a.v2-item:hover{background:var(--ground);}
+.v2-item-chev{flex:none;color:var(--gray);font-size:22px;line-height:1;}
+.v2-item-thumbwrap{position:relative;flex:none;}
+.v2-item-thumb{width:84px;height:84px;border-radius:15px;object-fit:cover;background:var(--ground);}
+.v2-item-thumb-grad{display:flex;align-items:center;justify-content:center;font-size:34px;}
+.v2-item-rank{position:absolute;top:6px;left:6px;background:rgba(25,31,40,.7);color:#fff;
+              font-size:11px;font-weight:800;padding:2px 7px;border-radius:8px;font-variant-numeric:tabular-nums;}
+.v2-item-body{flex:1;min-width:0;}
+.v2-item-body h3{font-size:15.5px;line-height:1.44;font-weight:700;letter-spacing:-.015em;margin-bottom:5px;
+                 display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.v2-item-body p{font-size:13px;line-height:1.5;color:var(--ink3);
+                display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
+
+.v2-neu-section{display:flex;flex-direction:column;}
+.v2-neu-row{display:flex;align-items:flex-start;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);}
+.v2-neu-row:last-child{border-bottom:none;}
+.v2-neu-label{display:flex;flex-direction:column;align-items:center;gap:5px;width:56px;flex-shrink:0;}
+.v2-neu-emoji{font-size:24px;line-height:1;}
+.v2-neu-cat{font-size:10px;font-weight:700;color:var(--gray);text-align:center;word-break:keep-all;}
+.v2-neu-list{list-style:none;flex:1;display:flex;flex-direction:column;gap:6px;}
+.v2-neu-item{font-size:13px;color:var(--ink2);line-height:1.55;padding-left:12px;position:relative;}
+.v2-neu-item::before{content:"·";position:absolute;left:2px;color:var(--gray);font-weight:700;}
+
+.v2-heypop-list{display:flex;flex-direction:column;gap:10px;}
+.v2-heypop-card{display:flex;border-radius:16px;overflow:hidden;background:var(--ground);}
+.v2-thumb{width:120px;height:96px;object-fit:contain;background:#fff;flex-shrink:0;}
+.v2-thumb-placeholder{width:120px;height:96px;display:flex;align-items:center;justify-content:center;font-size:32px;background:#fff;flex-shrink:0;}
+.v2-heypop-info{padding:14px 16px;display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0;}
+.v2-heypop-title{font-size:14px;font-weight:700;line-height:1.45;}
+.v2-heypop-desc{font-size:12.5px;color:var(--ink3);line-height:1.5;}
+.v2-heypop-cta{font-size:11.5px;color:var(--accent);font-weight:700;margin-top:2px;}
+
+.v2-stibee-list{display:flex;flex-direction:column;gap:10px;}
+.v2-stibee-card{display:flex;flex-direction:column;gap:6px;padding:16px 18px;background:var(--ground);border-radius:16px;overflow:hidden;}
+.v2-stibee-card-img{flex-direction:row;padding:0;gap:0;}
+.v2-stibee-thumb{width:112px;height:96px;object-fit:contain;background:#fff;flex-shrink:0;}
+.v2-stibee-info{padding:14px 16px;flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;justify-content:center;}
+.v2-stibee-badge{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:3px 10px;border-radius:20px;align-self:flex-start;}
+.v2-stibee-title{font-size:14px;font-weight:600;line-height:1.5;}
+.v2-stibee-cta{font-size:12px;color:var(--accent);font-weight:700;}
+
+.v2-bj-card,.v2-lb-card{display:block;color:#fff;border-radius:20px;overflow:hidden;margin-top:14px;}
+.v2-bj-card{background:linear-gradient(160deg,#0c0f1a 0%,#152a52 100%);}
+.v2-lb-card{background:linear-gradient(160deg,#0c0f1a 0%,#141a2e 100%);}
+.v2-bj-hero,.v2-lb-hero{background:#0c1117;overflow:hidden;}
+.v2-bj-hero img,.v2-lb-hero img{width:100%;height:auto;max-height:340px;min-height:150px;object-fit:contain;}
+.v2-bj-content,.v2-lb-content{padding:26px 24px 28px;}
+.v2-bj-eyebrow,.v2-lb-eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;opacity:.55;margin-bottom:12px;letter-spacing:.08em;text-transform:uppercase;}
+.v2-bj-icon,.v2-lb-icon{font-size:14px;}
+.v2-bj-title,.v2-lb-title{font-size:20px;font-weight:800;line-height:1.42;margin-bottom:10px;letter-spacing:-.02em;}
+.v2-bj-subtitle,.v2-lb-subtitle{font-size:13.5px;opacity:.68;line-height:1.7;margin-bottom:18px;}
+.v2-bj-summary{list-style:none;counter-reset:bj;padding-top:16px;margin-bottom:20px;border-top:1px solid rgba(255,255,255,.12);}
+.v2-bj-summary li{counter-increment:bj;position:relative;padding:8px 0 8px 30px;font-size:13.5px;line-height:1.6;opacity:.92;border-bottom:1px solid rgba(255,255,255,.06);}
+.v2-bj-summary li:last-child{border-bottom:none;}
+.v2-bj-summary li::before{content:counter(bj);position:absolute;left:0;top:8px;width:22px;height:22px;border-radius:50%;
+                          background:rgba(49,130,246,.25);color:#8ab4ff;font-size:11px;font-weight:800;
+                          display:flex;align-items:center;justify-content:center;}
+.v2-bj-cta,.v2-lb-cta{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:9px 18px;border-radius:22px;}
+.v2-bj-cta{background:rgba(49,130,246,.2);border:1px solid rgba(49,130,246,.4);color:#cfe0ff;}
+.v2-lb-cta{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);}
+
+.v2-cta{margin:40px 12px 0;border-radius:22px;padding:34px 24px 30px;
+        background:linear-gradient(158deg,var(--accent) 0%,var(--accent-d) 100%);box-shadow:0 14px 38px rgba(49,130,246,.34);}
+.v2-cta-label{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:14px;}
+.v2-cta-headline{font-size:26px;line-height:1.32;font-weight:800;color:#fff;letter-spacing:-.03em;margin-bottom:14px;text-wrap:balance;}
+.v2-cta-sub{font-size:15px;line-height:1.62;color:rgba(255,255,255,.94);margin-bottom:10px;}
+.v2-cta-proof{font-size:14px;line-height:1.62;color:rgba(255,255,255,.82);margin-bottom:24px;}
+.v2-cta-proof b{color:#fff;font-weight:800;}
+.v2-cta-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#fff;color:var(--accent-d);
+            font-size:17px;font-weight:800;letter-spacing:-.01em;min-height:56px;border-radius:14px;box-shadow:0 4px 14px rgba(23,31,40,.16);}
+.v2-cta-fine{margin-top:14px;text-align:center;font-size:12.5px;color:rgba(255,255,255,.72);}
+
+.v2-footer{padding:30px 20px 34px;text-align:center;}
+.v2-footer-nav{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;}
+.v2-footer-nav a{font-size:12px;color:var(--ink3);border:1px solid var(--line);padding:8px 14px;border-radius:20px;}
+.v2-footer-copy{font-size:11px;color:var(--gray);}
+
+.v2-arc-week{font-size:13px;color:var(--ink3);margin-bottom:24px;}
+.v2-arc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+@media (max-width:560px){.v2-arc-grid{grid-template-columns:repeat(2,1fr);}}
+.v2-arc-card{border-radius:14px;padding:16px 12px;display:flex;flex-direction:column;gap:6px;
+             border:1px solid var(--line);background:#fff;text-align:center;}
+.v2-arc-card-empty{opacity:.5;}
+.v2-arc-day{font-size:13px;font-weight:800;color:var(--accent);}
+.v2-arc-card-empty .v2-arc-day{color:var(--gray);}
+.v2-arc-date{font-size:11.5px;color:var(--ink2);font-weight:500;}
+.v2-arc-lb{font-size:11px;color:var(--ink3);line-height:1.4;
+           display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.v2-arc-cta{font-size:11px;font-weight:700;color:var(--accent);}
+.v2-arc-cta-none{color:var(--gray);font-weight:400;}
+
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px;}
+
+/* 데스크톱(웹): 페이퍼 폭을 넓히고 아이보스 뉴스를 2단으로 — 모바일은 위 기본값 유지 */
+@media (min-width:700px){
+  .v2-wrapper{max-width:680px;padding:32px 16px 64px;}
+  .v2-newslist{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:2px;}
+  .v2-item{align-items:flex-start;}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="v2-wrapper">
+    <div class="v2-topnav"><a href="../../v2/">← 최신 뉴스레터</a></div>
+    <div class="v2-paper">
+        <div class="v2-brandbar">
+            <div class="v2-brand"><span class="v2-brand-dot"></span>Brandrise 데일리</div>
+            <div class="v2-brand-date">10월 23일 · 금</div>
+        </div>
+        <div class="v2-header">
+            <div class="v2-eyebrow">오늘의 마케팅</div>
+            <div class="v2-header-title">10월 23일 마케팅 뉴스</div>
+            <div class="v2-greeting"><p>안녕하세요! 금요일 마케팅 소식 전해드립니다 😊 오늘은 이노션의 '트렌드 뒷담화 2027'이 제시한 'AI 패러독스'라는 키워드가 흥미롭습니다. AI가 일상 깊숙이 파고들수록 오히려 사람다움과 아날로그 감성을 향한 반작용도 커진다는 흐름인데, 소비자 리서치와 트렌드 기획을 다루는 분들께 좋은 출발점이 될 것 같습니다. AI를 거스르는 것도, 맹목적으로 따라가는 것도 아닌 그 긴장을 어떻게 브랜드 언어로 풀어내느냐가 앞으로 마케터에게 중요한 과제가 되어가고 있습니다.</p><p>오늘의 마케팅 뉴스에서 주목할 또 하나의 흐름은 웨이팅 앱의 진화입니다. 단순히 줄을 서는 행위가 소비자의 시간·동선·데이터를 아우르는 서비스 산업으로 확장되고 있다는 분석인데, 오프라인 매장을 운영하거나 로컬 커머스에 관심 있는 분들이라면 한번 짚어볼 만한 변화입니다. 대기 경험을 브랜드 접점으로 설계하는 시도가 늘어날수록, 고객 여정의 '시작 이전'까지 관리하는 게 마케팅의 영역으로 들어오고 있다는 신호이기도 합니다.</p><p>금요일 아침, 이번 주도 좋은 인사이트로 가득 채우시길 바랍니다! 🙌</p></div>
+        </div>
+        <div class="v2-entry"><a href="https://forms.gle/R5FaijsFD4VoTEsj9?utm_source=web&amp;utm_medium=cta&amp;utm_campaign=brandrise&amp;utm_content=top" target="_blank" rel="noopener"><span class="v2-entry-ico">💬</span><span class="v2-entry-txt"><b>브랜딩·마케팅, 어디서부터 막막하다면</b><span>30분 무료 상담으로 방향부터 잡아보세요</span></span><span class="v2-entry-go">상담 →</span></a></div>
+        
+    <div class="v2-card">
+        <div class="v2-card-header">
+            <span class="v2-card-icon">📰</span>
+            <div>
+                <div class="v2-card-title">오늘의 마케팅 뉴스</div>
+                <div class="v2-card-source">브랜드라이즈 AI 큐레이션</div>
+            </div>
+            
+        </div>
+        <div class="v2-newslist">
+        <a class="v2-item" href="https://byline.network/2026/10/21_29287374/" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-23/iboss-1.png" alt="" loading="lazy"><span class="v2-item-rank">1</span></span>
+            <span class="v2-item-body"><h3>GEO 시대, 콘텐츠가 마케팅 자산…기업들의 생성형 엔진 최적화 도전</h3><p>챗GPT·제미나이 등 AI로 상품을 검색하는 소비자가 늘면서 기업들이 생성형 엔진 최적화(GEO)에 나서고 있다. SK브로드밴드는 고객 질문에 맞게 콘텐츠를 재구성하고, 리틀리는 홈페이지 정비 후 AI 유입자의 높은 가입률을 확인했다. 다만 GEO 노출이 실제 매출로 이어지는지 검증하는 체계 마련이 공통 과제로 남아, 마케터들은 콘텐츠 품질과 성과 측정 방법론을 함께 고민해야 할 시점이다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://platum.kr/archives/296849" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-23/iboss-2.png" alt="" loading="lazy"><span class="v2-item-rank">2</span></span>
+            <span class="v2-item-body"><h3>AI 에이전트가 상품 페이지 읽고 숏폼 광고까지 자동 제작</h3><p>한국딥러닝이 SK텔레콤과 함께 AI 에이전트 '딥 에이전트'를 커머스 광고 콘텐츠 제작에 적용하는 실증을 진행 중이다. 쇼핑몰 상품 페이지를 AI가 분석해 이미지를 선별하고 숏폼 광고 영상을 생성한 뒤, 원본 상품 정보와의 일치 여부까지 자동 검수한다. 광고 소재 제작 자동화가 커머스 마케팅 실무에 본격 적용되는 사례로, 콘텐츠 제작 비용과 속도 측면에서 실무적 시사점이 크다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29425" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-23/iboss-3.png" alt="" loading="lazy"><span class="v2-item-rank">3</span></span>
+            <span class="v2-item-body"><h3>이노션 '트렌드 뒷담화 2027', AI 패러독스를 핵심 소비 키워드로 제시</h3><p>이노션이 2027년 소비 트렌드 분석서 '친절한 트렌드 뒷담화 2027'을 출간하며 'AI 패러독스'를 핵심 주제로 내세웠다. AI 기술이 발전할수록 소비자들이 오히려 손으로 만든 것, 불완전한 경험, 비효율적인 과정에 끌리는 심리가 강해진다는 분석이다. 마케터는 AI 자동화 흐름 속에서도 인간적 감성과 아날로그 경험을 브랜드 차별화 요소로 활용하는 전략을 검토할 필요가 있다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29423" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-23/iboss-4.png" alt="" loading="lazy"><span class="v2-item-rank">4</span></span>
+            <span class="v2-item-body"><h3>웨이팅 앱 일상화…기다림이 소비·데이터 산업으로 확장</h3><p>KPR 인사이트연구소가 예약·웨이팅 플랫폼 빅데이터를 분석한 결과, 웨이팅이 단순한 대기 행위를 넘어 소비자의 시간과 동선을 관리하는 서비스로 자리 잡고 있다. 캐치테이블 운영사 와드 등 플랫폼들은 대기 중 소비자 행동 데이터를 축적하며 쇼핑·관광 연계 산업으로 영역을 넓히고 있다. 마케터는 웨이팅 대기 시간을 브랜드 접점으로 활용하는 새로운 채널 전략을 고려할 수 있다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29424" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-23/iboss-5.png" alt="" loading="lazy"><span class="v2-item-rank">5</span></span>
+            <span class="v2-item-body"><h3>게임 광고 성과 지표의 함정…'증분 효과' 측정이 핵심</h3><p>애피어가 게임 광고 시장에서 설치 수·ROAS 등 기존 지표가 양호해도 실제 광고가 새롭게 만들어낸 성과인 '증분 효과(Incrementality)'를 별도로 측정해야 한다고 강조했다. 광고 성과로 집계된 수치 중 광고가 없었어도 발생했을 전환이 포함될 수 있어 예산 확대 판단이 왜곡될 수 있다는 것이다. 게임뿐 아니라 퍼포먼스 마케팅 전반에서 증분 측정 체계 도입이 광고 효율화의 핵심 과제로 부상하고 있다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29431" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-23/iboss-6.png" alt="" loading="lazy"><span class="v2-item-rank">6</span></span>
+            <span class="v2-item-body"><h3>제일기획, 틱톡에서 두 브랜드를 한 콘텐츠에 담은 협업 캠페인 공개</h3><p>제일기획이 배달앱 땅교와 피자 브랜드 노모어피자를 하나의 틱톡 크리에이터 콘텐츠에 함께 담는 캠페인을 집행하고, 그 성과를 2026년 10월 20일 틱톡 서밋 코리아에서 공유했다. 두 광고주를 단일 숏폼 콘텐츠에 통합하는 방식으로 제작비 효율을 높이면서도 자연스러운 브랜드 노출을 구현한 사례다. 틱톡 크리에이터 중심의 멀티브랜드 콘텐츠 전략이 국내 마케팅 실무에 새로운 포맷으로 주목받고 있다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://platum.kr/archives/296876" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-10-23/iboss-7.png" alt="" loading="lazy"><span class="v2-item-rank">7</span></span>
+            <span class="v2-item-body"><h3>중고 스마트폰 거래 절반이 30만 원 미만…가성비 소비 트렌드 심화</h3><p>중고나라가 2025년 1~9월 안심결제 스마트폰 거래를 분석한 결과, 30만 원 미만 제품 비중이 전년 동기 37.8%에서 48.2%로 10.4%포인트 상승했다. 반면 100만 원 이상 고가 제품 비중은 25.0%에서 12.9%로 절반 가까이 줄었다. 신제품 가격 인상이 이어지는 가운데 중고 시장이 실질적인 소비 대안으로 자리 잡고 있어, 마케터는 가성비 소비층을 겨냥한 전략과 중고 거래 플랫폼 연계 마케팅을 검토할 필요가 있다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a></div>
+    </div>
+
+    <a class="v2-bj-card" href="https://maily.so/josh/posts/xyowyd21z28" target="_blank" rel="noopener">
+        <div class="v2-bj-hero"><img src="../images/2026-10-23/stibee-0.jpg" alt="" loading="lazy"></div>
+        <div class="v2-bj-content">
+        <div class="v2-bj-eyebrow">
+            <span class="v2-bj-icon">✍️</span>
+            <span>빌더조쉬 · 오늘의 인사이트</span>
+        </div>
+        <div class="v2-bj-title">한 달 PR 2,500개 머지했다는 개발자는 왜 PR을 다 리뷰하지 않을까?</div>
+        <p class="v2-bj-subtitle">메타 React 팀 출신 로런 탠 대담, 검증은 에이전트에게 맡기고 실수는 규칙으로 막는 법</p>
+        <ol class="v2-bj-summary"><li>메타·SpaceX AI(Cursor) 출신 로런 탠은 월 PR 2,500개를 에이전트에 맡기며 &quot;쉬운 일이 옳은 일이 되게 하라&quot;를 핵심 원칙으로 삼음.</li><li>에이전트 신뢰의 첫 계단은 '검증 스킬'로, 에이전트가 코드를 직접 실행·확인하게 해야 사람 중계 없이 자율 루프가 완성됨.</li><li>AI 시대일수록 도메인 전문 지식이 유리한 무기가 되며, 엔지니어는 코드 대신 스킬·환경·코드베이스를 설계하는 '미슐랭 주방 셰프' 역할로 전환됨.</li></ol>
+        <span class="v2-bj-cta">뉴스레터 읽기 →</span>
+        </div>
+    </a>
+
+    <div class="v2-card">
+        <div class="v2-card-header">
+            <span class="v2-card-icon">✉️</span>
+            <div>
+                <div class="v2-card-title">이번 주 뉴스레터</div>
+            </div>
+        </div>
+        <div class="v2-stibee-list">
+        <a class="v2-stibee-card v2-stibee-card-img" href="https://stibee.com/api/v1.0/emails/share/9rJiN5LgldwtDsUYkEQjQudWD0BwQWk" target="_blank" rel="noopener">
+            <img class="v2-stibee-thumb" src="../images/2026-10-23/stibee-1.jpg" alt="" loading="lazy">
+            <div class="v2-stibee-info">
+                <span class="v2-stibee-badge">까탈로그</span>
+                <div class="v2-stibee-title">까탈스럽게 고른 취향 뉴스레터</div>
+                <span class="v2-stibee-cta">뉴스레터 보기 →</span>
+            </div>
+        </a></div>
+    </div>
+        <div class="v2-cta"><div class="v2-cta-label">브랜드라이즈 무료 상담</div><div class="v2-cta-headline">혼자 고민하지 마세요.</div><p class="v2-cta-sub">브랜드 진단부터 지금 당장 해야 할 우선순위까지,<br>30분 무료 상담에서 함께 정리해드려요.</p><p class="v2-cta-proof">이미 <b>수십 개 브랜드</b>가 상담받았습니다.<br>내 브랜드처럼, 함께 고민하는 팀원의 마음으로 봅니다.</p><a class="v2-cta-btn" href="https://forms.gle/R5FaijsFD4VoTEsj9?utm_source=web&amp;utm_medium=cta&amp;utm_campaign=brandrise&amp;utm_content=bottom" target="_blank" rel="noopener">30분 무료 상담받기 →</a><p class="v2-cta-fine">스타트업 대표·마케팅 담당자를 위한 30분</p></div>
+        <div class="v2-footer">
+            <div class="v2-footer-nav"><a href="../../v2/">← 최신 뉴스레터</a><a href="../archive.html">📚 전체 아카이브</a></div>
+            <div class="v2-footer-copy">Brandrise · 매일 아침 자동 업데이트</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
