@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 10월 27일">
+    <meta property="og:description" content="화요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 10월 27일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-10-27</div>
+        <div class="header-title">10월 27일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">화요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 화요일 마케팅 소식 전해드립니다 😊 오늘은 바디케어(Bodycare)의 매장 내 틱톡 스튜디오 도입이 흥미롭습니다. 영국 뷰티 유통 브랜드가 매장 리뉴얼의 중심에 소셜미디어 콘텐츠 제작 공간을 배치했다는 건, 오프라인 매장의 역할을 '판매 공간'에서 '콘텐츠 생산 거점'으로 재정의하는 시도입니다. 고객이 제품을 구매하는 동선과 콘텐츠를 만드는 동선을 한 공간 안에서 설계한다는 발상은, 브랜드 경험과 바이럴을 동시에 노리는 최근 리테일 트렌드의 방향을 잘 보여줍니다.</p><p>캐릿에서 다룬 '모찌', '쉬었음 청년', '뼈말라'라는 키워드도 함께 살펴볼 만합니다. 언뜻 따로 노는 단어들처럼 보이지만, Z세대가 자신의 상태와 정체성을 언어로 포착하는 방식이 얼마나 빠르게 진화하는지를 압축적으로 보여주는 사례들입니다. 이 언어들이 어떤 맥락에서 퍼지고, 어떤 감정과 연결되는지 파악하는 것이 결국 해당 세대와 접점을 만드는 콘텐츠 기획의 출발점이 됩니다.</p><p>화요일 아침도 좋은 인사이트로 힘차게 시작하시길 바랍니다! 💡</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">CJ온스타일, 데이터로 크리에이터·브랜드 연결 플랫폼 구축</div>
+            <div class="news-summary">CJ온스타일이 크리에이터 커머스 시장의 '연결자'로 포지셔닝을 전환한다. 전문 PD 100여 명과 홈쇼핑·모바일 라이브커머스에서 축적한 역량을 바탕으로, 상품 매칭부터 판매·정산까지 하나의 시스템으로 연결하는 플랫폼을 구축할 계획이다. 파편화된 크리에이터 커머스 시장을 산업화하려는 이 전략은 브랜드가 크리에이터와의 협업 채널을 다각화할 때 참고할 만한 움직임이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">초코에몽 실구매 데이터로 읽은 5가지 구매 진실</div>
+            <div class="news-summary">5억5천만 개 판매된 초코에몽을 실구매 영수증 데이터로 분석한 결과, 편의점 채널 집중 지수 2.15, 2월 구매침투율 최고치, 맥주·소주와의 동반구매 비율 3% 이상 등 주요 패턴이 확인됐다. 분석은 팀리미티드의 '영끌' 유저 실구매 데이터에 가중치 보정을 적용해 편향을 최소화했다. 브랜드 확장 전략 수립 전에 채널·시즌·동반구매 데이터를 먼저 검토해야 한다는 점을 보여주는 사례다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">벤틀리, AI로 패션·음악까지 아우르는 글로벌 고객 분석 강화</div>
+            <div class="news-summary">럭셔리 자동차 브랜드 벤틀리 모터스가 소비자 분석 기업 피프티(Fifty)와 12개월 플랫폼 사용 계약을 체결하고 AI 기반 고객 분석을 강화한다. 자동차 애호가를 넘어 패션·음악·호텔·외식 등 다양한 관심사를 가진 잠재 고객층까지 발굴하는 것이 목표다. 단일 카테고리를 넘어 라이프스타일 전반의 관심사로 타깃을 확장하는 AI 오디언스 분석이 럭셔리 브랜드 마케팅의 새 표준으로 부상하고 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">영국 뷰티 브랜드 바디케어, 매장 안에 틱톡 스튜디오 도입</div>
+            <div class="news-summary">영국 뷰티 유통 브랜드 바디케어(Bodycare)가 브랜드 디자인사 폴드7디자인과 함께 브랜드 이미지와 매장 콘셉트를 전면 개편했다. 소셜미디어에서 제품을 발견하고 공유하는 경험을 오프라인 매장에서도 구현하기 위해 틱톡 라이브 방송과 영상 제작이 가능한 스튜디오 공간을 매장 내에 설치했다. 온·오프라인 경계를 허무는 '소셜 커머스형 오프라인 매장' 전략은 Z세대 소비자를 공략하는 리테일 브랜드에 주목할 만한 참고 사례다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">바나나 리퍼블릭, 틱톡 오리지널 숏폼 시리즈로 브랜드 콘텐츠 실험</div>
+            <div class="news-summary">패션 브랜드 바나나 리퍼블릭이 코미디와 패션을 결합한 5부작 숏폼 시리즈 '디 에이전시(The Agency)'를 틱톡 중심으로 공개했다. 브랜드가 소셜미디어 채널에 맞춰 기획한 첫 오리지널 시리즈로, 광고회사 코프(COPE Global)와 콘텐츠 제작사 그랜드 네이처가 제작에 참여했다. 광고 형식 대신 오리지널 콘텐츠 IP를 활용해 브랜드 가치를 전달하는 방식은 국내 패션·라이프스타일 브랜드도 벤치마킹할 만한 전략이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">광고회사가 영화를 만드는 이유…브랜드 필름의 진화</div>
+            <div class="news-summary">이노션이 현대자동차와 함께 제작한 단편영화 &lt;밤낚시&gt;는 아이오닉 5를 소재로 하면서도 광고임을 드러내지 않아 주목받았다. 영화는 브랜드가 운영하는 또 하나의 '팝업스토어'처럼 기능하며, 광고 형식의 한계를 넘어 브랜드 세계관을 확장하는 수단으로 자리잡고 있다. 콘텐츠 피로도가 높아진 환경에서 브랜드 필름이 소비자와 깊은 연결을 만드는 새로운 마케팅 접근법으로 부상하고 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">겨울 여행 예약은 10월에 결정…얼리버드는 '할인'보다 '좌석 확보'</div>
+            <div class="news-summary">10월 첫 11일간 12월 출발 해외여행 예약이 9월 같은 기간 대비 138.2% 급증하며 겨울 성수기 판매가 이미 본격화됐다. 동남아 전세기 공급 축소가 예고된 가운데, 얼리버드 마케팅의 핵심 메시지가 '할인'에서 '좌석 확보'로 이동하고 있다. 여행·숙박·항공 관련 마케터라면 10월을 겨울 시즌 캠페인의 핵심 집행 시점으로 설정하고 희소성 메시지를 전면에 내세우는 전략을 고려해야 한다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">✉️</span>
+            <span class="card-title">이번 주 뉴스레터</span>
+        </div>
+        
+        <div class="stibee-item">
+            <span class="stibee-source">풋풋레터</span>
+            <div class="stibee-title">AI 잘 쓰는 사람이 일도 잘할까요? 👀</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/uckFBXEobEsjdxTG1mN5jqahpcCAsbk" target="_blank">뉴스레터 보기 →</a>
+        </div>
+        <div class="stibee-item">
+            <span class="stibee-source">캐릿</span>
+            <div class="stibee-title">‘모찌’, ‘쉬었음 청년’, ‘뼈말라’의 공통점은?</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/poZWI69hSa7Q6CRdk7EogtSKi0LZN2k" target="_blank">뉴스레터 보기 →</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
