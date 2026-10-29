@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 10월 29일">
+    <meta property="og:description" content="목요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 10월 29일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-10-29</div>
+        <div class="header-title">10월 29일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">목요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 목요일 마케팅 소식 전해드립니다 😊 오늘은 TBWA 백슬래시 보고서 『Becoming Uninfluenced』가 흥미롭습니다. 응답자의 62%가 인플루언서가 되고 싶지 않다고 답했다는 결과는, 인플루언서 마케팅이 포화 상태에 이르면서 오히려 '영향받지 않는 사람'이 더 신뢰 있고 매력적으로 읽히는 시대가 왔다는 신호입니다. 팔로워 수와 협찬 게시물보다 진정성 있는 일상과 독립적인 취향이 소비자에게 더 강하게 닿고 있다면, 브랜드가 크리에이터를 고르는 기준 자체를 다시 정비해야 할 시점이기도 합니다.</p><p>헤이팝에서 소개한 곡물집의 팝업도 함께 살펴볼 만합니다. 공주에서 시작한 곡물 브랜드가 뉴욕에서 미숫가루를 선보인다는 이야기인데, K푸드의 확장이 라면·김치·과자를 넘어 전통 곡물 음료의 영역까지 이어지고 있다는 점이 흥미롭습니다. '건강'과 '낯선 맛'에 반응하는 글로벌 소비자들의 감수성을 공략하는 방식으로, 로컬 브랜드가 해외 팝업을 브랜딩의 도구로 활용하는 전략적 흐름도 읽힙니다.</p><p>오늘 하루도 좋은 인사이트로 알차게 채우세요! 🙌</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">2026 베스트 글로벌 브랜드, AI 투자 성과 명암 갈려</div>
+            <div class="news-summary">인터브랜드가 발표한 '2026 베스트 글로벌 브랜드'에 따르면 상위 100대 브랜드의 총 가치는 3조8,660억 달러로 전년 대비 8.1% 증가했다. 엔비디아는 브랜드 가치가 71% 넘게 늘어 처음으로 6위에 진입한 반면, 테슬라는 37.8% 감소하며 25위에서 50위로 밀려났다. 과거 명성에 안주한 브랜드와 신뢰·차별성을 성장 동력으로 활용한 브랜드 간 격차가 벌어지고 있어, 마케터는 브랜드 자산을 단순히 유지하는 것이 아닌 능동적으로 재구축하는 전략이 필요하다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">TBWA 보고서 &quot;인플루언서보다 영향받지 않는 사람이 더 매력적&quot;</div>
+            <div class="news-summary">TBWA 산하 문화 인사이트 조직 백슬래시가 발표한 보고서 『Becoming Uninfluenced』에 따르면 응답자의 62%가 인플루언서가 되는 것보다 타인의 영향에 흔들리지 않는 사람이 되는 것이 더 매력적이라고 답했다. 온라인에서 형성되는 대중적 인기에 대한 불신이 높아지고 자신만의 취향을 중시하는 소비자가 늘고 있다는 분석이다. 인플루언서 마케팅에 의존해온 브랜드라면 진정성과 개성을 강조하는 방향으로 전략을 재점검할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">유튜브 숏폼 드라마 급성장, 한국 조회수 1년 새 두 배 이상</div>
+            <div class="news-summary">유튜브에 따르면 올해 상반기 전 세계 숏폼 드라마 조회수는 65억 회를 넘었고 시청 시간은 전년 동기 대비 50% 이상 증가했다. TV 화면에서의 숏폼 드라마 조회수도 90% 이상 늘었으며, 한국을 포함한 아시아·태평양 지역의 증가세가 특히 가팔랐다. 숏폼 드라마가 모바일과 TV 스크린 모두에서 빠르게 확산되고 있어, 브랜드 콘텐츠 및 광고 집행 채널로서의 활용 가능성을 적극 검토할 시점이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">AI 생성 저품질 사이트 2,116개 발견…프로그래매틱 광고 위협</div>
+            <div class="news-summary">광고 공급망 분석 기업 디크립트애즈가 생성형 AI로 콘텐츠를 대량 생산해 광고 수익을 올리는 저품질 웹사이트 2,116개를 발견했다. 해당 사이트에는 어도비·지멘스·펩시 등 유명 브랜드의 광고까지 게재된 것으로 나타났다. 프로그래매틱 광고 집행 시 브랜드 세이프티와 광고 게재 지면 품질 검증에 더욱 철저한 관리가 요구된다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">피처링, 인플루언서 섭외 자동화 AI 에이전트 공개</div>
+            <div class="news-summary">SNS 데이터 분석 기업 피처링이 자체 콘퍼런스 '퓨처링 26'에서 인플루언서 마케팅 업무를 자동화하는 'AI 에이전트'를 공개했다. 조건을 자연어로 입력하면 AI가 참여율·채널 유형 등 기준에 맞는 크리에이터를 자동으로 찾아 제안하는 방식이다. 인플루언서 발굴과 섭외에 드는 시간과 비용을 줄일 수 있어, 인플루언서 마케팅 효율화를 고민하는 담당자에게 주목할 만한 도구다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">광고주 23%만 &quot;대행사가 필요한 역량 제공&quot; 인식 격차 54%p</div>
+            <div class="news-summary">더드럼과 아이리서치 서비스가 발표한 보고서에 따르면 광고회사 소속 응답자의 77%는 대행사가 광고주에게 필요한 역량을 제공하고 있다고 답한 반면, 동의한 광고주는 23%에 그쳐 54%포인트의 격차가 나타났다. 광고주와 대행사 간 기대치와 실제 역량에 대한 인식이 크게 엇갈리고 있다는 것을 보여주는 수치다. 대행사는 광고주의 실질적인 니즈를 재점검하고, 광고주는 대행사에 요구하는 역할을 보다 명확히 정의할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">K뷰티 너무 잘 팔려 문제…아마존, 물류 전략 전환</div>
+            <div class="news-summary">아마존에서 K뷰티 매출이 2024년부터 매년 약 2배씩 성장하면서 일부 브랜드가 재고 부족으로 '빠른 배송' 배지를 잃는 상황이 발생했다. 수요 급증 속도를 물류 공급이 따라가지 못한 결과로, 아마존코리아는 내년부터 관련 전략을 변경할 계획이다. 미국 아마존에 입점한 K뷰티 브랜드라면 재고 관리와 FBA 입고 계획을 선제적으로 강화해 배송 경쟁력을 유지하는 것이 중요하다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">🎨</span>
+            <span class="card-title">전시 / 팝업 / 공간 추천</span>
+            <span class="card-source">헤이팝</span>
+        </div>
+        
+        <div class="heypop-item">
+            <div class="heypop-title">뉴요커들이 ‘미숫가루’ 마신다고?</div>
+            <div class="heypop-desc">공주에서 뉴욕까지, 곡물집이 선보인 일곱 가지 맛</div>
+            <a class="heypop-link" href="https://heypop.kr/n/145200/" target="_blank">→ 자세히 보기</a>
+        </div>
+        <div class="heypop-item">
+            <div class="heypop-title">종로의 랜드마크 YMCA가 호텔을 품었다</div>
+            <div class="heypop-desc">120년 역사의 건물에 문을 연 ‘까치호텔’</div>
+            <a class="heypop-link" href="https://heypop.kr/n/145130/" target="_blank">→ 자세히 보기</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
