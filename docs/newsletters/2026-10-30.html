@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 10월 30일">
+    <meta property="og:description" content="금요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 10월 30일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-10-30</div>
+        <div class="header-title">10월 30일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">금요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 금요일 마케팅 소식 전해드립니다 😊 오늘은 월마트의 홀리데이 캠페인이 흥미롭습니다. 찰스 디킨스의 '크리스마스 캐럴'과 1992년 영화 '머펫 크리스마스 캐럴'을 동시에 재해석한 3부작 시리즈인데, 단순한 시즌 광고를 넘어 문화적 레퍼런스를 촘촘히 엮어 콘텐츠 자체에 서사를 부여한 방식이 돋보입니다. 지난 목요일 소개됐던 TBWA 보고서의 흐름과 연결해보면, 브랜드가 직접 '이야기의 제작자'가 되는 전략이 미국 대형 유통사에서도 본격적인 실행으로 이어지고 있습니다.</p><p>AI 검색 최적화 측면에서도 살펴볼 소식이 있습니다. 적정마케팅연구소의 분석에 따르면 AI 답변에서 유튜브를 인용하는 경우의 87%가 Google AI 오버뷰에서 발생했는데, 이는 영상 콘텐츠가 검색 결과를 넘어 AI 답변의 출처로 기능하기 시작했다는 의미입니다. SEO 전략에 영상 콘텐츠를 어떻게 포함시킬지 고민하는 팀이라면, 유튜브 채널 운영 방식과 콘텐츠 구조를 AI 인용 가능성 기준으로도 점검해볼 시점입니다.</p><p>금요일 아침, 한 주도 좋은 인사이트로 가득 채우셨길 바랍니다! 🙌</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">AI 답변 유튜브 인용 87%가 구글 AI 오버뷰에서 나와</div>
+            <div class="news-summary">AI 검색 최적화 솔루션 브레인드를 운영하는 적정마케팅연구소가 6개 AI 서비스의 유튜브 인용 현황을 분석한 결과, 유튜브를 출처로 인용한 AI 답변의 87%가 구글 AI 오버뷰에서 나온 것으로 확인됐다. 네이버 AI 브리핑은 30일 동안 유튜브 인용이 단 한 건도 없었으며, 구글 AI 오버뷰가 인용한 영상 중 30%는 조회수 1,000회 미만이었다. 영상 조회수보다 질문에 답하는 콘텐츠 구성이 AI 인용에 유리하다는 점에서, 유튜브 콘텐츠 전략을 GEO 관점으로 재검토할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">AI 생성 저품질 사이트 2,116개, 프로그래매틱 광고 위협</div>
+            <div class="news-summary">광고 공급망 분석 기업 디크립트애즈가 생성형 AI로 콘텐츠를 대량 제작해 광고 수익을 올리는 저품질 웹사이트 2,116개를 발견했다. 해당 사이트에는 어도비·지멘스·펩시 등 유명 브랜드 광고가 게재된 것으로 나타났다. 프로그래매틱 광고를 집행하는 마케터는 광고 게재 지면의 품질을 주기적으로 점검하고 브랜드 세이프티 설정을 강화할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">TBWA 보고서 &quot;인플루언서보다 영향받지 않는 사람이 더 매력적&quot;</div>
+            <div class="news-summary">TBWA의 문화 인사이트 조직 백슬래시가 발표한 보고서 『Becoming Uninfluenced』에 따르면, 응답자의 62%가 인플루언서가 되는 것보다 타인의 영향에 흔들리지 않는 사람이 되는 것이 더 매력적이라고 답했다. 온라인 대중적 인기에 대한 불신이 커지고 자신만의 취향을 중시하는 소비자가 늘고 있다는 의미다. 인플루언서 마케팅 의존도를 점검하고 소비자의 자율적 선택을 존중하는 방향의 브랜드 메시지 전략이 요구된다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">한국 스트리밍 TV 광고, 거실 대형 화면으로 기회 확대</div>
+            <div class="news-summary">매그나이트의 조사 보고서 '스트리밍 및 스크린: 한국'에 따르면 응답자의 52%가 1년 전보다 스트리밍 콘텐츠를 더 많이 시청하고 있으며, 45%는 새로운 서비스 이용 의향이 있다고 밝혔다. 시청자들은 하루 동안 모바일과 TV를 오가며 다양한 서비스를 이용한다. 스트리밍 광고는 단순한 도달 확대를 넘어 거실 대형 화면을 포함한 멀티스크린 전략으로 접근해야 효과를 높일 수 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">생성형 AI 유료 결제자, 월평균 3만 6천 원 지출</div>
+            <div class="news-summary">인크로스가 전국 만 15~69세 남녀 2,000명을 대상으로 실시한 '2026 아이엠 리포트'에 따르면, 생성형 AI 서비스 유료 결제자의 월평균 결제금액은 3만 5,932원으로 나타났다. AI 서비스 이용 경험이 확대되고 유료 결제 이용자도 증가하는 추세다. 소비자의 AI 서비스 지출이 실질적 수준에 도달한 만큼, AI 기반 마케팅 서비스의 유료 전환 전략 수립에 참고할 수 있는 데이터다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">피처링, 인플루언서 섭외·협상·계약까지 AI 에이전트 공개</div>
+            <div class="news-summary">인플루언서 마케팅 플랫폼 피처링이 컨퍼런스 '퓨처링 26'에서 섭외부터 협상·계약·콘텐츠 검수까지 담당하는 '피처링 AI 에이전트'를 공개했다. 자체 데이터 엔진은 국내외 약 1,800만 개 채널과 4억 건 이상의 콘텐츠를 실시간 분석한다. 인플루언서 마케팅의 반복 업무를 AI가 대행하는 시대가 본격화되면서, 담당 마케터의 역할이 전략·성과 판단 중심으로 재편될 전망이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">월마트, 머펫·월튼 고긴스와 크리스마스 3부작 캠페인 공개</div>
+            <div class="news-summary">미국 유통업체 월마트가 찰스 디킨스의 '크리스마스 캐럴'과 1992년 영화 '머펫 크리스마스 캐럴'을 재해석한 홀리데이 캠페인 '어 후 뉴 캐럴'을 3부작으로 선보였다. 배우 월튼 고긴스가 출연하며 친숙한 클래식 IP를 활용해 월마트의 상품과 쇼핑 혜택을 자연스럽게 노출했다. 검증된 문화 IP와 팝 컬처 캐스팅을 결합한 브랜드 스토리텔링이 홀리데이 시즌 광고의 효과적인 공식으로 자리잡고 있음을 보여주는 사례다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">✉️</span>
+            <span class="card-title">이번 주 뉴스레터</span>
+        </div>
+        
+        <div class="stibee-item">
+            <span class="stibee-source">빌더조쉬</span>
+            <div class="stibee-title">앱인토스 팀이 미니앱 1만 5천 개에서 찾은 AI 시대 다시 쓰는 앱의 조건</div>
+            <a class="stibee-link" href="https://maily.so/josh/posts/2qzpel5jo4x" target="_blank">뉴스레터 보기 →</a>
+        </div>
+        <div class="stibee-item">
+            <span class="stibee-source">까탈로그</span>
+            <div class="stibee-title">까탈스럽게 고른 취향 뉴스레터</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/g31W18dSMP2ChLPd46GVMnQDzgSc9q0" target="_blank">뉴스레터 보기 →</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
