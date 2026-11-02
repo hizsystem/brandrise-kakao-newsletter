@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 11월 2일">
+    <meta property="og:description" content="월요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 11월 2일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-11-02</div>
+        <div class="header-title">11월 2일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">월요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 월요일 마케팅 소식 전해드립니다 😊 오늘은 듀오링고의 브랜드 현지화 전략이 흥미롭습니다. 한국에서 Duo의 생일카페를 열고 불교박람회와 대학 축제에 참여하는 방식은, 단순한 광고 집행이 아니라 각 시장의 문화적 문법 안으로 직접 들어가는 접근입니다. 언어 학습이라는 보편적 서비스를 지역마다 다른 방식으로 체험하게 만들면서도 하나의 브랜드로 기억되게 하는 이 설계는, 글로벌 캠페인을 고민하는 팀이라면 참고할 지점이 많습니다.</p><p>네이버의 '넾페스타'도 함께 살펴볼 만합니다. 얼굴 인식으로 입장하고 디지털 지갑에 스탬프를 적립하는 구조는, 멤버십 혜택을 온라인 포인트 중심에서 오프라인 경험으로 확장하는 시도입니다. 플랫폼이 충성 고객과 직접 만나는 접점을 물리적 공간으로 끌어내면서, 멤버십 프로그램의 역할을 '혜택 제공'에서 '브랜드 커뮤니티 형성'으로 넓혀가는 방향이 읽힙니다. 리텐션 전략을 고민하는 마케터라면 이 구조가 어떻게 설계됐는지 뜯어볼 이유가 충분합니다.</p><p>이번 주도 좋은 인사이트 가득한 한 주 되시길 바랍니다! 🚀</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">[브루스의 영감노트] 영어 공부 앱이 왜 생일카페를 열까?</div>
+            <div class="news-summary">듀오링고가 서로 다른 문화에서도 같은 브랜드로 기억되는 이유 듀오링고는 한국에서 초록색 부엉이 Duo의 생일카페를 열고, 불교박람회와 대학 축제에 등장하고, K-pop 아티스트와도 협업했다. 하나씩 떼어놓고 보면 영어 공부와는 크게 상관없어 보인다. 그런데 이상하게 낯설지는 않다. 미국 SNS에서 춤추고 사람을 쫓아다니던 그 부엉이가 한국에 오면 이 정도는 할 것 같다는 생각이 든다. 영어 교육 […] The post [브루스의 영감노트] 영어 공부 앱이 왜 생일카페를 열까? appeared first on 모비인사이드 MOBIIN</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">169만원 XR 글래스 ‘엑스리얼 아우라’, 첫인상은</div>
+            <div class="news-summary">“제미나이, 유튜브에서 롤러코스터 타는 영상 찾아서 재생해.” “제미나이, 프루트 닌자라는 게임 앱 실행해” ‘엑스리얼 아우라’에 탑재된 제미나이에 이 같은 음성 명령을 내리자 곧바로 유튜브가 실행되고 롤러코스터 탑승자 시점의 영상이 켜진다. 순식간에 눈앞 풍경이 놀이공원으로 바뀌었다. 제미나이는 두 번째 명령도 곧바로 수행했다. 이번에는 눈앞에 나타난 가상 화면에 게임 프루트 닌자가 실행됐고, 간단한 손동작만으로 게임을 즐길 수 있었다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">[해외 크리에이티브] 프라다, 손그림 애니메이션으로 동화 같은 크리스마스 광고 선보여</div>
+            <div class="news-summary">[ 매드타임스 최승은 기자] 이탈리아 럭셔리 브랜드 프라다(Prada)가 손그림 애니메이션과 실사 영상을 결합한 2026년 크리스마스 캠페인을 공개했다. 생성형 인공지능(AI)이 광고 제작에 활발하게 활용되는 가운데, 전통적인 수작업 애니메이션으로 동화 같은 겨울 풍경을 완성해 눈길을 끈다.‘드로잉 프라다: 애니메이티드 바이 핸드(Drawing Prada: Animated By Hand)’라는 이름의 이번 캠페인에는 디즈니 출신 애니메이터 존 포머로이(John Pomeroy)가 참여했다. ‘포카혼타스’, ‘판타지아 2000’ 등의</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">[해외 크리에이티브] KFC, 핼러윈 맞아 광고 슬로건 바꿨다… 치킨 뼈 활용한 ‘Bone Lickin’ Good’ 캠페인 공개</div>
+            <div class="news-summary">[ 매드타임스 한수경 기자] KFC가 핼러윈을 맞아 대표 광고 슬로건을 재치 있게 바꾼 캠페인을 선보였다. 치킨을 먹고 남은 뼈로 핼러윈을 연상시키는 이미지를 만들고, 익숙한 광고 문구에 새로운 의미를 더했다.이번 캠페인은 KFC의 오랜 슬로건인 ‘Finger Lickin’ Good’을 ‘Bone Lickin’ Good’으로 바꾼 것이 특징이다. ‘손가락을 빨아 먹을 만큼 맛있다’는 뜻의 기존 문구에서 손가락(Finger)을 뼈(Bone)로 바꿔, 치킨 뼈까지 핥아 먹을 만큼 맛있다는 의미를 담았다. 소비자에게 익숙한 슬로건의 어감</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">AAM “커머스 미디어, 광고 효과 측정의 신뢰성이 경쟁력”</div>
+            <div class="news-summary">[ 매드타임스 최영호 기자] 커머스 미디어 시장이 성장하면서 광고 효과를 얼마나 정확하게 입증하느냐가 중요해지고 있다. 광고주들이 단순한 매출 증가율을 넘어 광고로 인해 실제로 얼마나 많은 추가 매출이 발생했는지 확인하려는 가운데, 측정 방법을 투명하게 공개하고 검증받아야 한다는 지적이 나왔다.미디어 검증기관 AAM(Alliance for Audited Media)은 최근 발표한 자료 ‘Increasing Confidence in Incrementality Measurement’를 통해 커머스 미디어 사업자들이 증분 효과(Incre</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">“이 메일은 AI 에이전트가 썼습니다”, 편집부 메일함에 닿은 글로벌 PR의 새 문법</div>
+            <div class="news-summary">해외 개발사나 창업자가 한국어 보도자료를 보내온다. 최근 두세 달 사이 편집부 메일함에서 눈에 띄게 늘어난 유형이다. 8~9월에는 한 달에 몇 건 수준이던 이런 메일이 10월에는 30건을 넘겼고, 대부분 한국어로 작성돼 있었다. 처음에는 1인 개발자가 특색 있는 서비스를 만들었다는 소식이 주를 이뤘지만, 지금은 발신 주체도 홍보 논리도 다양해졌다. 10월에 들어온 메일 가운데 다섯 건을 보면 공통점이 ... 더 읽기</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">얼굴로 입장하고 디지털 지갑에 스탬프 모으고…네이버, 멤버십을 오프라인으로 (feat. 넾페스타)</div>
+            <div class="news-summary">네이버가 네이버플러스 멤버십 회원을 위한 첫 오프라인 축제 ‘넾페스타’를 선보였습니다. 회원들은 브랜드 부스에서 상품을 체험하고 공연을 즐기면서, 입장부터 경품 응모, 결제까지 네이버 서비스를 직접 써볼 수 있습니다. 행사는 10월 30일부터 11월 1일까지 서울 성수동 앤더슨씨 성수에서 열립니다. 행사장 밖에서는 네이버플러스스토어의 마스코트 ‘택이’가 방문객을 맞았습니다. 택이는 커다란 조형물과 탈인형으로 등장했고, 입장할 때 받는 가방에도 작은 키링으로 달려 있습니다.</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>

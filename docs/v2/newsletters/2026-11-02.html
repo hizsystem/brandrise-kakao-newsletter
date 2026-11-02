@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 11월 2일">
+    <meta property="og:description" content="월요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 11월 2일</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <style>
+:root{
+  --card:#fff;--ground:#f2f4f6;--ink:#191f28;--ink2:#4e5968;--ink3:#6b7684;
+  --gray:#8b95a1;--line:#e5e8eb;--accent:#3182f6;--accent-d:#1b64da;--accent-soft:#e8f1fe;
+  --font:'Pretendard','Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',
+         -apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--ground);color:var(--ink);line-height:1.7;
+     word-break:keep-all;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+.v2-wrapper{max-width:480px;margin:0 auto;padding:20px 12px 56px;}
+.v2-topnav{text-align:right;margin-bottom:12px;}
+.v2-topnav a{font-size:12px;color:var(--ink3);border:1px solid var(--line);padding:6px 14px;border-radius:20px;}
+
+.v2-paper{background:var(--card);border-radius:22px;overflow:hidden;
+          box-shadow:0 1px 2px rgba(23,31,40,.05),0 10px 34px rgba(23,31,40,.10);}
+.v2-brandbar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);}
+.v2-brand{display:flex;align-items:center;gap:7px;font-weight:800;font-size:15px;letter-spacing:-.01em;}
+.v2-brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);}
+.v2-brand-date{font-size:12.5px;color:var(--gray);font-variant-numeric:tabular-nums;}
+
+.v2-header{padding:30px 20px 26px;}
+.v2-eyebrow{font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.v2-header-title{font-size:26px;line-height:1.34;font-weight:800;letter-spacing:-.035em;margin-bottom:16px;text-wrap:balance;}
+.v2-greeting{font-size:15px;line-height:1.72;color:var(--ink2);}
+.v2-greeting p{margin-bottom:12px;}
+.v2-greeting p:last-child{margin-bottom:0;color:var(--ink);font-weight:600;}
+
+.v2-entry{margin:20px 20px 0;}
+.v2-entry a{display:flex;align-items:center;gap:12px;background:var(--ground);border-radius:16px;padding:15px 16px;min-height:60px;}
+.v2-entry-ico{flex:none;width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;font-size:20px;}
+.v2-entry-txt{flex:1;min-width:0;}
+.v2-entry-txt b{display:block;font-size:14.5px;font-weight:700;letter-spacing:-.01em;}
+.v2-entry-txt span{display:block;font-size:12.5px;color:var(--ink3);margin-top:2px;}
+.v2-entry-go{flex:none;font-size:14px;font-weight:800;color:var(--accent);}
+
+.v2-card{padding:34px 20px 0;}
+.v2-card-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.v2-card-icon{font-size:18px;flex:none;}
+.v2-card-title{font-size:18px;font-weight:800;letter-spacing:-.02em;}
+.v2-card-source{font-size:12px;color:var(--gray);margin-top:1px;}
+.v2-source-link{margin-left:auto;font-size:12px;color:var(--accent);white-space:nowrap;}
+
+.v2-newslist{display:flex;flex-direction:column;gap:2px;}
+.v2-item{display:flex;align-items:center;gap:14px;padding:12px 8px;border-radius:16px;transition:background .15s;}
+a.v2-item:hover{background:var(--ground);}
+.v2-item-chev{flex:none;color:var(--gray);font-size:22px;line-height:1;}
+.v2-item-thumbwrap{position:relative;flex:none;}
+.v2-item-thumb{width:84px;height:84px;border-radius:15px;object-fit:cover;background:var(--ground);}
+.v2-item-thumb-grad{display:flex;align-items:center;justify-content:center;font-size:34px;}
+.v2-item-rank{position:absolute;top:6px;left:6px;background:rgba(25,31,40,.7);color:#fff;
+              font-size:11px;font-weight:800;padding:2px 7px;border-radius:8px;font-variant-numeric:tabular-nums;}
+.v2-item-body{flex:1;min-width:0;}
+.v2-item-body h3{font-size:15.5px;line-height:1.44;font-weight:700;letter-spacing:-.015em;margin-bottom:5px;
+                 display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.v2-item-body p{font-size:13px;line-height:1.5;color:var(--ink3);
+                display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
+
+.v2-neu-section{display:flex;flex-direction:column;}
+.v2-neu-row{display:flex;align-items:flex-start;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);}
+.v2-neu-row:last-child{border-bottom:none;}
+.v2-neu-label{display:flex;flex-direction:column;align-items:center;gap:5px;width:56px;flex-shrink:0;}
+.v2-neu-emoji{font-size:24px;line-height:1;}
+.v2-neu-cat{font-size:10px;font-weight:700;color:var(--gray);text-align:center;word-break:keep-all;}
+.v2-neu-list{list-style:none;flex:1;display:flex;flex-direction:column;gap:6px;}
+.v2-neu-item{font-size:13px;color:var(--ink2);line-height:1.55;padding-left:12px;position:relative;}
+.v2-neu-item::before{content:"·";position:absolute;left:2px;color:var(--gray);font-weight:700;}
+
+.v2-heypop-list{display:flex;flex-direction:column;gap:10px;}
+.v2-heypop-card{display:flex;border-radius:16px;overflow:hidden;background:var(--ground);}
+.v2-thumb{width:120px;height:96px;object-fit:contain;background:#fff;flex-shrink:0;}
+.v2-thumb-placeholder{width:120px;height:96px;display:flex;align-items:center;justify-content:center;font-size:32px;background:#fff;flex-shrink:0;}
+.v2-heypop-info{padding:14px 16px;display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0;}
+.v2-heypop-title{font-size:14px;font-weight:700;line-height:1.45;}
+.v2-heypop-desc{font-size:12.5px;color:var(--ink3);line-height:1.5;}
+.v2-heypop-cta{font-size:11.5px;color:var(--accent);font-weight:700;margin-top:2px;}
+
+.v2-stibee-list{display:flex;flex-direction:column;gap:10px;}
+.v2-stibee-card{display:flex;flex-direction:column;gap:6px;padding:16px 18px;background:var(--ground);border-radius:16px;overflow:hidden;}
+.v2-stibee-card-img{flex-direction:row;padding:0;gap:0;}
+.v2-stibee-thumb{width:112px;height:96px;object-fit:contain;background:#fff;flex-shrink:0;}
+.v2-stibee-info{padding:14px 16px;flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;justify-content:center;}
+.v2-stibee-badge{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:3px 10px;border-radius:20px;align-self:flex-start;}
+.v2-stibee-title{font-size:14px;font-weight:600;line-height:1.5;}
+.v2-stibee-cta{font-size:12px;color:var(--accent);font-weight:700;}
+
+.v2-bj-card,.v2-lb-card{display:block;color:#fff;border-radius:20px;overflow:hidden;margin-top:14px;}
+.v2-bj-card{background:linear-gradient(160deg,#0c0f1a 0%,#152a52 100%);}
+.v2-lb-card{background:linear-gradient(160deg,#0c0f1a 0%,#141a2e 100%);}
+.v2-bj-hero,.v2-lb-hero{background:#0c1117;overflow:hidden;}
+.v2-bj-hero img,.v2-lb-hero img{width:100%;height:auto;max-height:340px;min-height:150px;object-fit:contain;}
+.v2-bj-content,.v2-lb-content{padding:26px 24px 28px;}
+.v2-bj-eyebrow,.v2-lb-eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;opacity:.55;margin-bottom:12px;letter-spacing:.08em;text-transform:uppercase;}
+.v2-bj-icon,.v2-lb-icon{font-size:14px;}
+.v2-bj-title,.v2-lb-title{font-size:20px;font-weight:800;line-height:1.42;margin-bottom:10px;letter-spacing:-.02em;}
+.v2-bj-subtitle,.v2-lb-subtitle{font-size:13.5px;opacity:.68;line-height:1.7;margin-bottom:18px;}
+.v2-bj-summary{list-style:none;counter-reset:bj;padding-top:16px;margin-bottom:20px;border-top:1px solid rgba(255,255,255,.12);}
+.v2-bj-summary li{counter-increment:bj;position:relative;padding:8px 0 8px 30px;font-size:13.5px;line-height:1.6;opacity:.92;border-bottom:1px solid rgba(255,255,255,.06);}
+.v2-bj-summary li:last-child{border-bottom:none;}
+.v2-bj-summary li::before{content:counter(bj);position:absolute;left:0;top:8px;width:22px;height:22px;border-radius:50%;
+                          background:rgba(49,130,246,.25);color:#8ab4ff;font-size:11px;font-weight:800;
+                          display:flex;align-items:center;justify-content:center;}
+.v2-bj-cta,.v2-lb-cta{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:9px 18px;border-radius:22px;}
+.v2-bj-cta{background:rgba(49,130,246,.2);border:1px solid rgba(49,130,246,.4);color:#cfe0ff;}
+.v2-lb-cta{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);}
+
+.v2-cta{margin:40px 12px 0;border-radius:22px;padding:34px 24px 30px;
+        background:linear-gradient(158deg,var(--accent) 0%,var(--accent-d) 100%);box-shadow:0 14px 38px rgba(49,130,246,.34);}
+.v2-cta-label{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:14px;}
+.v2-cta-headline{font-size:26px;line-height:1.32;font-weight:800;color:#fff;letter-spacing:-.03em;margin-bottom:14px;text-wrap:balance;}
+.v2-cta-sub{font-size:15px;line-height:1.62;color:rgba(255,255,255,.94);margin-bottom:10px;}
+.v2-cta-proof{font-size:14px;line-height:1.62;color:rgba(255,255,255,.82);margin-bottom:24px;}
+.v2-cta-proof b{color:#fff;font-weight:800;}
+.v2-cta-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#fff;color:var(--accent-d);
+            font-size:17px;font-weight:800;letter-spacing:-.01em;min-height:56px;border-radius:14px;box-shadow:0 4px 14px rgba(23,31,40,.16);}
+.v2-cta-fine{margin-top:14px;text-align:center;font-size:12.5px;color:rgba(255,255,255,.72);}
+
+.v2-footer{padding:30px 20px 34px;text-align:center;}
+.v2-footer-nav{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;}
+.v2-footer-nav a{font-size:12px;color:var(--ink3);border:1px solid var(--line);padding:8px 14px;border-radius:20px;}
+.v2-footer-copy{font-size:11px;color:var(--gray);}
+
+.v2-arc-week{font-size:13px;color:var(--ink3);margin-bottom:24px;}
+.v2-arc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+@media (max-width:560px){.v2-arc-grid{grid-template-columns:repeat(2,1fr);}}
+.v2-arc-card{border-radius:14px;padding:16px 12px;display:flex;flex-direction:column;gap:6px;
+             border:1px solid var(--line);background:#fff;text-align:center;}
+.v2-arc-card-empty{opacity:.5;}
+.v2-arc-day{font-size:13px;font-weight:800;color:var(--accent);}
+.v2-arc-card-empty .v2-arc-day{color:var(--gray);}
+.v2-arc-date{font-size:11.5px;color:var(--ink2);font-weight:500;}
+.v2-arc-lb{font-size:11px;color:var(--ink3);line-height:1.4;
+           display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.v2-arc-cta{font-size:11px;font-weight:700;color:var(--accent);}
+.v2-arc-cta-none{color:var(--gray);font-weight:400;}
+
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px;}
+
+/* 데스크톱(웹): 페이퍼 폭을 넓히고 아이보스 뉴스를 2단으로 — 모바일은 위 기본값 유지 */
+@media (min-width:700px){
+  .v2-wrapper{max-width:680px;padding:32px 16px 64px;}
+  .v2-newslist{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:2px;}
+  .v2-item{align-items:flex-start;}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="v2-wrapper">
+    <div class="v2-topnav"><a href="../../v2/">← 최신 뉴스레터</a></div>
+    <div class="v2-paper">
+        <div class="v2-brandbar">
+            <div class="v2-brand"><span class="v2-brand-dot"></span>Brandrise 데일리</div>
+            <div class="v2-brand-date">11월 2일 · 월</div>
+        </div>
+        <div class="v2-header">
+            <div class="v2-eyebrow">오늘의 마케팅</div>
+            <div class="v2-header-title">11월 2일 마케팅 뉴스</div>
+            <div class="v2-greeting"><p>안녕하세요! 월요일 마케팅 소식 전해드립니다 😊 오늘은 듀오링고의 브랜드 현지화 전략이 흥미롭습니다. 한국에서 Duo의 생일카페를 열고 불교박람회와 대학 축제에 참여하는 방식은, 단순한 광고 집행이 아니라 각 시장의 문화적 문법 안으로 직접 들어가는 접근입니다. 언어 학습이라는 보편적 서비스를 지역마다 다른 방식으로 체험하게 만들면서도 하나의 브랜드로 기억되게 하는 이 설계는, 글로벌 캠페인을 고민하는 팀이라면 참고할 지점이 많습니다.</p><p>네이버의 '넾페스타'도 함께 살펴볼 만합니다. 얼굴 인식으로 입장하고 디지털 지갑에 스탬프를 적립하는 구조는, 멤버십 혜택을 온라인 포인트 중심에서 오프라인 경험으로 확장하는 시도입니다. 플랫폼이 충성 고객과 직접 만나는 접점을 물리적 공간으로 끌어내면서, 멤버십 프로그램의 역할을 '혜택 제공'에서 '브랜드 커뮤니티 형성'으로 넓혀가는 방향이 읽힙니다. 리텐션 전략을 고민하는 마케터라면 이 구조가 어떻게 설계됐는지 뜯어볼 이유가 충분합니다.</p><p>이번 주도 좋은 인사이트 가득한 한 주 되시길 바랍니다! 🚀</p></div>
+        </div>
+        <div class="v2-entry"><a href="https://forms.gle/R5FaijsFD4VoTEsj9?utm_source=web&amp;utm_medium=cta&amp;utm_campaign=brandrise&amp;utm_content=top" target="_blank" rel="noopener"><span class="v2-entry-ico">💬</span><span class="v2-entry-txt"><b>브랜딩·마케팅, 어디서부터 막막하다면</b><span>30분 무료 상담으로 방향부터 잡아보세요</span></span><span class="v2-entry-go">상담 →</span></a></div>
+        
+    <div class="v2-card">
+        <div class="v2-card-header">
+            <span class="v2-card-icon">📰</span>
+            <div>
+                <div class="v2-card-title">오늘의 마케팅 뉴스</div>
+                <div class="v2-card-source">브랜드라이즈 AI 큐레이션</div>
+            </div>
+            
+        </div>
+        <div class="v2-newslist">
+        <a class="v2-item" href="https://www.mobiinside.co.kr/2026/11/02/duolingo-brand-consistency-localization-strategy/" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-11-02/iboss-1.png" alt="" loading="lazy"><span class="v2-item-rank">1</span></span>
+            <span class="v2-item-body"><h3>[브루스의 영감노트] 영어 공부 앱이 왜 생일카페를 열까?</h3><p>듀오링고가 서로 다른 문화에서도 같은 브랜드로 기억되는 이유 듀오링고는 한국에서 초록색 부엉이 Duo의 생일카페를 열고, 불교박람회와 대학 축제에 등장하고, K-pop 아티스트와도 협업했다. 하나씩 떼어놓고 보면 영어 공부와는 크게 상관없어 보인다. 그런데 이상하게 낯설지는 않다. 미국 SNS에서 춤추고 사람을 쫓아다니던 그 부엉이가 한국에 오면 이 정도는 할 것 같다는 생각이 든다. 영어 교육 […] The post [브루스의 영감노트] 영어 공부 앱이 왜 생일카페를 열까? appeared first on 모비인사이드 MOBIIN</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://byline.network/2026/11/30-626/" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><span class="v2-item-thumb v2-item-thumb-grad" style="background:linear-gradient(135deg, #434343 0%, #000000 100%)">📰</span><span class="v2-item-rank">2</span></span>
+            <span class="v2-item-body"><h3>169만원 XR 글래스 ‘엑스리얼 아우라’, 첫인상은</h3><p>“제미나이, 유튜브에서 롤러코스터 타는 영상 찾아서 재생해.” “제미나이, 프루트 닌자라는 게임 앱 실행해” ‘엑스리얼 아우라’에 탑재된 제미나이에 이 같은 음성 명령을 내리자 곧바로 유튜브가 실행되고 롤러코스터 탑승자 시점의 영상이 켜진다. 순식간에 눈앞 풍경이 놀이공원으로 바뀌었다. 제미나이는 두 번째 명령도 곧바로 수행했다. 이번에는 눈앞에 나타난 가상 화면에 게임 프루트 닌자가 실행됐고, 간단한 손동작만으로 게임을 즐길 수 있었다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29511" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><span class="v2-item-thumb v2-item-thumb-grad" style="background:linear-gradient(135deg, #f7971e 0%, #ffd200 100%)">📣</span><span class="v2-item-rank">3</span></span>
+            <span class="v2-item-body"><h3>[해외 크리에이티브] 프라다, 손그림 애니메이션으로 동화 같은 크리스마스 광고 선보여</h3><p>[ 매드타임스 최승은 기자] 이탈리아 럭셔리 브랜드 프라다(Prada)가 손그림 애니메이션과 실사 영상을 결합한 2026년 크리스마스 캠페인을 공개했다. 생성형 인공지능(AI)이 광고 제작에 활발하게 활용되는 가운데, 전통적인 수작업 애니메이션으로 동화 같은 겨울 풍경을 완성해 눈길을 끈다.‘드로잉 프라다: 애니메이티드 바이 핸드(Drawing Prada: Animated By Hand)’라는 이름의 이번 캠페인에는 디즈니 출신 애니메이터 존 포머로이(John Pomeroy)가 참여했다. ‘포카혼타스’, ‘판타지아 2000’ 등의</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29510" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><span class="v2-item-thumb v2-item-thumb-grad" style="background:linear-gradient(135deg, #f7971e 0%, #ffd200 100%)">📣</span><span class="v2-item-rank">4</span></span>
+            <span class="v2-item-body"><h3>[해외 크리에이티브] KFC, 핼러윈 맞아 광고 슬로건 바꿨다… 치킨 뼈 활용한 ‘Bone Lickin’ Good’ 캠페인 공개</h3><p>[ 매드타임스 한수경 기자] KFC가 핼러윈을 맞아 대표 광고 슬로건을 재치 있게 바꾼 캠페인을 선보였다. 치킨을 먹고 남은 뼈로 핼러윈을 연상시키는 이미지를 만들고, 익숙한 광고 문구에 새로운 의미를 더했다.이번 캠페인은 KFC의 오랜 슬로건인 ‘Finger Lickin’ Good’을 ‘Bone Lickin’ Good’으로 바꾼 것이 특징이다. ‘손가락을 빨아 먹을 만큼 맛있다’는 뜻의 기존 문구에서 손가락(Finger)을 뼈(Bone)로 바꿔, 치킨 뼈까지 핥아 먹을 만큼 맛있다는 의미를 담았다. 소비자에게 익숙한 슬로건의 어감</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29508" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-11-02/iboss-5.png" alt="" loading="lazy"><span class="v2-item-rank">5</span></span>
+            <span class="v2-item-body"><h3>AAM “커머스 미디어, 광고 효과 측정의 신뢰성이 경쟁력”</h3><p>[ 매드타임스 최영호 기자] 커머스 미디어 시장이 성장하면서 광고 효과를 얼마나 정확하게 입증하느냐가 중요해지고 있다. 광고주들이 단순한 매출 증가율을 넘어 광고로 인해 실제로 얼마나 많은 추가 매출이 발생했는지 확인하려는 가운데, 측정 방법을 투명하게 공개하고 검증받아야 한다는 지적이 나왔다.미디어 검증기관 AAM(Alliance for Audited Media)은 최근 발표한 자료 ‘Increasing Confidence in Incrementality Measurement’를 통해 커머스 미디어 사업자들이 증분 효과(Incre</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://platum.kr/archives/297502" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><span class="v2-item-thumb v2-item-thumb-grad" style="background:linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">🤖</span><span class="v2-item-rank">6</span></span>
+            <span class="v2-item-body"><h3>“이 메일은 AI 에이전트가 썼습니다”, 편집부 메일함에 닿은 글로벌 PR의 새 문법</h3><p>해외 개발사나 창업자가 한국어 보도자료를 보내온다. 최근 두세 달 사이 편집부 메일함에서 눈에 띄게 늘어난 유형이다. 8~9월에는 한 달에 몇 건 수준이던 이런 메일이 10월에는 30건을 넘겼고, 대부분 한국어로 작성돼 있었다. 처음에는 1인 개발자가 특색 있는 서비스를 만들었다는 소식이 주를 이뤘지만, 지금은 발신 주체도 홍보 논리도 다양해졌다. 10월에 들어온 메일 가운데 다섯 건을 보면 공통점이 ... 더 읽기</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://byline.network/2026/11/30_29182773-2/" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><span class="v2-item-thumb v2-item-thumb-grad" style="background:linear-gradient(135deg, #03c75a 0%, #02a148 100%)">🟢</span><span class="v2-item-rank">7</span></span>
+            <span class="v2-item-body"><h3>얼굴로 입장하고 디지털 지갑에 스탬프 모으고…네이버, 멤버십을 오프라인으로 (feat. 넾페스타)</h3><p>네이버가 네이버플러스 멤버십 회원을 위한 첫 오프라인 축제 ‘넾페스타’를 선보였습니다. 회원들은 브랜드 부스에서 상품을 체험하고 공연을 즐기면서, 입장부터 경품 응모, 결제까지 네이버 서비스를 직접 써볼 수 있습니다. 행사는 10월 30일부터 11월 1일까지 서울 성수동 앤더슨씨 성수에서 열립니다. 행사장 밖에서는 네이버플러스스토어의 마스코트 ‘택이’가 방문객을 맞았습니다. 택이는 커다란 조형물과 탈인형으로 등장했고, 입장할 때 받는 가방에도 작은 키링으로 달려 있습니다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a></div>
+    </div>
+        <div class="v2-cta"><div class="v2-cta-label">브랜드라이즈 무료 상담</div><div class="v2-cta-headline">혼자 고민하지 마세요.</div><p class="v2-cta-sub">브랜드 진단부터 지금 당장 해야 할 우선순위까지,<br>30분 무료 상담에서 함께 정리해드려요.</p><p class="v2-cta-proof">이미 <b>수십 개 브랜드</b>가 상담받았습니다.<br>내 브랜드처럼, 함께 고민하는 팀원의 마음으로 봅니다.</p><a class="v2-cta-btn" href="https://forms.gle/R5FaijsFD4VoTEsj9?utm_source=web&amp;utm_medium=cta&amp;utm_campaign=brandrise&amp;utm_content=bottom" target="_blank" rel="noopener">30분 무료 상담받기 →</a><p class="v2-cta-fine">스타트업 대표·마케팅 담당자를 위한 30분</p></div>
+        <div class="v2-footer">
+            <div class="v2-footer-nav"><a href="../../v2/">← 최신 뉴스레터</a><a href="../archive.html">📚 전체 아카이브</a></div>
+            <div class="v2-footer-copy">Brandrise · 매일 아침 자동 업데이트</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
