@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 11월 3일">
+    <meta property="og:description" content="화요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 11월 3일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav"><a href="../">← 최신 뉴스레터</a></div>
+
+    <div class="header">
+        <div class="header-meta">BRANDRISE DAILY · 2026-11-03</div>
+        <div class="header-title">11월 3일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">화요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 화요일 마케팅 소식 전해드립니다 😊 오늘은 풋풋레터의 '잘되는 브랜드가 하지 않는 4가지'가 인상적입니다. 성공한 브랜드를 분석할 때 흔히 '무엇을 했는가'에 집중하지만, 오히려 하지 않은 것들에서 일관성과 방향성이 드러나는 경우가 많습니다. 트렌드를 따라 전방위로 확장하거나, 단기 성과에 맞춰 메시지를 계속 바꾸거나, 모든 고객을 동시에 만족시키려는 시도들이 오히려 브랜드의 힘을 분산시킨다는 관점은 실무에서도 한 번씩 점검해볼 지점입니다.</p><p>캐릿에서 공개한 '2026 일 잘한 브랜드 티어표'도 함께 살펴볼 만합니다. 어떤 브랜드가 Z세대 소비자에게 '잘했다'는 평가를 받았는지를 들여다보면, 단순히 화제를 모은 캠페인이 아니라 타깃의 감수성과 언어에 정확히 맞아떨어진 실행이 상위권을 채운다는 흐름이 보입니다. 마케팅 성과를 노출 수치가 아니라 '누가 어떻게 기억하는가'로 읽는 관점에서, 올해 자사 브랜드의 위치를 가늠해보는 계기로도 활용해보실 수 있습니다.</p><p>화요일 아침도 좋은 인사이트로 힘차게 시작하시길 바랍니다! 🚀</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">광고 클릭 12건 중 1건이 무효…연간 낭비 630억 달러</div>
+            <div class="news-summary">광고 트래픽 검증 기업 루니오가 광고 클릭 27억 건을 분석한 결과, 평균 무효 트래픽 비율이 8.51%로 나타났다. 루니오는 이를 전 세계 디지털 광고비에 적용하면 2025년 약 630억 달러가 낭비된 것으로 추산했다. 퍼포먼스 광고를 집행하는 마케터라면 무효 트래픽 모니터링과 트래픽 검증 툴 도입 필요성을 재점검할 시점이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">핀터레스트, 매그나이트와 프로그래매틱 광고 확대…아마존·구글 통해 구매 가능</div>
+            <div class="news-summary">핀터레스트가 매그나이트와 손잡고 북미·남미·아시아태평양 지역에서 프로그래매틱 딜을 정식 출시했다. 광고주는 아마존·구글 등 기존 광고 구매 플랫폼에서 핀터레스트의 디스플레이·동영상 광고를 다른 매체와 함께 구매하고 통합 성과 측정까지 가능해진다. 핀터레스트를 별도 채널로 관리하던 마케터에게 옴니채널 캠페인 운용 효율이 높아질 전망이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">커머스 미디어, 광고 효과 측정 신뢰성이 경쟁력…AAM 경고</div>
+            <div class="news-summary">미디어 검증기관 AAM이 커머스 미디어 사업자들에게 증분 효과(Incrementality) 측정 방법의 투명한 공개와 외부 검증을 요구했다. 광고주들이 단순 매출 증가율을 넘어 광고로 인해 실제 추가 매출이 얼마나 발생했는지를 확인하려는 수요가 높아지고 있기 때문이다. 리테일 미디어·커머스 광고를 집행하는 마케터는 측정 지표와 검증 방식을 사전에 명확히 확인할 필요가 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">신라면 골드 출시 첫 달 구매율 4%…6개월 만에 0.25%로 수렴</div>
+            <div class="news-summary">영수증 데이터 분석에 따르면 신라면 골드는 출시 첫 달 구매 경험률 4.01%를 기록했으나 6개월 후 0.25%로 급격히 하락했다. 40주년 기념 신제품이 봉지라면 카테고리를 확장했는지, 아니면 기존 제품을 잠식했는지를 실데이터로 확인할 수 있는 사례다. 신제품 출시 시 초기 화제성과 장기 구매 전환율을 구분해 성과를 평가해야 한다는 시사점을 준다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">듀오링고가 생일카페를 여는 이유…로컬 문화로 브랜드 일관성 유지</div>
+            <div class="news-summary">듀오링고는 한국에서 마스코트 Duo의 생일카페 개최, 불교박람회 참가, K-pop 아티스트 협업 등 현지 문화에 밀착한 마케팅을 전개하고 있다. 글로벌 브랜드 정체성을 유지하면서도 각 시장의 문화 코드에 맞게 접점을 다각화하는 전략이다. 브랜드 캐릭터를 활용한 오프라인 체험 마케팅이 팬덤 형성과 바이럴에 효과적임을 보여주는 사례다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">티즈, AI 기반 CTV·디지털 통합 광고 플랫폼 'TAM' 개편</div>
+            <div class="news-summary">글로벌 광고 플랫폼 티즈가 CTV와 디지털 광고를 통합 운영하는 '티즈 애드 매니저(TAM)'를 개편했다. 광고 기획·집행·성과 분석을 하나로 묶고 AI로 반복 운영 업무를 자동화하며, 브랜드 인지도부터 전환까지 풀퍼널 성과를 단일 플랫폼에서 분석할 수 있다. CTV 광고 비중을 높이려는 마케터에게 통합 측정 환경 구축의 방향성을 참고할 수 있다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">유튜브, AI 시대 디지털 리터러시 캠페인 '잠시만요 2026' 공개</div>
+            <div class="news-summary">유튜브가 AI 시대 비판적 사고와 미디어 분별력 제고를 목표로 '잠시만요(Hit Pause) 2026' 캠페인을 선보인다. 2022년부터 74개국에서 진행된 글로벌 캠페인을 이번에 온라인 콘텐츠의 비판적 이해 역량 강화 방향으로 확대했다. 유튜브가 플랫폼 신뢰도 제고를 브랜드 메시지로 삼는 방식은 광고주의 브랜드 세이프티 관심과 맞닿아 있어 주목할 만하다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">✉️</span>
+            <span class="card-title">이번 주 뉴스레터</span>
+        </div>
+        
+        <div class="stibee-item">
+            <span class="stibee-source">풋풋레터</span>
+            <div class="stibee-title">🎤잘되는 브랜드가 하지 않는 4가지</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/04as7Q-6U7kV0nUEjjZVl1vJQk1INdg" target="_blank">뉴스레터 보기 →</a>
+        </div>
+        <div class="stibee-item">
+            <span class="stibee-source">캐릿</span>
+            <div class="stibee-title">2026 일 잘한 브랜드 티어표, 결국 1등은 여기?</div>
+            <a class="stibee-link" href="https://stibee.com/api/v1.0/emails/share/3IExMz6IbmORLIoIeCDEOF1hyeirg2s" target="_blank">뉴스레터 보기 →</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="../">← 최신 뉴스레터</a>
+        </div>
+        <div class="footer-copy">Brandrise · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
