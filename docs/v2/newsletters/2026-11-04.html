@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Brandrise 데일리 — 11월 4일">
+    <meta property="og:description" content="수요일 마케팅 뉴스레터 · Brandrise">
+    <meta property="og:type" content="website">
+    <title>Brandrise 데일리 | 11월 4일</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <style>
+:root{
+  --card:#fff;--ground:#f2f4f6;--ink:#191f28;--ink2:#4e5968;--ink3:#6b7684;
+  --gray:#8b95a1;--line:#e5e8eb;--accent:#3182f6;--accent-d:#1b64da;--accent-soft:#e8f1fe;
+  --font:'Pretendard','Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',
+         -apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--ground);color:var(--ink);line-height:1.7;
+     word-break:keep-all;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+.v2-wrapper{max-width:480px;margin:0 auto;padding:20px 12px 56px;}
+.v2-topnav{text-align:right;margin-bottom:12px;}
+.v2-topnav a{font-size:12px;color:var(--ink3);border:1px solid var(--line);padding:6px 14px;border-radius:20px;}
+
+.v2-paper{background:var(--card);border-radius:22px;overflow:hidden;
+          box-shadow:0 1px 2px rgba(23,31,40,.05),0 10px 34px rgba(23,31,40,.10);}
+.v2-brandbar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);}
+.v2-brand{display:flex;align-items:center;gap:7px;font-weight:800;font-size:15px;letter-spacing:-.01em;}
+.v2-brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);}
+.v2-brand-date{font-size:12.5px;color:var(--gray);font-variant-numeric:tabular-nums;}
+
+.v2-header{padding:30px 20px 26px;}
+.v2-eyebrow{font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.v2-header-title{font-size:26px;line-height:1.34;font-weight:800;letter-spacing:-.035em;margin-bottom:16px;text-wrap:balance;}
+.v2-greeting{font-size:15px;line-height:1.72;color:var(--ink2);}
+.v2-greeting p{margin-bottom:12px;}
+.v2-greeting p:last-child{margin-bottom:0;color:var(--ink);font-weight:600;}
+
+.v2-entry{margin:20px 20px 0;}
+.v2-entry a{display:flex;align-items:center;gap:12px;background:var(--ground);border-radius:16px;padding:15px 16px;min-height:60px;}
+.v2-entry-ico{flex:none;width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;font-size:20px;}
+.v2-entry-txt{flex:1;min-width:0;}
+.v2-entry-txt b{display:block;font-size:14.5px;font-weight:700;letter-spacing:-.01em;}
+.v2-entry-txt span{display:block;font-size:12.5px;color:var(--ink3);margin-top:2px;}
+.v2-entry-go{flex:none;font-size:14px;font-weight:800;color:var(--accent);}
+
+.v2-card{padding:34px 20px 0;}
+.v2-card-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.v2-card-icon{font-size:18px;flex:none;}
+.v2-card-title{font-size:18px;font-weight:800;letter-spacing:-.02em;}
+.v2-card-source{font-size:12px;color:var(--gray);margin-top:1px;}
+.v2-source-link{margin-left:auto;font-size:12px;color:var(--accent);white-space:nowrap;}
+
+.v2-newslist{display:flex;flex-direction:column;gap:2px;}
+.v2-item{display:flex;align-items:center;gap:14px;padding:12px 8px;border-radius:16px;transition:background .15s;}
+a.v2-item:hover{background:var(--ground);}
+.v2-item-chev{flex:none;color:var(--gray);font-size:22px;line-height:1;}
+.v2-item-thumbwrap{position:relative;flex:none;}
+.v2-item-thumb{width:84px;height:84px;border-radius:15px;object-fit:cover;background:var(--ground);}
+.v2-item-thumb-grad{display:flex;align-items:center;justify-content:center;font-size:34px;}
+.v2-item-rank{position:absolute;top:6px;left:6px;background:rgba(25,31,40,.7);color:#fff;
+              font-size:11px;font-weight:800;padding:2px 7px;border-radius:8px;font-variant-numeric:tabular-nums;}
+.v2-item-body{flex:1;min-width:0;}
+.v2-item-body h3{font-size:15.5px;line-height:1.44;font-weight:700;letter-spacing:-.015em;margin-bottom:5px;
+                 display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.v2-item-body p{font-size:13px;line-height:1.5;color:var(--ink3);
+                display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
+
+.v2-neu-section{display:flex;flex-direction:column;}
+.v2-neu-row{display:flex;align-items:flex-start;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);}
+.v2-neu-row:last-child{border-bottom:none;}
+.v2-neu-label{display:flex;flex-direction:column;align-items:center;gap:5px;width:56px;flex-shrink:0;}
+.v2-neu-emoji{font-size:24px;line-height:1;}
+.v2-neu-cat{font-size:10px;font-weight:700;color:var(--gray);text-align:center;word-break:keep-all;}
+.v2-neu-list{list-style:none;flex:1;display:flex;flex-direction:column;gap:6px;}
+.v2-neu-item{font-size:13px;color:var(--ink2);line-height:1.55;padding-left:12px;position:relative;}
+.v2-neu-item::before{content:"·";position:absolute;left:2px;color:var(--gray);font-weight:700;}
+
+.v2-heypop-list{display:flex;flex-direction:column;gap:10px;}
+.v2-heypop-card{display:flex;border-radius:16px;overflow:hidden;background:var(--ground);}
+.v2-thumb{width:120px;height:96px;object-fit:contain;background:#fff;flex-shrink:0;}
+.v2-thumb-placeholder{width:120px;height:96px;display:flex;align-items:center;justify-content:center;font-size:32px;background:#fff;flex-shrink:0;}
+.v2-heypop-info{padding:14px 16px;display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0;}
+.v2-heypop-title{font-size:14px;font-weight:700;line-height:1.45;}
+.v2-heypop-desc{font-size:12.5px;color:var(--ink3);line-height:1.5;}
+.v2-heypop-cta{font-size:11.5px;color:var(--accent);font-weight:700;margin-top:2px;}
+
+.v2-stibee-list{display:flex;flex-direction:column;gap:10px;}
+.v2-stibee-card{display:flex;flex-direction:column;gap:6px;padding:16px 18px;background:var(--ground);border-radius:16px;overflow:hidden;}
+.v2-stibee-card-img{flex-direction:row;padding:0;gap:0;}
+.v2-stibee-thumb{width:112px;height:96px;object-fit:contain;background:#fff;flex-shrink:0;}
+.v2-stibee-info{padding:14px 16px;flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;justify-content:center;}
+.v2-stibee-badge{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:3px 10px;border-radius:20px;align-self:flex-start;}
+.v2-stibee-title{font-size:14px;font-weight:600;line-height:1.5;}
+.v2-stibee-cta{font-size:12px;color:var(--accent);font-weight:700;}
+
+.v2-bj-card,.v2-lb-card{display:block;color:#fff;border-radius:20px;overflow:hidden;margin-top:14px;}
+.v2-bj-card{background:linear-gradient(160deg,#0c0f1a 0%,#152a52 100%);}
+.v2-lb-card{background:linear-gradient(160deg,#0c0f1a 0%,#141a2e 100%);}
+.v2-bj-hero,.v2-lb-hero{background:#0c1117;overflow:hidden;}
+.v2-bj-hero img,.v2-lb-hero img{width:100%;height:auto;max-height:340px;min-height:150px;object-fit:contain;}
+.v2-bj-content,.v2-lb-content{padding:26px 24px 28px;}
+.v2-bj-eyebrow,.v2-lb-eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;opacity:.55;margin-bottom:12px;letter-spacing:.08em;text-transform:uppercase;}
+.v2-bj-icon,.v2-lb-icon{font-size:14px;}
+.v2-bj-title,.v2-lb-title{font-size:20px;font-weight:800;line-height:1.42;margin-bottom:10px;letter-spacing:-.02em;}
+.v2-bj-subtitle,.v2-lb-subtitle{font-size:13.5px;opacity:.68;line-height:1.7;margin-bottom:18px;}
+.v2-bj-summary{list-style:none;counter-reset:bj;padding-top:16px;margin-bottom:20px;border-top:1px solid rgba(255,255,255,.12);}
+.v2-bj-summary li{counter-increment:bj;position:relative;padding:8px 0 8px 30px;font-size:13.5px;line-height:1.6;opacity:.92;border-bottom:1px solid rgba(255,255,255,.06);}
+.v2-bj-summary li:last-child{border-bottom:none;}
+.v2-bj-summary li::before{content:counter(bj);position:absolute;left:0;top:8px;width:22px;height:22px;border-radius:50%;
+                          background:rgba(49,130,246,.25);color:#8ab4ff;font-size:11px;font-weight:800;
+                          display:flex;align-items:center;justify-content:center;}
+.v2-bj-cta,.v2-lb-cta{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:9px 18px;border-radius:22px;}
+.v2-bj-cta{background:rgba(49,130,246,.2);border:1px solid rgba(49,130,246,.4);color:#cfe0ff;}
+.v2-lb-cta{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);}
+
+.v2-cta{margin:40px 12px 0;border-radius:22px;padding:34px 24px 30px;
+        background:linear-gradient(158deg,var(--accent) 0%,var(--accent-d) 100%);box-shadow:0 14px 38px rgba(49,130,246,.34);}
+.v2-cta-label{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:14px;}
+.v2-cta-headline{font-size:26px;line-height:1.32;font-weight:800;color:#fff;letter-spacing:-.03em;margin-bottom:14px;text-wrap:balance;}
+.v2-cta-sub{font-size:15px;line-height:1.62;color:rgba(255,255,255,.94);margin-bottom:10px;}
+.v2-cta-proof{font-size:14px;line-height:1.62;color:rgba(255,255,255,.82);margin-bottom:24px;}
+.v2-cta-proof b{color:#fff;font-weight:800;}
+.v2-cta-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#fff;color:var(--accent-d);
+            font-size:17px;font-weight:800;letter-spacing:-.01em;min-height:56px;border-radius:14px;box-shadow:0 4px 14px rgba(23,31,40,.16);}
+.v2-cta-fine{margin-top:14px;text-align:center;font-size:12.5px;color:rgba(255,255,255,.72);}
+
+.v2-footer{padding:30px 20px 34px;text-align:center;}
+.v2-footer-nav{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;}
+.v2-footer-nav a{font-size:12px;color:var(--ink3);border:1px solid var(--line);padding:8px 14px;border-radius:20px;}
+.v2-footer-copy{font-size:11px;color:var(--gray);}
+
+.v2-arc-week{font-size:13px;color:var(--ink3);margin-bottom:24px;}
+.v2-arc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+@media (max-width:560px){.v2-arc-grid{grid-template-columns:repeat(2,1fr);}}
+.v2-arc-card{border-radius:14px;padding:16px 12px;display:flex;flex-direction:column;gap:6px;
+             border:1px solid var(--line);background:#fff;text-align:center;}
+.v2-arc-card-empty{opacity:.5;}
+.v2-arc-day{font-size:13px;font-weight:800;color:var(--accent);}
+.v2-arc-card-empty .v2-arc-day{color:var(--gray);}
+.v2-arc-date{font-size:11.5px;color:var(--ink2);font-weight:500;}
+.v2-arc-lb{font-size:11px;color:var(--ink3);line-height:1.4;
+           display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.v2-arc-cta{font-size:11px;font-weight:700;color:var(--accent);}
+.v2-arc-cta-none{color:var(--gray);font-weight:400;}
+
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px;}
+
+/* 데스크톱(웹): 페이퍼 폭을 넓히고 아이보스 뉴스를 2단으로 — 모바일은 위 기본값 유지 */
+@media (min-width:700px){
+  .v2-wrapper{max-width:680px;padding:32px 16px 64px;}
+  .v2-newslist{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:2px;}
+  .v2-item{align-items:flex-start;}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="v2-wrapper">
+    <div class="v2-topnav"><a href="../../v2/">← 최신 뉴스레터</a></div>
+    <div class="v2-paper">
+        <div class="v2-brandbar">
+            <div class="v2-brand"><span class="v2-brand-dot"></span>Brandrise 데일리</div>
+            <div class="v2-brand-date">11월 4일 · 수</div>
+        </div>
+        <div class="v2-header">
+            <div class="v2-eyebrow">오늘의 마케팅</div>
+            <div class="v2-header-title">11월 4일 마케팅 뉴스</div>
+            <div class="v2-greeting"><p>안녕하세요! 수요일 마케팅 소식 전해드립니다 😊 오늘은 넷쇼트의 약진이 흥미롭습니다. 숏폼 드라마 앱이 10월 한 달간 75만 건 설치되며 티빙과 넷플릭스를 제치고 엔터테인먼트 앱 신규설치 1위에 오른 건데, 콘텐츠 소비 방식이 '긴 호흡의 완성도'보다 '짧고 강한 몰입'으로 빠르게 이동하고 있다는 신호로 읽힙니다. OTT 플랫폼이 오랜 시간을 들여 쌓아온 콘텐츠 경쟁력이 새로운 포맷 앞에서 흔들리는 구도인 만큼, 콘텐츠 전략을 고민하는 팀이라면 숏폼 드라마 장르가 어떤 구조로 이용자를 끌어들이는지 뜯어볼 가치가 있습니다.</p><p>빌더조쉬에서 소개한 Blavity 창업자 모건 드바운의 사례도 살펴볼 만합니다. 직원 75명 규모의 조직에 AI 에이전트 40여 명을 도입하며 실제 조직도를 공개했다는 이야기인데, 단순한 업무 자동화를 넘어 AI를 조직 구성원으로 설계하고 역할을 명확히 나눈 접근이 구체적입니다. 더 저렴한 에이전트가 초기 필터링을 담당하고, 메일 발송이나 결제는 사람의 승인을 거치는 구조는 AI 도입 범위와 인간의 개입 지점을 어떻게 설정할지 고민하는 팀에 실질적인 참고 사례가 됩니다.</p><p>한 주의 중반, 오늘도 좋은 인사이트 많이 얻으시길 바랍니다! 🚀</p></div>
+        </div>
+        <div class="v2-entry"><a href="https://forms.gle/R5FaijsFD4VoTEsj9?utm_source=web&amp;utm_medium=cta&amp;utm_campaign=brandrise&amp;utm_content=top" target="_blank" rel="noopener"><span class="v2-entry-ico">💬</span><span class="v2-entry-txt"><b>브랜딩·마케팅, 어디서부터 막막하다면</b><span>30분 무료 상담으로 방향부터 잡아보세요</span></span><span class="v2-entry-go">상담 →</span></a></div>
+        
+    <div class="v2-card">
+        <div class="v2-card-header">
+            <span class="v2-card-icon">📰</span>
+            <div>
+                <div class="v2-card-title">오늘의 마케팅 뉴스</div>
+                <div class="v2-card-source">브랜드라이즈 AI 큐레이션</div>
+            </div>
+            
+        </div>
+        <div class="v2-newslist">
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29543" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-11-04/iboss-1.png" alt="" loading="lazy"><span class="v2-item-rank">1</span></span>
+            <span class="v2-item-body"><h3>퍼블리시스, 라이브램프 인수 완료…AI 마케팅 통합 솔루션 공개</h3><p>글로벌 광고그룹 퍼블리시스가 22억 달러(약 3조 원)에 데이터 협업 플랫폼 라이브램프 인수를 완료하고, 광고주가 자체 데이터로 AI 마케팅을 운영할 수 있는 통합 솔루션을 공개했다. 라이브램프의 데이터 연결 기술과 자회사 엡실론의 고객 식별 기술을 결합해 데이터 분석부터 광고 집행, 성과 측정, AI 에이전트 개발까지 지원한다. 퍼스트파티 데이터 기반 마케팅이 업계 표준으로 굳어지는 흐름 속에서, 국내 마케터도 데이터 연결과 AI 활용 체계 구축을 서둘러야 할 시점이다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29509" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><span class="v2-item-thumb v2-item-thumb-grad" style="background:linear-gradient(135deg, #f7971e 0%, #ffd200 100%)">📣</span><span class="v2-item-rank">2</span></span>
+            <span class="v2-item-body"><h3>광고 클릭 12건 중 1건이 무효…연간 630억 달러 낭비</h3><p>광고 트래픽 검증 기업 루니오가 클릭 27억 건을 분석한 결과, 평균 무효 트래픽 비율이 8.51%로 나타났다. 이를 전 세계 디지털 광고비에 적용하면 2025년 약 630억 달러가 낭비된 것으로 추산된다. 디지털 광고 집행 시 무효 트래픽 검증 도구 도입과 광고 플랫폼별 트래픽 품질 점검이 광고 효율 개선의 핵심 과제로 부상하고 있다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29530" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><span class="v2-item-thumb v2-item-thumb-grad" style="background:linear-gradient(135deg, #f7971e 0%, #ffd200 100%)">📣</span><span class="v2-item-rank">3</span></span>
+            <span class="v2-item-body"><h3>국내 옥외광고 시장 4조6472억 역대 최대…DOOH 6.1% 성장</h3><p>2025년 국내 옥외광고 시장 매출이 4조6472억 원으로 역대 최대를 기록했으며, 전체 성장률은 0.5%에 그쳤지만 디지털 옥외광고(DOOH)는 1조7649억 원으로 6.1% 성장했다. 한국옥외광고센터가 발표한 통계에 따르면 DOOH의 전체 시장 내 비중도 꾸준히 확대되고 있다. 대홍기획과 중앙일보의 OOH 공동판매 협약 등과 맞물려, 프리미엄 디지털 옥외광고 상품에 대한 수요가 커질 전망이다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29525" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><span class="v2-item-thumb v2-item-thumb-grad" style="background:linear-gradient(135deg, #f7971e 0%, #ffd200 100%)">📣</span><span class="v2-item-rank">4</span></span>
+            <span class="v2-item-body"><h3>핀터레스트, 매그나이트와 프로그래매틱 광고 확대…아마존·구글 통해 구매 가능</h3><p>핀터레스트가 매그나이트와 협력해 북미·남미·아시아태평양 지역에서 프로그래매틱 딜을 정식 출시했다. 광고주는 아마존과 구글 등 기존 광고 구매 플랫폼에서 핀터레스트의 디스플레이·동영상 광고를 다른 매체와 함께 통합 구매하고 성과 측정까지 관리할 수 있게 됐다. 핀터레스트를 별도 집행 채널로 운영해 온 마케터라면 통합 바잉 방식으로 운영 효율을 높일 수 있는 기회가 열린 셈이다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://platum.kr/archives/297623" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><span class="v2-item-thumb v2-item-thumb-grad" style="background:linear-gradient(135deg, #434343 0%, #000000 100%)">📰</span><span class="v2-item-rank">5</span></span>
+            <span class="v2-item-body"><h3>숏폼 드라마 앱, 10월 엔터 앱 신규설치 1위…넷플릭스·티빙 제쳤다</h3><p>숏폼 드라마 앱 넷쇼트가 10월 한 달간 75만 건 설치되며 엔터테인먼트 업종 신규설치 1위에 올랐다. 2위 티빙(47만 건)을 28만 건 차이로 앞섰고, 프리릴스 등 다른 숏폼 드라마 앱도 상위권에 진입하며 장르 전반의 성장세를 확인했다. 1~2분 세로형 콘텐츠 소비가 급성장하는 만큼, 콘텐츠 마케팅과 광고 집행 채널로서 숏폼 드라마 플랫폼의 가능성을 주목할 필요가 있다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.madtimes.co.kr/news/articleView.html?idxno=29521" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><img class="v2-item-thumb" src="../images/2026-11-04/iboss-6.png" alt="" loading="lazy"><span class="v2-item-rank">6</span></span>
+            <span class="v2-item-body"><h3>핼러윈, 성인 축제 '어덜토윈'으로 확산…글로벌 소비 트렌드 부상</h3><p>페레로가 발표한 '2026 어덜토윈' 조사에 따르면 미국·캐나다·영국·호주에서 성인들이 핼러윈을 자신의 축제로 받아들이는 경향이 뚜렷해지고 있다. 분장과 모임, 홈 파티 등 소비 방식도 다양해지며 관련 시장이 확대되고 있다. 국내에서도 성인 대상 핼러윈 소비가 증가하는 추세로, 뷰티·식음료·유통 마케터에게 시즌 캠페인 타깃을 재정의할 기회가 될 수 있다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a>
+        <a class="v2-item" href="https://www.mobiinside.co.kr/2026/11/03/global-influencer-settlement-automation-operations/" target="_blank" rel="noopener">
+            <span class="v2-item-thumbwrap"><span class="v2-item-thumb v2-item-thumb-grad" style="background:linear-gradient(135deg, #434343 0%, #000000 100%)">📰</span><span class="v2-item-rank">7</span></span>
+            <span class="v2-item-body"><h3>해외 인플루언서 100명인데 정산 담당자는 그대로…운영 자동화가 답</h3><p>해외 인플루언서 협업 규모가 늘어날수록 정산 업무는 인플루언서 수와 정산 횟수가 곱해져 급증하지만, 담당 인력은 늘지 않아 기존 담당자의 업무 과부하로 이어진다. 계약부터 검증, 송금까지 자동화하지 않으면 정산 규모를 확장하기 어렵다는 구조적 문제가 지적된다. 글로벌 인플루언서 마케팅을 확대하는 브랜드라면 정산 프로세스 자동화 도입을 사전에 검토해야 한다.</p></span>
+            <span class="v2-item-chev">›</span>
+        </a></div>
+    </div>
+
+    <a class="v2-bj-card" href="https://maily.so/josh/posts/2qzpegdwo4x" target="_blank" rel="noopener">
+        <div class="v2-bj-hero"><img src="../images/2026-11-04/stibee-0.jpg" alt="" loading="lazy"></div>
+        <div class="v2-bj-content">
+        <div class="v2-bj-eyebrow">
+            <span class="v2-bj-icon">✍️</span>
+            <span>빌더조쉬 · 오늘의 인사이트</span>
+        </div>
+        <div class="v2-bj-title">직원 75명을 이끄는 대표가 공개한 AI 직원 40여 명 조직도</div>
+        <p class="v2-bj-subtitle">Blavity 창업자 모건 드바운 대담, 더 싼 에이전트가 먼저 거르고 메일·결제는 승인 뒤에</p>
+        <ol class="v2-bj-summary"><li>Blavity CEO 모건 드바운은 사람 직원 75명 옆에 AI 직원 40명을 두고 Salesforce를 몇 주째 열지 않는 운영 체계를 구축.</li><li>비서실장 에이전트 맬컴(최고사양) 앞에 더 저렴한 서굿을 세워 결과물을 먼저 거르는 2단계 검문으로 토큰 비용 절감.</li><li>에이전트 설계의 핵심은 Indeed 채용 공고처럼 직무기술서를 작성하고 보고 라인·도구 권한·주 1회 면담을 붙이는 조직도 방식.</li></ol>
+        <span class="v2-bj-cta">뉴스레터 읽기 →</span>
+        </div>
+    </a>
+        <div class="v2-cta"><div class="v2-cta-label">브랜드라이즈 무료 상담</div><div class="v2-cta-headline">혼자 고민하지 마세요.</div><p class="v2-cta-sub">브랜드 진단부터 지금 당장 해야 할 우선순위까지,<br>30분 무료 상담에서 함께 정리해드려요.</p><p class="v2-cta-proof">이미 <b>수십 개 브랜드</b>가 상담받았습니다.<br>내 브랜드처럼, 함께 고민하는 팀원의 마음으로 봅니다.</p><a class="v2-cta-btn" href="https://forms.gle/R5FaijsFD4VoTEsj9?utm_source=web&amp;utm_medium=cta&amp;utm_campaign=brandrise&amp;utm_content=bottom" target="_blank" rel="noopener">30분 무료 상담받기 →</a><p class="v2-cta-fine">스타트업 대표·마케팅 담당자를 위한 30분</p></div>
+        <div class="v2-footer">
+            <div class="v2-footer-nav"><a href="../../v2/">← 최신 뉴스레터</a><a href="../archive.html">📚 전체 아카이브</a></div>
+            <div class="v2-footer-copy">Brandrise · 매일 아침 자동 업데이트</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
